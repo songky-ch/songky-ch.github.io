@@ -6,6 +6,7 @@ export default defineConfig({
   description: '技术原理、实践流程与开发和测试视角的面试专题.',
   base: '/',
   cleanUrls: false,
+  appearance: true,
   head: [['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }]],
   themeConfig: {
     logo: '/favicon.svg',
@@ -15,12 +16,12 @@ export default defineConfig({
       { text: '技术面试', link: '/interviews/' }
     ],
     sidebar: {
-      '/learning/': [{ text: '技术学习', link: '/learning/', items: [
+      '/learning/': [{ text: '技术学习', link: '/learning/', collapsed: false, items: [
         { text: 'AI 评测', link: '/learning/ai-evaluation/', collapsed: false, items: [
           { text: '淘宝购物助手在线评测', link: '/learning/ai-evaluation/taobao-online-agent-evaluation' }
         ] }
       ] }],
-      '/interviews/': [{ text: '技术面试', link: '/interviews/', items: [
+      '/interviews/': [{ text: '技术面试', link: '/interviews/', collapsed: false, items: [
         { text: 'AI 评测', link: '/interviews/ai-evaluation/', collapsed: false, items: [
           { text: '在线 Agent 评测面试', link: '/interviews/ai-evaluation/taobao-online-agent-evaluation' }
         ] }
