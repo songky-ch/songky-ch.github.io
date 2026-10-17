@@ -15,13 +15,15 @@ export default defineConfig({
       { text: '技术面试', link: '/interviews/' }
     ],
     sidebar: {
-      '/learning/': [{ text: '技术学习', items: [
-        { text: '全部主题', link: '/learning/' },
-        { text: '淘宝购物助手在线评测', link: '/learning/taobao-online-agent-evaluation' }
+      '/learning/': [{ text: '技术学习', link: '/learning/', items: [
+        { text: 'AI 评测', link: '/learning/ai-evaluation/', collapsed: false, items: [
+          { text: '淘宝购物助手在线评测', link: '/learning/ai-evaluation/taobao-online-agent-evaluation' }
+        ] }
       ] }],
-      '/interviews/': [{ text: '技术面试', items: [
-        { text: '全部专题', link: '/interviews/' },
-        { text: '在线 Agent 评测面试', link: '/interviews/taobao-online-agent-evaluation' }
+      '/interviews/': [{ text: '技术面试', link: '/interviews/', items: [
+        { text: 'AI 评测', link: '/interviews/ai-evaluation/', collapsed: false, items: [
+          { text: '在线 Agent 评测面试', link: '/interviews/ai-evaluation/taobao-online-agent-evaluation' }
+        ] }
       ] }]
     },
     socialLinks: [{ icon: 'github', link: 'https://github.com/songky-ch/songky-ch.github.io' }],

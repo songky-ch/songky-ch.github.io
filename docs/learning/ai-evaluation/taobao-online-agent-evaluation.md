@@ -1,3 +1,8 @@
+---
+category: AI 评测
+contentType: 文档带读
+---
+
 # 淘宝购物助手在线评测: 从日志到可信结论
 
 本文带读"淘宝AI购物助手在线评测落地实践", 聚焦 LLM-as-a-Judge (由大语言模型担任评判者) 如何成为可持续运行的质量观测系统. Agent (智能体) 在这里指会路由业务能力、调用工具并生成回复的购物助手.
@@ -9,7 +14,7 @@
 - 阅读范围: 当前页面正文第 1 至第 5 部分. 原文内嵌图表的像素内容未核查, 未访问原文提及的全部关联论文. 本文两张图均依据文字重新绘制, 不是原图.
 - 验证范围: 使用 Python 3.9.6 执行本地合成数据的聚合、批次完整性反例和统计计算. 文档相对链接、面试题结构和 SVG 文件结构均已核查, 两图已实际渲染预览. 未运行淘宝系统、数仓任务或真实模型推理.
 
-配套入口: [开发与测试面试专题](../interviews/taobao-online-agent-evaluation.md) · <a href="/examples/taobao-online-agent-evaluation/practice.py" download>练习代码</a> · [实际运行结果](/examples/taobao-online-agent-evaluation/practice-results.txt).
+配套入口: [开发与测试面试专题](../../interviews/ai-evaluation/taobao-online-agent-evaluation.md) · <a href="/examples/taobao-online-agent-evaluation/practice.py" download>练习代码</a> · [实际运行结果](/examples/taobao-online-agent-evaluation/practice-results.txt).
 
 ## 1. 阅读地图: 先找出"数字为何可信"
 
