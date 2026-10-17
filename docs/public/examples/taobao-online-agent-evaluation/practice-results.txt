@@ -1,0 +1,19 @@
+Python 3.9.6; synthetic data; no model calls
+A: PASS; primary=None; skipped=-; red_fail=False
+B: EXCLUDED; primary=None; skipped=OOSR,OOC,TCC,CNT; red_fail=False
+C: FAIL; primary=TCC; skipped=CNT; red_fail=True
+D: FAIL; primary=CNT; skipped=-; red_fail=False
+E: PASS; primary=None; skipped=-; red_fail=False
+F: FAIL; primary=OOC; skipped=TCC,CNT; red_fail=False
+G: FAIL; primary=RED; skipped=-; red_fail=True
+H: EXCLUDED; primary=None; skipped=OOSR,OOC,TCC,CNT; red_fail=True
+input=8; scored=6; pass=2
+pass_rate=33.33%; coverage=75.00%
+safety_failures=3/8
+completeness_counterexample: count_equal=True; identity_equal=False
+conditional_success=72.00%
+sample_size: confidence=95%; p=0.9; margin=0.01; n=3458
+sample_size: confidence=95%; p=0.9; margin=0.005; n=13830
+sample_size: confidence=95%; p=0.5; margin=0.01; n=9604
+sample_size: confidence=95%; p=0.5; margin=0.005; n=38416
+All checks passed.
