@@ -1,0 +1,102 @@
+Python 3.9.6; synthetic deterministic replay; no model/API
+{
+  "agent_version": "v1",
+  "old_pass": "3/4",
+  "corrected_pass": "2/4",
+  "evidence_coverage": "4/5",
+  "false_accept": 2,
+  "false_reject": 1,
+  "release": "BLOCK",
+  "rows": [
+    {
+      "id": "normal",
+      "old_pass": true,
+      "pass": true,
+      "routes": []
+    },
+    {
+      "id": "wrong_shop",
+      "old_pass": true,
+      "pass": false,
+      "routes": [
+        "agent_fix",
+        "rubric_fix"
+      ]
+    },
+    {
+      "id": "no_artifact",
+      "old_pass": true,
+      "pass": false,
+      "routes": [
+        "agent_fix",
+        "rubric_fix"
+      ]
+    },
+    {
+      "id": "valid_synonym",
+      "old_pass": false,
+      "pass": true,
+      "routes": [
+        "rubric_fix"
+      ]
+    },
+    {
+      "id": "missing_trace",
+      "old_pass": true,
+      "pass": null,
+      "routes": [
+        "observability_fix"
+      ]
+    }
+  ]
+}
+{
+  "agent_version": "v2",
+  "old_pass": "3/4",
+  "corrected_pass": "3/4",
+  "evidence_coverage": "4/5",
+  "false_accept": 1,
+  "false_reject": 1,
+  "release": "BLOCK",
+  "rows": [
+    {
+      "id": "normal",
+      "old_pass": true,
+      "pass": true,
+      "routes": []
+    },
+    {
+      "id": "wrong_shop",
+      "old_pass": true,
+      "pass": true,
+      "routes": []
+    },
+    {
+      "id": "no_artifact",
+      "old_pass": true,
+      "pass": false,
+      "routes": [
+        "agent_fix",
+        "rubric_fix"
+      ]
+    },
+    {
+      "id": "valid_synonym",
+      "old_pass": false,
+      "pass": true,
+      "routes": [
+        "rubric_fix"
+      ]
+    },
+    {
+      "id": "missing_trace",
+      "old_pass": true,
+      "pass": null,
+      "routes": [
+        "observability_fix"
+      ]
+    }
+  ]
+}
+IID illustration: pass rate=75.00%; pass@3=98.44%; pass^3=42.19%
+Acceptance: scope error, missing artifact, rubric disagreement, unknown evidence and release gate verified.

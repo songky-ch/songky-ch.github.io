@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1100" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 评测双环: 修能力, 也校准尺子</title>
+  <desc id="desc">运行证据和线上信号形成样本, 复核后分别修复 Agent、评价标准或观测缺口, 固定版本回测后受控上线并继续观察.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 1L8 5L0 9" fill="none" stroke="#52647e" stroke-width="1.8"/></marker>
+    <style>text{font-family:"PingFang SC","Microsoft YaHei",sans-serif;fill:#172b4d} .heading{font-size:28px;font-weight:700} .label{font-size:24px;font-weight:600} .body{font-size:21px} .small{font-size:19px;fill:#405574} .line{fill:none;stroke:#52647e;stroke-width:2.5;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect width="880" height="1100" rx="20" fill="#f4f7fc"/>
+  <text x="440" y="52" class="heading" text-anchor="middle">修 Agent, 也校准评测标准</text>
+  <text x="440" y="86" class="small" text-anchor="middle">教学映射: 同一个问题可以进入两条修复路径</text>
+  <rect x="100" y="115" width="680" height="100" rx="14" fill="#e3ecff" stroke="#5982c4"/>
+  <text x="440" y="153" class="label" text-anchor="middle">观测基建: 保存可关联证据</text>
+  <text x="440" y="188" class="body" text-anchor="middle">输入 · 工具参数与结果 · 产物 · 版本</text>
+  <path d="M440 215V247" class="line"/>
+  <rect x="100" y="250" width="680" height="94" rx="14" fill="#fff" stroke="#b9c8de"/>
+  <text x="440" y="287" class="label" text-anchor="middle">在线评测与监控 → 样本池</text>
+  <text x="440" y="321" class="body" text-anchor="middle">质量异常 · 系统异常 · 反馈 · 抽样</text>
+  <path d="M440 344V377" class="line"/>
+  <rect x="100" y="380" width="680" height="96" rx="14" fill="#fff3dc" stroke="#c49843"/>
+  <text x="440" y="417" class="label" text-anchor="middle">复核业务事实与评分结论</text>
+  <text x="440" y="452" class="body" text-anchor="middle">Agent 有错? 标准有错? 所需证据完整?</text>
+  <path d="M265 476V522" class="line"/>
+  <path d="M615 476V522" class="line"/>
+  <rect x="100" y="525" width="330" height="143" rx="14" fill="#e3ecff" stroke="#5982c4"/>
+  <text x="265" y="567" class="label" text-anchor="middle">Agent 迭代</text>
+  <text x="265" y="605" class="body" text-anchor="middle">修选参、状态或产物</text>
+  <text x="265" y="640" class="small" text-anchor="middle">例: B 门店 → A 门店</text>
+  <rect x="450" y="525" width="330" height="143" rx="14" fill="#def3e9" stroke="#5e9b81"/>
+  <text x="615" y="567" class="label" text-anchor="middle">评测体系迭代</text>
+  <text x="615" y="605" class="body" text-anchor="middle">补样本、校准标准</text>
+  <text x="615" y="640" class="small" text-anchor="middle">例: 关键词 → 事实检查</text>
+  <path d="M265 668V710H440V747" class="line"/>
+  <path d="M615 668V710H440" fill="none" stroke="#52647e" stroke-width="2.5"/>
+  <rect x="100" y="750" width="680" height="96" rx="14" fill="#fff" stroke="#b9c8de"/>
+  <text x="440" y="787" class="label" text-anchor="middle">共享评测资产 + 固定条件回测</text>
+  <text x="440" y="822" class="body" text-anchor="middle">同一任务、数据、标准与环境, 对照版本</text>
+  <path d="M440 846V882" class="line"/>
+  <rect x="100" y="885" width="680" height="88" rx="14" fill="#e8edf5" stroke="#8295b0"/>
+  <text x="440" y="920" class="label" text-anchor="middle">门禁通过 → 受控上线验证</text>
+  <text x="440" y="953" class="body" text-anchor="middle">继续观察真实任务, 新问题重新入池</text>
+  <path d="M100 930H44V296H100" class="line"/>
+  <rect x="100" y="1005" width="680" height="56" rx="12" fill="#fff3dc" stroke="#c49843"/>
+  <text x="440" y="1042" class="body" text-anchor="middle">证据不足: 先补观测, 不直接断言 Agent 失败</text>
+  <path d="M780 428H832V1033H780" class="line"/>
+</svg>

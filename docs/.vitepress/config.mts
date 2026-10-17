@@ -18,12 +18,14 @@ export default defineConfig({
     sidebar: {
       '/learning/': [{ text: '技术学习', link: '/learning/', collapsed: false, items: [
         { text: 'AI 评测', link: '/learning/ai-evaluation/', collapsed: false, items: [
-          { text: '淘宝购物助手在线评测', link: '/learning/ai-evaluation/taobao-online-agent-evaluation' }
+          { text: '淘宝购物助手在线评测', link: '/learning/ai-evaluation/taobao-online-agent-evaluation' },
+          { text: '美团 Agent 评测全览', link: '/learning/ai-evaluation/meituan-agent-evaluation-overview' }
         ] }
       ] }],
       '/interviews/': [{ text: '技术面试', link: '/interviews/', collapsed: false, items: [
         { text: 'AI 评测', link: '/interviews/ai-evaluation/', collapsed: false, items: [
-          { text: '在线 Agent 评测面试', link: '/interviews/ai-evaluation/taobao-online-agent-evaluation' }
+          { text: '在线 Agent 评测面试', link: '/interviews/ai-evaluation/taobao-online-agent-evaluation' },
+          { text: 'Agent 评测体系面试', link: '/interviews/ai-evaluation/meituan-agent-evaluation-overview' }
         ] }
       ] }]
     },

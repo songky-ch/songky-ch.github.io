@@ -7,6 +7,7 @@
 | 文章 | 内容类型 | 学习重点 |
 | --- | --- | --- |
 | [淘宝购物助手在线评测: 从日志到可信结论](./taobao-online-agent-evaluation.md) | 文档带读 | 在线评测链路、六层判定、指标分母、人工校准与合成数据练习 |
+| [美团 Agent 评测全览: 从四个模块到可运行双环](./meituan-agent-evaluation-overview.md) | 文档带读 | 评测双环、任务契约、多轮证据关联、标准校准与合成回放 |
 
 配套内容: [AI 评测面试专题](../../interviews/ai-evaluation/).
 

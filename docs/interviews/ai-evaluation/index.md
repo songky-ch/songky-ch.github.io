@@ -7,6 +7,7 @@
 | 专题 | 内容类型 | 考察重点 |
 | --- | --- | --- |
 | [在线 Agent 评测面试专题: 开发与测试视角](./taobao-online-agent-evaluation.md) | 面试专题 | 数据完整性、短路与安全检查、证据隔离、人工一致性、指标归因与修复验收 |
+| [Agent 评测体系面试: 双环、证据与可信判定](./meituan-agent-evaluation-overview.md) | 面试专题 | 可回归任务、评判器校准、多轮归因、证据覆盖与随机性指标 |
 
 配套内容: [AI 评测学习文章](../../learning/ai-evaluation/).
 
