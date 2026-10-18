@@ -1,0 +1,23 @@
+Python 3.12.14 | Darwin arm64
+Offline deterministic simulator; no LLM/API; in-memory state only.
+PASS general/normal: succeeded, refunds=1
+  decide:get_order -> get_order -> decide:validate -> validate -> decide:check_approval -> check_approval -> decide:submit -> submit -> decide:get_refund -> get_refund
+PASS general/no_approval: awaiting_approval, refunds=0
+  decide:get_order -> get_order -> decide:validate -> validate -> decide:check_approval -> check_approval
+PASS general/wrong_owner: blocked, refunds=0
+  decide:get_order -> get_order
+PASS general/timeout_after_commit: succeeded, refunds=1
+  decide:get_order -> get_order -> decide:validate -> validate -> decide:check_approval -> check_approval -> decide:submit -> submit -> response_unknown -> decide:get_refund -> get_refund
+PASS general/amount_over_limit: blocked, refunds=0
+  decide:get_order -> get_order -> decide:validate -> validate
+PASS vertical/normal: succeeded, refunds=1
+  stage:get_order -> get_order -> stage:validate -> validate -> stage:check_approval -> check_approval -> stage:submit -> submit -> stage:get_refund -> get_refund
+PASS vertical/no_approval: awaiting_approval, refunds=0
+  stage:get_order -> get_order -> stage:validate -> validate -> stage:check_approval -> check_approval
+PASS vertical/wrong_owner: blocked, refunds=0
+  stage:get_order -> get_order
+PASS vertical/timeout_after_commit: succeeded, refunds=1
+  stage:get_order -> get_order -> stage:validate -> validate -> stage:check_approval -> check_approval -> stage:submit -> submit -> response_unknown -> stage:get_refund -> get_refund
+PASS vertical/amount_over_limit: blocked, refunds=0
+  stage:get_order -> get_order -> stage:validate -> validate
+10 scenario checks passed.
