@@ -1,0 +1,18 @@
+Date: 2026-10-18
+Python: 3.9.6
+Data: synthetic-fixed-candidates-v1
+Scope: routing policy only; 30 fixtures. No real NLU, business writes or load tests.
+Known business evaluation failure: case 24. Tests intentionally document this limitation.
+
+test_candidate_order_does_not_change_route (test_router.RouterTests) ... ok
+test_critical_context_fields_independently_block_execution (test_router.RouterTests) ... ok
+test_does_not_mutate_request (test_router.RouterTests) ... ok
+test_invalid_model_outputs (test_router.RouterTests) ... ok
+test_known_semantic_blind_spot (test_router.RouterTests) ... ok
+test_policy_fixtures (test_router.RouterTests) ... ok
+test_untrusted_text_does_not_override_trusted_context (test_router.RouterTests) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.008s
+
+OK

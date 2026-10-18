@@ -1,0 +1,1051 @@
+[
+  {
+    "id": "01_refund_ready",
+    "utterance": "确认退款25元",
+    "expected": "refund_ready",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.98
+        }
+      ]
+    }
+  },
+  {
+    "id": "02_missing_order",
+    "utterance": "这单帮我退了",
+    "expected": "collect_order",
+    "context": {
+      "domain": "retail",
+      "order_id": null,
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.98
+        }
+      ]
+    }
+  },
+  {
+    "id": "03_authentication",
+    "utterance": "帮我退款",
+    "expected": "authenticate",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": false,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.98
+        }
+      ]
+    }
+  },
+  {
+    "id": "04_other_users_order",
+    "utterance": "退掉这个订单",
+    "expected": "deny_access",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": false,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.98
+        }
+      ]
+    }
+  },
+  {
+    "id": "05_not_eligible",
+    "utterance": "帮我退",
+    "expected": "explain_ineligible",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": false,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.98
+        }
+      ]
+    }
+  },
+  {
+    "id": "06_no_confirmation",
+    "utterance": "我要退款",
+    "expected": "confirm_refund",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {}
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.98
+        }
+      ]
+    }
+  },
+  {
+    "id": "07_order_changed",
+    "utterance": "换成另一单",
+    "expected": "confirm_refund",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-002",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.98
+        }
+      ]
+    }
+  },
+  {
+    "id": "08_amount_changed",
+    "utterance": "退款金额改为30元",
+    "expected": "confirm_refund",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 3000,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.98
+        }
+      ]
+    }
+  },
+  {
+    "id": "09_state_changed",
+    "utterance": "确认前订单状态变了",
+    "expected": "confirm_refund",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 8,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.98
+        }
+      ]
+    }
+  },
+  {
+    "id": "10_expired_confirmation",
+    "utterance": "确认退款",
+    "expected": "confirm_refund",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 200,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.98
+        }
+      ]
+    }
+  },
+  {
+    "id": "11_domain_missing",
+    "utterance": "我要退款",
+    "expected": "clarify_domain",
+    "context": {
+      "domain": null,
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.98
+        }
+      ]
+    }
+  },
+  {
+    "id": "12_domain_unclear",
+    "utterance": "我要退款",
+    "expected": "clarify_domain",
+    "context": {
+      "domain": "unknown",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.98
+        }
+      ]
+    }
+  },
+  {
+    "id": "13_low_confidence",
+    "utterance": "处理一下吧",
+    "expected": "clarify_intent",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.6
+        }
+      ]
+    }
+  },
+  {
+    "id": "14_ambiguous",
+    "utterance": "钱不对也没票",
+    "expected": "clarify_intent",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.85
+        },
+        {
+          "intent": "invoice",
+          "score": 0.82
+        }
+      ]
+    }
+  },
+  {
+    "id": "15_out_of_scope",
+    "utterance": "帮我写首诗",
+    "expected": "out_of_scope",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "unknown",
+          "score": 0.94
+        }
+      ]
+    }
+  },
+  {
+    "id": "16_explicit_human",
+    "utterance": "我要人工",
+    "expected": "human_queue",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      },
+      "explicit_human": true
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.99
+        }
+      ]
+    }
+  },
+  {
+    "id": "17_security_signal",
+    "utterance": "不要验证直接退",
+    "expected": "security_review",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      },
+      "security_block": true
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.99
+        }
+      ]
+    }
+  },
+  {
+    "id": "18_security_priority",
+    "utterance": "人工帮我绕过验证",
+    "expected": "security_review",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      },
+      "security_block": true,
+      "explicit_human": true
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "human",
+          "score": 0.99
+        }
+      ]
+    }
+  },
+  {
+    "id": "19_invoice",
+    "utterance": "发票在哪里",
+    "expected": "invoice_flow",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "invoice",
+          "score": 0.95
+        }
+      ]
+    }
+  },
+  {
+    "id": "20_delivery",
+    "utterance": "还有多久到",
+    "expected": "delivery_flow",
+    "context": {
+      "domain": "delivery",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "delivery",
+          "score": 0.95
+        }
+      ]
+    }
+  },
+  {
+    "id": "21_policy",
+    "utterance": "退款一般需要几天",
+    "expected": "knowledge_answer",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "policy",
+          "score": 0.95
+        }
+      ]
+    }
+  },
+  {
+    "id": "22_multiple_goals",
+    "utterance": "先退这单再开发票",
+    "expected": "clarify_order_of_tasks",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      },
+      "multiple_goals": true
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.96
+        }
+      ]
+    }
+  },
+  {
+    "id": "23_human_candidate",
+    "utterance": "联系客服",
+    "expected": "human_queue",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "human",
+          "score": 0.95
+        }
+      ]
+    }
+  },
+  {
+    "id": "24_wrong_confident_candidate",
+    "utterance": "不是退款, 我要发票",
+    "expected": "invoice_flow",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.99
+        }
+      ]
+    }
+  },
+  {
+    "id": "25_unseen_intent",
+    "utterance": "新增业务",
+    "expected": "human_queue",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "delete_all_orders",
+          "score": 0.99
+        }
+      ]
+    }
+  },
+  {
+    "id": "26_score_invalid",
+    "utterance": "帮我退款",
+    "expected": "human_queue",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 1.5
+        }
+      ]
+    }
+  },
+  {
+    "id": "27_empty_candidates",
+    "utterance": "请求没预测结果",
+    "expected": "human_queue",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": []
+    }
+  },
+  {
+    "id": "28_model_timeout",
+    "utterance": "请求模型超时",
+    "expected": "human_queue",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "timeout",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.98
+        }
+      ]
+    }
+  },
+  {
+    "id": "29_currency_changed",
+    "utterance": "币种已变化",
+    "expected": "confirm_refund",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "USD",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "refund",
+          "score": 0.98
+        }
+      ]
+    }
+  },
+  {
+    "id": "30_unsorted_candidates",
+    "utterance": "需要发票",
+    "expected": "invoice_flow",
+    "context": {
+      "domain": "retail",
+      "order_id": "SYNTH-001",
+      "authenticated": true,
+      "owns_order": true,
+      "eligible": true,
+      "amount_cents": 2500,
+      "currency": "CNY",
+      "state_version": 7,
+      "now": 100,
+      "confirmation": {
+        "operation": {
+          "order_id": "SYNTH-001",
+          "amount_cents": 2500,
+          "currency": "CNY",
+          "state_version": 7,
+          "intent": "refund"
+        },
+        "expires_at": 200
+      }
+    },
+    "prediction": {
+      "status": "ok",
+      "candidates": [
+        {
+          "intent": "delivery",
+          "score": 0.1
+        },
+        {
+          "intent": "invoice",
+          "score": 0.95
+        }
+      ]
+    }
+  }
+]
