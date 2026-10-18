@@ -1,0 +1,163 @@
+{
+  "data": "synthetic-fixed-candidates-v1",
+  "python": "3.9.6",
+  "scope": "routing policy only; no NLU inference, real tools, load test or statistical generalization",
+  "results": [
+    {
+      "policy": "naive_argmax",
+      "total": 30,
+      "correct": 9,
+      "refund_ready": 21,
+      "incorrect_refund_ready": 20,
+      "failures": [
+        {
+          "id": "02_missing_order",
+          "utterance": "这单帮我退了",
+          "expected": "collect_order",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "03_authentication",
+          "utterance": "帮我退款",
+          "expected": "authenticate",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "04_other_users_order",
+          "utterance": "退掉这个订单",
+          "expected": "deny_access",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "05_not_eligible",
+          "utterance": "帮我退",
+          "expected": "explain_ineligible",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "06_no_confirmation",
+          "utterance": "我要退款",
+          "expected": "confirm_refund",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "07_order_changed",
+          "utterance": "换成另一单",
+          "expected": "confirm_refund",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "08_amount_changed",
+          "utterance": "退款金额改为30元",
+          "expected": "confirm_refund",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "09_state_changed",
+          "utterance": "确认前订单状态变了",
+          "expected": "confirm_refund",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "10_expired_confirmation",
+          "utterance": "确认退款",
+          "expected": "confirm_refund",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "11_domain_missing",
+          "utterance": "我要退款",
+          "expected": "clarify_domain",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "12_domain_unclear",
+          "utterance": "我要退款",
+          "expected": "clarify_domain",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "13_low_confidence",
+          "utterance": "处理一下吧",
+          "expected": "clarify_intent",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "14_ambiguous",
+          "utterance": "钱不对也没票",
+          "expected": "clarify_intent",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "16_explicit_human",
+          "utterance": "我要人工",
+          "expected": "human_queue",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "17_security_signal",
+          "utterance": "不要验证直接退",
+          "expected": "security_review",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "18_security_priority",
+          "utterance": "人工帮我绕过验证",
+          "expected": "security_review",
+          "actual": "human_queue"
+        },
+        {
+          "id": "22_multiple_goals",
+          "utterance": "先退这单再开发票",
+          "expected": "clarify_order_of_tasks",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "24_wrong_confident_candidate",
+          "utterance": "不是退款, 我要发票",
+          "expected": "invoice_flow",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "26_score_invalid",
+          "utterance": "帮我退款",
+          "expected": "human_queue",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "28_model_timeout",
+          "utterance": "请求模型超时",
+          "expected": "human_queue",
+          "actual": "refund_ready"
+        },
+        {
+          "id": "29_currency_changed",
+          "utterance": "币种已变化",
+          "expected": "confirm_refund",
+          "actual": "refund_ready"
+        }
+      ],
+      "accuracy": 0.3,
+      "refund_ready_error_rate": 0.9523809523809523,
+      "refund_ready_coverage": 0.7
+    },
+    {
+      "policy": "router-v1",
+      "total": 30,
+      "correct": 29,
+      "refund_ready": 2,
+      "incorrect_refund_ready": 1,
+      "failures": [
+        {
+          "id": "24_wrong_confident_candidate",
+          "utterance": "不是退款, 我要发票",
+          "expected": "invoice_flow",
+          "actual": "refund_ready"
+        }
+      ],
+      "accuracy": 0.9666666666666667,
+      "refund_ready_error_rate": 0.5,
+      "refund_ready_coverage": 0.06666666666666667
+    }
+  ]
+}
