@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1070" role="img" aria-labelledby="title desc"><title id="title">五种 RAG 分层与链路</title><desc id="desc">知识表示、检索与控制三个维度, 以及五条可组合流程.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#476380" stroke-width="1.7"/></marker></defs>
+<rect width="1000" height="1070" rx="20" fill="#f4f7fc"/>
+<g font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#17324d">
+<text x="35" y="48" font-size="29" font-weight="650" text-anchor="start">五种 RAG: 分层理解, 按需组合</text>
+<text x="35" y="81" font-size="20" font-weight="400" text-anchor="start">共同目标: 为生成答案提供可追踪的外部证据</text>
+<rect x="35" y="110" width="290" height="96" rx="12" fill="#e7f0ff" stroke="#9cb2ca" stroke-width="1.5"/>
+<text x="180.0" y="152.0" font-size="19" font-weight="500" text-anchor="middle">知识表示层</text>
+<text x="180.0" y="178.0" font-size="19" font-weight="500" text-anchor="middle">文本块 / 实体关系 / 社区报告</text>
+<rect x="355" y="110" width="290" height="96" rx="12" fill="#e9f6ef" stroke="#9cb2ca" stroke-width="1.5"/>
+<text x="500.0" y="152.0" font-size="19" font-weight="500" text-anchor="middle">检索层</text>
+<text x="500.0" y="178.0" font-size="19" font-weight="500" text-anchor="middle">向量 / 词法 / 图查询 / 阅读</text>
+<rect x="675" y="110" width="290" height="96" rx="12" fill="#fff1de" stroke="#9cb2ca" stroke-width="1.5"/>
+<text x="820.0" y="152.0" font-size="19" font-weight="500" text-anchor="middle">控制层</text>
+<text x="820.0" y="178.0" font-size="19" font-weight="500" text-anchor="middle">固定流程 / Agent 动态循环</text>
+<text x="35" y="253" font-size="23" font-weight="600" text-anchor="start">五种常见链路 (底层组件可以复用)</text>
+<text x="38" y="305" font-size="21" font-weight="600" text-anchor="start">传统 RAG</text>
+<rect x="38" y="323" width="282" height="65" rx="12" fill="#ffffff" stroke="#9cb2ca" stroke-width="1.5"/>
+<text x="179.0" y="362.5" font-size="19" font-weight="500" text-anchor="middle">固定检索</text>
+<polyline points="320,355 354,355" fill="none" stroke="#476380" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="359" y="323" width="282" height="65" rx="12" fill="#ffffff" stroke="#9cb2ca" stroke-width="1.5"/>
+<text x="500.0" y="362.5" font-size="19" font-weight="500" text-anchor="middle">片段上下文</text>
+<polyline points="641,355 675,355" fill="none" stroke="#476380" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="680" y="323" width="282" height="65" rx="12" fill="#ffffff" stroke="#9cb2ca" stroke-width="1.5"/>
+<text x="821.0" y="362.5" font-size="19" font-weight="500" text-anchor="middle">生成答案</text>
+<text x="38" y="439" font-size="21" font-weight="600" text-anchor="start">混合检索 RAG</text>
+<rect x="38" y="457" width="282" height="65" rx="12" fill="#ffffff" stroke="#9cb2ca" stroke-width="1.5"/>
+<text x="179.0" y="496.5" font-size="19" font-weight="500" text-anchor="middle">词法 + 向量</text>
+<polyline points="320,489 354,489" fill="none" stroke="#476380" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="359" y="457" width="282" height="65" rx="12" fill="#ffffff" stroke="#9cb2ca" stroke-width="1.5"/>
+<text x="500.0" y="496.5" font-size="19" font-weight="500" text-anchor="middle">融合 / 可选重排</text>
+<polyline points="641,489 675,489" fill="none" stroke="#476380" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="680" y="457" width="282" height="65" rx="12" fill="#ffffff" stroke="#9cb2ca" stroke-width="1.5"/>
+<text x="821.0" y="496.5" font-size="19" font-weight="500" text-anchor="middle">生成答案</text>
+<text x="38" y="573" font-size="21" font-weight="600" text-anchor="start">Agentic RAG</text>
+<rect x="38" y="591" width="282" height="65" rx="12" fill="#ffffff" stroke="#9cb2ca" stroke-width="1.5"/>
+<text x="179.0" y="630.5" font-size="19" font-weight="500" text-anchor="middle">模型决策</text>
+<polyline points="320,623 354,623" fill="none" stroke="#476380" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="359" y="591" width="282" height="65" rx="12" fill="#ffffff" stroke="#9cb2ca" stroke-width="1.5"/>
+<text x="500.0" y="630.5" font-size="19" font-weight="500" text-anchor="middle">工具与观察循环</text>
+<polyline points="641,623 675,623" fill="none" stroke="#476380" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="680" y="591" width="282" height="65" rx="12" fill="#ffffff" stroke="#9cb2ca" stroke-width="1.5"/>
+<text x="821.0" y="630.5" font-size="19" font-weight="500" text-anchor="middle">答案 / 已知缺口</text>
+<text x="38" y="707" font-size="21" font-weight="600" text-anchor="start">Agent-as-retriever</text>
+<rect x="38" y="725" width="282" height="65" rx="12" fill="#ffffff" stroke="#9cb2ca" stroke-width="1.5"/>
+<text x="179.0" y="764.5" font-size="19" font-weight="500" text-anchor="middle">信息需求</text>
+<polyline points="320,757 354,757" fill="none" stroke="#476380" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="359" y="725" width="282" height="65" rx="12" fill="#ffffff" stroke="#9cb2ca" stroke-width="1.5"/>
+<text x="500.0" y="764.5" font-size="19" font-weight="500" text-anchor="middle">搜索 / 打开 / 查缺</text>
+<polyline points="641,757 675,757" fill="none" stroke="#476380" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="680" y="725" width="282" height="65" rx="12" fill="#ffffff" stroke="#9cb2ca" stroke-width="1.5"/>
+<text x="821.0" y="764.5" font-size="19" font-weight="500" text-anchor="middle">证据包 → 上层</text>
+<text x="38" y="841" font-size="21" font-weight="600" text-anchor="start">GraphRAG</text>
+<rect x="38" y="859" width="282" height="65" rx="12" fill="#ffffff" stroke="#9cb2ca" stroke-width="1.5"/>
+<text x="179.0" y="898.5" font-size="19" font-weight="500" text-anchor="middle">实体 / 社区入口</text>
+<polyline points="320,891 354,891" fill="none" stroke="#476380" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="359" y="859" width="282" height="65" rx="12" fill="#ffffff" stroke="#9cb2ca" stroke-width="1.5"/>
+<text x="500.0" y="898.5" font-size="19" font-weight="500" text-anchor="middle">图与原文 / 报告</text>
+<polyline points="641,891 675,891" fill="none" stroke="#476380" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="680" y="859" width="282" height="65" rx="12" fill="#ffffff" stroke="#9cb2ca" stroke-width="1.5"/>
+<text x="821.0" y="898.5" font-size="19" font-weight="500" text-anchor="middle">生成答案</text>
+<text x="35" y="1000" font-size="20" font-weight="400" text-anchor="start">Agent-as-retriever 的出口是证据; Agentic RAG 描述整个控制过程.</text>
+<text x="35" y="1032" font-size="20" font-weight="400" text-anchor="start">GraphRAG 可由固定代码或 Agent 调度, 也可保留向量与词法检索.</text>
+</g></svg>
