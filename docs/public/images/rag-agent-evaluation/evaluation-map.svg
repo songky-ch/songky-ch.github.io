@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 790" role="img"><title>三类评测与共享基础设施</title>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L9,5 L0,10" fill="none" stroke="#52627b" stroke-width="1.5"/></marker><style>text{font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#1b2a42} .h{font-size:30px;font-weight:600}.s{font-size:17px}.t{font-size:20px;font-weight:600}.b{fill:#fff;stroke:#c2ccdc;stroke-width:1.5}.a{stroke:#52627b;stroke-width:2;marker-end:url(#arrow);fill:none}</style></defs>
+<rect width="1080" height="790" rx="20" fill="#f5f7fb"/>
+<text class="h" x="38" y="54">RAG、Agent 与混合评测</text>
+<text class="s" x="38" y="85">先定义任务契约, 再采集证据、分层判定并回归</text>
+<rect class="b" x="36" y="115" width="192" height="90" rx="12"/>
+<text class="t" x="132" y="151" text-anchor="middle">任务与数据</text>
+<text class="s" x="132" y="181" text-anchor="middle">真值 / 规则 / 风险</text>
+<path class="a" d="M229 160 H237"/>
+<rect class="b" x="240" y="115" width="192" height="90" rx="12"/>
+<text class="t" x="336" y="151" text-anchor="middle">固定运行</text>
+<text class="s" x="336" y="181" text-anchor="middle">版本 / 快照 / 预算</text>
+<path class="a" d="M433 160 H441"/>
+<rect class="b" x="444" y="115" width="192" height="90" rx="12"/>
+<text class="t" x="540" y="151" text-anchor="middle">采集证据</text>
+<text class="s" x="540" y="181" text-anchor="middle">上下文 / 调用 / 状态</text>
+<path class="a" d="M637 160 H645"/>
+<rect class="b" x="648" y="115" width="192" height="90" rx="12"/>
+<text class="t" x="744" y="151" text-anchor="middle">独立判定</text>
+<text class="s" x="744" y="181" text-anchor="middle">代码 / 模型 / 人工</text>
+<path class="a" d="M841 160 H849"/>
+<rect class="b" x="852" y="115" width="192" height="90" rx="12"/>
+<text class="t" x="948" y="151" text-anchor="middle">分析与回归</text>
+<text class="s" x="948" y="181" text-anchor="middle">分桶 / 稳定 / 费用</text>
+<rect x="36" y="240" width="1008" height="110" rx="14" fill="#e7f1ff"/>
+<text class="t" x="60" y="299">RAG</text>
+<rect class="b" x="222" y="254" width="248" height="82" rx="10"/>
+<text class="t" x="346" y="288" text-anchor="middle">问题 + 知识快照</text>
+<text class="s" x="346" y="316" text-anchor="middle">明确问题、权限与时间</text>
+<path class="a" d="M473 295 H491"/>
+<rect class="b" x="496" y="254" width="248" height="82" rx="10"/>
+<text class="t" x="620" y="288" text-anchor="middle">检索 + 上下文构造</text>
+<text class="s" x="620" y="316" text-anchor="middle">召回 / 重排 / 压缩</text>
+<path class="a" d="M747 295 H765"/>
+<rect class="b" x="770" y="254" width="248" height="82" rx="10"/>
+<text class="t" x="894" y="288" text-anchor="middle">答案 + 引用</text>
+<text class="s" x="894" y="316" text-anchor="middle">正确 / 充分 / 有据</text>
+<rect x="36" y="370" width="1008" height="110" rx="14" fill="#e8f5ef"/>
+<text class="t" x="60" y="429">Agent</text>
+<rect class="b" x="222" y="384" width="248" height="82" rx="10"/>
+<text class="t" x="346" y="418" text-anchor="middle">目标 + 初始状态</text>
+<text class="s" x="346" y="446" text-anchor="middle">允许动作与成功条件</text>
+<path class="a" d="M473 425 H491"/>
+<rect class="b" x="496" y="384" width="248" height="82" rx="10"/>
+<text class="t" x="620" y="418" text-anchor="middle">多轮决策 + 工具</text>
+<text class="s" x="620" y="446" text-anchor="middle">选择 / 参数 / 执行</text>
+<path class="a" d="M747 425 H765"/>
+<rect class="b" x="770" y="384" width="248" height="82" rx="10"/>
+<text class="t" x="894" y="418" text-anchor="middle">实际终态 + 告知</text>
+<text class="s" x="894" y="446" text-anchor="middle">约束 / 副作用 / 完成</text>
+<rect x="36" y="500" width="1008" height="110" rx="14" fill="#fff2df"/>
+<text class="t" x="60" y="559">混合评测</text>
+<rect class="b" x="222" y="514" width="248" height="82" rx="10"/>
+<text class="t" x="346" y="548" text-anchor="middle">检索 + 实时业务状态</text>
+<text class="s" x="346" y="576" text-anchor="middle">规则证据与订单事实</text>
+<path class="a" d="M473 555 H491"/>
+<rect class="b" x="496" y="514" width="248" height="82" rx="10"/>
+<text class="t" x="620" y="548" text-anchor="middle">证据支持的决策</text>
+<text class="s" x="620" y="576" text-anchor="middle">适用规则 / 确认 / 参数</text>
+<path class="a" d="M747 555 H765"/>
+<rect class="b" x="770" y="514" width="248" height="82" rx="10"/>
+<text class="t" x="894" y="548" text-anchor="middle">动作 + 状态 + 引用</text>
+<text class="s" x="894" y="576" text-anchor="middle">逐任务检查联合成功</text>
+<rect x="36" y="652" width="1008" height="102" rx="14" fill="#1d304c"/>
+<text x="62" y="690" style="fill:white;font-size:22px;font-weight:600">共用一套记录, 保留各层结果, 再计算端到端成功</text>
+<text x="62" y="724" style="fill:#d9e4f5;font-size:18px">回答有据 ≠ 事实完整; 工具执行成功 ≠ 业务任务完成</text>
+</svg>

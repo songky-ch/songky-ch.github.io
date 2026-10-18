@@ -1,0 +1,11 @@
+{
+  "checked_on": "2026-10-18",
+  "python": "3.9.6",
+  "validation": "executed deterministic synthetic trace evaluation; no model or live business APIs",
+  "sha256": {
+    "evaluate.py": "e424fe2b584659196d6ab91e3759b2c1bdb00d0007df42e49c0c9e5ed2292e2a",
+    "cases.json": "a5e15457e84528c53deceb835749decaa63648271c1d779a327e98aa7e7cccfe",
+    "results.json": "5203da5732681db6c4155f96f5e90afb237fef05620dd59f930e9748f4c0d60f"
+  },
+  "acceptance": "7 planned; 2 success; 4 failure; 1 unknown; layer assertions and local links passed"
+}

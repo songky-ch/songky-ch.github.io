@@ -1,0 +1,140 @@
+{
+  "data_type": "synthetic_annotated_traces",
+  "summary": {
+    "planned_trials": 7,
+    "known_successes": 2,
+    "known_failures": 4,
+    "unknown": 1,
+    "observed_success_fraction": 0.2857142857142857,
+    "success_rate_on_judged": 0.3333333333333333,
+    "judgment_coverage": 0.8571428571428571,
+    "success_identification_bounds": [
+      0.2857142857142857,
+      0.42857142857142855
+    ]
+  },
+  "cases": [
+    {
+      "case_id": "normal-refund",
+      "id_recall": 1.0,
+      "id_precision": 1.0,
+      "checks": {
+        "evidence": true,
+        "decision": true,
+        "parameters": true,
+        "constraints": true,
+        "state": true,
+        "communication": true
+      },
+      "failed_checks": [],
+      "status": "success"
+    },
+    {
+      "case_id": "missing-condition",
+      "id_recall": 0.5,
+      "id_precision": 1.0,
+      "checks": {
+        "evidence": false,
+        "decision": false,
+        "parameters": false,
+        "constraints": true,
+        "state": false,
+        "communication": true
+      },
+      "failed_checks": [
+        "evidence",
+        "decision",
+        "parameters",
+        "state"
+      ],
+      "status": "failure"
+    },
+    {
+      "case_id": "wrong-order",
+      "id_recall": 1.0,
+      "id_precision": 1.0,
+      "checks": {
+        "evidence": true,
+        "decision": true,
+        "parameters": false,
+        "constraints": true,
+        "state": false,
+        "communication": false
+      },
+      "failed_checks": [
+        "parameters",
+        "state",
+        "communication"
+      ],
+      "status": "failure"
+    },
+    {
+      "case_id": "stale-policy",
+      "id_recall": 1.0,
+      "id_precision": 1.0,
+      "checks": {
+        "evidence": false,
+        "decision": false,
+        "parameters": false,
+        "constraints": true,
+        "state": false,
+        "communication": true
+      },
+      "failed_checks": [
+        "evidence",
+        "decision",
+        "parameters",
+        "state"
+      ],
+      "status": "failure"
+    },
+    {
+      "case_id": "duplicate-refund",
+      "id_recall": 1.0,
+      "id_precision": 1.0,
+      "checks": {
+        "evidence": true,
+        "decision": true,
+        "parameters": true,
+        "constraints": false,
+        "state": false,
+        "communication": true
+      },
+      "failed_checks": [
+        "constraints",
+        "state"
+      ],
+      "status": "failure"
+    },
+    {
+      "case_id": "correct-refusal",
+      "id_recall": 1.0,
+      "id_precision": 1.0,
+      "checks": {
+        "evidence": true,
+        "decision": true,
+        "parameters": true,
+        "constraints": true,
+        "state": true,
+        "communication": true
+      },
+      "failed_checks": [],
+      "status": "success"
+    },
+    {
+      "case_id": "missing-state",
+      "id_recall": 1.0,
+      "id_precision": 1.0,
+      "checks": {
+        "evidence": true,
+        "decision": true,
+        "parameters": true,
+        "constraints": true,
+        "state": null,
+        "communication": true
+      },
+      "failed_checks": [],
+      "status": "unknown"
+    }
+  ]
+}

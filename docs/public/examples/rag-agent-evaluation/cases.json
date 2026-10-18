@@ -1,0 +1,189 @@
+[
+  {
+    "case_id": "normal-refund",
+    "required_evidence": [
+      "window-7d",
+      "unused"
+    ],
+    "retrieved_evidence": [
+      "window-7d",
+      "unused"
+    ],
+    "policy_current": true,
+    "order_id": "O-1",
+    "expected_decision": "refund",
+    "decision": "refund",
+    "expected_refund_cents": 10000,
+    "refund_calls": [
+      {
+        "order_id": "O-1",
+        "amount_cents": 10000,
+        "at": 3
+      }
+    ],
+    "confirmed_at": 2,
+    "observed_refund_cents": 10000,
+    "other_order_refund_cents": 0,
+    "communication_ok": true
+  },
+  {
+    "case_id": "missing-condition",
+    "required_evidence": [
+      "window-7d",
+      "unused"
+    ],
+    "retrieved_evidence": [
+      "window-7d"
+    ],
+    "policy_current": true,
+    "order_id": "O-1",
+    "expected_decision": "refuse",
+    "decision": "refund",
+    "expected_refund_cents": 0,
+    "refund_calls": [
+      {
+        "order_id": "O-1",
+        "amount_cents": 10000,
+        "at": 3
+      }
+    ],
+    "confirmed_at": 2,
+    "observed_refund_cents": 10000,
+    "other_order_refund_cents": 0,
+    "communication_ok": true
+  },
+  {
+    "case_id": "wrong-order",
+    "required_evidence": [
+      "window-7d",
+      "unused"
+    ],
+    "retrieved_evidence": [
+      "window-7d",
+      "unused"
+    ],
+    "policy_current": true,
+    "order_id": "O-1",
+    "expected_decision": "refund",
+    "decision": "refund",
+    "expected_refund_cents": 10000,
+    "refund_calls": [
+      {
+        "order_id": "O-2",
+        "amount_cents": 10000,
+        "at": 3
+      }
+    ],
+    "confirmed_at": 2,
+    "observed_refund_cents": 0,
+    "other_order_refund_cents": 10000,
+    "communication_ok": false
+  },
+  {
+    "case_id": "stale-policy",
+    "required_evidence": [
+      "window-7d",
+      "unused"
+    ],
+    "retrieved_evidence": [
+      "window-7d",
+      "unused"
+    ],
+    "policy_current": false,
+    "order_id": "O-1",
+    "expected_decision": "refuse",
+    "decision": "refund",
+    "expected_refund_cents": 0,
+    "refund_calls": [
+      {
+        "order_id": "O-1",
+        "amount_cents": 10000,
+        "at": 3
+      }
+    ],
+    "confirmed_at": 2,
+    "observed_refund_cents": 10000,
+    "other_order_refund_cents": 0,
+    "communication_ok": true
+  },
+  {
+    "case_id": "duplicate-refund",
+    "required_evidence": [
+      "window-7d",
+      "unused"
+    ],
+    "retrieved_evidence": [
+      "window-7d",
+      "unused"
+    ],
+    "policy_current": true,
+    "order_id": "O-1",
+    "expected_decision": "refund",
+    "decision": "refund",
+    "expected_refund_cents": 10000,
+    "refund_calls": [
+      {
+        "order_id": "O-1",
+        "amount_cents": 10000,
+        "at": 3
+      },
+      {
+        "order_id": "O-1",
+        "amount_cents": 10000,
+        "at": 4
+      }
+    ],
+    "confirmed_at": 2,
+    "observed_refund_cents": 20000,
+    "other_order_refund_cents": 0,
+    "communication_ok": true
+  },
+  {
+    "case_id": "correct-refusal",
+    "required_evidence": [
+      "window-7d",
+      "unused"
+    ],
+    "retrieved_evidence": [
+      "window-7d",
+      "unused"
+    ],
+    "policy_current": true,
+    "order_id": "O-1",
+    "expected_decision": "refuse",
+    "decision": "refuse",
+    "expected_refund_cents": 0,
+    "refund_calls": [],
+    "confirmed_at": null,
+    "observed_refund_cents": 0,
+    "other_order_refund_cents": 0,
+    "communication_ok": true
+  },
+  {
+    "case_id": "missing-state",
+    "required_evidence": [
+      "window-7d",
+      "unused"
+    ],
+    "retrieved_evidence": [
+      "window-7d",
+      "unused"
+    ],
+    "policy_current": true,
+    "order_id": "O-1",
+    "expected_decision": "refund",
+    "decision": "refund",
+    "expected_refund_cents": 10000,
+    "refund_calls": [
+      {
+        "order_id": "O-1",
+        "amount_cents": 10000,
+        "at": 3
+      }
+    ],
+    "confirmed_at": 2,
+    "observed_refund_cents": null,
+    "other_order_refund_cents": 0,
+    "communication_ok": true
+  }
+]
