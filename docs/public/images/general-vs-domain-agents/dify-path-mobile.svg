@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 820" role="img" aria-label="Dify: 工作流节点接上具体策略">
+<defs><marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#1761a0"/></marker><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#617283"/></marker><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#18766e"/></marker><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#a64031"/></marker></defs>
+<rect width="380" height="820" fill="#fbfaf6"/>
+<g font-family="PingFang SC,Microsoft YaHei,Arial,sans-serif">
+<text x="20" y="30" font-size="20" font-weight="600" fill="#142d4e" text-anchor="start">Dify: 工作流节点接上具体策略</text>
+<rect x="25" y="80" width="330" height="146" fill="#edf3f7" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="37" y="105" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">读取工作流上下文</text>
+<text x="37" y="129" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">经典 AgentNode._run()</text>
+<text x="37" y="151" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">选择策略</text>
+<text x="37" y="173" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">用变量池构造参数</text>
+<text x="37" y="195" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">取得会话与相应凭证</text>
+<path d="M190,226 L190,290" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<rect x="25" y="290" width="330" height="146" fill="#f0ede5" stroke="#a9b2b9" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="37" y="315" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">执行策略边界</text>
+<text x="37" y="339" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">strategy.invoke(...)</text>
+<text x="37" y="361" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">得到消息流</text>
+<text x="37" y="383" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">策略内部循环本次没有完整追踪</text>
+<path d="M190,436 L190,500" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<rect x="25" y="500" width="330" height="146" fill="#edf3f7" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="37" y="525" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">回到工作流</text>
+<text x="37" y="549" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">消息转换器处理流</text>
+<text x="37" y="571" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">生成节点事件与输出</text>
+<text x="37" y="593" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">相应异常走 FAILED 出口</text>
+<text x="25" y="730" font-size="14" font-weight="400" fill="#a64031" text-anchor="start">失败是节点出口, 不是默认生成成功回答.</text>
+<text x="20" y="802" font-size="11" font-weight="400" fill="#617283" text-anchor="start">经典 AgentNode, b953e69. 不代表新版 Agent 全部实现.</text>
+</g></svg>

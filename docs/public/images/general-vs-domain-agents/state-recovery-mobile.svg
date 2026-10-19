@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 1240" role="img" aria-label="超时后, 先核对实际发生了什么">
+<defs><marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#1761a0"/></marker><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#617283"/></marker><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#18766e"/></marker><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#a64031"/></marker></defs>
+<rect width="380" height="1240" fill="#fbfaf6"/>
+<g font-family="PingFang SC,Microsoft YaHei,Arial,sans-serif">
+<text x="20" y="30" font-size="20" font-weight="600" fill="#142d4e" text-anchor="start">超时后, 先核对实际发生了什么</text>
+<rect x="25" y="65" width="330" height="90" fill="white" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="37" y="90" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">调用前</text>
+<text x="37" y="114" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">保存业务操作键 k</text>
+<path d="M190,155 L190,178" fill="none" stroke="#617283" stroke-width="2" marker-end="url(#a1)"/>
+<rect x="25" y="178" width="330" height="90" fill="white" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="37" y="203" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">退款服务</text>
+<text x="37" y="227" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">以 k 创建退款, 记录已写入</text>
+<path d="M190,268 L190,291" fill="none" stroke="#617283" stroke-width="2" marker-end="url(#a1)"/>
+<rect x="25" y="291" width="330" height="112" fill="#f8ebe6" stroke="#a64031" stroke-width="1.5"/>
+<text x="37" y="316" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">故障窗口</text>
+<text x="37" y="340" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">响应丢失或程序崩溃</text>
+<text x="37" y="362" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">“已完成”尚未存入检查点</text>
+<path d="M190,403 L190,426" fill="none" stroke="#617283" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#a1)"/>
+<rect x="25" y="426" width="330" height="90" fill="white" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="37" y="451" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">恢复执行</text>
+<text x="37" y="475" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">读到旧进度, 仍保留 k</text>
+<path d="M190,516 L190,555" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<rect x="25" y="555" width="330" height="65" fill="#edf3f7" stroke="#1761a0" stroke-width="1.5"/>
+<text x="37" y="580" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">按 k 查询权威退款服务</text>
+<path d="M25,588 L12,588 L12,700 L25,700" fill="none" stroke="#18766e" stroke-width="2" marker-end="url(#a2)"/>
+<text x="27" y="662" font-size="14" font-weight="400" fill="#18766e" text-anchor="start">[查到匹配的确认记录]</text>
+<rect x="25" y="674" width="330" height="90" fill="#e4efeb" stroke="#18766e" stroke-width="1.5"/>
+<text x="37" y="699" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">验收后成功</text>
+<text x="37" y="723" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">核对订单、金额与实际状态</text>
+<path d="M190,620 L360,620 L360,798 L190,798 L190,817" fill="none" stroke="#617283" stroke-width="2" marker-end="url(#a1)"/>
+<text x="27" y="792" font-size="14" font-weight="400" fill="#142d4e" text-anchor="start">[查询失败 / 状态仍未知]</text>
+<rect x="25" y="817" width="330" height="90" fill="#f1ede4" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="37" y="842" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">核对中 / 等待</text>
+<text x="37" y="866" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">不报成功, 有界重试或人工核对</text>
+<path d="M355,588 L374,588 L374,1004 L355,1004" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<text x="27" y="954" font-size="14" font-weight="400" fill="#142d4e" text-anchor="start">[权威确认未写入]</text>
+<rect x="25" y="974" width="330" height="104" fill="white" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="37" y="999" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">按服务契约决定重试</text>
+<text x="37" y="1023" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">仍用 k, 不新建业务操作</text>
+<text x="37" y="1045" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">重试后回到“按 k 查询”</text>
+<path d="M25,1030 L6,1030 L6,578 L25,578" fill="none" stroke="#18766e" stroke-width="2" marker-end="url(#a2)"/>
+<text x="25" y="1150" font-size="14" font-weight="400" fill="#18766e" text-anchor="start">左侧回线: 同一键重试后的再次核对.</text>
+<text x="20" y="1222" font-size="11" font-weight="400" fill="#617283" text-anchor="start">检查点恢复进度, 服务端幂等防止重复副作用.</text>
+</g></svg>

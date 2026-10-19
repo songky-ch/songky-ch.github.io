@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 720" role="img" aria-label="任务范围与自主程度是两回事">
+<defs><marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#1761a0"/></marker><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#617283"/></marker><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#18766e"/></marker><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#a64031"/></marker></defs>
+<rect width="380" height="720" fill="#fbfaf6"/>
+<g font-family="PingFang SC,Microsoft YaHei,Arial,sans-serif">
+<text x="20" y="30" font-size="20" font-weight="600" fill="#142d4e" text-anchor="start">任务范围与自主程度是两回事</text>
+<text x="20" y="66" font-size="14" font-weight="400" fill="#617283" text-anchor="start">上方: 更多动态决策</text>
+<text x="20" y="88" font-size="14" font-weight="400" fill="#617283" text-anchor="start">右方: 覆盖更多任务</text>
+<path d="M40,620 L350,620" fill="none" stroke="#617283" stroke-width="2" marker-end="url(#a1)"/>
+<path d="M40,620 L40,138" fill="none" stroke="#617283" stroke-width="2" marker-end="url(#a1)"/>
+<path d="M195,155 L195,600" fill="none" stroke="#617283" stroke-width="2" stroke-dasharray="6 5"/>
+<path d="M50,370 L345,370" fill="none" stroke="#617283" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="57" y="197" font-size="15" font-weight="600" fill="#18766e" text-anchor="start">领域 + 自主</text>
+<text x="57" y="229" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">软件工程 Agent</text>
+<text x="57" y="254" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">动态查代码、改文件</text>
+<text x="57" y="279" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">围绕代码结果验收</text>
+<text x="213" y="197" font-size="15" font-weight="600" fill="#1761a0" text-anchor="start">通用 + 自主</text>
+<text x="213" y="229" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">综合任务助手</text>
+<text x="213" y="254" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">组合资料与工具</text>
+<text x="213" y="279" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">权限仍有边界</text>
+<text x="57" y="415" font-size="15" font-weight="600" fill="#18766e" text-anchor="start">领域 + 流程</text>
+<text x="57" y="447" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">标准售后流程</text>
+<text x="57" y="472" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">资格、审批、提交</text>
+<text x="57" y="497" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">节点内也可自主</text>
+<text x="213" y="415" font-size="15" font-weight="600" fill="#1761a0" text-anchor="start">宽入口 + 流程</text>
+<text x="213" y="447" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">企业助理门户</text>
+<text x="213" y="472" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">按意图路由</text>
+<text x="213" y="497" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">调用预定义流程</text>
+<text x="45" y="651" font-size="14" font-weight="400" fill="#142d4e" text-anchor="start">任务集中</text>
+<text x="265" y="651" font-size="14" font-weight="400" fill="#142d4e" text-anchor="start">任务较广</text>
+<text x="20" y="702" font-size="11" font-weight="400" fill="#617283" text-anchor="start">教学分类. 通用 / 垂直与自主 / 固定流程分别判断.</text>
+</g></svg>

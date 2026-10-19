@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 1370" role="img" aria-label="同一退款: 条件决定去向">
+<defs><marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#1761a0"/></marker><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#617283"/></marker><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#18766e"/></marker><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#a64031"/></marker></defs>
+<rect width="380" height="1370" fill="#fbfaf6"/>
+<g font-family="PingFang SC,Microsoft YaHei,Arial,sans-serif">
+<text x="20" y="30" font-size="20" font-weight="600" fill="#142d4e" text-anchor="start">同一退款: 条件决定去向</text>
+<rect x="20" y="60" width="340" height="82" fill="white" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="32" y="85" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">A17, 19900 分</text>
+<text x="32" y="109" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">两种控制方式使用同一服务约束</text>
+<rect x="20" y="174" width="340" height="114" fill="white" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="32" y="199" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">取证方式可以不同</text>
+<text x="32" y="223" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">通用: 模型动态选工具</text>
+<text x="32" y="245" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">领域: 流程安排阶段, 节点可自主</text>
+<text x="32" y="267" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">材料不足时补问, 不提交</text>
+<path d="M190,142 L190,174" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<path d="M190,288 L190,340" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<path d="M140.0 340L260 385.0L140.0 430L20 385.0Z" fill="#eef3f4" stroke="#1761a0" stroke-width="1.5"/>
+<text x="140.0" y="391.0" font-size="15" font-weight="600" fill="#142d4e" text-anchor="middle">身份与订单匹配?</text>
+<path d="M260,385 L275,385 L275,502 L285,502" fill="none" stroke="#a64031" stroke-width="2" marker-end="url(#a3)"/>
+<text x="264" y="370" font-size="13" font-weight="400" fill="#a64031" text-anchor="start">否</text>
+<rect x="285" y="466" width="80" height="88" fill="#f8ebe6" stroke="#a64031" stroke-width="1.5"/>
+<text x="292" y="491" font-size="14" font-weight="600" fill="#142d4e" text-anchor="start">阻塞</text>
+<text x="292" y="515" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">不提交</text>
+<path d="M140,430 L140,483" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<text x="150" y="463" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">是</text>
+<path d="M140.0 483L260 528.0L140.0 573L20 528.0Z" fill="#eef3f4" stroke="#1761a0" stroke-width="1.5"/>
+<text x="140.0" y="534.0" font-size="15" font-weight="600" fill="#142d4e" text-anchor="middle">资格与金额有效?</text>
+<path d="M260,528 L275,528 L275,502 L285,502" fill="none" stroke="#a64031" stroke-width="2" marker-end="url(#a3)"/>
+<text x="263" y="515" font-size="13" font-weight="400" fill="#a64031" text-anchor="start">否</text>
+<path d="M140,573 L140,626" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<text x="150" y="610" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">是</text>
+<path d="M140.0 626L260 671.0L140.0 716L20 671.0Z" fill="#eef3f4" stroke="#1761a0" stroke-width="1.5"/>
+<text x="140.0" y="677.0" font-size="15" font-weight="600" fill="#142d4e" text-anchor="middle">证据与审批齐全?</text>
+<path d="M260,671 L285,671" fill="none" stroke="#617283" stroke-width="2" marker-end="url(#a1)"/>
+<text x="263" y="655" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">否</text>
+<rect x="285" y="637" width="80" height="106" fill="#f1ede4" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="292" y="662" font-size="14" font-weight="600" fill="#142d4e" text-anchor="start">等待</text>
+<text x="292" y="686" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">补材料</text>
+<text x="292" y="704" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">或审批</text>
+<text x="292" y="722" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">不提交</text>
+<path d="M325,637 L374,637 L374,317 L140,317 L140,340" fill="none" stroke="#617283" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#a1)"/>
+<text x="20" y="309" font-size="13" font-weight="400" fill="#617283" text-anchor="start">补齐后重新核验条件</text>
+<path d="M140,716 L140,768" fill="none" stroke="#18766e" stroke-width="2" marker-end="url(#a2)"/>
+<text x="150" y="750" font-size="13" font-weight="400" fill="#18766e" text-anchor="start">是</text>
+<rect x="20" y="768" width="240" height="91" fill="white" stroke="#18766e" stroke-width="1.5"/>
+<text x="32" y="793" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">提交并查询</text>
+<text x="32" y="817" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">同一业务操作键</text>
+<path d="M140,859 L140,911" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<path d="M140.0 911L260 956.0L140.0 1001L20 956.0Z" fill="#eef3f4" stroke="#1761a0" stroke-width="1.5"/>
+<text x="140.0" y="962.0" font-size="15" font-weight="600" fill="#142d4e" text-anchor="middle">已确认匹配记录?</text>
+<path d="M140,1001 L140,1075" fill="none" stroke="#18766e" stroke-width="2" marker-end="url(#a2)"/>
+<text x="150" y="1050" font-size="13" font-weight="400" fill="#18766e" text-anchor="start">是</text>
+<rect x="20" y="1075" width="240" height="91" fill="#e4efeb" stroke="#18766e" stroke-width="1.5"/>
+<text x="32" y="1100" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">成功, 交付依据</text>
+<text x="32" y="1124" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">确认不等于资金到账</text>
+<path d="M260,956 L325,956 L325,1030" fill="none" stroke="#617283" stroke-width="2" marker-end="url(#a1)"/>
+<text x="285" y="938" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">未知</text>
+<rect x="285" y="1030" width="80" height="105" fill="#f1ede4" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="292" y="1055" font-size="14" font-weight="600" fill="#142d4e" text-anchor="start">核对中</text>
+<text x="292" y="1079" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">不报成功</text>
+<text x="292" y="1097" font-size="13" font-weight="400" fill="#142d4e" text-anchor="start">见恢复图</text>
+<path d="M20,956 L8,956 L8,1220 L20,1220" fill="none" stroke="#a64031" stroke-width="2" marker-end="url(#a3)"/>
+<text x="20" y="1192" font-size="14" font-weight="400" fill="#a64031" text-anchor="start">[明确失败]</text>
+<rect x="20" y="1200" width="340" height="93" fill="#f8ebe6" stroke="#a64031" stroke-width="1.5"/>
+<text x="32" y="1225" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">失败或按服务契约处理</text>
+<text x="32" y="1249" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">保留原因与已做操作, 不伪报完成</text>
+<text x="20" y="1352" font-size="11" font-weight="400" fill="#617283" text-anchor="start">教学案例. 补齐材料回到条件核验, 未知结果单独核对.</text>
+</g></svg>

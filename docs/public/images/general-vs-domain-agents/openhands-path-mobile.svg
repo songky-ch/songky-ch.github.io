@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 820" role="img" aria-label="OpenHands: 会话与动作怎样配合">
+<defs><marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#1761a0"/></marker><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#617283"/></marker><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#18766e"/></marker><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#a64031"/></marker></defs>
+<rect width="380" height="820" fill="#fbfaf6"/>
+<g font-family="PingFang SC,Microsoft YaHei,Arial,sans-serif">
+<text x="20" y="30" font-size="20" font-weight="600" fill="#142d4e" text-anchor="start">OpenHands: 会话与动作怎样配合</text>
+<rect x="25" y="80" width="330" height="146" fill="#edf3f7" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="37" y="105" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">会话控制</text>
+<text x="37" y="129" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">LocalConversation</text>
+<text x="37" y="151" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">_run()</text>
+<text x="37" y="173" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">处理运行状态、暂停和确认</text>
+<text x="37" y="195" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">限制预算与迭代</text>
+<path d="M190,226 L190,290" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<rect x="25" y="290" width="330" height="146" fill="#f0ede5" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="37" y="315" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">单步决策</text>
+<text x="37" y="339" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">Agent.step / _step</text>
+<text x="37" y="361" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">准备本轮历史视图</text>
+<text x="37" y="383" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">必要时先压缩</text>
+<text x="37" y="405" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">请求模型, 按响应类型处理</text>
+<path d="M190,436 L190,500" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<rect x="25" y="500" width="330" height="146" fill="#edf3f7" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="37" y="525" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">动作与观察</text>
+<text x="37" y="549" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">_execute_action_event</text>
+<text x="37" y="571" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">执行工具, 返回观察</text>
+<text x="37" y="593" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">或对应错误事件</text>
+<text x="37" y="615" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">用调用标识关联, 交回会话</text>
+<path d="M355,573 L370,573 L370,108 L355,108" fill="none" stroke="#617283" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#a1)"/>
+<text x="25" y="730" font-size="14" font-weight="400" fill="#142d4e" text-anchor="start">观察回到会话, 下一步仍受运行状态约束.</text>
+<text x="20" y="802" font-size="11" font-weight="400" fill="#617283" text-anchor="start">已读本地路径, 6ae6407. 不是远程部署全图.</text>
+</g></svg>

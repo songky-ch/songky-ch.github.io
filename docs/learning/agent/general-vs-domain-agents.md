@@ -12,27 +12,38 @@ description: 从请求入口到业务结果, 对比通用与垂直领域智能�
 - 学习目标: 能画出两类系统的完整架构, 追踪一次任务的数据和控制流, 解释真实代码中每层的职责, 并验证写操作是否真正完成.
 - 前置知识: 基本 Python、网络接口调用、数据库读写. 涉及模型、检索与编排的概念会在首次出现时解释.
 - 分类: Agent. 内容类型: 技术对比.
-- 核查日期: 2026-10-18, Asia/Shanghai.
-- 验证状态: 官方资料在线读取与指定文件静态阅读已完成; 配套离线练习已在 Python 3.12.14 下通过 10 个场景检查. 未运行 Deep Agents、OpenHands 或 Dify 的完整服务, 未调用付费模型或真实退款接口.
+- 原技术核查日期: 2026-10-18, Asia/Shanghai.
+- 图文整理日期: 2026-10-19. 本次调整讲解方式与图解, 沿用原源码快照及运行记录, 不表示重新核实了第三方最新实现.
+- 原验证状态 (2026-10-18): 官方资料在线读取与指定文件静态阅读已完成; 配套离线练习已在 Python 3.12.14 下通过 10 个场景检查. 未运行 Deep Agents、OpenHands 或 Dify 的完整服务, 未调用付费模型或真实退款接口.
 - 配套: [开发与测试面试专题](../../interviews/agent/general-vs-domain-agents.md), <a href="/examples/general-vs-domain-agents/practice.py" download>离线练习源码</a>, [实际执行记录](/examples/general-vs-domain-agents/practice-results.txt).
 
-## 1. 定义与阅读地图
+<picture>
+  <source media="(max-width: 640px)" srcset="/images/general-vs-domain-agents/architecture-mobile.svg">
+  <img src="/images/general-vs-domain-agents/architecture.svg" alt="Agent 系统边界: 接入、运行时、模型、工具和独立状态" loading="lazy">
+</picture>
+
+先从上面的用户入口看起. 任务进入运行时后, 模型负责提出下一步, 工具和业务服务负责真正执行. 下方四种状态各有事实来源, 最后交付前要核对它们. 这张图画的是职责与调用关系, 不是每次任务都按六步直线运行.
+
+## 1. 先分清“任务范围”和“自主程度”
 
 ### 1.1 本文所说的 Agent 是什么
 
-Agent (智能体) 是围绕目标, 根据观察选择动作、调用工具并继续处理反馈的系统. LLM (Large Language Model, 大语言模型) 驱动的 Agent 通常把“下一步做什么”的一部分交给模型, 把动作执行交给软件运行时. 模型、Agent 程序、运行环境和业务系统是不同组件.
+你给出一个目标后, 系统先看当前情况, 选择下一步动作, 执行后再根据结果继续判断. 这样的系统称为智能体 (Agent). 如果使用大语言模型 (LLM, Large Language Model), 模型会参与判断“下一步做什么”, 但真正执行动作的是运行程序和工具. 模型、智能体程序、执行环境和业务系统仍是不同组件.
 
-**通用 Agent (General-purpose Agent, 通用智能体)** 面向多种任务族. 例如同一个入口能够检索资料、分析表格、编写程序和生成报告. 通用指适用任务较宽, 不代表拥有所有数据、权限和工具, 更不表示已经实现通用人工智能.
+**通用 Agent** 面向多类任务, 英文常写作 General-purpose Agent. 例如同一个入口能够检索资料、分析表格、编写程序和生成报告. 通用指适用任务较宽, 不代表拥有所有数据、权限和工具, 更不表示已经实现通用人工智能.
 
-**垂直领域 Agent (Domain-specific / Vertical Agent, 领域智能体)** 围绕特定领域或业务角色设计. 例如软件工程 Agent、售后 Agent、数据分析 Agent. 它可能执行很长的自主循环, 也可能由确定的工作流限制关键步骤.
+**垂直领域 Agent** 围绕特定领域或业务角色设计, 英文常写作 Domain-specific / Vertical Agent. 例如软件工程 Agent、售后 Agent、数据分析 Agent. 它可能执行很长的自主循环, 也可能由确定的工作流限制关键步骤.
 
 领域是相对的: 编程 Agent 相对办公助手是垂直的; 面向整个软件工程的 Agent 相对只修复一种构建故障的 Agent 又更通用. 本文按系统的目标任务集合、可访问资产和交付标准判断, 不按产品名字判断.
 
 ### 1.2 两个维度必须分开
 
-Workflow (工作流) 的主要执行路径由程序或流程图定义; Agent loop (智能体循环) 允许模型在运行时选择下一动作. 这是控制方式的区别. Anthropic 与 LangGraph 的官方解释均采用这个维度, 它们没有把它直接等同于“通用/垂直”. [Anthropic: What are agents?](https://www.anthropic.com/engineering/building-effective-agents), [LangGraph: Workflows and agents](https://docs.langchain.com/oss/python/langgraph/workflows-agents).
+如果主要路径由程序或流程图预先安排, 就是在使用工作流 (Workflow); 如果让模型看着执行结果选择下一动作, 就形成智能体循环 (Agent loop). 这是控制方式的区别. Anthropic 与 LangGraph 的官方解释均采用这个维度, 它们没有把它直接等同于“通用/垂直”. [Anthropic: What are agents?](https://www.anthropic.com/engineering/building-effective-agents), [LangGraph: Workflows and agents](https://docs.langchain.com/oss/python/langgraph/workflows-agents).
 
-[![任务范围与控制方式是两个独立维度](../../public/images/general-vs-domain-agents/two-axes.svg)](/images/general-vs-domain-agents/two-axes.svg)
+<picture>
+  <source media="(max-width: 640px)" srcset="/images/general-vs-domain-agents/two-axes-mobile.svg">
+  <img src="/images/general-vs-domain-agents/two-axes.svg" alt="任务范围与自主程度的两个独立坐标" loading="lazy">
+</picture>
 
 读图: 横轴看覆盖多少任务, 纵轴看下一步主要由谁决定. 图中是教学分类, 不表示某产品永远固定在一个坐标.
 
@@ -43,28 +54,13 @@ Workflow (工作流) 的主要执行路径由程序或流程图定义; Agent loo
 | 垂直 + 工作流为主 | 标准售后处理系统 | 资格、审批和提交路径主要由业务状态机决定 |
 | 宽任务入口 + 多个工作流 | 企业综合助理门户 | 入口覆盖面广, 路由到多个已定义流程 |
 
-Multi-agent (多智能体, 多个决策上下文协作) 也是独立选择. 单 Agent 可以通用, 多 Agent 也可能只服务一个垂直场景.
-
-### 1.3 真实参考项目与阅读范围
-
-下面选取有公开实现、能对应关键机制的代表项目, 不把它们当成市场份额排名. Dify 有完整中文官方文档; Deep Agents 与 OpenHands 的代码和核心架构资料以英文为主, 本文中文解释其已读取部分.
-
-| 项目与定位 | 本次固定代码快照 | 已实际阅读 | 本文如何使用 |
-| --- | --- | --- | --- |
-| Deep Agents, 通用 Agent harness (智能体运行支架) | [`97f856d`](https://github.com/langchain-ai/deepagents/tree/97f856dcb08264ef78722a4687cab9133ec5fb7a), `pyproject.toml` 声明 `0.7.28` | `libs/deepagents/deepagents/graph.py`, 包配置, 官方 Overview | 解释通用循环如何装配上下文、文件、子任务与人工介入 |
-| OpenHands Software Agent SDK (软件开发工具包), 面向代码工作的 Agent 实现 | [`6ae6407`](https://github.com/OpenHands/software-agent-sdk/tree/6ae64079cfd30cfe2f01a060c59168a4d650d883), SDK 包声明 `1.55.1` | README, `agent.py`, `local_conversation.py`, 包配置, 官方架构页 | 展示一个垂直领域系统仍能动态决策与执行 |
-| Dify, Agent 与工作流构建平台 | [`b953e69`](https://github.com/langgenius/dify/tree/b953e69a0eb397e625337812e0319ab770f18783), API 包声明 `1.17.1` | 经典 `AgentNode._run`, API/前端依赖与 Compose 配置, 官方 Agent 节点页 | 展示工作流包裹局部自主循环的实现位置 |
-| LangGraph, 图执行运行时 | 官方滚动文档, 2026-10-18 在线核查, 未固定库代码版本 | Workflows and agents、Persistence | 解释图、检查点与跨会话存储 |
-
-版本号是读取快照中声明的版本, 不是本机已安装版本或“最新稳定版”承诺. 没有阅读整库所有入口、部署逻辑或测试. Dify 新旧 Agent 路径共存, 下文源码追踪仅针对经典节点, 不把它泛化成新版 Agent 的全部实现.
+是否使用多个智能体协作 (Multi-agent), 也要单独判断. 单 Agent 可以通用, 多 Agent 也可能只服务一个垂直场景.
 
 ## 2. 共同架构: 六层职责与四种状态
 
 ### 2.1 先看共同骨架
 
-[![通用与垂直领域 Agent 的共同架构和不同约束位置](../../public/images/general-vs-domain-agents/architecture.svg)](/images/general-vs-domain-agents/architecture.svg)
-
-读图: 顶部请求经过身份和任务处理进入运行时. 中间形成“构建上下文 → 决策 → 校验与执行 → 观察”的循环. 下方的业务状态、运行状态和产物不会因一句自然语言回答而自动一致. 两列表示常见侧重点, 不是某一个项目的部署拓扑.
+回到开头的全景图, 先区分三件事: 模型提出动作, 运行时决定能否执行, 业务服务返回实际发生的结果. 表中的六层是职责分工, 可以位于同一进程, 也可以跨服务部署. 不要把这张职责表读成固定的六步业务流程.
 
 | 层 | 负责什么 | 关键输入与输出 | 不应承担什么 |
 | --- | --- | --- | --- |
@@ -86,7 +82,7 @@ Multi-agent (多智能体, 多个决策上下文协作) 也是独立选择. 单 
 | 业务状态 | 订单归属、退款状态、实际退款金额 | 订单与退款服务 | 业务数据库与服务接口 |
 | 产物状态 | 报告文件、代码改动、测试结果、下载地址 | 文件或构建系统 | 文件系统或对象存储 |
 
-Long-term memory (长期记忆, 跨会话保存的偏好或事实) 属于额外的数据资产, 不能取代以上状态. RAG (Retrieval-Augmented Generation, 检索增强生成) 取回知识作为本轮依据, 也不等于执行恢复机制.
+跨会话保存的偏好或事实属于长期记忆 (Long-term memory), 不能代替上面四种状态. 回答前先从资料中找相关片段, 再交给模型使用, 是检索增强生成 (RAG, Retrieval-Augmented Generation). 它提供本轮依据, 也不能代替执行恢复机制.
 
 LangGraph 明确区分 Checkpointer (检查点持久化器) 与 Store (跨会话数据存储): 前者保存一个 thread (会话执行线) 的图状态, 后者保存应用定义的跨 thread 数据. 内存实现重启会丢失, 持久化能力还取决于选择的存储后端. [LangGraph: Persistence](https://docs.langchain.com/oss/python/langgraph/persistence).
 
@@ -115,7 +111,7 @@ LangGraph 明确区分 Checkpointer (检查点持久化器) 与 Store (跨会话
 
 假设已经提供订单工具、政策资料、表格解析工具与退款服务; 用户身份由接入层确认. 没有这些能力时, 通用 Agent 只能停在分析、说明缺失或申请接入, 不会因为“通用”自动拥有业务权限.
 
-### 3.1 入口: 把自然语言转换成任务信封
+### 3.1 收到一句话后, 先记录哪些信息?
 
 入口可能是 Web 对话、CLI (命令行界面)、API (应用程序接口)、工单事件或计划任务. 它们先进入接入层, 而不是直接让模型执行一句任意文本.
 
@@ -144,20 +140,20 @@ LangGraph 明确区分 Checkpointer (检查点持久化器) 与 Store (跨会话
 
 通用 Agent 还需检查能力是否存在: 能读取表格不代表能写退款系统; 有浏览器不代表能访问登录后的管理后台; 有工具描述不代表当前身份获准使用它.
 
-### 3.3 上下文装配: 决定这一轮模型能看到什么
+### 3.3 这一轮到底让模型看哪些资料?
 
-Context engineering (上下文工程, 按当前步骤组织模型输入) 通常包括:
+不要把所有资料一次性塞给模型. 程序需要按当前步骤选择输入, 这项工作常叫上下文工程 (Context engineering), 通常包括:
 
-1. 加载系统行为和用户限制, 明确信任边界.
-2. 根据任务选择工具及其 Schema (结构规范, 描述字段类型与必填项).
+1. 加载系统行为和用户限制, 分清哪些是必须遵守的指令、哪些只是外部资料.
+2. 根据任务选择工具, 同时提供参数结构规范 (Schema), 说明字段类型、必填项和取值含义.
 3. 加载相关历史和运行摘要.
 4. 检索政策、订单说明或文件片段, 保留来源和版本.
-5. 按需读取 Skill (技能包, 可复用的领域操作说明及资源).
-6. 控制 token (模型处理的文本单位) 数量, 为本轮输出和后续工具结果预留空间.
+5. 有需要时读取技能包 (Skill), 其中保存可复用的领域说明、操作方法和资源.
+6. 控制输入长度. 模型按 token 处理文本, 因此要给本轮输出和后续工具结果预留空间.
 
 工具很多时, 可以先做目录检索或按任务开放工具集合. 这减少模型选择负担, 但**工具可见范围与服务端权限不是一回事**. 权限仍由执行层核验.
 
-检索结果和外部文件是资料, 不是新的系统指令. 例如政策页面夹入“忽略金额上限”属于 Prompt injection (提示注入, 不可信内容试图改变行为), 不能修改已确认的运行约束.
+检索结果和外部文件是资料, 不是新的系统指令. 例如政策页面夹入“忽略金额上限”, 就是在用资料里的文字试图改写系统行为, 这叫提示注入 (Prompt injection). 它不能修改已经确认的金额限制.
 
 ### 3.4 规划与决策: 计划可以调整
 
@@ -172,9 +168,16 @@ Context engineering (上下文工程, 按当前步骤组织模型输入) 通常�
 
 这些模式可组合, 不要求单独训练规划模型, 也不要求把隐藏推理过程暴露给用户. 可观测记录应优先保留动作、参数、简短理由、工具结果和验证证据. 模式来源见 [Anthropic: Building blocks, workflows, and agents](https://www.anthropic.com/engineering/building-effective-agents).
 
-### 3.5 模型输出: 工具调用请求不是工具已经执行
+### 3.5 模型说要调用工具, 接下来是谁执行?
 
-Tool calling (工具调用, 模型生成结构化动作请求) 的基本链路是:
+<picture>
+  <source media="(max-width: 640px)" srcset="/images/general-vs-domain-agents/tool-sequence-mobile.svg">
+  <img src="/images/general-vs-domain-agents/tool-sequence.svg" alt="模型、运行时、业务服务的调用时序及提前退出分支" loading="lazy">
+</picture>
+
+从运行时发给模型的资料开始看. 模型返回 `c1` 请求后, 运行时先校验: 不允许就停止该动作, 缺审批就等待, 允许才调用业务服务. 真实结果带着同一调用标识回到运行时, 再交给模型继续判断. 图里的两个提前出口都没有执行业务写入, 不能与正常结果混在一起.
+
+让模型输出一个带工具名和参数的请求, 叫工具调用 (Tool calling). 先分清“提出请求”和“实际执行”, 基本链路是:
 
 ```text
 运行时发送: 当前消息 + 工具说明 + 参数结构
@@ -190,7 +193,7 @@ Tool calling (工具调用, 模型生成结构化动作请求) 的基本链路�
 
 ### 3.6 执行前检查: 把“想做”转换成“可以做”
 
-Dispatcher (工具分发器, 选择实际执行函数的运行组件) 根据工具名定位实现, 随后检查:
+运行时先按工具名找到实际函数, 负责这一步的组件常叫工具分发器 (Dispatcher). 找到函数后还要检查:
 
 - 参数的结构和取值是否有效, 金额采用整数分还是小数元.
 - 用户、租户和目标订单是否匹配, 由服务端身份决定查询范围.
@@ -198,7 +201,7 @@ Dispatcher (工具分发器, 选择实际执行函数的运行组件) 根据工�
 - 写操作是否需要已记录的审批, 审批绑定的目标与金额是否仍一致.
 - 是否具有幂等键, 外部调用超时后怎样确认实际结果.
 
-Sandbox (沙箱, 限制代码和进程活动的执行环境) 主要控制文件、网络、进程和资源访问. 退款服务鉴权控制业务访问. 两者不可互相替代. 接上 MCP (Model Context Protocol, 模型连接工具与数据的协议) 可以统一连接方式, 但不能替应用完成业务授权. 协议的 Host、Client、Server 分工与工具路由见 [MCP 官方架构说明](https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture).
+如果需要执行代码, 可以把它放进受限制的环境, 这就是沙箱 (Sandbox). 它主要控制文件、网络、进程和资源访问. 退款服务鉴权控制业务访问. 两者不可互相替代. 模型上下文协议 (MCP, Model Context Protocol) 可以统一工具与数据的连接方式, 但不能替应用完成业务授权. 协议的 Host、Client、Server 分工与工具路由见 [MCP 官方架构说明](https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture).
 
 通用 Agent 的执行面可能有浏览器、Shell (命令行解释器)、代码解释器和文件工具. 它们能组合很多动作, 因而更需要把约束落实到真实执行边界. 只在提示词里写“不越权”不能形成强制保证.
 
@@ -210,7 +213,14 @@ Sandbox (沙箱, 限制代码和进程活动的执行环境) 主要控制文件�
 
 网络暂时失败可能适合受限重试; 参数错误需要改参数; 无权限需要停止对应动作; 写入后超时需要核对结果. **把所有错误都简单重试, 会把推理错误放大成业务错误.**
 
-### 3.8 长任务: 预算、持久化与恢复
+### 3.8 任务很长或中途崩溃, 怎么继续?
+
+<picture>
+  <source media="(max-width: 640px)" srcset="/images/general-vs-domain-agents/state-recovery-mobile.svg">
+  <img src="/images/general-vs-domain-agents/state-recovery.svg" alt="业务已写入但响应丢失时, 如何根据同一业务键核对与恢复" loading="lazy">
+</picture>
+
+先看上半部的时间顺序: 操作键已保存, 退款服务也已写入, 但响应丢失时“已完成”还没写进检查点. 恢复后看到旧进度, 并不能据此判断退款没发生. 下半部从同一键查询: 查到匹配记录才验收成功; 查不清就保持核对中; 权威服务明确未写入时, 才按服务契约决定是否用同一键重试, 重试后继续核对.
 
 通用任务步数较难预估. 运行时需要明确最大步骤、token/费用预算、截止时间与取消语义. 框架允许很大循环上限不代表业务预算已经合理配置.
 
@@ -219,7 +229,7 @@ Sandbox (沙箱, 限制代码和进程活动的执行环境) 主要控制文件�
 1. 程序到哪一步了? 从检查点恢复消息、节点和待执行动作.
 2. 外部动作发生了吗? 用业务标识、幂等键和服务查询核对.
 
-两者之间存在时间窗口: 退款已写入, 但程序来不及保存检查点. 单独持久化消息不能消除重复执行. Idempotency (幂等, 同一业务操作重复请求不产生重复效果) 必须由有约束的服务实现, 不能只让模型记住“别再退一次”.
+两者之间存在时间窗口: 退款已写入, 但程序来不及保存检查点. 单独持久化消息不能消除重复执行. 同一操作重复请求仍只产生一次效果, 这叫幂等 (Idempotency). 这项保证必须由服务实现, 不能只让模型记住“别再退一次”.
 
 ### 3.9 出口: 满足验收标准后交付
 
@@ -247,14 +257,14 @@ Sandbox (沙箱, 限制代码和进程活动的执行环境) 主要控制文件�
 
 ### 4.2 领域模型: 把业务名词变成可执行约束
 
-Domain model (领域模型, 对业务实体与规则的结构化表示) 定义订单、商品、退款请求、审批和履约状态之间的关系. 它至少明确:
+把业务名词写成程序能检查的实体、字段和关系, 就是在建立领域模型 (Domain model). 这里要明确订单、商品、退款请求、审批和履约状态怎样关联. 它至少明确:
 
 - 实体标识如何关联: 工单 → 订单 → 订单商品 → 退款请求.
 - 金额含义: 支付金额、已退金额、可退金额、币种、单位.
 - 哪些状态允许变更, 哪些字段由服务端推导.
 - 政策规则的适用范围、版本和生效时间.
 
-SOP (Standard Operating Procedure, 标准作业流程) 可能以工作流、技能说明、规则或混合形式存在. 文字 SOP 用于指导模型, 强制不变量仍应由程序或服务检查.
+业务上约定的标准作业流程 (SOP, Standard Operating Procedure), 可以写成工作流、技能说明、规则, 或把它们组合起来. 文字 SOP 用于指导模型, 强制不变量仍应由程序或服务检查.
 
 ### 4.3 知识: 领域检索与业务事实分工
 
@@ -271,7 +281,7 @@ SOP (Standard Operating Procedure, 标准作业流程) 可能以工作流、技�
 
 领域 RAG 常需要元数据过滤、关键词和向量检索结合、Reranking (重排序, 对候选证据再评分排序), 以及对政策版本的管理. 这些是可选择的实现, 不是所有垂直 Agent 的必选组件. 小型、稳定规则完全可以直接编码, 不必引入向量数据库.
 
-### 4.4 控制: 硬约束外环与自主内环
+### 4.4 哪些步骤交给模型, 哪些条件由程序守住?
 
 常见的混合实现是:
 
@@ -287,7 +297,7 @@ SOP (Standard Operating Procedure, 标准作业流程) 可能以工作流、技�
   → 结构化结论与回复
 ```
 
-Slot filling (槽位填充, 收集业务动作需要的字段) 可以由模型完成, 但必填条件由应用检查. State machine (状态机, 用有限状态与合法转换定义流程) 管理提交和审批, 在特定节点容纳灵活检索与对话.
+订单号、退款原因等必填信息可以让模型从对话中收集, 这通常叫槽位填充 (Slot filling), 但字段是否齐全仍由应用检查. 提交和审批可以用状态机 (State machine) 管理: 程序规定有哪些状态、哪些条件下允许转换, 在合适的阶段再让模型灵活检索与对话.
 
 例如 `draft → eligible → awaiting_approval → submitting → confirmed`. `submitting` 遇到超时可以进入 `reconciling` (核对中), 而不是直接宣告失败后重新创建退款. 非法转换由程序拒绝.
 
@@ -317,9 +327,12 @@ Slot filling (槽位填充, 收集业务动作需要的字段) 可以由模型�
 
 以下是**教学构造**, 不是宣称 Deep Agents、OpenHands 或 Dify 内置了 A17 退款系统. 为公平比较, 两边使用同一个订单服务、退款服务、身份和金额约束.
 
-[![同一退款任务的两类控制轨迹及超时核对分支](../../public/images/general-vs-domain-agents/refund-flow.svg)](/images/general-vs-domain-agents/refund-flow.svg)
+<picture>
+  <source media="(max-width: 640px)" srcset="/images/general-vs-domain-agents/refund-flow-mobile.svg">
+  <img src="/images/general-vs-domain-agents/refund-flow.svg" alt="同一退款任务的控制差异和真实条件分支" loading="lazy">
+</picture>
 
-读图: 左侧由模型动态选择读订单、取证和提交等动作; 右侧由业务流程安排关键转换, 在取证节点允许模型自主处理. 两边最终都必须经过服务端校验和结果确认. 底部的写入超时分支属于两者共同的正确性要求.
+先看图上方: 两种方式可以用不同的方法收集材料, 之后都要核验同一组业务条件. 沿“是”分支可以走到提交、查询和交付; 订单不匹配或金额无效会到阻塞出口, 材料或审批不齐会到等待出口. 补齐后回到条件核验. 已提交但结果未知时只进入核对路径, 不会顺着默认箭头误报成功. 这是为比较而构造的一种领域流程, 不是说所有垂直 Agent 都采用固定步骤.
 
 | 步骤 | 通用 Agent 的一种实现 | 垂直售后 Agent 的一种实现 | 需要留下什么证据 |
 | --- | --- | --- | --- |
@@ -361,11 +374,18 @@ Deep Agents 是可用于多种任务的 Agent harness, 提供上下文、文件�
 | Subagent middleware, 子智能体中间件 | 子任务配置与装配代码 | 独立上下文处理子任务 |
 | 人工介入中间件 | 有相应中断配置时装配 | 工具执行前暂停, 等待外部决定 |
 
-Middleware (中间件) 在模型调用或工具执行前后处理上下文和控制逻辑. Backend (后端实现) 在这里尤其指虚拟文件操作的实际存储或执行实现, 不一定是独立 Web 服务器.
+模型调用或工具执行前后还要整理资料、校验或处理中断, 这些逻辑可以装进中间件 (Middleware). 文件操作最终存到哪里、怎样执行, 由后端实现 (Backend) 决定; 这里的后端不一定是一台独立 Web 服务器.
 
 来源: [固定快照的包配置](https://github.com/langchain-ai/deepagents/blob/97f856dcb08264ef78722a4687cab9133ec5fb7a/libs/deepagents/pyproject.toml), [`graph.py`](https://github.com/langchain-ai/deepagents/blob/97f856dcb08264ef78722a4687cab9133ec5fb7a/libs/deepagents/deepagents/graph.py).
 
 ### 6.3 真实调用路径怎样读
+
+<picture>
+  <source media="(max-width: 640px)" srcset="/images/general-vs-domain-agents/deepagents-path-mobile.svg">
+  <img src="/images/general-vs-domain-agents/deepagents-path.svg" alt="Deep Agents 的创建阶段、可执行图对象和任务执行阶段" loading="lazy">
+</picture>
+
+从左向右看, 前两块属于创建阶段, 最右侧才处理用户任务. 例如拿到 `create_deep_agent(...)` 返回值, 说明运行能力已装配, 不说明模型已经读过用户请求. 后面的调用链对应这张图, 没有展开所有可选中间件.
 
 在已读 `graph.py` 中, 关键路径是:
 
@@ -419,6 +439,13 @@ WebSocket (双向持久连接) 用于客户端和服务端交换事件, 与模�
 
 ### 7.3 真实入口到循环
 
+<picture>
+  <source media="(max-width: 640px)" srcset="/images/general-vs-domain-agents/openhands-path-mobile.svg">
+  <img src="/images/general-vs-domain-agents/openhands-path.svg" alt="OpenHands 的会话控制、单步决策和动作观察回路" loading="lazy">
+</picture>
+
+先看会话控制, 它决定这一轮还能不能继续; 接着单步逻辑准备模型输入并处理模型响应; 工具执行后的观察回到会话. 沿回线能进入下一步, 但暂停、等待确认、完成和预算等状态仍会影响是否继续. 这是已读的本地执行路径, 不能直接当成远程部署拓扑.
+
 README 展示 `Conversation(agent=..., workspace=...)`, 然后发送消息并运行. 本次追踪的是本地 `LocalConversation` 路径:
 
 ```text
@@ -436,13 +463,13 @@ README 展示 `Conversation(agent=..., workspace=...)`, 然后发送消息并运
        → 下一次 step 或结束/暂停
 ```
 
-Condenser (上下文压缩器) 根据历史生成模型可使用的压缩视图. `Agent._step` 先处理可能的压缩事件, 再准备模型调用. 这把“会话保存了多少事件”和“模型本轮看见多少事件”分开了.
+历史很长时, 程序会先整理出模型本轮需要看的压缩视图, 负责这项工作的组件叫上下文压缩器 (Condenser). `Agent._step` 先处理可能的压缩事件, 再准备模型调用. 这把“会话保存了多少事件”和“模型本轮看见多少事件”分开了.
 
 定位: [`LocalConversation.run/_run`](https://github.com/OpenHands/software-agent-sdk/blob/6ae64079cfd30cfe2f01a060c59168a4d650d883/openhands-sdk/openhands/sdk/conversation/impl/local_conversation.py), [`Agent.step/_step`](https://github.com/OpenHands/software-agent-sdk/blob/6ae64079cfd30cfe2f01a060c59168a4d650d883/openhands-sdk/openhands/sdk/agent/agent.py).
 
 ### 7.4 动作怎样变成观察
 
-代码中的 ActionEvent (动作事件) 记录模型请求的动作. `_execute_action_event` 查找工具, 执行动作, 得到 Observation (观察结果), 再构造 ObservationEvent (观察事件), 用 `action_id` 和 `tool_call_id` 关联.
+代码用动作事件 (ActionEvent) 记录模型请求的动作. `_execute_action_event` 查找工具, 执行动作, 得到 Observation (观察结果), 再构造观察事件 (ObservationEvent), 用 `action_id` 和 `tool_call_id` 关联.
 
 在已读路径中, 特定参数异常会转换为 AgentErrorEvent (智能体错误事件), 允许后续决策看到问题. 这里不是宣称所有错误都被捕获或所有动作都能自动修复.
 
@@ -494,6 +521,13 @@ Celery 是后台任务执行框架; Redis 是内存数据服务; PostgreSQL 是�
 依据: [API 包配置](https://github.com/langgenius/dify/blob/b953e69a0eb397e625337812e0319ab770f18783/api/pyproject.toml), [前端包配置](https://github.com/langgenius/dify/blob/b953e69a0eb397e625337812e0319ab770f18783/web/package.json), [Compose 配置](https://github.com/langgenius/dify/blob/b953e69a0eb397e625337812e0319ab770f18783/docker/docker-compose.yaml). 这里只做职责映射, 没有据依赖列表冒充运行追踪.
 
 ### 8.3 经典 AgentNode 的已读真实路径
+
+<picture>
+  <source media="(max-width: 640px)" srcset="/images/general-vs-domain-agents/dify-path-mobile.svg">
+  <img src="/images/general-vs-domain-agents/dify-path.svg" alt="Dify 经典 AgentNode 将工作流参数交给策略并转换输出事件" loading="lazy">
+</picture>
+
+从工作流变量进入节点后, 先准备策略和参数, 再调用策略并接收消息流. 虚线框保留了本次没有完整追踪的策略内部, 不猜它怎样逐轮推理. 读到的相应异常可以走到失败节点结果, 不会被默认当成成功输出.
 
 `api/core/workflow/nodes/agent/agent_node.py` 中的 `AgentNode._run`:
 
@@ -606,7 +640,7 @@ return deliver_verified_result(confirmed, evidence)
 
 ### 11.1 本次实际运行什么
 
-配套 <a href="/examples/general-vs-domain-agents/practice.py" download>`practice.py`</a> 只使用 Python 标准库, 模拟订单与退款服务. 它在两种控制方式中复用同样的鉴权、金额、审批和幂等规则:
+配套 <a href="/examples/general-vs-domain-agents/practice.py" download><code>practice.py</code></a> 只使用 Python 标准库, 模拟订单与退款服务. 它在两种控制方式中复用同样的鉴权、金额、审批和幂等规则:
 
 - `general`: 一个由当前观察选择下个工具的循环. **决策器是确定的离线替身, 没有调用 LLM, 不能证明真实模型规划能力.**
 - `vertical`: 显式领域阶段依次查询、校验、等待审批或提交与确认.
@@ -643,7 +677,7 @@ if expected_status == "succeeded":
     assert result["refund"]["amount_cents"] == 19900
 ```
 
-完整代码包含实际轨迹打印. 正常任务应能看到读取、校验、提交与核对; 超时场景应先记录“响应未知”, 后进行核对. [实际运行环境和全部输出](/examples/general-vs-domain-agents/practice-results.txt) 单独保存, 与伪代码区分.
+完整代码会打印每一步动作, 便于直接对照上面的调用与恢复图. 正常任务应能看到读取、校验、提交与核对; 超时场景应先记录“响应未知”, 后进行核对. [实际运行环境和全部输出](/examples/general-vs-domain-agents/practice-results.txt) 单独保存, 与伪代码区分.
 
 ### 11.4 练习验收与延伸操作
 
@@ -669,7 +703,7 @@ if expected_status == "succeeded":
 
 ### 12.2 看日志时按层定位
 
-Tracing (链路追踪, 用关联标识连接执行事件) 可以记录运行、步骤、工具、模型和业务操作之间的关系. Span (一次被追踪操作) 的时间与结果用于定位哪一层出了问题. 日志应过滤凭证与不必要的个人数据.
+把同一次运行的模型、工具和业务操作用标识关联起来, 就能沿着记录查问题, 这叫链路追踪 (Tracing). 其中每一次被记录的操作称为 Span, 它的耗时和结果可以帮助判断哪一层出了问题. 日志应过滤凭证与不必要的个人数据.
 
 | 症状 | 优先检查 | 可能根因 |
 | --- | --- | --- |
@@ -754,7 +788,22 @@ Tracing (链路追踪, 用关联标识连接执行事件) 可以记录运行、�
 
 ## 15. 来源、定位与未验证范围
 
-核查日期统一为 2026-10-18. 滚动文档可能更新, 源码使用前文固定提交定位. 本文没有采用无法访问的页面作为证据, 也没有把产品营销名称当作实现证明.
+### 15.1 真实参考项目与原阅读范围
+
+下面选取有公开实现、能对应关键机制的代表项目, 不把它们当成市场份额排名. Dify 有完整中文官方文档; Deep Agents 与 OpenHands 的代码和核心架构资料以英文为主, 本文中文解释其已读取部分.
+
+| 项目与定位 | 本次固定代码快照 | 已实际阅读 | 本文如何使用 |
+| --- | --- | --- | --- |
+| Deep Agents, 通用 Agent harness (智能体运行支架) | [`97f856d`](https://github.com/langchain-ai/deepagents/tree/97f856dcb08264ef78722a4687cab9133ec5fb7a), `pyproject.toml` 声明 `0.7.28` | `libs/deepagents/deepagents/graph.py`, 包配置, 官方 Overview | 解释通用循环如何装配上下文、文件、子任务与人工介入 |
+| OpenHands Software Agent SDK (软件开发工具包), 面向代码工作的 Agent 实现 | [`6ae6407`](https://github.com/OpenHands/software-agent-sdk/tree/6ae64079cfd30cfe2f01a060c59168a4d650d883), SDK 包声明 `1.55.1` | README, `agent.py`, `local_conversation.py`, 包配置, 官方架构页 | 展示一个垂直领域系统仍能动态决策与执行 |
+| Dify, Agent 与工作流构建平台 | [`b953e69`](https://github.com/langgenius/dify/tree/b953e69a0eb397e625337812e0319ab770f18783), API 包声明 `1.17.1` | 经典 `AgentNode._run`, API/前端依赖与 Compose 配置, 官方 Agent 节点页 | 展示工作流包裹局部自主循环的实现位置 |
+| LangGraph, 图执行运行时 | 官方滚动文档, 2026-10-18 在线核查, 未固定库代码版本 | Workflows and agents、Persistence | 解释图、检查点与跨会话存储 |
+
+版本号是读取快照中声明的版本, 不是本机已安装版本或“最新稳定版”承诺. 没有阅读整库所有入口、部署逻辑或测试. Dify 新旧 Agent 路径共存, 下文源码追踪仅针对经典节点, 不把它泛化成新版 Agent 的全部实现.
+
+### 15.2 资料定位与事实边界
+
+以下是原技术核查记录, 日期为 2026-10-18. 2026-10-19 的整理只调整讲解、图解和对应说明, 未把旧记录更新成新的技术实测. 滚动文档可能更新, 源码使用本节固定提交定位. 本文没有采用无法访问的页面作为证据, 也没有把产品营销名称当作实现证明.
 
 1. [Anthropic: Building effective agents](https://www.anthropic.com/engineering/building-effective-agents), `What are agents?`、`Building blocks, workflows, and agents` 与工具接口附录. 原文发表于 2024-12-19, 当前页面已说明工具生态发生变化; 本文只使用其控制模式与工具接口原则, 不用它判断当前产品默认配置.
 2. [LangGraph: Workflows and agents](https://docs.langchain.com/oss/python/langgraph/workflows-agents), 工作流、动态工具循环与 ToolNode 示例.
@@ -769,4 +818,4 @@ Tracing (链路追踪, 用关联标识连接执行事件) 可以记录运行、�
 10. [MCP 官方 Architecture](https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture), Participants、工具发现与执行, 读取到的文档版本为 2026-07-28. 本文仅用其连接与路由职责, 未展开传输层和授权协议细节.
 11. [Dify 知识库](https://docs.dify.ai/zh/cloud/use-dify/knowledge/readme), 资料导入、知识索引与检索配置、元数据及应用使用的分工. 文中的通用入库链是教学归纳, 不是该页面的逐步部署教程.
 
-范围说明: 六层架构、退款业务、伪代码、状态命名、工程验证矩阵和练习是教学归纳或自行构造, 没有冒充上述项目的既有业务实现. 本次没有验证完整第三方系统、真实模型行为、生产吞吐或支付到账. 本文中的工程机制说明不等同于运行了每一种存储和部署选项.
+范围说明: 六层架构、退款业务、伪代码、状态命名、工程验证矩阵和练习是教学归纳或自行构造, 没有冒充上述项目的既有业务实现. 原验证没有覆盖完整第三方系统、真实模型行为、生产吞吐或支付到账; 本次图文整理也没有新增这些实测. 本文中的工程机制说明不等同于运行了每一种存储和部署选项.

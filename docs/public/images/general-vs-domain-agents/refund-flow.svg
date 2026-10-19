@@ -1,81 +1,71 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1320" role="img" aria-label="同一退款任务的两类执行轨迹">
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs>
-<rect width="1280" height="1320" fill="#f8fafc" rx="18"/>
-<g font-family="PingFang SC,Microsoft YaHei,Arial,sans-serif" fill="#172554">
-<text x="48" y="54" font-size="30" font-weight="600" text-anchor="start" fill="#172554">同一退款任务: 两类控制方式, 相同业务边界</text>
-<text x="48" y="92" font-size="20" font-weight="400" text-anchor="start" fill="#172554">教学场景: A17 订单, 19900 分. 服务端身份、审批和退款服务在两边保持一致.</text>
-<text x="345" y="150" font-size="25" font-weight="600" text-anchor="middle" fill="#172554">通用 Agent: 动态选动作</text>
-<text x="935" y="150" font-size="25" font-weight="600" text-anchor="middle" fill="#172554">垂直售后 Agent: 明确阶段</text>
-<rect x="90" y="178" width="510" height="94" rx="13" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
-<text x="112" y="213" font-size="23" font-weight="600" text-anchor="start" fill="#172554">1. 明确目标与能力</text>
-<text x="112" y="244" font-size="20" font-weight="400" text-anchor="start" fill="#172554">核对订单、材料、金额与授权</text>
-<rect x="680" y="178" width="510" height="94" rx="13" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="2"/>
-<text x="702" y="213" font-size="23" font-weight="600" text-anchor="start" fill="#172554">1. 检查领域入口与字段</text>
-<text x="702" y="244" font-size="20" font-weight="400" text-anchor="start" fill="#172554">工单、订单、身份和任务范围</text>
-<path d="M345,272 L345,298" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
-<path d="M935,272 L935,298" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
-<rect x="90" y="298" width="510" height="94" rx="13" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
-<text x="112" y="333" font-size="23" font-weight="600" text-anchor="start" fill="#172554">2. 选择事实与资料工具</text>
-<text x="112" y="364" font-size="20" font-weight="400" text-anchor="start" fill="#172554">查订单、读表格、检索政策</text>
-<rect x="680" y="298" width="510" height="94" rx="13" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="2"/>
-<text x="702" y="333" font-size="23" font-weight="600" text-anchor="start" fill="#172554">2. 查询领域事实与政策</text>
-<text x="702" y="364" font-size="20" font-weight="400" text-anchor="start" fill="#172554">订单接口 + 适用政策版本</text>
-<path d="M345,392 L345,418" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
-<path d="M935,392 L935,418" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
-<rect x="90" y="418" width="510" height="94" rx="13" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
-<text x="112" y="453" font-size="23" font-weight="600" text-anchor="start" fill="#172554">3. 根据观察组织证据</text>
-<text x="112" y="484" font-size="20" font-weight="400" text-anchor="start" fill="#172554">必要时补充取证并调整计划</text>
-<rect x="680" y="418" width="510" height="94" rx="13" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="2"/>
-<text x="702" y="453" font-size="23" font-weight="600" text-anchor="start" fill="#172554">3. 局部 Agent 自主取证</text>
-<text x="702" y="484" font-size="20" font-weight="400" text-anchor="start" fill="#172554">处理非结构化材料与追问</text>
-<path d="M345,512 L345,538" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
-<path d="M935,512 L935,538" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
-<rect x="90" y="538" width="510" height="94" rx="13" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
-<text x="112" y="573" font-size="23" font-weight="600" text-anchor="start" fill="#172554">4. 准备动作并校验</text>
-<text x="112" y="604" font-size="20" font-weight="400" text-anchor="start" fill="#172554">身份、金额、资格和审批</text>
-<rect x="680" y="538" width="510" height="94" rx="13" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="2"/>
-<text x="702" y="573" font-size="23" font-weight="600" text-anchor="start" fill="#172554">4. 检查业务转换条件</text>
-<text x="702" y="604" font-size="20" font-weight="400" text-anchor="start" fill="#172554">资格 → 审批 → 允许提交</text>
-<path d="M345,632 L345,658" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
-<path d="M935,632 L935,658" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
-<rect x="90" y="658" width="510" height="94" rx="13" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
-<text x="112" y="693" font-size="23" font-weight="600" text-anchor="start" fill="#172554">5. 提交业务操作</text>
-<text x="112" y="724" font-size="20" font-weight="400" text-anchor="start" fill="#172554">使用稳定幂等键调用退款服务</text>
-<rect x="680" y="658" width="510" height="94" rx="13" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="2"/>
-<text x="702" y="693" font-size="23" font-weight="600" text-anchor="start" fill="#172554">5. 提交业务操作</text>
-<text x="702" y="724" font-size="20" font-weight="400" text-anchor="start" fill="#172554">使用同一套退款服务约束</text>
-<path d="M345,752 L345,778" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
-<path d="M935,752 L935,778" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
-<rect x="90" y="778" width="510" height="94" rx="13" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
-<text x="112" y="813" font-size="23" font-weight="600" text-anchor="start" fill="#172554">6. 查询权威结果</text>
-<text x="112" y="844" font-size="20" font-weight="400" text-anchor="start" fill="#172554">核对订单、金额和实际状态</text>
-<rect x="680" y="778" width="510" height="94" rx="13" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="2"/>
-<text x="702" y="813" font-size="23" font-weight="600" text-anchor="start" fill="#172554">6. 进入核对阶段</text>
-<text x="702" y="844" font-size="20" font-weight="400" text-anchor="start" fill="#172554">读取服务端退款记录</text>
-<path d="M345,872 L345,898" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
-<path d="M935,872 L935,898" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
-<rect x="90" y="898" width="510" height="94" rx="13" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
-<text x="112" y="933" font-size="23" font-weight="600" text-anchor="start" fill="#172554">7. 交付可验证结论</text>
-<text x="112" y="964" font-size="20" font-weight="400" text-anchor="start" fill="#172554">业务状态、依据和未完成项</text>
-<rect x="680" y="898" width="510" height="94" rx="13" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="2"/>
-<text x="702" y="933" font-size="23" font-weight="600" text-anchor="start" fill="#172554">7. 输出领域结果</text>
-<text x="702" y="964" font-size="20" font-weight="400" text-anchor="start" fill="#172554">明确状态, 不提前承诺到账</text>
-<text x="90" y="1055" font-size="26" font-weight="600" text-anchor="start" fill="#172554">共同异常分支: 提交后响应丢失</text>
-<rect x="90" y="1080" width="270" height="103" rx="13" fill="#fff7ed" stroke="#fdba74" stroke-width="2"/>
-<text x="112" y="1115" font-size="23" font-weight="600" text-anchor="start" fill="#172554">状态未知</text>
-<text x="112" y="1146" font-size="20" font-weight="400" text-anchor="start" fill="#172554">超时不证明未写入</text>
-<path d="M360,1130 L390,1130" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
-<rect x="390" y="1080" width="270" height="103" rx="13" fill="#fff7ed" stroke="#fdba74" stroke-width="2"/>
-<text x="412" y="1115" font-size="23" font-weight="600" text-anchor="start" fill="#172554">按原键核对</text>
-<text x="412" y="1146" font-size="20" font-weight="400" text-anchor="start" fill="#172554">不新建业务操作</text>
-<path d="M660,1130 L690,1130" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
-<rect x="690" y="1080" width="270" height="103" rx="13" fill="#fff7ed" stroke="#fdba74" stroke-width="2"/>
-<text x="712" y="1115" font-size="23" font-weight="600" text-anchor="start" fill="#172554">验证实际记录</text>
-<text x="712" y="1146" font-size="20" font-weight="400" text-anchor="start" fill="#172554">订单、金额、状态</text>
-<path d="M960,1130 L990,1130" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
-<rect x="990" y="1080" width="270" height="103" rx="13" fill="#fff7ed" stroke="#fdba74" stroke-width="2"/>
-<text x="1012" y="1115" font-size="23" font-weight="600" text-anchor="start" fill="#172554">恢复或等待</text>
-<text x="1012" y="1146" font-size="20" font-weight="400" text-anchor="start" fill="#172554">有证据才报成功</text>
-<text x="90" y="1230" font-size="22" font-weight="400" text-anchor="start" fill="#172554">缺少审批 → 等待; 订单不属于当前身份或金额越界 → 阻塞.</text>
-<text x="90" y="1268" font-size="21" font-weight="400" text-anchor="start" fill="#172554">图示是一条合法轨迹. 通用 Agent 不必每次采用完全相同的读取顺序.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 1330" role="img" aria-label="退款案例: 控制方式不同, 业务前提相同">
+<defs><marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#1761a0"/></marker><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#617283"/></marker><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#18766e"/></marker><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#a64031"/></marker></defs>
+<rect width="1040" height="1330" fill="#fbfaf6"/>
+<g font-family="PingFang SC,Microsoft YaHei,Arial,sans-serif">
+<text x="36" y="47" font-size="28" font-weight="600" fill="#142d4e" text-anchor="start">退款案例: 控制方式不同, 业务前提相同</text>
+<rect x="240" y="90" width="560" height="72" fill="white" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="252" y="122" font-size="23" font-weight="600" fill="#142d4e" text-anchor="start">同一请求: A17, 19900 分</text>
+<text x="252" y="154" font-size="21" font-weight="400" fill="#142d4e" text-anchor="start">同一身份、订单服务、政策与审批</text>
+<path d="M400,162 L265,208" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<path d="M640,162 L775,208" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<rect x="36" y="208" width="458" height="115" fill="#edf3f7" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="48" y="240" font-size="23" font-weight="600" fill="#142d4e" text-anchor="start">通用控制</text>
+<text x="48" y="272" font-size="21" font-weight="400" fill="#142d4e" text-anchor="start">模型按观察选择读取、取证等动作</text>
+<text x="48" y="301" font-size="21" font-weight="400" fill="#142d4e" text-anchor="start">缺证据时继续取证或补问</text>
+<rect x="546" y="208" width="458" height="115" fill="#e4efeb" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="558" y="240" font-size="23" font-weight="600" fill="#142d4e" text-anchor="start">一种领域控制</text>
+<text x="558" y="272" font-size="21" font-weight="400" fill="#142d4e" text-anchor="start">流程安排领域阶段, 取证节点可自主</text>
+<text x="558" y="301" font-size="21" font-weight="400" fill="#142d4e" text-anchor="start">缺证据时停在补材料状态</text>
+<path d="M265,323 L265,360 L520,360 L520,400" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<path d="M775,323 L775,360 L520,360" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<path d="M520.0 400L675 445.0L520.0 490L365 445.0Z" fill="#eef3f4" stroke="#1761a0" stroke-width="1.5"/>
+<text x="520.0" y="451.0" font-size="21" font-weight="600" fill="#142d4e" text-anchor="middle">身份与订单匹配?</text>
+<path d="M675,445 L875,445 L875,530" fill="none" stroke="#a64031" stroke-width="2" marker-end="url(#a3)"/>
+<text x="702" y="430" font-size="18" font-weight="400" fill="#a64031" text-anchor="start">否</text>
+<rect x="760" y="530" width="245" height="95" fill="#f8ebe6" stroke="#a64031" stroke-width="1.5"/>
+<text x="772" y="562" font-size="23" font-weight="600" fill="#142d4e" text-anchor="start">阻塞: 不提交</text>
+<text x="772" y="594" font-size="21" font-weight="400" fill="#142d4e" text-anchor="start">后续退款未检查</text>
+<path d="M520,490 L520,545" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<text x="535" y="523" font-size="18" font-weight="400" fill="#142d4e" text-anchor="start">是</text>
+<path d="M520.0 545L675 590.0L520.0 635L365 590.0Z" fill="#eef3f4" stroke="#1761a0" stroke-width="1.5"/>
+<text x="520.0" y="596.0" font-size="21" font-weight="600" fill="#142d4e" text-anchor="middle">资格与金额有效?</text>
+<path d="M675,590 L760,590" fill="none" stroke="#a64031" stroke-width="2" marker-end="url(#a3)"/>
+<text x="702" y="575" font-size="18" font-weight="400" fill="#a64031" text-anchor="start">否</text>
+<path d="M520,635 L520,690" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<text x="535" y="669" font-size="18" font-weight="400" fill="#142d4e" text-anchor="start">是</text>
+<path d="M520.0 690L675 735.0L520.0 780L365 735.0Z" fill="#eef3f4" stroke="#1761a0" stroke-width="1.5"/>
+<text x="520.0" y="741.0" font-size="21" font-weight="600" fill="#142d4e" text-anchor="middle">证据与审批齐全?</text>
+<path d="M365,735 L270,735" fill="none" stroke="#617283" stroke-width="2" marker-end="url(#a1)"/>
+<text x="295" y="720" font-size="18" font-weight="400" fill="#142d4e" text-anchor="start">否</text>
+<rect x="36" y="690" width="234" height="105" fill="#f1ede4" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="48" y="722" font-size="23" font-weight="600" fill="#142d4e" text-anchor="start">等待: 补齐后复核</text>
+<text x="48" y="754" font-size="21" font-weight="400" fill="#142d4e" text-anchor="start">本轮不提交</text>
+<path d="M153,690 L153,365 L365,365 L365,445" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<text x="38" y="407" font-size="16" font-weight="400" fill="#142d4e" text-anchor="start">新材料 / 审批</text>
+<path d="M520,780 L520,830" fill="none" stroke="#18766e" stroke-width="2" marker-end="url(#a2)"/>
+<text x="535" y="815" font-size="18" font-weight="400" fill="#18766e" text-anchor="start">是</text>
+<rect x="350" y="830" width="340" height="85" fill="white" stroke="#18766e" stroke-width="1.5"/>
+<text x="362" y="862" font-size="23" font-weight="600" fill="#142d4e" text-anchor="start">提交并查询实际退款</text>
+<text x="362" y="894" font-size="21" font-weight="400" fill="#142d4e" text-anchor="start">携带同一业务操作键</text>
+<path d="M520,915 L520,960" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<path d="M520.0 960L675 1005.0L520.0 1050L365 1005.0Z" fill="#eef3f4" stroke="#1761a0" stroke-width="1.5"/>
+<text x="520.0" y="1011.0" font-size="21" font-weight="600" fill="#142d4e" text-anchor="middle">已确认匹配记录?</text>
+<path d="M520,1050 L520,1125" fill="none" stroke="#18766e" stroke-width="2" marker-end="url(#a2)"/>
+<text x="535" y="1100" font-size="18" font-weight="400" fill="#18766e" text-anchor="start">是</text>
+<rect x="350" y="1125" width="340" height="88" fill="#e4efeb" stroke="#18766e" stroke-width="1.5"/>
+<text x="362" y="1157" font-size="23" font-weight="600" fill="#142d4e" text-anchor="start">交付成功与依据</text>
+<text x="362" y="1189" font-size="21" font-weight="400" fill="#142d4e" text-anchor="start">确认记录 ≠ 资金已到账</text>
+<path d="M675,1005 L760,1005" fill="none" stroke="#617283" stroke-width="2" marker-end="url(#a1)"/>
+<text x="700" y="988" font-size="17" font-weight="400" fill="#142d4e" text-anchor="start">未知</text>
+<rect x="760" y="960" width="245" height="115" fill="#f1ede4" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="772" y="992" font-size="23" font-weight="600" fill="#142d4e" text-anchor="start">核对中 / 等待</text>
+<text x="772" y="1024" font-size="21" font-weight="400" fill="#142d4e" text-anchor="start">进入超时恢复路径</text>
+<text x="772" y="1053" font-size="21" font-weight="400" fill="#142d4e" text-anchor="start">不直接重建退款</text>
+<path d="M365,1005 L270,1005" fill="none" stroke="#a64031" stroke-width="2" marker-end="url(#a3)"/>
+<text x="295" y="988" font-size="16" font-weight="400" fill="#a64031" text-anchor="start">明确失败</text>
+<rect x="36" y="960" width="234" height="115" fill="#f8ebe6" stroke="#a64031" stroke-width="1.5"/>
+<text x="48" y="992" font-size="23" font-weight="600" fill="#142d4e" text-anchor="start">失败或按契约处理</text>
+<text x="48" y="1024" font-size="21" font-weight="400" fill="#142d4e" text-anchor="start">保留原因与已做操作</text>
+<text x="48" y="1053" font-size="21" font-weight="400" fill="#142d4e" text-anchor="start">不伪报完成</text>
+<text x="36" y="1312" font-size="15" font-weight="400" fill="#617283" text-anchor="start">教学案例. 不是具体平台自带的退款系统; 未知状态不等于失败.</text>
 </g></svg>

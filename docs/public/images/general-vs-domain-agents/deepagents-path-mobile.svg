@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 820" role="img" aria-label="Deep Agents: 创建对象与执行任务分两步">
+<defs><marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#1761a0"/></marker><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#617283"/></marker><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#18766e"/></marker><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#a64031"/></marker></defs>
+<rect width="380" height="820" fill="#fbfaf6"/>
+<g font-family="PingFang SC,Microsoft YaHei,Arial,sans-serif">
+<text x="20" y="30" font-size="20" font-weight="600" fill="#142d4e" text-anchor="start">Deep Agents: 创建对象与执行任务</text>
+<text x="20" y="55" font-size="20" font-weight="600" fill="#142d4e" text-anchor="start">分两步</text>
+<rect x="25" y="80" width="330" height="146" fill="#edf3f7" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="37" y="105" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">创建阶段</text>
+<text x="37" y="129" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">create_deep_agent</text>
+<text x="37" y="151" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">装配工具、文件与摘要</text>
+<text x="37" y="173" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">按配置加入技能与记忆</text>
+<text x="37" y="195" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">以及中断处理</text>
+<path d="M190,226 L190,290" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<rect x="25" y="290" width="330" height="146" fill="#f0ede5" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="37" y="315" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">得到可执行对象</text>
+<text x="37" y="339" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">create_agent</text>
+<text x="37" y="361" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">传入 checkpointer 与 store</text>
+<text x="37" y="383" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">此时不等于已执行用户任务</text>
+<path d="M190,436 L190,500" fill="none" stroke="#1761a0" stroke-width="2" marker-end="url(#a0)"/>
+<rect x="25" y="500" width="330" height="146" fill="#edf3f7" stroke="#a9b2b9" stroke-width="1.5"/>
+<text x="37" y="525" font-size="16" font-weight="600" fill="#142d4e" text-anchor="start">执行阶段</text>
+<text x="37" y="549" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">invoke(...) 等入口</text>
+<text x="37" y="571" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">底层 Agent 循环调用模型与工具</text>
+<text x="37" y="593" font-size="15" font-weight="400" fill="#142d4e" text-anchor="start">按观察继续, 或按状态结束</text>
+<text x="25" y="730" font-size="14" font-weight="400" fill="#142d4e" text-anchor="start">配置存储能力, 不等于数据已经持久化.</text>
+<text x="20" y="802" font-size="11" font-weight="400" fill="#617283" text-anchor="start">graph.py, 97f856d. 未画整库所有配置分支.</text>
+</g></svg>
