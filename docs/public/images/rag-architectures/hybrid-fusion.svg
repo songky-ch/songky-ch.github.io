@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 1510" role="img" aria-labelledby="title desc"><title id="title">两路融合为什么仍会排错?</title><desc id="desc">用同一 Q1, 同一范围和同一批片段.|下面的排名为人工输入, 不是引擎实测.</desc>
+<defs><marker id="a0" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8" fill="none" stroke="#165a80" stroke-width="1.6"/></marker><marker id="a1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8" fill="none" stroke="#12665a" stroke-width="1.6"/></marker><marker id="a2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8" fill="none" stroke="#a33332" stroke-width="1.6"/></marker></defs>
+<rect width="520" height="1510" fill="#fcfbf7"/>
+<g font-family="PingFang SC, Microsoft YaHei, sans-serif">
+<text x="24" y="37" fill="#165a80" font-size="18" font-weight="600" text-anchor="start">RAG / 机制讲义</text>
+<text x="24" y="84" fill="#172d3d" font-size="30" font-weight="650" text-anchor="start">两路融合为什么仍会排错?</text>
+<text x="24" y="122" fill="#4b5d69" font-size="22" font-weight="400" text-anchor="start">用同一 Q1, 同一范围和同一批片段.</text>
+<text x="24" y="150" fill="#4b5d69" font-size="22" font-weight="400" text-anchor="start">下面的排名为人工输入, 不是引擎实测.</text>
+<rect x="24" y="185" width="472" height="73" fill="#eaf2f3" stroke="#b3b9bb" stroke-width="1.5"/>
+<text x="260.0" y="230.5" fill="#172d3d" font-size="25" font-weight="500" text-anchor="middle">Q1: 支付 E1042 当次原因?</text>
+<polyline points="260,258 260,286 134,286 134,320" fill="none" stroke="#165a80" stroke-width="2.2" marker-end="url(#a0)"/>
+<polyline points="260,286 386,286 386,320" fill="none" stroke="#165a80" stroke-width="2.2" marker-end="url(#a0)"/>
+<rect x="24" y="325" width="220" height="220" fill="#fff" stroke="#12665a" stroke-width="1.5"/>
+<rect x="276" y="325" width="220" height="220" fill="#fff" stroke="#165a80" stroke-width="1.5"/>
+<text x="42" y="368" fill="#12665a" font-size="26" font-weight="650" text-anchor="start">关键词一路</text>
+<text x="294" y="368" fill="#165a80" font-size="26" font-weight="650" text-anchor="start">语义一路</text>
+<line x1="42" y1="392" x2="226" y2="392" stroke="#c8ccca" stroke-width="1.5"/>
+<line x1="294" y1="392" x2="478" y2="392" stroke="#c8ccca" stroke-width="1.5"/>
+<text x="42" y="434" fill="#172d3d" font-size="26" font-weight="400" text-anchor="start">1. D1 事故</text>
+<text x="42" y="485" fill="#172d3d" font-size="26" font-weight="400" text-anchor="start">2. D2 手册</text>
+<text x="294" y="434" fill="#172d3d" font-size="26" font-weight="400" text-anchor="start">1. D2 手册</text>
+<text x="294" y="485" fill="#172d3d" font-size="26" font-weight="400" text-anchor="start">2. D3 依赖</text>
+<polyline points="134,545 134,577 260,577 260,610" fill="none" stroke="#165a80" stroke-width="2.2" marker-end="url(#a0)"/>
+<line x1="386" y1="545" x2="386" y2="577" stroke="#165a80" stroke-width="1.5"/>
+<line x1="386" y1="577" x2="260" y2="577" stroke="#165a80" stroke-width="1.5"/>
+<text x="24" y="652" fill="#165a80" font-size="25" font-weight="650" text-anchor="start">按排名融合 / 等权 RRF, 常数 60</text>
+<text x="24" y="696" fill="#172d3d" font-size="25" font-weight="400" text-anchor="start">每路贡献: 1 ÷ (60 + 排名)</text>
+<rect x="24" y="722" width="472" height="210" fill="#fff" stroke="#a6b6bc" stroke-width="1.5"/>
+<text x="42" y="770" fill="#935411" font-size="27" font-weight="600" text-anchor="start">1. D2</text>
+<text x="465" y="770" fill="#935411" font-size="26" font-weight="500" text-anchor="end">0.03252</text>
+<text x="42" y="835" fill="#12665a" font-size="27" font-weight="600" text-anchor="start">2. D1</text>
+<text x="465" y="835" fill="#12665a" font-size="26" font-weight="500" text-anchor="end">0.01639</text>
+<text x="42" y="900" fill="#172d3d" font-size="27" font-weight="600" text-anchor="start">3. D3</text>
+<text x="465" y="900" fill="#172d3d" font-size="26" font-weight="500" text-anchor="end">0.01613</text>
+<text x="24" y="978" fill="#935411" font-size="24" font-weight="600" text-anchor="start">D2 被两路找回, 但它只是通用手册.</text>
+<polyline points="260,997 260,1022 134,1022 134,1060" fill="none" stroke="#165a80" stroke-width="2.2" marker-end="url(#a0)"/>
+<polyline points="260,1022 386,1022 386,1060" fill="none" stroke="#165a80" stroke-width="2.2" marker-end="url(#a0)"/>
+<rect x="24" y="1065" width="220" height="138" fill="#f7eae6" stroke="#b3b9bb" stroke-width="1.5"/>
+<text x="134.0" y="1112.0" fill="#a33332" font-size="24" font-weight="500" text-anchor="middle">只留第一条</text>
+<text x="134.0" y="1143.0" fill="#a33332" font-size="24" font-weight="500" text-anchor="middle">只有 D2</text>
+<text x="134.0" y="1174.0" fill="#a33332" font-size="24" font-weight="500" text-anchor="middle">缺少当次依据</text>
+<rect x="276" y="1065" width="220" height="138" fill="#e8f1eb" stroke="#b3b9bb" stroke-width="1.5"/>
+<text x="386.0" y="1112.0" fill="#12665a" font-size="24" font-weight="500" text-anchor="middle">保留前两条</text>
+<text x="386.0" y="1143.0" fill="#12665a" font-size="24" font-weight="500" text-anchor="middle">D1 仍在</text>
+<text x="386.0" y="1174.0" fill="#12665a" font-size="24" font-weight="500" text-anchor="middle">再核对证据</text>
+<rect x="24" y="1248" width="472" height="105" fill="#fff6df" stroke="#b3b9bb" stroke-width="1.5"/>
+<text x="260.0" y="1294.0" fill="#172d3d" font-size="23" font-weight="500" text-anchor="middle">融合后可按问题重排, 再选上下文.</text>
+<text x="260.0" y="1325.0" fill="#172d3d" font-size="23" font-weight="500" text-anchor="middle">两路都没找回 D1, 重排也找不回来.</text>
+<line x1="24" y1="1387" x2="496" y2="1387" stroke="#c8ccca" stroke-width="1.5"/>
+<text x="24" y="1412" fill="#4b5d69" font-size="21" font-weight="400" text-anchor="start">依据: 本文第 4 节及配套固定排名练习.</text>
+<text x="24" y="1439" fill="#4b5d69" font-size="21" font-weight="400" text-anchor="start">融合分数不是事实正确概率.</text>
+</g></svg>

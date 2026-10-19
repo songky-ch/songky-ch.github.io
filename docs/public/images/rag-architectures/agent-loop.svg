@@ -1,33 +1,73 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 930 700" role="img" aria-labelledby="title desc"><title id="title">Agent 检索循环</title><desc id="desc">预算检查后的检索观察循环, 以及完成和证据不足两种出口.</desc>
-<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#476380" stroke-width="1.7"/></marker></defs>
-<rect width="930" height="700" rx="20" fill="#f4f7fc"/>
-<g font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#17324d">
-<text x="35" y="48" font-size="27" font-weight="650" text-anchor="start">Agent 检索循环: 找证据, 查缺口, 受预算约束</text>
-<rect x="290" y="85" width="320" height="70" rx="12" fill="#e7f0ff" stroke="#9cb2ca" stroke-width="1.5"/>
-<text x="450.0" y="127.0" font-size="19" font-weight="500" text-anchor="middle">问题 + 来源范围 + 预算</text>
-<rect x="290" y="205" width="320" height="85" rx="12" fill="#fff1de" stroke="#9cb2ca" stroke-width="1.5"/>
-<text x="450.0" y="241.5" font-size="19" font-weight="500" text-anchor="middle">检查证据是否足够</text>
-<text x="450.0" y="267.5" font-size="19" font-weight="500" text-anchor="middle">选择下一步动作</text>
-<polyline points="450,155 450,200" fill="none" stroke="#476380" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="35" y="355" width="275" height="85" rx="12" fill="#ffffff" stroke="#9cb2ca" stroke-width="1.5"/>
-<text x="172.5" y="391.5" font-size="19" font-weight="500" text-anchor="middle">校验参数 / 权限 / 预算</text>
-<text x="172.5" y="417.5" font-size="19" font-weight="500" text-anchor="middle">执行只读检索工具</text>
-<polyline points="340,288 172,288 172,350" fill="none" stroke="#476380" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="205" y="318" font-size="17" font-weight="400" text-anchor="start">继续找</text>
-<rect x="35" y="510" width="275" height="85" rx="12" fill="#ffffff" stroke="#9cb2ca" stroke-width="1.5"/>
-<text x="172.5" y="546.5" font-size="19" font-weight="500" text-anchor="middle">观察结果, 记录来源</text>
-<text x="172.5" y="572.5" font-size="19" font-weight="500" text-anchor="middle">更新证据和信息缺口</text>
-<polyline points="172,440 172,505" fill="none" stroke="#476380" stroke-width="2" marker-end="url(#arrow)"/>
-<polyline points="310,552 450,552 450,293" fill="none" stroke="#476380" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="465" y="460" font-size="17" font-weight="400" text-anchor="start">回到决策</text>
-<rect x="610" y="355" width="255" height="85" rx="12" fill="#e9f6ef" stroke="#9cb2ca" stroke-width="1.5"/>
-<text x="737.5" y="391.5" font-size="19" font-weight="500" text-anchor="middle">证据齐全</text>
-<text x="737.5" y="417.5" font-size="19" font-weight="500" text-anchor="middle">生成带出处的答案</text>
-<polyline points="560,288 737,288 737,350" fill="none" stroke="#476380" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="640" y="318" font-size="17" font-weight="400" text-anchor="start">任务完成</text>
-<rect x="610" y="510" width="255" height="85" rx="12" fill="#fce8e6" stroke="#9cb2ca" stroke-width="1.5"/>
-<text x="737.5" y="546.5" font-size="19" font-weight="500" text-anchor="middle">预算耗尽 / 无新增</text>
-<text x="737.5" y="572.5" font-size="19" font-weight="500" text-anchor="middle">报告已知结果与缺口</text>
-<polyline points="610,246 895,246 895,552 870,552" fill="none" stroke="#476380" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="35" y="667" font-size="19" font-weight="400" text-anchor="start">日志: 工具、参数、返回证据、预算和结束状态. 不要求暴露内部推理.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 1800" role="img" aria-labelledby="title desc"><title id="title">智能体何时继续, 何时停?</title><desc id="desc">以本文只读问答流程为例.|实线是执行, 虚线把新观察送回判断.</desc>
+<defs><marker id="a0" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8" fill="none" stroke="#165a80" stroke-width="1.6"/></marker><marker id="a1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8" fill="none" stroke="#12665a" stroke-width="1.6"/></marker><marker id="a2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8" fill="none" stroke="#a33332" stroke-width="1.6"/></marker></defs>
+<rect width="520" height="1800" fill="#fcfbf7"/>
+<g font-family="PingFang SC, Microsoft YaHei, sans-serif">
+<text x="24" y="37" fill="#165a80" font-size="18" font-weight="600" text-anchor="start">RAG / 机制讲义</text>
+<text x="24" y="84" fill="#172d3d" font-size="30" font-weight="650" text-anchor="start">智能体何时继续, 何时停?</text>
+<text x="24" y="122" fill="#4b5d69" font-size="22" font-weight="400" text-anchor="start">以本文只读问答流程为例.</text>
+<text x="24" y="150" fill="#4b5d69" font-size="22" font-weight="400" text-anchor="start">实线是执行, 虚线把新观察送回判断.</text>
+<rect x="40" y="190" width="255" height="77" fill="#fff" stroke="#b3b9bb" stroke-width="1.5"/>
+<text x="167.5" y="237.5" fill="#172d3d" font-size="25" font-weight="500" text-anchor="middle">问题 + 已知证据</text>
+<polyline points="167,267 167,299" fill="none" stroke="#165a80" stroke-width="2.2" marker-end="url(#a0)"/>
+<polygon points="167,303.0 297.0,362 167,421.0 37.0,362" fill="#fff5df" stroke="#935411" stroke-width="1.6"/>
+<text x="167" y="370.0" fill="#172d3d" font-size="24" font-weight="500" text-anchor="middle">允许免检索直答?</text>
+<polyline points="297,362 326,362" fill="none" stroke="#165a80" stroke-width="2.2" marker-end="url(#a0)"/>
+<text x="304" y="341" fill="#165a80" font-size="24" font-weight="650" text-anchor="start">是</text>
+<rect x="333" y="312" width="163" height="100" fill="#eaf2f3" stroke="#b3b9bb" stroke-width="1.5"/>
+<text x="414.5" y="355.5" fill="#165a80" font-size="24" font-weight="500" text-anchor="middle">直接回答</text>
+<text x="414.5" y="386.5" fill="#165a80" font-size="24" font-weight="500" text-anchor="middle">如打招呼</text>
+<polyline points="167,421 167,469" fill="none" stroke="#165a80" stroke-width="2.2" marker-end="url(#a0)"/>
+<text x="184" y="454" fill="#165a80" font-size="24" font-weight="650" text-anchor="start">否</text>
+<polygon points="167,473.0 297.0,532 167,591.0 37.0,532" fill="#fff5df" stroke="#935411" stroke-width="1.6"/>
+<text x="167" y="540.0" fill="#172d3d" font-size="24" font-weight="500" text-anchor="middle">证据齐全吗?</text>
+<polyline points="297,532 328,532" fill="none" stroke="#12665a" stroke-width="2.2" marker-end="url(#a1)"/>
+<text x="304" y="511" fill="#12665a" font-size="24" font-weight="650" text-anchor="start">是</text>
+<rect x="333" y="482" width="163" height="100" fill="#e8f1eb" stroke="#b3b9bb" stroke-width="1.5"/>
+<text x="414.5" y="525.5" fill="#12665a" font-size="24" font-weight="500" text-anchor="middle">依据证据</text>
+<text x="414.5" y="556.5" fill="#12665a" font-size="24" font-weight="500" text-anchor="middle">回答并引用</text>
+<polyline points="167,591 167,645" fill="none" stroke="#165a80" stroke-width="2.2" marker-end="url(#a0)"/>
+<text x="184" y="625" fill="#165a80" font-size="24" font-weight="650" text-anchor="start">否</text>
+<polygon points="167,650.0 297.0,709 167,768.0 37.0,709" fill="#fff5df" stroke="#935411" stroke-width="1.6"/>
+<text x="167" y="702.5" fill="#172d3d" font-size="24" font-weight="500" text-anchor="middle">允许调用且</text>
+<text x="167" y="731.5" fill="#172d3d" font-size="24" font-weight="500" text-anchor="middle">还有预算吗?</text>
+<polyline points="297,709 328,709" fill="none" stroke="#a33332" stroke-width="2.2" marker-end="url(#a2)"/>
+<text x="304" y="688" fill="#a33332" font-size="24" font-weight="650" text-anchor="start">否</text>
+<rect x="333" y="653" width="163" height="112" fill="#f7eae6" stroke="#b3b9bb" stroke-width="1.5"/>
+<text x="414.5" y="702.5" fill="#a33332" font-size="24" font-weight="500" text-anchor="middle">说明缺口</text>
+<text x="414.5" y="733.5" fill="#a33332" font-size="24" font-weight="500" text-anchor="middle">返回不足</text>
+<polyline points="167,768 167,816" fill="none" stroke="#165a80" stroke-width="2.2" marker-end="url(#a0)"/>
+<text x="184" y="800" fill="#165a80" font-size="24" font-weight="650" text-anchor="start">是</text>
+<rect x="40" y="823" width="255" height="90" fill="#fff" stroke="#b3b9bb" stroke-width="1.5"/>
+<text x="167.5" y="861.5" fill="#172d3d" font-size="25" font-weight="500" text-anchor="middle">选择并校验工具</text>
+<text x="167.5" y="892.5" fill="#172d3d" font-size="25" font-weight="500" text-anchor="middle">执行只读调用</text>
+<polyline points="167,913 167,964" fill="none" stroke="#165a80" stroke-width="2.2" marker-end="url(#a0)"/>
+<polygon points="167,969.0 297.0,1028 167,1087.0 37.0,1028" fill="#fff5df" stroke="#935411" stroke-width="1.6"/>
+<text x="167" y="1036.0" fill="#172d3d" font-size="24" font-weight="500" text-anchor="middle">调用成功吗?</text>
+<polyline points="297,1028 328,1028" fill="none" stroke="#a33332" stroke-width="2.2" marker-end="url(#a2)"/>
+<text x="304" y="1007" fill="#a33332" font-size="24" font-weight="650" text-anchor="start">否</text>
+<rect x="333" y="972" width="163" height="112" fill="#f7eae6" stroke="#b3b9bb" stroke-width="1.5"/>
+<text x="414.5" y="1021.5" fill="#a33332" font-size="24" font-weight="500" text-anchor="middle">记录失败</text>
+<text x="414.5" y="1052.5" fill="#a33332" font-size="24" font-weight="500" text-anchor="middle">返回缺口</text>
+<polyline points="167,1087 167,1140" fill="none" stroke="#165a80" stroke-width="2.2" marker-end="url(#a0)"/>
+<text x="184" y="1121" fill="#165a80" font-size="24" font-weight="650" text-anchor="start">是</text>
+<rect x="40" y="1147" width="255" height="90" fill="#fff" stroke="#b3b9bb" stroke-width="1.5"/>
+<text x="167.5" y="1185.5" fill="#172d3d" font-size="25" font-weight="500" text-anchor="middle">记录原文与出处</text>
+<text x="167.5" y="1216.5" fill="#172d3d" font-size="25" font-weight="500" text-anchor="middle">扣减已用预算</text>
+<polyline points="167,1237 167,1290" fill="none" stroke="#165a80" stroke-width="2.2" marker-end="url(#a0)"/>
+<polygon points="167,1295.0 297.0,1354 167,1413.0 37.0,1354" fill="#fff5df" stroke="#935411" stroke-width="1.6"/>
+<text x="167" y="1362.0" fill="#172d3d" font-size="24" font-weight="500" text-anchor="middle">有新增证据吗?</text>
+<polyline points="297,1354 328,1354" fill="none" stroke="#a33332" stroke-width="2.2" marker-end="url(#a2)"/>
+<text x="304" y="1333" fill="#a33332" font-size="24" font-weight="650" text-anchor="start">否</text>
+<rect x="333" y="1298" width="163" height="112" fill="#f7eae6" stroke="#b3b9bb" stroke-width="1.5"/>
+<text x="414.5" y="1347.5" fill="#a33332" font-size="24" font-weight="500" text-anchor="middle">停止重复</text>
+<text x="414.5" y="1378.5" fill="#a33332" font-size="24" font-weight="500" text-anchor="middle">报告缺口</text>
+<polyline points="37,1354 15,1354 15,532 32,532" fill="none" stroke="#12665a" stroke-width="2.2" marker-end="url(#a1)" stroke-dasharray="7 5"/>
+<text x="39" y="1460" fill="#12665a" font-size="24" font-weight="600" text-anchor="start">有新证据: 回到“证据齐全吗?”</text>
+<rect x="24" y="1510" width="472" height="133" fill="#fff6df" stroke="#935411" stroke-width="1.5"/>
+<text x="42" y="1550" fill="#935411" font-size="25" font-weight="650" text-anchor="start">Q2 的成功路径</text>
+<text x="42" y="1589" fill="#172d3d" font-size="23" font-weight="400" text-anchor="start">找 D3 → 发现还缺一跳 → 再找 D4</text>
+<text x="42" y="1621" fill="#172d3d" font-size="23" font-weight="400" text-anchor="start">若预算先耗尽, 只能报告已知范围.</text>
+<line x1="24" y1="1685" x2="496" y2="1685" stroke="#c8ccca" stroke-width="1.5"/>
+<text x="24" y="1710" fill="#4b5d69" font-size="21" font-weight="400" text-anchor="start">依据: 本文第 5 节. 这是教学控制设计,</text>
+<text x="24" y="1737" fill="#4b5d69" font-size="21" font-weight="400" text-anchor="start">不代表框架只有这些节点或失败策略.</text>
 </g></svg>
