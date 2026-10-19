@@ -6,49 +6,40 @@ contentType: 技术对比
 
 # RAG、Agent 与混合评测: 流程、指标、框架和真实案例
 
-RAG (Retrieval-Augmented Generation, 检索增强生成) 评测重点是“信息是否找对, 回答是否有据且正确”; Agent (智能体) 评测重点是“是否在约束内完成任务, 实际动作和结果是否正确”. 两者是可以组合的能力: Agent 可以调用检索工具, RAG 也可以包含多轮查询与动态路由. 混合评测必须同时验证知识证据、决策、执行和最终结果.
+先看同一个退款请求. 如果系统只回答“这单能不能退”, 我们要查它有没有找全规则、有没有解释对. 如果系统还替用户办理退款, 就要继续查它操作的是哪张订单、退了多少钱、是否取得确认, 以及任务结束后的实际业务状态 (后文简称终态).
+
+回答前先从资料里找证据, 叫检索增强生成 (RAG, Retrieval-Augmented Generation); 根据任务选择工具并检查结果, 是智能体 (Agent) 的工作方式. 两者可以组合. 所以本文先分别讲怎么评, 再把“找证据、做判断、执行动作、核验结果”接成一条完整评测链.
 
 配套阅读: [开发与测试面试专题](../../interviews/ai-evaluation/rag-agent-evaluation.md). 配套资源: <a href="/examples/rag-agent-evaluation/evaluate.py" download>离线练习</a>、[合成输入](/examples/rag-agent-evaluation/cases.json)、[实际运行结果](/examples/rag-agent-evaluation/results.json).
 
-## 1. 学习范围与证据边界
+## 1. 读完要能做什么, 哪些结果已经验证
 
-学完应能独立设计三种评测的样本契约、运行链路、指标口径、判定器与回归报告, 并根据通用助手或垂直业务选择评测覆盖. 前置条件是能够阅读 Python 字典与条件分支, 了解检索、工具调用和软件测试的基本含义.
+读完后, 你应能拿一个真实任务, 写清输入和成功条件, 搭出可重复执行的评测步骤, 为每项指标说明证据和分母, 再根据失败记录决定改哪一步. 通用助手与垂直业务的差别, 会落实到数据、判据和环境, 而不只是换一组行业名词. 前置条件是能够阅读 Python 字典与条件分支, 了解检索、工具调用和软件测试的基本含义.
 
-核查日期: **2026-10-18**. 框架能力以当日官方资料快照为依据, “常见框架”指本文覆盖的代表性方案, 不代表市场份额排名. 本文没有运行真实模型、商业评测平台、在线用户实验或全部公开基准. 已执行部分仅是第 10 节的本地确定性练习, 环境为 Python 3.9.6, [运行元数据与文件摘要](/examples/rag-agent-evaluation/run-metadata.json)可复核. 公式推导、业务扩展、工程架构和合成样本均为教学设计, 与引用项目的原始实现分别说明.
+技术事实核查日期: **2026-10-18**. 本次讲解与图解更新于 **2026-10-19**, 保留原来源版本和练习运行记录; 没有将图文更新标作重新运行真实模型或完整基准. 框架能力以 2026-10-18 的官方资料快照为依据, “常见框架”指本文覆盖的代表性方案, 不代表市场份额排名. 本文没有运行真实模型、商业评测平台、在线用户实验或全部公开基准. 已执行部分仅是第 10 节的本地确定性练习, 环境为 Python 3.9.6, [运行元数据与文件摘要](/examples/rag-agent-evaluation/run-metadata.json)可复核. 公式推导、业务扩展、工程架构和合成样本均为教学设计, 与引用项目的原始实现分别说明.
 
-| 来源 | 实际读取范围与版本 | 用途与未验证范围 |
-| --- | --- | --- |
-| [Ragas 指标文档](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/) | Context Precision、Context Recall、Faithfulness 及指标目录, stable 在线快照 | 核对字段、公式及 collections API; 未安装或运行 SDK |
-| [TruLens RAG Triad](https://www.trulens.org/getting_started/core_concepts/rag_triad/) | 三元评测定义 | 理解相关性与依据性分工; 不将高分解释为无幻觉保证 |
-| [LangChain 轨迹评测](https://docs.langchain.com/langsmith/trajectory-evals) | 匹配模式、参数匹配及模型裁判 | 核对 AgentEvals 接口与适用范围; 未调用平台 |
-| [DeepEval Tool Correctness](https://deepeval.com/docs/metrics-tool-correctness)、[Task Completion](https://deepeval.com/docs/metrics-task-completion) | 所需数据与判定方式 | 区分工具名、参数及任务完成; 未运行 SDK |
-| [CRAG](https://github.com/facebookresearch/CRAG/tree/ad1518887dd4d9ebcd7de95388c7a62751e7705c) | README、`local_evaluation.py` 的生成与汇总逻辑, commit `ad1518887dd4d9ebcd7de95388c7a62751e7705c` | 真实通用 RAG 基准; 没有下载完整数据或复现榜单 |
-| [FinanceBench](https://github.com/patronus-ai/financebench/tree/cc39aeb4afdf33909ee1412188bf89035950c2eb) | README、公开 JSONL 首条样本, commit `cc39aeb4afdf33909ee1412188bf89035950c2eb` | 真实金融问答及证据字段; 未逐页核对原始公司年报 |
-| [τ-bench](https://github.com/sierra-research/tau-bench/tree/59a200c6d575d595120f1cb70fea53cef0632f6b) | README、retail 规则文档, commit `59a200c6d575d595120f1cb70fea53cef0632f6b` | 多轮业务操作与重复试验; 未运行模拟用户 |
-| [τ²-bench 评测文档](https://github.com/sierra-research/tau2-bench/blob/96a3ef92329baf908ffe9dfe188cea34e8701d2a/docs/evaluation.md) | 任务契约、reward_basis 和状态评判, commit `96a3ef92329baf908ffe9dfe188cea34e8701d2a` | 核对不同轨迹可达相同终态的机制; 未审计全部评判器实现 |
-| [AgentEvals](https://github.com/langchain-ai/agentevals/tree/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e) | README 的轨迹与图节点评测, commit `946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e` | 轨迹评测能力边界; 未通读源码 |
-| [SWE-bench Evaluation Guide](https://www.swebench.com/SWE-bench/guides/evaluation/)、[GAIA 论文](https://arxiv.org/abs/2311.12983) | 容器判题、预测格式; GAIA 摘要 | 软件任务与通用助手实例; 未复现分数 |
-| [Anthropic Research 工程案例](https://www.anthropic.com/engineering/multi-agent-research-system) | 2025-06-13 发布文章中的架构与 Effective evaluation of agents 章节 | 真实检索研究系统的混合评测; 未获得其内部评测集或运行系统 |
+来源与固定版本集中在[文末资料表](#_13-参考资料与阅读顺序). 下文图解均为教学补充, 用来展开原有机制, 不代表引用项目未公开的内部结构.
 
-其他官方来源在对应章节就近列出. 文档接口会变化; 实际项目应冻结依赖版本与评测配置, 不能把本文的核查日期当作所有框架的发行版本.
+## 2. 先把三类评测放到同一张地图上
 
-## 2. 一个统一的评测框架
+<picture>
+  <source media="(max-width: 640px)" srcset="/images/rag-agent-evaluation/evaluation-map-mobile.svg" />
+  <img src="/images/rag-agent-evaluation/evaluation-map.svg" alt="三类被测应用各自产生运行记录, 评判器独立持有真值并判定" />
+</picture>
 
-![RAG、Agent 与混合评测的证据和判定链路](/images/rag-agent-evaluation/evaluation-map.svg)
+读图时先看被测应用做了什么. 只回答问题时, 沿着“资料 → 片段 → 回答”检查; 办理任务时, 还要沿着工具动作查到实际业务状态. 三类系统都把这次运行的记录交给评判器, 但参考答案和目标状态由评判器单独保管, 不进入被测应用. 混合系统多问一步: 找到的证据, 到底能不能支持这次动作?
 
-读图: 三条业务运行链路不同, 但共享任务契约、版本记录、证据采集、判定器和实验报告. RAG 的检索结果可以成为 Agent 的一次工具返回; 混合评测增加“证据如何影响动作”的连接检查.
-
-先统一五层, 再选择框架, 可以避免平台有哪个指标就测哪个指标.
+动手实现时, 先分清下面五份工作由谁负责、交付什么, 再选工具. 例如退款金额对不对可以直接比对业务库; 规则是否真的支持回答, 可能还需要模型或专家来判断.
 
 | 层 | 必须交付的内容 | 具体问题 |
 | --- | --- | --- |
 | 任务与数据层 | 问题、知识快照、初始状态、用户身份、可用工具、成功条件 | 任务是否可解? 哪些动作被允许? |
 | 执行层 | 被测版本、环境重置、预算、重复试验、超时记录 | 两个版本是否在同一条件下运行? |
-| 观测层 | Trace (整次运行记录)、Span (单次操作记录)、检索片段、工具返回、终态 | 能否还原每个结论和动作的依据? |
-| 判定层 | 代码规则、LLM-as-a-Judge (大模型裁判)、人工专家 | 能确定计算的用代码, 语义判断才交给裁判 |
-| 分析与闭环层 | 分桶指标、置信区间、失败证据、版本比较、回归样本 | 是产品退化、评判器误判, 还是观测不足? |
+| 观测层 | 整次运行记录 (Trace)、单次操作记录 (Span)、检索片段、工具返回、终态 | 能否还原每个结论和动作的依据? |
+| 判定层 | 代码规则、按评分细则判断语义的大模型 (LLM-as-a-Judge)、人工专家 | 能确定计算的用代码, 语义判断才交给裁判 |
+| 分析与闭环层 | 按任务类型分组的指标、置信区间、失败证据、版本比较、回归样本 | 是产品退化、评判器误判, 还是观测不足? |
 
-本框架是教学归纳. Anthropic 将 task、trial、grader、transcript、outcome 与 evaluation harness 分开定义: 一次任务可重复执行, 多个判定器读取运行记录或环境结果. **运行器是测量基础设施, 被测 Agent 的编排器是系统本身的一部分**, 比模型时也必须控制后者. [官方说明: The structure of an evaluation](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents).
+本框架是教学归纳. Anthropic 把一道任务 (task)、一次试验 (trial)、评分用的判定器 (grader)、运行记录 (transcript)、最终结果 (outcome) 和评测运行器 (evaluation harness) 分开定义. 这样就能区分“题目是什么”“这次具体怎样跑”“谁根据什么打分”. 同一道任务可以重复执行, 判定器分别读取运行记录或实际环境结果. **运行器是测量基础设施, 被测 Agent 的编排器是系统本身的一部分**, 比模型时也必须控制后者. [官方说明: The structure of an evaluation](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents).
 
 ### 2.1 先写“什么算成功”, 再写评分代码
 
@@ -60,13 +51,22 @@ RAG (Retrieval-Augmented Generation, 检索增强生成) 评测重点是“信�
 
 RAG 任务需要参考事实与证据; Agent 任务还需要初始状态、允许动作、终态断言; 混合任务需要增加证据与动作之间的依赖. 参考答案和目标终态只给评判器, 不能泄漏给被测系统.
 
-### 2.2 贯穿三类评测的版本清单
+### 2.2 怎样保证这次与上次测的是同一件事
 
 每次实验记录数据集与分割版本、知识库原文和切分版本、检索/重排配置、提示词、模型标识与采样配置、工具契约、环境快照、用户模拟器、裁判模型与评分规则、运行预算、运行器版本. 尽量保存不可变标识和内容摘要, 不只记“最新版”. 随机种子便于排查, 但不能保证远程模型服务逐字重现.
 
 ## 3. RAG 评测: 从语料到可信回答
 
-### 3.1 完整实现流程
+### 3.1 从同一份资料出发, 每一步都留下证据
+
+不要只保存最终答案. 例如退款规则有两项条件, 先确认原文里都有, 再逐步查它们是否进入候选片段、重排结果和模型实际输入. 下图固定这同一个问题, 让丢失的位置直接可见.
+
+<picture>
+  <source media="(max-width: 640px)" srcset="/images/rag-agent-evaluation/rag-evidence-flow-mobile.svg" />
+  <img src="/images/rag-agent-evaluation/rag-evidence-flow.svg" alt="A和B都存在于语料与检索结果, B在压缩装配阶段消失, 修改后从装配阶段重新执行" />
+</picture>
+
+从上往下追踪 A、B: 前三步都有, 第四步却只剩 A, 所以此例先查压缩或截断. 修复线回到上下文装配, 重新把 A、B 交给生成器, 然后重评本题. 如果原始解析结果就没有 B, 排查位置应更早, 不能照搬本图的结论. 图中 A、B 与丢失记录均为教学设定.
 
 | 步骤 | 输入与操作 | 输出与验证 |
 | --- | --- | --- |
@@ -77,12 +77,12 @@ RAG 任务需要参考事实与证据; Agent 任务还需要初始状态、允�
 | 5. 独立测检索 | 对问题运行查询改写、词法/向量检索、融合、重排, 逐阶段记录结果 | Recall@k、nDCG@k 等, 同时报告 k 与 token 预算 |
 | 6. 独立测生成 | 给生成器相同证据, 或给人工确认充分的 Oracle Context (理想证据上下文) | 检查模型能否正确利用充足证据, 将检索问题与生成问题分开 |
 | 7. 测完整链路 | 输入真实检索结果, 生成答案和引用, 记录截断后的实际模型上下文 | 正确性、依据性、引用、拒答、耗时与费用 |
-| 8. 校准判定器 | 用人工标注集检查裁判, 特别关注错误年份、单位、否定和无答案题 | 裁判混淆矩阵、分桶误判及争议样本 |
+| 8. 校准判定器 | 用人工标注集检查裁判, 特别关注错误年份、单位、否定和无答案题 | 裁判混淆矩阵、分组误判及争议样本 |
 | 9. 对照与回归 | 固定测试集比较候选版本, 分析最先损坏的阶段, 将线上新失败入回归集 | 有证据的修复结论, 再运行直接相关回归 |
 
 步骤 5 的分阶段记录很关键: 检索候选集有答案, 重排后被挤掉, 是重排问题; 重排仍有答案, 上下文压缩时删掉关键条件, 是上下文构造问题. 只记录最终 `retrieved_contexts` 会漏掉这一区分. 同一答案藏在不同切分位置时, 应按“支持哪一个事实”的语义单位标注, 避免换 chunk (文本片段) 策略就让所有 ID 标签失效.
 
-### 3.2 指标分工与公式
+### 3.2 先问“漏了什么”, 再看指标分母
 
 令问题为 q, 前 k 个检索结果为 Rₖ, 标注相关集合为 G, 生成答案为 a, 实际交给模型的上下文为 C. 相关性标签可以是二值或等级分, 所用定义必须写入报告. 下文 card(S) 表示集合 S 的元素个数, relᵢ 表示第 i 项的相关性等级.
 
@@ -112,11 +112,18 @@ Ragas 的排序口径为:
 
 Ragas 的 Context Recall 用“参考答案事实”作分母, Faithfulness 用“生成答案事实”作分母. 若参考需要解释 A、B、C, 系统只找到 A 并只回答 A, Faithfulness 可以为 1, Context Recall 只有约 1/3, 答案完整性仍失败. [Context Recall](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/context_recall/), [Faithfulness](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/faithfulness/).
 
+<picture>
+  <source media="(max-width: 640px)" srcset="/images/rag-agent-evaluation/rag-metric-coverage-mobile.svg" />
+  <img src="/images/rag-agent-evaluation/rag-metric-coverage.svg" alt="参考需要A B C, 实际上下文和生成答案只有A, 上下文召回1/3而忠实性1" />
+</picture>
+
+先看三行事实, 再看下面两个分母. 上下文召回问“参考答案要求的三件事, 找到了几件”; 忠实性问“已经说出的这一件事, 有没有依据”. 所以图里一个是 1/3, 另一个是 1, 两项结果可以同时成立. 接下来还得检查回答是否完整, 不能只拿后一项满分作为通过依据.
+
 TruLens 的 RAG Triad (RAG 三元评测) 从上下文相关、依据性、答案相关三个方向观察链路. 用它能组织诊断, 但还需独立真值、完整性、权限和时效检查, 高分不能作为绝对正确保证. [官方定义](https://www.trulens.org/getting_started/core_concepts/rag_triad/).
 
 ### 3.3 数据怎样做才有区分度
 
-| 场景桶 | 必须放入的样本 | 期待暴露的问题 |
+| 场景分组 | 必须放入的样本 | 期待暴露的问题 |
 | --- | --- | --- |
 | 常规可答 | 单文档事实、术语别名、中文口语问法 | 基础覆盖与语义匹配 |
 | 多证据 | 条件在不同段落、跨文档比较、表格与脚注结合 | 只命中一段但误以为完整 |
@@ -131,7 +138,7 @@ TruLens 的 RAG Triad (RAG 三元评测) 从上下文相关、依据性、答案
 
 CRAG 是真实公开基准, 覆盖多个领域、不同问题类型、长尾实体与时效性, 并提供模拟网页/知识图谱接口. 论文报告 4,409 个问答对. 它适合检验“广泛问题能否得到可靠事实答案”, 与企业单一知识库的分布并不相同. [论文](https://arxiv.org/abs/2406.04744), [仓库说明](https://github.com/facebookresearch/CRAG/tree/ad1518887dd4d9ebcd7de95388c7a62751e7705c).
 
-可复用的实施流程是: 固定题集、检索输入与查询时点 → 执行检索和回答 → 将答案与独立真值匹配或交给裁判 → 区分正确、缺答与错误 → 按领域、时效和问题类型分桶. 该快照自动评分说明采用正确 +1、缺答 0、错误 -1, 因而汇总可写为 (N_correct − N_wrong) / N. 它显式惩罚自信错误; 仍需同时报告缺答率, 防止通过过度拒答美化错误率. [README: Evaluation Metrics](https://github.com/facebookresearch/CRAG/blob/ad1518887dd4d9ebcd7de95388c7a62751e7705c/README.md#-evaluation-metrics).
+可复用的实施流程是: 固定题集、检索输入与查询时点 → 执行检索和回答 → 将答案与独立真值匹配或交给裁判 → 区分正确、缺答与错误 → 按领域、时效和问题类型分组. 该快照自动评分说明采用正确 +1、缺答 0、错误 -1, 因而汇总可写为 (N_correct − N_wrong) / N. 它显式惩罚自信错误; 仍需同时报告缺答率, 防止通过过度拒答美化错误率. [README: Evaluation Metrics](https://github.com/facebookresearch/CRAG/blob/ad1518887dd4d9ebcd7de95388c7a62751e7705c/README.md#-evaluation-metrics).
 
 源码定位: `generate_predictions` 将 `answer` 从模型输入批次移除; `evaluate_predictions` 汇总 `score`、`accuracy`、`hallucination` 与 `missing`. 这是评测真值隔离与分指标汇报的具体实现例子. 本次仅静态读取, 该快照脚本还存在入口实参数量与函数签名不一致等问题, 因此不将原样启动命令标成已验证可运行. [固定版本源码](https://github.com/facebookresearch/CRAG/blob/ad1518887dd4d9ebcd7de95388c7a62751e7705c/local_evaluation.py).
 
@@ -143,7 +150,16 @@ FinanceBench 公开仓库提供 150 条带答案和证据的样本; 发布者说
 
 ## 4. Agent 评测: 从多轮动作到实际结果
 
-### 4.1 完整实现流程
+### 4.1 一次任务从哪里开始, 到哪里才算结束
+
+先选一条能成功办理的任务, 从用户请求一直跟到业务库. 谁发起查询、谁确认、谁真正改变状态, 都要分清. 下图只画正常退款路径, 拒绝、补查和等待确认的分支在图 05 展开.
+
+<picture>
+  <source media="(max-width: 640px)" srcset="/images/rag-agent-evaluation/agent-run-sequence-mobile.svg" />
+  <img src="/images/rag-agent-evaluation/agent-run-sequence.svg" alt="正常退款中用户确认早于写入, 工具返回后智能体告知, 会话结束后评测器独立核验业务状态" />
+</picture>
+
+沿实线走一遍: 用户请求 O-1 退款, 智能体先查询条件和金额, 再请求确认, 取得确认后才提交写操作. 工具返回执行结果后, 它据此告知用户. 底部虚线连到评测器自己的查库步骤: 即使前面说“完成”, 也要另查 O-1 的金额、其他订单和退款次数. 时序记录还要证明确认发生在写入之前.
 
 | 步骤 | 操作 | 关键验证 |
 | --- | --- | --- |
@@ -154,11 +170,11 @@ FinanceBench 公开仓库提供 150 条带答案和证据的样本; 发布者说
 | 5. 收集证据 | 记录消息、调用参数、工具返回、动作时间、前后状态与产物 | 同一调用能通过 ID 关联请求、返回和状态变化 |
 | 6. 多层判定 | 终态检查、必要流程约束、工具参数规则、输出语义与交互质量 | “说已完成”不能代替数据库或产物证据 |
 | 7. 重复与压力测试 | 每题多次从干净快照运行, 注入工具超时、歧义与状态竞争 | 统计稳定性、恢复行为和重复副作用 |
-| 8. 失败归因与回归 | 判定首个有证据的失败阶段, 复核环境和裁判问题 | 修复后重跑同任务及相关风险桶 |
+| 8. 失败归因与回归 | 判定首个有证据的失败阶段, 复核环境和裁判问题 | 修复后重跑同任务及相关风险任务组 |
 
 Trace 收集的是可观测消息和动作, 不要求读取模型隐藏思维链. “规划质量”如果只能从外部行为推断, 应明确推断依据, 不把模型自述计划当作已经正确执行.
 
-### 4.2 结果、过程与资源指标
+### 4.2 任务完成、动作正确和资源开销分别测
 
 | 指标 | 本文操作定义 | 重要边界 |
 | --- | --- | --- |
@@ -201,7 +217,7 @@ pass@k (k 次中至少一次成功) 衡量多次尝试能否找到解; pass^k (k
 
 原始 τ-bench 包含零售与航空服务, 模拟用户与 Agent 多轮交互, 工具连接业务数据库, 同时存在领域规则. 一次试验要从固定状态开始, 完成对话后核验结果. 它把“能否说出合理答案”推进到“能否持续正确办理任务”. [项目说明](https://github.com/sierra-research/tau-bench/tree/59a200c6d575d595120f1cb70fea53cef0632f6b), [论文](https://arxiv.org/abs/2406.12045).
 
-后续 τ² 仓库的当前评测文档明确区分 `evaluation_criteria.actions` 与 `reward_basis`: 参考动作可被回放来构造目标数据库状态, 不意味着被测 Agent 必须逐步照抄. 当奖励依据是 DB 和 COMMUNICATE 时, 终态和告知检查共同决定奖励; 只有配置 ACTION 时才额外要求匹配参考动作. 这里引用的是**指定提交的文档行为**, 不能把不同版本分数直接混为同一榜单. [固定版本评测规范](https://github.com/sierra-research/tau2-bench/blob/96a3ef92329baf908ffe9dfe188cea34e8701d2a/docs/evaluation.md).
+所读取的后续 τ² 仓库评测文档明确区分 `evaluation_criteria.actions` 与 `reward_basis`: 参考动作可被回放来构造目标数据库状态, 不意味着被测 Agent 必须逐步照抄. 当奖励依据是 DB 和 COMMUNICATE 时, 终态和告知检查共同决定奖励; 只有配置 ACTION 时才额外要求匹配参考动作. 这里引用的是**指定提交的文档行为**, 不能把不同版本分数直接混为同一榜单. [固定版本评测规范](https://github.com/sierra-research/tau2-bench/blob/96a3ef92329baf908ffe9dfe188cea34e8701d2a/docs/evaluation.md).
 
 实现上的启发是把“参考解用于生成真值”与“参考解是唯一合法路径”分开. 同时, 基准自动奖励覆盖什么就只能证明什么; 若业务另有权限、全程确认和幂等要求, 应增设独立断言, 不能推断 DB 得分高就证明全程合规.
 
@@ -230,15 +246,18 @@ SWE-bench 则把真实仓库 issue 转为补丁任务, 在固定环境中应用�
 
 ## 6. RAG + Agent 混合评测: 证据怎样变成正确动作
 
-### 6.1 定义评测边界
+### 6.1 先区分“研究后回答”和“查规则后办事”
 
-混合系统至少有两类: **Agentic RAG (由智能体控制的检索问答)** 会动态检索、补查和汇总, 最终可以只是报告; **Knowledge-grounded Agent (基于知识证据的行动智能体)** 会把检索到的规则用于业务操作. 前者重点是研究完整性、来源和检索停止条件, 后者还需状态、授权和副作用检查.
+有的系统会自己决定查什么、何时补查, 最后写一份报告. 这类由智能体控制的检索问答, 常称 Agentic RAG, 重点是资料是否充分、来源是否可靠、何时停止搜索. 另一类系统查完规则后还要退款或改签, 可以称为基于知识证据的行动智能体 (Knowledge-grounded Agent), 除了回答质量, 还得核对授权、实际状态和额外副作用.
 
-![混合系统从证据到决策、参数与状态的依赖图](/images/rag-agent-evaluation/evidence-to-action.svg)
+<picture>
+  <source media="(max-width: 640px)" srcset="/images/rag-agent-evaluation/evidence-to-action-mobile.svg" />
+  <img src="/images/rag-agent-evaluation/evidence-to-action.svg" alt="混合流程中补查回流、资料不足停止、不符合条件拒绝、等待确认和执行后的三种评测结论" />
+</picture>
 
-读图: 证据不是只连最终答案, 还应连到决策节点及具体参数. 对改变状态的动作, 必须同时检查用户确认、身份与实时业务前置条件. 回答正确而工具状态错误, 整体仍失败.
+从顶部的“规则证据 + 实时订单”开始走. 如果资料不足但还有预算, 就先补查或澄清, 补齐后回到资料判断; 预算用尽仍无法确认, 就停止执行并说明缺口. 资料齐全后再看订单是否符合规则, 不符合时解释原因且不写入. 符合条件也还不能直接退款, 必须取得有效确认和授权. 最后核验实际状态、额外副作用与结果告知. 图里的“通过、失败、不可判定”是评测结论, 与被测系统自己说“完成了”分开.
 
-### 6.2 统一任务契约的最小示例
+### 6.2 把输入、环境和评分答案分开存
 
 以下是**教学 JSON 契约**, 不是某个 SDK 的官方格式. `public_input` 交给被测系统, 其余内容由环境或判定器持有. 真实运行时还应保留检索文本与状态快照的受控存储入口, 公开报告不披露私有内容.
 
@@ -261,9 +280,9 @@ SWE-bench 则把真实仓库 issue 转为补丁任务, 在固定环境中应用�
 }
 ```
 
-一次混合 Trace 至少包含 `case_id`、`trial_id`、`trace_id`、`span_id`、父子关系、时间戳、检索 query、候选与最终证据、证据版本与生效时段、可观察的决策结果及其证据引用、工具参数、工具返回、状态前后差异和最终输出. 如果业务允许缓存, 也要记录缓存证据和命中信息, 不能把“没有本轮检索”直接等同于“无证据”.
+一份混合任务的完整运行记录至少包含 `case_id`、`trial_id`、`trace_id`、`span_id`、父子关系、时间戳、检索 query、候选与最终证据、证据版本与生效时段、可观察的决策结果及其证据引用、工具参数、工具返回、状态前后差异和最终输出. 如果业务允许缓存, 也要记录缓存证据和命中信息, 不能把“没有本轮检索”直接等同于“无证据”.
 
-### 6.3 分三层执行, 避免端到端失败后无从定位
+### 6.3 先单测每一步, 再查交接, 最后跑完整任务
 
 1. **组件层**: 给固定问题测检索, 给固定证据测规则判断, 给固定决策测参数构造, 给固定调用测工具状态变化.
 2. **交接层**: 检索证据是否包含决策所需条件; 决策引用是否真的支持该动作; 金额、对象和时间是否正确传入工具; 工具返回是否正确反馈给最终回答.
@@ -271,7 +290,7 @@ SWE-bench 则把真实仓库 issue 转为补丁任务, 在固定环境中应用�
 
 三层都需要, 但作用不同. 组件成功不能直接推出整体成功; 完整任务成功也可能掩盖偶然猜中答案、遗漏证据或产生未察觉副作用.
 
-### 6.4 混合评测指标和汇总规则
+### 6.4 怎样把各项检查合成任务结论
 
 | 维度 | 检查项 | 证据和分母 |
 | --- | --- | --- |
@@ -282,7 +301,7 @@ SWE-bench 则把真实仓库 issue 转为补丁任务, 在固定环境中应用�
 | 回答 | 事实、引用、结果告知与真实执行一致 | 事实和引用级指标, 加用户目标完成检查 |
 | 稳定与资源 | 重复成功、尾延迟、预算内成功 | 每题重复试验及所有尝试成本 |
 
-本文定义 Evidence-to-Action Validity (证据到动作有效性): 对每个需要知识支持的业务决策, 检查“该决策前已可用、对该用户可见、在该时点适用的证据”是否充分支持所采取的动作. 它是自定义指标, 不是所有平台统一内置指标. 证据 ID 相同或引用字符串出现只能证明关联存在, 语义支持关系还需独立规则或校准过的裁判.
+这里额外检查一件事: 对每个需要知识支持的业务决策, 确认“该决策前已可用、对该用户可见、在该时点适用的证据”是否充分支持所采取的动作. 本文把这一项称为证据到动作有效性 (Evidence-to-Action Validity). 这是自定义指标, 不是所有平台统一内置指标. 证据 ID 相同或引用字符串出现只能证明关联存在, 语义支持关系还需独立规则或校准过的裁判.
 
 对行动任务, 可定义严格的端到端成功:
 
@@ -328,7 +347,7 @@ Anthropic 的公开工程文章介绍了实际 Research 系统: 主 Agent 分解
 
 ### 7.1 通用领域
 
-通用领域重点是**问题与环境的多样性**: 多主题、长尾实体、多语言、多种文档、网页变化、多种工具组合. 评测集按知识主题、任务形式、所需工具、推理步骤和开放程度分层. 各桶都报告, 同时给宏平均与接近真实流量的加权平均, 避免高频简单题淹没困难题.
+通用领域重点是**问题与环境的多样性**: 多主题、长尾实体、多语言、多种文档、网页变化、多种工具组合. 评测集按知识主题、任务形式、所需工具、推理步骤和开放程度分层. 各组都报告, 同时给宏平均与接近真实流量的加权平均, 避免高频简单题淹没困难题.
 
 | 系统 | 数据与环境 | 判定重点 | 真实案例与限制 |
 | --- | --- | --- | --- |
@@ -356,7 +375,7 @@ BEIR 是检索基准, 用于观察不同数据分布下的检索表现, 不能�
 
 ### 7.3 两类领域共享的报告口径
 
-通用系统关注跨任务覆盖, 垂直系统关注业务损失与适用边界, 两者都需要: 样本量、覆盖桶、成功率、不可判定率、超时率、裁判误判、成本和不确定性. 风险加权分数可以辅助排序, 但保留原始各类错误数及分母, 否则一个加权均值无法说明真实风险.
+通用系统关注跨任务覆盖, 垂直系统关注业务损失与适用边界, 两者都需要: 样本量、覆盖分组、成功率、不可判定率、超时率、裁判误判、成本和不确定性. 风险加权分数可以辅助排序, 但保留原始各类错误数及分母, 否则一个加权均值无法说明真实风险.
 
 ## 8. 常见框架与方案怎样组合
 
@@ -376,21 +395,21 @@ BEIR 是检索基准, 用于观察不同数据分布下的检索表现, 不能�
 
 来源: [Ragas 目录](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/), [DeepEval](https://deepeval.com/docs/metrics-tool-correctness), [LangSmith](https://docs.langchain.com/langsmith/trajectory-evals), [Langfuse Code Evaluators](https://langfuse.com/docs/evaluation/evaluation-methods/code-evaluators), [Phoenix](https://arize.com/docs/phoenix/), [Promptfoo RAG 指南](https://www.promptfoo.dev/docs/guides/evaluate-rag/), [Promptfoo 红队配置](https://www.promptfoo.dev/docs/red-team/configuration/). 框架的托管范围、许可、收费和功能版本需在实际选型时另行核实, 本文不作未经查证的承诺.
 
-### 8.1 一个可执行的组合架构
+### 8.1 一次评测怎样接入这些工具
 
-针对本文混合售后任务, 使用**一个统一实验运行器 + 一套 Trace 记录 + 独立判定适配器**:
+以本文售后任务为例: 让一个运行器负责重置环境、启动应用和收集记录, 再把同一份记录交给不同判定器. 平台负责存记录、比较版本, 业务代码负责定义哪些结果算对:
 
 1. 运行器读取任务契约, 重置订单快照和知识版本, 驱动被测应用.
 2. 应用把检索结果、工具请求返回和终态写入同一运行记录; 可以选择 LangSmith、Langfuse 或 Phoenix 中的一套作为主要记录与比较平台.
 3. 代码判定器检查金额、对象、授权时间、状态不变量与预算; Ragas 或 DeepEval 适配器读取指定检索上下文和答案; 轨迹约束可用 AgentEvals 或自定义规则.
 4. 需要语义判定的项给模型裁判, 裁判输出结论、证据定位与无法判断原因; 人工复核争议与高风险样本.
-5. 汇总器按 case/trial 关联各项, 先算联合成功, 再算分桶表现、稳定性与成本.
+5. 汇总器按 case/trial 关联各项, 先算联合成功, 再算分组表现、稳定性与成本.
 
 该设计允许替换平台而保留任务与判据. 主观分数与硬业务结果分别保存, 所有 SDK 字段通过适配器映射, 不把不同框架同名指标直接平均.
 
 ### 8.2 Ragas 接入的真实 API 形状
 
-以下是按当前 Faithfulness 官方页整理的**未执行示例**, 需要对应版本 Ragas、OpenAI 客户端及具备权限的模型服务. 本次不调用收费接口, 模型占位符必须由使用者替换; 正式使用先锁定经过验证的依赖版本.
+以下是按 2026-10-18 核实的 Faithfulness 官方页整理的**未执行示例**, 需要对应版本 Ragas、OpenAI 客户端及具备权限的模型服务. 本次不调用收费接口, 模型占位符必须由使用者替换; 正式使用先锁定经过验证的依赖版本.
 
 ```python
 from openai import AsyncOpenAI
@@ -426,29 +445,29 @@ report = aggregate_joint_results_and_slices()
 
 ## 9. 让评测结果可信: 裁判、统计与线上闭环
 
-### 9.1 裁判也需要被评测
+### 9.1 先拿人工答案检查评分模型
 
-构建一份有争议难例的专家标注集, 冻结评分 Rubric (评分细则), 给裁判最小充分证据和统一字段. 将“无证据”“证据冲突”“不可判定”保留为独立结果, 不要求模型强行给分. 对每个评分项检查人工间一致性与裁判相对人工的误差, 不只看总相关系数.
+先找一组容易误判的题, 请专家独立给出结论并处理分歧, 再把判断理由写成固定的评分细则 (Rubric). 评分模型读取同一组必要证据和统一字段, 将结果与人工结论比较. 将“无证据”“证据冲突”“不可判定”保留为独立结果, 不要求模型强行给分. 对每个评分项检查人工间一致性与裁判相对人工的误差, 不只看总相关系数.
 
 若“有害错误”是正类, 则漏报率为 FN/(TP+FN), Precision 为 TP/(TP+FP), Recall 为 TP/(TP+FN). 必须说明正类, 否则“裁判召回高”含义不清. 可以辅以 Cohen's kappa (扣除偶然一致的双人一致性系数), 但它受类别比例影响, 应与混淆矩阵一起解释.
 
 模型裁判的典型偏差包括篇幅偏好、候选顺序偏好、风格偏好与提示注入. 成对比较随机候选顺序, 可交换顺序复核; 评分前隐藏版本名; 将检索内容和被评答案作为待评数据而非指令. 换裁判模型或提示词属于测量系统变化, 需要重新校准, 不应将新旧分数无标注串成趋势. 多裁判一致也不代表独立正确, 共享偏差仍需人工难例检查.
 
-### 9.2 统计与覆盖
+### 9.2 分数差了多少, 有多少样本真的能判断
 
 同一批任务对照候选版本, 按任务计算差异. 多次试验不能当作更多独立任务: 同一问题的难度和错误模式相关, 可按任务进行 Bootstrap (有放回重采样), 给出差值区间; 二值配对结果可按协议使用配对检验. 本文没有对真实数据执行这些统计检验.
 
-不规定统一样本量或 0.8/0.9 的合格线. 样本量取决于风险、分桶、基线和希望识别的差异. 一个没有失败的测试集也不能证明真实失败概率为零; 在独立同分布的简化假设下, 零失败时 95% 上界可用约 3/n 作粗略估计, 这不能代替稀有风险的定向覆盖.
+不规定统一样本量或 0.8/0.9 的合格线. 样本量取决于风险、分组、基线和希望识别的差异. 一个没有失败的测试集也不能证明真实失败概率为零; 在独立同分布的简化假设下, 零失败时 95% 上界可用约 3/n 作粗略估计, 这不能代替稀有风险的定向覆盖.
 
 报告至少包含:
 
 - 计划任务数、实际完成运行数、可判定数、环境失败与观测缺口.
-- 全体成功率与分桶结果, 每项指标自己的样本量与分母.
+- 全体成功率与分组结果, 每项指标自己的样本量与分母.
 - 候选版本相对基线的配对变化与不确定性, 重复试验的 k 和次数.
 - 所有试验的总费用、成功任务平均耗费、总费用 / 成功数及尾延迟; 失败、重试与裁判成本不能消失.
 - 高代价错误、关键失败证据、裁判校准状态与具体结论边界.
 
-### 9.3 从离线到在线的闭环
+### 9.3 把真实失败变成下一轮回归题
 
 先离线冻结评测, 再在产品授权范围内逐步验证真实环境. 在线记录能反映真实分布, 但缺少完整金标准; 用户点赞也不能替代业务状态与事实正确性. 对行动系统, Shadow Mode (影子运行) 只生成决策或运行隔离沙箱, 不重复执行用户真实写操作. 真实 A/B Test (随机对照实验) 需要相应产品授权、组间隔离和完整任务级分流, 不能把同一多轮会话拆入不同版本.
 
@@ -456,9 +475,9 @@ report = aggregate_joint_results_and_slices()
 
 ## 10. 可运行练习: 把局部通过与整体成功分开
 
-### 10.1 环境、输入与步骤
+### 10.1 输入什么, 怎样运行, 先检查什么
 
-前置条件: Python 3.9+, 仅使用标准库, 无账号、网络、模型或外部写操作. 输入包含 7 份确定性合成运行记录, 其中 1 份缺少终态. 所有政策、订单和支持关系都是人工写定的教学标签; 练习不实现自动语义判断、真实检索器或完整 Agent.
+前置条件: Python 3.9+, 仅使用标准库, 无账号、网络、模型或外部写操作. 输入包含 7 份确定性合成运行记录, 其中 1 份缺少终态. 所有政策、订单和支持关系都是人工写定的教学标签; 练习不实现自动语义判断、真实检索器或完整 Agent. 原练习在 2026-10-18 已执行, 本次保留代码、输入、输出与原运行元数据, 只核对图文与其一致.
 
 下载并将 `evaluate.py` 与 `cases.json` 放在同一目录:
 
@@ -466,7 +485,7 @@ report = aggregate_joint_results_and_slices()
 python3 evaluate.py
 ```
 
-运行器读取合成记录, 计算 ID 证据召回和 Precision, 判断决策、参数、授权、终态与重复退款, 输出 `results.json`. 它用**独立的期望条件**比对每层, 而不是让被测答案自己证明自己. 核心判定如下, 完整实现见下载文件:
+运行器读取合成记录, 先按标注 ID 计算证据召回与精确率, 再分别判断决策、参数、授权、终态与重复退款, 输出 `results.json`. 缺终态时用 `None` 表示“不知道”, 不把它当作 `False` 或默认通过. 它用**独立的期望条件**比对每层, 而不是让被测答案自己证明自己. 核心判定如下, 完整实现见下载文件:
 
 ```python
 required = set(case["required_evidence"])
@@ -478,7 +497,7 @@ params_ok = all(
     and call["amount_cents"] == case["expected_refund_cents"]
     for call in case["refund_calls"]
 )
-state_ok = (
+state_ok = None if case["observed_refund_cents"] is None else (
     case["observed_refund_cents"] == case["expected_refund_cents"]
     and case["other_order_refund_cents"] == 0
 )
@@ -486,7 +505,23 @@ state_ok = (
 
 本例 `policy_current` 来自合成标签; 生产中应通过适用日期、用户范围与规则版本判定. `required <= retrieved` 仅检查标注 ID 覆盖, 不能取代真实证据语义充分性. 金额用整数分, 避免练习中引入浮点货币比较.
 
-### 10.2 预期输出与验收
+### 10.2 为什么是 2 成功、4 失败、1 不可判定
+
+<picture>
+  <source media="(max-width: 640px)" srcset="/images/rag-agent-evaluation/result-decision-mobile.svg" />
+  <img src="/images/rag-agent-evaluation/result-decision.svg" alt="六项检查独立产生结果, 有已知失败先判失败, 无失败但缺必需证据判不可判定, 其余判成功" />
+</picture>
+
+这张图表达的是代码怎样汇总检查结果, 不是让六项按顺序互相放行. 每项分别判断: 已知任何一项失败, 这次就是失败, 同时保留其他缺失项; 没有已知失败, 但仍缺必需证据, 才归为不可判定; 其余才算成功. 它对应完整代码中的 `failed` 和 `status`, 不是所有框架默认的统一汇总规则.
+
+例如 `wrong-order` 的证据检查通过, 但参数和状态失败, 因此整体失败. `missing-state` 的其他检查通过, 只是终态没有记录, 因此不可判定. 如果一份记录既办错订单又缺终态, 错订单这一项已足以判失败, 不会被日志缺失抹去.
+
+```python
+failed = [name for name, value in checks.items() if value is False]
+status = "failure" if failed else (
+    "unknown" if any(value is None for value in checks.values()) else "success"
+)
+```
 
 可判定的 6 份记录中, 正常退款和正确拒绝成功, 另有证据遗漏、错订单、过期规则和重复退款 4 类失败. 第 7 份缺少终态, 必须进入 unknown (不可判定), 不能假装通过或从覆盖统计消失. 精确比例与每条失败项见同目录实际结果文件.
 
@@ -509,7 +544,7 @@ state_ok = (
 
 **问: Agent 正确拒绝, 没有检索, 是否通过?** 取决于任务是否要求检索以及是否已有适用证据. 不能仅根据“有无调用”判定; 对需要知识依据的决策要追溯证据来源, 包括受控缓存.
 
-**问: 新版本总分涨了, 高频退款任务跌了, 如何判断?** 检查分布权重和分桶退化. 总分无法抵消硬业务约束失败, 应按预先约定的关键桶标准和配对证据决定.
+**问: 新版本总分涨了, 高频退款任务跌了, 如何判断?** 检查分布权重和分组退化. 总分无法抵消硬业务约束失败, 应按预先约定的关键任务组标准和配对证据决定.
 
 **问: 找到正确证据后整体仍失败, 还要测检索吗?** 要保留检索检查, 但下一步应沿依赖检查决策、参数与终态. 用已核验充分证据的受控测试区分后续瓶颈, 避免只继续调检索.
 
@@ -551,6 +586,23 @@ state_ok = (
 | CRAG / FinanceBench / BEIR | 通用 RAG / 金融问答 / 检索基准 | 覆盖不同知识与领域任务 |
 | GAIA / τ-bench / SWE-bench | 通用助手 / 业务交互 / 软件修复基准 | 对照不同 Agent 判题方式 |
 
-## 13. 参考资料阅读顺序
+## 13. 参考资料与阅读顺序
+
+| 来源 | 实际读取范围与版本 | 用途与未验证范围 |
+| --- | --- | --- |
+| [Ragas 指标文档](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/) | Context Precision、Context Recall、Faithfulness 及指标目录, stable 在线快照 | 核对字段、公式及 collections API; 未安装或运行 SDK |
+| [TruLens RAG Triad](https://www.trulens.org/getting_started/core_concepts/rag_triad/) | 三元评测定义 | 理解相关性与依据性分工; 不将高分解释为无幻觉保证 |
+| [LangChain 轨迹评测](https://docs.langchain.com/langsmith/trajectory-evals) | 匹配模式、参数匹配及模型裁判 | 核对 AgentEvals 接口与适用范围; 未调用平台 |
+| [DeepEval Tool Correctness](https://deepeval.com/docs/metrics-tool-correctness)、[Task Completion](https://deepeval.com/docs/metrics-task-completion) | 所需数据与判定方式 | 区分工具名、参数及任务完成; 未运行 SDK |
+| [CRAG](https://github.com/facebookresearch/CRAG/tree/ad1518887dd4d9ebcd7de95388c7a62751e7705c) | README、`local_evaluation.py` 的生成与汇总逻辑, commit `ad1518887dd4d9ebcd7de95388c7a62751e7705c` | 真实通用 RAG 基准; 没有下载完整数据或复现榜单 |
+| [FinanceBench](https://github.com/patronus-ai/financebench/tree/cc39aeb4afdf33909ee1412188bf89035950c2eb) | README、公开 JSONL 首条样本, commit `cc39aeb4afdf33909ee1412188bf89035950c2eb` | 真实金融问答及证据字段; 未逐页核对原始公司年报 |
+| [τ-bench](https://github.com/sierra-research/tau-bench/tree/59a200c6d575d595120f1cb70fea53cef0632f6b) | README、retail 规则文档, commit `59a200c6d575d595120f1cb70fea53cef0632f6b` | 多轮业务操作与重复试验; 未运行模拟用户 |
+| [τ²-bench 评测文档](https://github.com/sierra-research/tau2-bench/blob/96a3ef92329baf908ffe9dfe188cea34e8701d2a/docs/evaluation.md) | 任务契约、reward_basis 和状态评判, commit `96a3ef92329baf908ffe9dfe188cea34e8701d2a` | 核对不同轨迹可达相同终态的机制; 未审计全部评判器实现 |
+| [AgentEvals](https://github.com/langchain-ai/agentevals/tree/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e) | README 的轨迹与图节点评测, commit `946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e` | 轨迹评测能力边界; 未通读源码 |
+| [SWE-bench Evaluation Guide](https://www.swebench.com/SWE-bench/guides/evaluation/)、[GAIA 论文](https://arxiv.org/abs/2311.12983) | 容器判题、预测格式; GAIA 摘要 | 软件任务与通用助手实例; 未复现分数 |
+| [Anthropic Research 工程案例](https://www.anthropic.com/engineering/multi-agent-research-system) | 2025-06-13 发布文章中的架构与 Effective evaluation of agents 章节 | 真实检索研究系统的混合评测; 未获得其内部评测集或运行系统 |
+
+其他官方来源在对应章节就近列出. 文档接口会变化; 实际项目应冻结依赖版本与评测配置, 不能把本文的核查日期当作所有框架的发行版本.
+
 
 先读 [Ragas Context Precision](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/context_precision/)、[Context Recall](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/context_recall/)、[Faithfulness](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/faithfulness/), 搞清事实分母与排序. 再读 [Anthropic Agent Evals](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) 的任务、结果和非确定性章节, 配合 [AgentEvals](https://docs.langchain.com/langsmith/trajectory-evals) 了解轨迹匹配. 最后对照 [CRAG](https://github.com/facebookresearch/CRAG/tree/ad1518887dd4d9ebcd7de95388c7a62751e7705c)、[FinanceBench](https://github.com/patronus-ai/financebench/tree/cc39aeb4afdf33909ee1412188bf89035950c2eb)、[τ² 评测规则](https://github.com/sierra-research/tau2-bench/blob/96a3ef92329baf908ffe9dfe188cea34e8701d2a/docs/evaluation.md) 和 [SWE-bench](https://www.swebench.com/SWE-bench/guides/evaluation/), 观察不同任务如何建立真值与判题环境. 这些资料提供机制依据, 本文混合架构、练习和跨层指标是独立的教学归纳.

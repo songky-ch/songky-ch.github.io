@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 890" role="img" aria-labelledby="title desc">
+<title id="title">02 证据是在哪一步丢的?</title><desc id="desc">A = 7 天窗口, B = 商品未使用. 本文教学图解, 非引用项目内部架构.</desc>
+<defs>
+<marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#24364b"/></marker>
+<marker id="b" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#285d86"/></marker>
+<marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#246a55"/></marker>
+<marker id="r" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#a33e39"/></marker>
+<marker id="o" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#94621e"/></marker>
+<style>text{font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#24364b}path,line,rect,polygon{vector-effect:non-scaling-stroke}</style></defs>
+<rect width="820" height="890" fill="#fcfbf7"/>
+<text x="36" y="45" font-size="29" text-anchor="start" font-weight="650" style="fill:#24364b">
+<tspan x="36" dy="0">02 证据是在哪一步丢的?</tspan>
+</text>
+<text x="36" y="77" font-size="18" text-anchor="start" font-weight="400" style="fill:#576575">
+<tspan x="36" dy="0">A = 7 天窗口, B = 商品未使用</tspan>
+</text>
+<rect x="82" y="111" width="390" height="58" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="277.0" y="146.4" font-size="20" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="277.0" dy="0">用户问题要求同时核对 A 和 B</tspan>
+</text>
+<path d="M277 169 V199" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="82" y="207" width="390" height="92" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="104" y="241" font-size="22" text-anchor="start" font-weight="600" style="fill:#24364b">
+<tspan x="104" dy="0">01  解析与切分</tspan>
+</text>
+<text x="104" y="275" font-size="20" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="104" dy="0">语料保留 A + B</tspan>
+</text>
+<path d="M277 299 V318" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="82" y="326" width="390" height="92" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="104" y="360" font-size="22" text-anchor="start" font-weight="600" style="fill:#24364b">
+<tspan x="104" dy="0">02  召回候选</tspan>
+</text>
+<text x="104" y="394" font-size="20" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="104" dy="0">候选中有 A + B</tspan>
+</text>
+<path d="M277 418 V437" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="82" y="445" width="390" height="92" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="104" y="479" font-size="22" text-anchor="start" font-weight="600" style="fill:#24364b">
+<tspan x="104" dy="0">03  重排</tspan>
+</text>
+<text x="104" y="513" font-size="20" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="104" dy="0">排到前面的仍有 A + B</tspan>
+</text>
+<path d="M277 537 V556" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="82" y="564" width="390" height="92" rx="0" fill="#fbeeea" stroke="#a33e39" stroke-width="1.3"/>
+<text x="104" y="598" font-size="22" text-anchor="start" font-weight="600" style="fill:#24364b">
+<tspan x="104" dy="0">04  压缩与装配</tspan>
+</text>
+<text x="104" y="632" font-size="20" text-anchor="start" font-weight="400" style="fill:#a33e39">
+<tspan x="104" dy="0">实际送给模型的只剩 A</tspan>
+</text>
+<path d="M277 656 V675" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="82" y="683" width="390" height="92" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="104" y="717" font-size="22" text-anchor="start" font-weight="600" style="fill:#24364b">
+<tspan x="104" dy="0">05  生成答案</tspan>
+</text>
+<text x="104" y="751" font-size="20" text-anchor="start" font-weight="400" style="fill:#a33e39">
+<tspan x="104" dy="0">答案只解释 A, 遗漏 B</tspan>
+</text>
+<rect x="525" y="555" width="250" height="100" rx="0" fill="#fbeeea" stroke="#a33e39" stroke-width="1.3"/>
+<text x="650.0" y="584.48" font-size="18" text-anchor="middle" font-weight="400" style="fill:#a33e39">
+<tspan x="650.0" dy="0">B 在第 4 步消失</tspan>
+<tspan x="650.0" dy="27.900000000000002">先查上下文装配</tspan>
+<tspan x="650.0" dy="27.900000000000002">无需盲目更换检索模型</tspan>
+</text>
+<path d="M474 610 H517" fill="none" stroke="#a33e39" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#r)"/>
+<rect x="525" y="723" width="250" height="96" rx="0" fill="#eef3f1" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="650.0" y="750.48" font-size="18" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="650.0" dy="0">修改压缩或截断</tspan>
+<tspan x="650.0" dy="27.900000000000002">重新送入生成器</tspan>
+<tspan x="650.0" dy="27.900000000000002">重跑本题及相关用例</tspan>
+</text>
+<path d="M650 657 V715" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#b)" stroke-dasharray="5 4"/>
+<path d="M525 771 H495 V677 H65 V610 H76" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#b)" stroke-dasharray="5 4"/>
+<text x="98" y="851" font-size="18" text-anchor="start" font-weight="400" style="fill:#576575">
+<tspan x="98" dy="0">实线 = 本次数据流; 虚线 = 修复后重新执行</tspan>
+</text>
+<text x="802" y="877" text-anchor="end" font-size="14" style="fill:#647181">教学示意 · 具体判据以任务约定为准</text>
+</svg>

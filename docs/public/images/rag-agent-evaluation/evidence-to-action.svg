@@ -1,36 +1,125 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 720" role="img"><title>证据到动作的依赖和判定</title>
-<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L9,5 L0,10" fill="none" stroke="#52627b" stroke-width="1.5"/></marker><style>text{font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#1b2a42} .h{font-size:30px;font-weight:600}.s{font-size:17px}.t{font-size:20px;font-weight:600}.b{fill:#fff;stroke:#c2ccdc;stroke-width:1.5}.a{stroke:#52627b;stroke-width:2;marker-end:url(#arrow);fill:none}</style></defs>
-<rect width="1080" height="720" rx="20" fill="#f5f7fb"/>
-<text class="h" x="38" y="54">混合评测: 证据怎样支持动作?</text>
-<text class="s" x="38" y="86">检查每条必要依赖, 同时允许满足约束的替代路径</text>
-<rect class="b" x="36" y="122" width="292" height="100" rx="12"/>
-<text class="t" x="182" y="163" text-anchor="middle">知识证据</text>
-<text class="s" x="182" y="197" text-anchor="middle">内容 / 版本 / 生效时间</text>
-<rect class="b" x="394" y="122" width="292" height="100" rx="12"/>
-<text class="t" x="540" y="163" text-anchor="middle">实时业务状态</text>
-<text class="s" x="540" y="197" text-anchor="middle">对象 / 身份 / 订单条件</text>
-<rect class="b" x="752" y="122" width="292" height="100" rx="12"/>
-<text class="t" x="898" y="163" text-anchor="middle">用户授权</text>
-<text class="s" x="898" y="197" text-anchor="middle">范围 / 确认 / 时间</text>
-<path class="a" d="M182 224 V252 H470 V278"/>
-<path class="a" d="M540 224 V278"/>
-<path class="a" d="M898 224 V252 H610 V278"/>
-<rect x="342" y="284" width="396" height="94" rx="12" fill="#e7f1ff" stroke="#8cadd5"/>
-<text class="t" x="540" y="321" text-anchor="middle">决策: 办理 / 拒绝 / 澄清 / 补查</text>
-<text class="s" x="540" y="353" text-anchor="middle">证据充分且适用, 满足前置条件</text>
-<path class="a" d="M540 381 V401 H182 V419"/>
-<rect class="b" x="36" y="427" width="292" height="105" rx="12"/>
-<text class="t" x="182" y="468" text-anchor="middle">构造工具参数</text>
-<text class="s" x="182" y="503" text-anchor="middle">正确对象 / 金额 / 币种</text>
-<path class="a" d="M332 480 H384"/>
-<rect class="b" x="394" y="427" width="292" height="105" rx="12"/>
-<text class="t" x="540" y="468" text-anchor="middle">执行与核验状态</text>
-<text class="s" x="540" y="503" text-anchor="middle">目标达成 / 无额外副作用</text>
-<path class="a" d="M690 480 H742"/>
-<rect class="b" x="752" y="427" width="292" height="105" rx="12"/>
-<text class="t" x="898" y="468" text-anchor="middle">告知与引用</text>
-<text class="s" x="898" y="503" text-anchor="middle">所说结果与实际状态一致</text>
-<rect x="36" y="575" width="1008" height="107" rx="14" fill="#fff2df"/>
-<text class="t" x="62" y="615">硬条件逐项通过, 才计为严格成功</text>
-<text class="s" x="62" y="649">证据不足 → 补查或拒答; 缺关键日志 → 标记不可判定并报告覆盖率</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 1320" role="img" aria-labelledby="title desc">
+<title id="title">05 何时补查、拒绝或执行?</title><desc id="desc">混合售后场景: 条件分支与预算均为教学约定. 本文教学图解, 非引用项目内部架构.</desc>
+<defs>
+<marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#24364b"/></marker>
+<marker id="b" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#285d86"/></marker>
+<marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#246a55"/></marker>
+<marker id="r" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#a33e39"/></marker>
+<marker id="o" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#94621e"/></marker>
+<style>text{font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#24364b}path,line,rect,polygon{vector-effect:non-scaling-stroke}</style></defs>
+<rect width="960" height="1320" fill="#fcfbf7"/>
+<text x="36" y="45" font-size="29" text-anchor="start" font-weight="650" style="fill:#24364b">
+<tspan x="36" dy="0">05 何时补查、拒绝或执行?</tspan>
+</text>
+<text x="36" y="77" font-size="18" text-anchor="start" font-weight="400" style="fill:#576575">
+<tspan x="36" dy="0">混合售后场景: 条件分支与预算均为教学约定</tspan>
+</text>
+<rect x="330" y="109" width="340" height="72" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="500.0" y="152.04" font-size="22" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="500.0" dy="0">规则证据 + 实时订单状态</tspan>
+</text>
+<path d="M500 183 V204" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<polygon points="500,208.0 640.0,263 500,318.0 360.0,263" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="500" y="269.72" font-size="21" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="500" dy="0">资料足够且适用?</tspan>
+</text>
+<path d="M359 263 H288" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#b)"/>
+<text x="192" y="177" font-size="18" text-anchor="middle" font-weight="400" style="fill:#285d86">
+<tspan x="192" dy="0">资料不足</tspan>
+<tspan x="192" dy="27.900000000000002">仍有补查预算</tspan>
+</text>
+<rect x="40" y="224" width="240" height="82" rx="0" fill="#e9f0f5" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="160.0" y="256.8" font-size="20" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="160.0" dy="0">补查 / 澄清</tspan>
+<tspan x="160.0" dy="31.0">补齐后重新判断</tspan>
+</text>
+<path d="M40 263 H19 V146 H322" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#b)" stroke-dasharray="5 4"/>
+<path d="M641 263 H721" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)"/>
+<text x="823" y="177" font-size="18" text-anchor="middle" font-weight="400" style="fill:#94621e">
+<tspan x="823" dy="0">资料不足</tspan>
+<tspan x="823" dy="27.900000000000002">预算已耗尽</tspan>
+</text>
+<rect x="730" y="224" width="200" height="82" rx="0" fill="#f6f0e3" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="830.0" y="257.62" font-size="18" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="830.0" dy="0">无法确认</tspan>
+<tspan x="830.0" dy="27.900000000000002">不执行, 说明缺口</tspan>
+</text>
+<path d="M500 320 V395" fill="none" stroke="#246a55" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#g)"/>
+<text x="515" y="365" font-size="18" text-anchor="start" font-weight="400" style="fill:#246a55">
+<tspan x="515" dy="0">是</tspan>
+</text>
+<polygon points="500,398.0 640.0,453 500,508.0 360.0,453" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="500" y="459.72" font-size="21" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="500" dy="0">符合退款条件?</tspan>
+</text>
+<path d="M359 453 H288" fill="none" stroke="#a33e39" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#r)"/>
+<text x="313" y="435" font-size="18" text-anchor="start" font-weight="400" style="fill:#a33e39">
+<tspan x="313" dy="0">否</tspan>
+</text>
+<rect x="40" y="414" width="240" height="82" rx="0" fill="#fbeeea" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="160.0" y="446.79999999999995" font-size="20" text-anchor="middle" font-weight="400" style="fill:#a33e39">
+<tspan x="160.0" dy="0">解释不符合的原因</tspan>
+<tspan x="160.0" dy="31.0">无写操作</tspan>
+</text>
+<path d="M500 510 V584" fill="none" stroke="#246a55" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#g)"/>
+<text x="515" y="553" font-size="18" text-anchor="start" font-weight="400" style="fill:#246a55">
+<tspan x="515" dy="0">是</tspan>
+</text>
+<polygon points="500,588.0 640.0,643 500,698.0 360.0,643" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="500" y="634.8" font-size="20" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="500" dy="0">有效确认和授权</tspan>
+<tspan x="500" dy="31.0">已经取得?</tspan>
+</text>
+<path d="M641 643 H722" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)"/>
+<text x="681" y="624" font-size="18" text-anchor="start" font-weight="400" style="fill:#94621e">
+<tspan x="681" dy="0">否</tspan>
+</text>
+<rect x="730" y="604" width="200" height="82" rx="0" fill="#f6f0e3" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="830.0" y="637.62" font-size="18" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="830.0" dy="0">等待确认或授权</tspan>
+<tspan x="830.0" dy="27.900000000000002">本轮不执行</tspan>
+</text>
+<path d="M500 700 V774" fill="none" stroke="#246a55" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#g)"/>
+<text x="515" y="743" font-size="18" text-anchor="start" font-weight="400" style="fill:#246a55">
+<tspan x="515" dy="0">是</tspan>
+</text>
+<rect x="330" y="783" width="340" height="90" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="500.0" y="819.39" font-size="21" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="500.0" dy="0">核对目标订单和退款金额</tspan>
+<tspan x="500.0" dy="32.550000000000004">只执行一次, 记录工具返回</tspan>
+</text>
+<path d="M500 875 V943" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<polygon points="500,946.0 655.0,1007 500,1068.0 345.0,1007" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="500" y="998.8" font-size="20" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="500" dy="0">终态、副作用和告知</tspan>
+<tspan x="500" dy="31.0">均满足任务约定?</tspan>
+</text>
+<path d="M344 1007 H160 V1114" fill="none" stroke="#246a55" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#g)"/>
+<text x="261" y="985" font-size="18" text-anchor="start" font-weight="400" style="fill:#246a55">
+<tspan x="261" dy="0">是</tspan>
+</text>
+<rect x="40" y="1123" width="240" height="82" rx="0" fill="#edf3f0" stroke="#246a55" stroke-width="1.3"/>
+<text x="160.0" y="1155.39" font-size="21" text-anchor="middle" font-weight="400" style="fill:#246a55">
+<tspan x="160.0" dy="0">通过</tspan>
+<tspan x="160.0" dy="32.550000000000004">保存全部检查证据</tspan>
+</text>
+<path d="M656 1007 H830 V1114" fill="none" stroke="#a33e39" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#r)"/>
+<text x="709" y="985" font-size="18" text-anchor="start" font-weight="400" style="fill:#a33e39">
+<tspan x="709" dy="0">有已知失败</tspan>
+</text>
+<rect x="730" y="1123" width="200" height="82" rx="0" fill="#fbeeea" stroke="#a33e39" stroke-width="1.3"/>
+<text x="830.0" y="1155.39" font-size="21" text-anchor="middle" font-weight="400" style="fill:#a33e39">
+<tspan x="830.0" dy="0">失败</tspan>
+<tspan x="830.0" dy="32.550000000000004">保留失败定位</tspan>
+</text>
+<path d="M500 1070 V1180" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)"/>
+<text x="515" y="1136" font-size="17" text-anchor="start" font-weight="400" style="fill:#94621e">
+<tspan x="515" dy="0">无已知失败但缺证据</tspan>
+</text>
+<rect x="353" y="1189" width="294" height="71" rx="0" fill="#f6f0e3" stroke="#94621e" stroke-width="1.3"/>
+<text x="500.0" y="1216.3000000000002" font-size="20" text-anchor="middle" font-weight="400" style="fill:#94621e">
+<tspan x="500.0" dy="0">不可判定</tspan>
+<tspan x="500.0" dy="31.0">报告判定覆盖缺口</tspan>
+</text>
+<text x="942" y="1307" text-anchor="end" font-size="14" style="fill:#647181">教学示意 · 具体判据以任务约定为准</text>
 </svg>

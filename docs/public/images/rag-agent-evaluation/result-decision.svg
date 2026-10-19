@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 1010" role="img" aria-labelledby="title desc">
+<title id="title">06 失败与缺证据怎样合并?</title><desc id="desc">与 evaluate.py 的判定优先级保持一致. 本文教学图解, 非引用项目内部架构.</desc>
+<defs>
+<marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#24364b"/></marker>
+<marker id="b" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#285d86"/></marker>
+<marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#246a55"/></marker>
+<marker id="r" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#a33e39"/></marker>
+<marker id="o" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#94621e"/></marker>
+<style>text{font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#24364b}path,line,rect,polygon{vector-effect:non-scaling-stroke}</style></defs>
+<rect width="820" height="1010" fill="#fcfbf7"/>
+<text x="36" y="45" font-size="29" text-anchor="start" font-weight="650" style="fill:#24364b">
+<tspan x="36" dy="0">06 失败与缺证据怎样合并?</tspan>
+</text>
+<text x="36" y="77" font-size="18" text-anchor="start" font-weight="400" style="fill:#576575">
+<tspan x="36" dy="0">与 evaluate.py 的判定优先级保持一致</tspan>
+</text>
+<rect x="250" y="112" width="320" height="62" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="410.0" y="150.04" font-size="22" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="410.0" dy="0">同一份合成运行记录</tspan>
+</text>
+<path d="M410 176 V208" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="40" y="217" width="740" height="190" rx="0" fill="#f0f3f1" stroke="#9aa7a5" stroke-width="1.3"/>
+<text x="60" y="248" font-size="19" text-anchor="start" font-weight="600" style="fill:#24364b">
+<tspan x="60" dy="0">分别给出 true / false / None, 不沿“上一项通过”串联</tspan>
+</text>
+<rect x="62" y="278" width="210" height="48" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="167.0" y="308.4" font-size="20" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="167.0" dy="0">证据</tspan>
+</text>
+<rect x="308" y="278" width="210" height="48" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="413.0" y="308.4" font-size="20" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="413.0" dy="0">决策</tspan>
+</text>
+<rect x="554" y="278" width="210" height="48" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="659.0" y="308.4" font-size="20" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="659.0" dy="0">工具参数</tspan>
+</text>
+<rect x="62" y="345" width="210" height="48" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="167.0" y="375.4" font-size="20" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="167.0" dy="0">确认与次数</tspan>
+</text>
+<rect x="308" y="345" width="210" height="48" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="413.0" y="375.4" font-size="20" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="413.0" dy="0">实际状态</tspan>
+</text>
+<rect x="554" y="345" width="210" height="48" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="659.0" y="375.4" font-size="20" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="659.0" dy="0">结果告知</tspan>
+</text>
+<path d="M410 409 V449" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<polygon points="410,454.0 555.0,510 410,566.0 265.0,510" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="410" y="516.72" font-size="21" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="410" dy="0">有任何已知失败?</tspan>
+</text>
+<path d="M264 510 H146 V582" fill="none" stroke="#a33e39" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#r)"/>
+<text x="205" y="488" font-size="18" text-anchor="start" font-weight="400" style="fill:#a33e39">
+<tspan x="205" dy="0">是</tspan>
+</text>
+<rect x="44" y="591" width="204" height="91" rx="0" fill="#fbeeea" stroke="#a33e39" stroke-width="1.3"/>
+<text x="146.0" y="628.3" font-size="20" text-anchor="middle" font-weight="400" style="fill:#a33e39">
+<tspan x="146.0" dy="0">失败</tspan>
+<tspan x="146.0" dy="31.0">仍保留缺失项记录</tspan>
+</text>
+<path d="M410 568 V644" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<text x="427" y="609" font-size="18" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="427" dy="0">否</tspan>
+</text>
+<polygon points="410,649.0 555.0,705 410,761.0 265.0,705" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="410" y="711.72" font-size="21" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="410" dy="0">还有必需项缺证据?</tspan>
+</text>
+<path d="M556 705 H672 V775" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)"/>
+<text x="609" y="685" font-size="18" text-anchor="start" font-weight="400" style="fill:#94621e">
+<tspan x="609" dy="0">是</tspan>
+</text>
+<rect x="570" y="784" width="204" height="91" rx="0" fill="#f6f0e3" stroke="#94621e" stroke-width="1.3"/>
+<text x="672.0" y="821.3" font-size="20" text-anchor="middle" font-weight="400" style="fill:#94621e">
+<tspan x="672.0" dy="0">不可判定</tspan>
+<tspan x="672.0" dy="31.0">报告判定覆盖率</tspan>
+</text>
+<path d="M410 763 V823" fill="none" stroke="#246a55" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#g)"/>
+<text x="426" y="800" font-size="18" text-anchor="start" font-weight="400" style="fill:#246a55">
+<tspan x="426" dy="0">否</tspan>
+</text>
+<rect x="290" y="832" width="240" height="66" rx="0" fill="#edf3f0" stroke="#246a55" stroke-width="1.3"/>
+<text x="410.0" y="872.68" font-size="24" text-anchor="middle" font-weight="400" style="fill:#246a55">
+<tspan x="410.0" dy="0">成功</tspan>
+</text>
+<text x="44" y="949" font-size="19" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="44" dy="0">7 条记录: 2 成功 / 4 失败 / 1 未知; 成功比例 2/7, 覆盖率 6/7</tspan>
+</text>
+<text x="802" y="997" text-anchor="end" font-size="14" style="fill:#647181">教学示意 · 具体判据以任务约定为准</text>
+</svg>
