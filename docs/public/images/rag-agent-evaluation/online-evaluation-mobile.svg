@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 1270" role="img" aria-labelledby="title desc">
+<title id="title">09 评分怎样离开主路径?</title><desc id="desc">用户请求先完成, 分数随后关联回来. 本文教学图解, 非引用项目内部架构.</desc>
+<defs>
+<marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#24364b"/></marker>
+<marker id="b" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#285d86"/></marker>
+<marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#246a55"/></marker>
+<marker id="r" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#a33e39"/></marker>
+<marker id="o" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#94621e"/></marker>
+<style>text{font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#24364b}path,line,rect,polygon{vector-effect:non-scaling-stroke}</style></defs>
+<rect width="360" height="1270" fill="#fcfbf7"/>
+<text x="22" y="35" font-size="21" text-anchor="start" font-weight="650" style="fill:#24364b">
+<tspan x="22" dy="0">09 评分怎样离开主路径?</tspan>
+</text>
+<text x="22" y="63" font-size="14" text-anchor="start" font-weight="400" style="fill:#576575">
+<tspan x="22" dy="0">用户请求先完成, 分数随后关联回来</tspan>
+</text>
+<rect x="30" y="100" width="300" height="58" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="180.0" y="134.76" font-size="18" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="180.0" dy="0">用户请求</tspan>
+</text>
+<path d="M180 158 V187" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="30" y="194" width="300" height="87" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="180.0" y="219.26" font-size="16" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="180.0" dy="0">应用: 检索 → 决策 → 工具</tspan>
+<tspan x="180.0" dy="24.8">权限、确认在执行前检查</tspan>
+<tspan x="180.0" dy="24.8">记录实际上下文和调用标识</tspan>
+</text>
+<path d="M180 281 V311" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="30" y="318" width="300" height="58" rx="0" fill="#eef3f1" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="180.0" y="352.76" font-size="18" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="180.0" dy="0">返回用户</tspan>
+</text>
+<path d="M330 236 H348 V417 H180 V447" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#b)" stroke-dasharray="5 4"/>
+<text x="28" y="420" font-size="16" text-anchor="start" font-weight="400" style="fill:#285d86">
+<tspan x="28" dy="0">异步支路: 可靠事件 + 版本</tspan>
+</text>
+<rect x="30" y="454" width="300" height="79" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="180.0" y="475.26" font-size="16" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="180.0" dy="0">Langfuse 操作记录</tspan>
+<tspan x="180.0" dy="24.8">评分任务显式汇齐上下文</tspan>
+<tspan x="180.0" dy="24.8">关联独立业务结果</tspan>
+</text>
+<path d="M180 533 V565" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<polygon points="125,572.0 225.0,619 125,666.0 25.0,619" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="125" y="624.12" font-size="16" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="125" dy="0">证据够判吗?</tspan>
+</text>
+<path d="M225 619 H244" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)"/>
+<rect x="251" y="590" width="94" height="58" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="298.0" y="612.44" font-size="16" text-anchor="middle" font-weight="400" style="fill:#94621e">
+<tspan x="298.0" dy="0">不足</tspan>
+<tspan x="298.0" dy="24.8">等待</tspan>
+</text>
+<path d="M298 648 V710" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)"/>
+<rect x="245" y="717" width="100" height="74" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="295.0" y="747.8499999999999" font-size="15" text-anchor="middle" font-weight="400" style="fill:#94621e">
+<tspan x="295.0" dy="0">超时</tspan>
+<tspan x="295.0" dy="23.25">未知 / 排查</tspan>
+</text>
+<path d="M298 590 V558 H345 V494 H330" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#b)" stroke-dasharray="5 4"/>
+<path d="M125 666 V708" fill="none" stroke="#246a55" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#g)"/>
+<text x="139" y="693" font-size="15" text-anchor="start" font-weight="400" style="fill:#246a55">
+<tspan x="139" dy="0">足够</tspan>
+</text>
+<rect x="25" y="715" width="190" height="76" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="120.0" y="746.44" font-size="16" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="120.0" dy="0">Ragas / 业务规则</tspan>
+<tspan x="120.0" dy="24.8">按指定范围评分</tspan>
+</text>
+<path d="M120 791 V842" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="25" y="849" width="190" height="72" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="120.0" y="878.44" font-size="16" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="120.0" dy="0">成功: 关联分数</tspan>
+<tspan x="120.0" dy="24.8">作业账本去重</tspan>
+</text>
+<path d="M215 753 H239 V851" fill="none" stroke="#a33e39" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#r)"/>
+<rect x="246" y="858" width="99" height="62" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="295.5" y="882.8499999999999" font-size="15" text-anchor="middle" font-weight="400" style="fill:#a33e39">
+<tspan x="295.5" dy="0">评分异常</tspan>
+<tspan x="295.5" dy="23.25">有界重试</tspan>
+</text>
+<path d="M295 920 V950 H12 V753 H18" fill="none" stroke="#a33e39" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#r)" stroke-dasharray="5 4"/>
+<text x="26" y="982" font-size="15" text-anchor="start" font-weight="400" style="fill:#a33e39">
+<tspan x="26" dy="0">重试仍失败 → 记录评分失败并告警</tspan>
+</text>
+<path d="M120 921 V1017" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="25" y="1024" width="190" height="62" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="120.0" y="1048.03" font-size="17" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="120.0" dy="0">疑似失败</tspan>
+<tspan x="120.0" dy="26.35">审核队列</tspan>
+</text>
+<path d="M345 889 H351 V1055 H345" fill="none" stroke="#a33e39" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#r)"/>
+<rect x="245" y="1024" width="100" height="62" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="295.0" y="1048.4399999999998" font-size="16" text-anchor="middle" font-weight="400" style="fill:#a33e39">
+<tspan x="295.0" dy="0">永久失败</tspan>
+<tspan x="295.0" dy="24.8">告警</tspan>
+</text>
+<text x="26" y="1137" font-size="15" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="26" dy="0">操作评分不会自动加载所有子操作.</tspan>
+<tspan x="26" dy="31">迟到证据要形成新版本再评.</tspan>
+<tspan x="26" dy="31">评分重试不能重跑业务写操作.</tspan>
+</text>
+<text x="342" y="1257" text-anchor="end" font-size="12" style="fill:#647181">教学示意 · 具体判据以任务约定为准</text>
+</svg>

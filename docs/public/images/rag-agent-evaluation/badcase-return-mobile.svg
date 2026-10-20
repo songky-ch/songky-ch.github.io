@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 1580" role="img" aria-labelledby="title desc">
+<title id="title">10 失败怎样成为可信题?</title><desc id="desc">候选、审核、回归与留出用途分开. 本文教学图解, 非引用项目内部架构.</desc>
+<defs>
+<marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#24364b"/></marker>
+<marker id="b" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#285d86"/></marker>
+<marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#246a55"/></marker>
+<marker id="r" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#a33e39"/></marker>
+<marker id="o" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#94621e"/></marker>
+<style>text{font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#24364b}path,line,rect,polygon{vector-effect:non-scaling-stroke}</style></defs>
+<rect width="360" height="1580" fill="#fcfbf7"/>
+<text x="22" y="35" font-size="21" text-anchor="start" font-weight="650" style="fill:#24364b">
+<tspan x="22" dy="0">10 失败怎样成为可信题?</tspan>
+</text>
+<text x="22" y="63" font-size="14" text-anchor="start" font-weight="400" style="fill:#576575">
+<tspan x="22" dy="0">候选、审核、回归与留出用途分开</tspan>
+</text>
+<rect x="30" y="98" width="300" height="62" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="180.0" y="134.12" font-size="16" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="180.0" dy="0">低分 / 违规 / 反馈 / 随机抽检</tspan>
+</text>
+<path d="M125 160 V165" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<polygon points="125,172.0 225.0,219 125,266.0 25.0,219" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="125" y="224.12" font-size="16" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="125" dy="0">重复事件?</tspan>
+</text>
+<path d="M225 219 H244" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)"/>
+<text x="230" y="204" font-size="14" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="230" dy="0">是</tspan>
+</text>
+<rect x="251" y="191" width="94" height="56" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="298.0" y="224.12" font-size="16" text-anchor="middle" font-weight="400" style="fill:#94621e">
+<tspan x="298.0" dy="0">合并</tspan>
+</text>
+<path d="M125 266 V316" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<text x="138" y="296" font-size="15" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="138" dy="0">否</tspan>
+</text>
+<polygon points="125,324.0 225.0,371 125,418.0 25.0,371" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="125" y="376.12" font-size="16" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="125" dy="0">允许处理?</tspan>
+</text>
+<path d="M225 371 H244" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)"/>
+<text x="230" y="356" font-size="14" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="230" dy="0">否</tspan>
+</text>
+<rect x="251" y="343" width="94" height="56" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="298.0" y="376.12" font-size="16" text-anchor="middle" font-weight="400" style="fill:#94621e">
+<tspan x="298.0" dy="0">受限区</tspan>
+</text>
+<path d="M125 418 V468" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<text x="138" y="448" font-size="15" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="138" dy="0">是</tspan>
+</text>
+<polygon points="125,476.0 225.0,523 125,570.0 25.0,523" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="125" y="528.12" font-size="16" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="125" dy="0">证据齐全?</tspan>
+</text>
+<path d="M225 523 H244" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)"/>
+<text x="230" y="508" font-size="14" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="230" dy="0">否</tspan>
+</text>
+<rect x="251" y="495" width="94" height="56" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="298.0" y="528.12" font-size="16" text-anchor="middle" font-weight="400" style="fill:#94621e">
+<tspan x="298.0" dy="0">等待补齐</tspan>
+</text>
+<path d="M125 570 V620" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<text x="138" y="600" font-size="15" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="138" dy="0">是</tspan>
+</text>
+<polygon points="125,628.0 225.0,675 125,722.0 25.0,675" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="125" y="680.12" font-size="16" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="125" dy="0">审核已决?</tspan>
+</text>
+<path d="M225 675 H244" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)"/>
+<text x="230" y="660" font-size="14" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="230" dy="0">否</tspan>
+</text>
+<rect x="251" y="647" width="94" height="56" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="298.0" y="680.12" font-size="16" text-anchor="middle" font-weight="400" style="fill:#94621e">
+<tspan x="298.0" dy="0">待审核</tspan>
+</text>
+<path d="M125 722 V772" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<text x="138" y="752" font-size="15" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="138" dy="0">是</tspan>
+</text>
+<polygon points="125,780.0 225.0,827 125,874.0 25.0,827" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="125" y="832.12" font-size="16" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="125" dy="0">确认失败?</tspan>
+</text>
+<path d="M225 827 H244" fill="none" stroke="#a33e39" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#r)"/>
+<text x="230" y="812" font-size="14" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="230" dy="0">否</tspan>
+</text>
+<rect x="251" y="799" width="94" height="56" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="298.0" y="832.12" font-size="16" text-anchor="middle" font-weight="400" style="fill:#a33e39">
+<tspan x="298.0" dy="0">关闭</tspan>
+</text>
+<path d="M125 874 V924" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<text x="138" y="904" font-size="15" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="138" dy="0">是</tspan>
+</text>
+<polygon points="125,932.0 225.0,979 125,1026.0 25.0,979" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="125" y="984.12" font-size="16" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="125" dy="0">受保护家族?</tspan>
+</text>
+<path d="M225 979 H244" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)"/>
+<text x="230" y="964" font-size="14" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="230" dy="0">是</tspan>
+</text>
+<rect x="251" y="951" width="94" height="56" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="298.0" y="984.12" font-size="16" text-anchor="middle" font-weight="400" style="fill:#94621e">
+<tspan x="298.0" dy="0">留出集</tspan>
+</text>
+<path d="M125 1026 V1074" fill="none" stroke="#246a55" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#g)"/>
+<text x="138" y="1057" font-size="15" text-anchor="start" font-weight="400" style="fill:#246a55">
+<tspan x="138" dy="0">否</tspan>
+</text>
+<rect x="30" y="1081" width="300" height="71" rx="0" fill="#eef3f1" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="180.0" y="1109.53" font-size="17" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="180.0" dy="0">批准回归: 独立参考与环境</tspan>
+<tspan x="180.0" dy="26.35">新数据版本 + 相邻反例</tspan>
+</text>
+<path d="M180 1152 V1190" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="30" y="1197" width="300" height="61" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="180.0" y="1233.26" font-size="18" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="180.0" dy="0">修复 → 全链路重评</tspan>
+</text>
+<path d="M180 1258 V1297" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="30" y="1304" width="300" height="61" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="180.0" y="1340.26" font-size="18" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="180.0" dy="0">发布后监测同类复发</tspan>
+</text>
+<path d="M30 1334 H12 V130 H23" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#b)" stroke-dasharray="5 4"/>
+<text x="32" y="1421" font-size="15" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="32" dy="0">回归失败: 返回修复.</tspan>
+<tspan x="32" dy="30">证据补齐 / 审核完成: 重走对应检查.</tspan>
+<tspan x="32" dy="30">留出题不混入调优与训练.</tspan>
+</text>
+<path d="M330 1227 H348 V1177 H180 V1189" fill="none" stroke="#a33e39" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#r)" stroke-dasharray="5 4"/>
+<path d="M298 551 V570 H348 V472 H125 V469" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#b)" stroke-dasharray="5 4"/>
+<path d="M298 703 V722 H348 V624 H125 V621" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#b)" stroke-dasharray="5 4"/>
+<text x="342" y="1567" text-anchor="end" font-size="12" style="fill:#647181">教学示意 · 具体判据以任务约定为准</text>
+</svg>

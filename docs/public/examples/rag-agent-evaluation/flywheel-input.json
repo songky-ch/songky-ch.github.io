@@ -1,0 +1,177 @@
+{
+  "notice": "全部为合成记录; 非真实用户、审核或模型评分.",
+  "dataset_version": "toy-regression-v2",
+  "protected_families": [
+    "protected-family"
+  ],
+  "events": [
+    {
+      "event_id": "evt-1",
+      "rule_version": "admission-v1",
+      "privacy_approved": true,
+      "evidence_complete": true,
+      "review": "approved",
+      "task_family": "order-switch",
+      "trace_id": "synthetic-trace-1",
+      "observation_id": "synthetic-root-1",
+      "public_input": {
+        "target_order": "O-1",
+        "request": "对已确认的 O-1 办理退款"
+      },
+      "reviewed_expected": {
+        "O-1": "refunded_once",
+        "O-2": "unchanged"
+      },
+      "snapshot_id": "synthetic-orders-v1",
+      "review_version": "synthetic-review-v1"
+    },
+    {
+      "event_id": "evt-1",
+      "rule_version": "admission-v1",
+      "privacy_approved": true,
+      "evidence_complete": true,
+      "review": "approved",
+      "task_family": "order-switch",
+      "trace_id": "synthetic-trace-1",
+      "observation_id": "synthetic-root-1",
+      "public_input": {
+        "target_order": "O-1",
+        "request": "对已确认的 O-1 办理退款"
+      },
+      "reviewed_expected": {
+        "O-1": "refunded_once",
+        "O-2": "unchanged"
+      },
+      "snapshot_id": "synthetic-orders-v1",
+      "review_version": "synthetic-review-v1"
+    },
+    {
+      "event_id": "evt-2",
+      "rule_version": "admission-v1",
+      "privacy_approved": false,
+      "evidence_complete": true,
+      "review": "approved",
+      "task_family": "order-switch",
+      "trace_id": "synthetic-trace-1",
+      "observation_id": "synthetic-root-1",
+      "public_input": {
+        "target_order": "O-1",
+        "request": "对已确认的 O-1 办理退款"
+      },
+      "reviewed_expected": {
+        "O-1": "refunded_once",
+        "O-2": "unchanged"
+      },
+      "snapshot_id": "synthetic-orders-v1",
+      "review_version": "synthetic-review-v1"
+    },
+    {
+      "event_id": "evt-3",
+      "rule_version": "admission-v1",
+      "privacy_approved": true,
+      "evidence_complete": false,
+      "review": "approved",
+      "task_family": "order-switch",
+      "trace_id": "synthetic-trace-1",
+      "observation_id": "synthetic-root-1",
+      "public_input": {
+        "target_order": "O-1",
+        "request": "对已确认的 O-1 办理退款"
+      },
+      "reviewed_expected": {
+        "O-1": "refunded_once",
+        "O-2": "unchanged"
+      },
+      "snapshot_id": "synthetic-orders-v1",
+      "review_version": "synthetic-review-v1"
+    },
+    {
+      "event_id": "evt-4",
+      "rule_version": "admission-v1",
+      "privacy_approved": true,
+      "evidence_complete": true,
+      "review": "pending",
+      "task_family": "order-switch",
+      "trace_id": "synthetic-trace-1",
+      "observation_id": "synthetic-root-1",
+      "public_input": {
+        "target_order": "O-1",
+        "request": "对已确认的 O-1 办理退款"
+      },
+      "reviewed_expected": {
+        "O-1": "refunded_once",
+        "O-2": "unchanged"
+      },
+      "snapshot_id": "synthetic-orders-v1",
+      "review_version": "synthetic-review-v1"
+    },
+    {
+      "event_id": "evt-5",
+      "rule_version": "admission-v1",
+      "privacy_approved": true,
+      "evidence_complete": true,
+      "review": "approved",
+      "task_family": "protected-family",
+      "trace_id": "synthetic-trace-1",
+      "observation_id": "synthetic-root-1",
+      "public_input": {
+        "target_order": "O-1",
+        "request": "对已确认的 O-1 办理退款"
+      },
+      "reviewed_expected": {
+        "O-1": "refunded_once",
+        "O-2": "unchanged"
+      },
+      "snapshot_id": "synthetic-orders-v1",
+      "review_version": "synthetic-review-v1"
+    },
+    {
+      "event_id": "evt-6",
+      "rule_version": "admission-v1",
+      "privacy_approved": true,
+      "evidence_complete": true,
+      "review": "rejected",
+      "task_family": "order-switch",
+      "trace_id": "synthetic-trace-1",
+      "observation_id": "synthetic-root-1",
+      "public_input": {
+        "target_order": "O-1",
+        "request": "对已确认的 O-1 办理退款"
+      },
+      "reviewed_expected": {
+        "O-1": "refunded_once",
+        "O-2": "unchanged"
+      },
+      "snapshot_id": "synthetic-orders-v1",
+      "review_version": "synthetic-review-v1"
+    }
+  ],
+  "candidates": [
+    {
+      "release_id": "candidate-A",
+      "jobs": {
+        "mteb": "pass",
+        "ragas": "pass",
+        "state": "fail",
+        "performance": "pass"
+      }
+    },
+    {
+      "release_id": "candidate-B",
+      "jobs": {
+        "mteb": "pass",
+        "ragas": "pass",
+        "state": "pass",
+        "performance": "pass"
+      }
+    },
+    {
+      "release_id": "candidate-C",
+      "jobs": {
+        "mteb": "pass",
+        "ragas": "pass",
+        "state": "unknown"
+      }
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "notice": "Synthetic routing only; no real framework, reviewer or business execution.",
+  "route_counts": {
+    "admitted_regression": 1,
+    "duplicate": 1,
+    "restricted": 1,
+    "awaiting_evidence": 1,
+    "pending_review": 1,
+    "protected_holdout": 1,
+    "dismissed": 1
+  },
+  "routes": [
+    {
+      "event_id": "evt-1",
+      "route": "admitted_regression"
+    },
+    {
+      "event_id": "evt-1",
+      "route": "duplicate"
+    },
+    {
+      "event_id": "evt-2",
+      "route": "restricted"
+    },
+    {
+      "event_id": "evt-3",
+      "route": "awaiting_evidence"
+    },
+    {
+      "event_id": "evt-4",
+      "route": "pending_review"
+    },
+    {
+      "event_id": "evt-5",
+      "route": "protected_holdout"
+    },
+    {
+      "event_id": "evt-6",
+      "route": "dismissed"
+    }
+  ],
+  "dataset": {
+    "version": "toy-regression-v2",
+    "items": [
+      {
+        "case_id": "evt-1",
+        "source_trace_id": "synthetic-trace-1",
+        "source_observation_id": "synthetic-root-1",
+        "task_family": "order-switch",
+        "input": {
+          "target_order": "O-1",
+          "request": "对已确认的 O-1 办理退款"
+        },
+        "expected_output": {
+          "O-1": "refunded_once",
+          "O-2": "unchanged"
+        },
+        "snapshot_id": "synthetic-orders-v1",
+        "review_version": "synthetic-review-v1",
+        "rule_version": "admission-v1",
+        "split": "regression"
+      }
+    ]
+  },
+  "releases": [
+    {
+      "release_id": "candidate-A",
+      "decision": "blocked_failure"
+    },
+    {
+      "release_id": "candidate-B",
+      "decision": "eligible_for_canary"
+    },
+    {
+      "release_id": "candidate-C",
+      "decision": "blocked_incomplete"
+    }
+  ],
+  "checks": "passed"
+}

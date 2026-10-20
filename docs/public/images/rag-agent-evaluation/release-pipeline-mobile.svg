@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 1285" role="img" aria-labelledby="title desc">
+<title id="title">08 怎样决定能否发布?</title><desc id="desc">离线通过, 只是获得试运行资格. 本文教学图解, 非引用项目内部架构.</desc>
+<defs>
+<marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#24364b"/></marker>
+<marker id="b" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#285d86"/></marker>
+<marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#246a55"/></marker>
+<marker id="r" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#a33e39"/></marker>
+<marker id="o" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#94621e"/></marker>
+<style>text{font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#24364b}path,line,rect,polygon{vector-effect:non-scaling-stroke}</style></defs>
+<rect width="360" height="1285" fill="#fcfbf7"/>
+<text x="22" y="35" font-size="21" text-anchor="start" font-weight="650" style="fill:#24364b">
+<tspan x="22" dy="0">08 怎样决定能否发布?</tspan>
+</text>
+<text x="22" y="63" font-size="14" text-anchor="start" font-weight="400" style="fill:#576575">
+<tspan x="22" dy="0">离线通过, 只是获得试运行资格</tspan>
+</text>
+<rect x="30" y="100" width="300" height="60" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="180.0" y="135.76" font-size="18" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="180.0" dy="0">候选版本与必需检查清单</tspan>
+</text>
+<path d="M180 160 V195" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="30" y="202" width="300" height="106" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="180.0" y="236.76" font-size="16" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="180.0" dy="0">独立执行或复用有效报告</tspan>
+<tspan x="180.0" dy="24.8">组件 / 语义 / 状态 / 性能</tspan>
+<tspan x="180.0" dy="24.8">每项保留通过、失败与未知</tspan>
+</text>
+<path d="M180 308 V345" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<polygon points="125,352.0 225.0,399 125,446.0 25.0,399" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="125" y="404.12" font-size="16" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="125" dy="0">存在明确失败?</tspan>
+</text>
+<path d="M225 399 H244" fill="none" stroke="#a33e39" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#r)"/>
+<rect x="251" y="371" width="94" height="56" rx="0" fill="#fbeeea" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="298.0" y="404.44" font-size="17" text-anchor="middle" font-weight="400" style="fill:#a33e39">
+<tspan x="298.0" dy="0">修改</tspan>
+</text>
+<path d="M125 446 V478" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<text x="138" y="470" font-size="15" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="138" dy="0">否</tspan>
+</text>
+<polygon points="125,484.0 225.0,531 125,578.0 25.0,531" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="125" y="524.8499999999999" font-size="15" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="125" dy="0">必需证据齐全</tspan>
+<tspan x="125" dy="23.25">且全部通过?</tspan>
+</text>
+<path d="M225 531 H244" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)"/>
+<rect x="251" y="503" width="94" height="56" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="298.0" y="536.44" font-size="17" text-anchor="middle" font-weight="400" style="fill:#94621e">
+<tspan x="298.0" dy="0">补测</tspan>
+</text>
+<text x="230" y="516" font-size="14" text-anchor="start" font-weight="400" style="fill:#94621e">
+<tspan x="230" dy="0">否</tspan>
+</text>
+<path d="M125 578 V617" fill="none" stroke="#246a55" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#g)"/>
+<text x="138" y="607" font-size="15" text-anchor="start" font-weight="400" style="fill:#246a55">
+<tspan x="138" dy="0">是</tspan>
+</text>
+<rect x="30" y="624" width="300" height="69" rx="0" fill="#eef3f1" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="180.0" y="651.5300000000001" font-size="17" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="180.0" dy="0">影子验证 / 小流量试运行</tspan>
+<tspan x="180.0" dy="26.35">写入副作用受控</tspan>
+</text>
+<path d="M180 693 V732" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<polygon points="125,737.0 225.0,784 125,831.0 25.0,784" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="125" y="788.8" font-size="15" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="125" dy="0">线上明确退化?</tspan>
+</text>
+<path d="M225 784 H244" fill="none" stroke="#a33e39" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#r)"/>
+<rect x="251" y="756" width="94" height="56" rx="0" fill="#fbeeea" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="298.0" y="789.44" font-size="17" text-anchor="middle" font-weight="400" style="fill:#a33e39">
+<tspan x="298.0" dy="0">回滚</tspan>
+</text>
+<path d="M125 831 V867" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<text x="138" y="857" font-size="15" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="138" dy="0">否</tspan>
+</text>
+<polygon points="125,873.0 225.0,920 125,967.0 25.0,920" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="125" y="913.8499999999999" font-size="15" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="125" dy="0">观测充分</tspan>
+<tspan x="125" dy="23.25">且满足条件?</tspan>
+</text>
+<path d="M225 920 H244" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)"/>
+<rect x="251" y="892" width="94" height="56" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="298.0" y="925.44" font-size="17" text-anchor="middle" font-weight="400" style="fill:#94621e">
+<tspan x="298.0" dy="0">观察</tspan>
+</text>
+<text x="230" y="905" font-size="14" text-anchor="start" font-weight="400" style="fill:#94621e">
+<tspan x="230" dy="0">否</tspan>
+</text>
+<path d="M125 967 V1010" fill="none" stroke="#246a55" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#g)"/>
+<text x="139" y="997" font-size="15" text-anchor="start" font-weight="400" style="fill:#246a55">
+<tspan x="139" dy="0">是</tspan>
+</text>
+<rect x="30" y="1017" width="300" height="60" rx="0" fill="#eef3f1" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="180.0" y="1052.76" font-size="18" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="180.0" dy="0">扩大流量, 继续监测</tspan>
+</text>
+<path d="M298 427 V460 H348 V1133 H180 V1164" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#b)" stroke-dasharray="5 4"/>
+<path d="M298 559 V594 H348" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" stroke-dasharray="5 4"/>
+<path d="M298 812 V845 H348" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" stroke-dasharray="5 4"/>
+<rect x="30" y="1171" width="300" height="57" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="180.0" y="1204.62" font-size="16" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="180.0" dy="0">修改 / 补测后回到必需检查</tspan>
+</text>
+<path d="M30 1199 H12 V255 H23" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#b)" stroke-dasharray="5 4"/>
+<path d="M298 948 V983 H337 V660 H330" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)" stroke-dasharray="5 4"/>
+<text x="230" y="383" font-size="14" text-anchor="start" font-weight="400" style="fill:#a33e39">
+<tspan x="230" dy="0">是</tspan>
+</text>
+<text x="230" y="768" font-size="14" text-anchor="start" font-weight="400" style="fill:#a33e39">
+<tspan x="230" dy="0">是</tspan>
+</text>
+<text x="342" y="1272" text-anchor="end" font-size="12" style="fill:#647181">教学示意 · 具体判据以任务约定为准</text>
+</svg>

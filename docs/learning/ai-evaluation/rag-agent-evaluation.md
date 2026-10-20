@@ -16,9 +16,11 @@ contentType: 技术对比
 
 读完后, 你应能拿一个真实任务, 写清输入和成功条件, 搭出可重复执行的评测步骤, 为每项指标说明证据和分母, 再根据失败记录决定改哪一步. 通用助手与垂直业务的差别, 会落实到数据、判据和环境, 而不只是换一组行业名词. 前置条件是能够阅读 Python 字典与条件分支, 了解检索、工具调用和软件测试的基本含义.
 
-技术事实核查日期: **2026-10-18**. 本次讲解与图解更新于 **2026-10-19**, 保留原来源版本和练习运行记录; 没有将图文更新标作重新运行真实模型或完整基准. 框架能力以 2026-10-18 的官方资料快照为依据, “常见框架”指本文覆盖的代表性方案, 不代表市场份额排名. 本文没有运行真实模型、商业评测平台、在线用户实验或全部公开基准. 已执行部分仅是第 10 节的本地确定性练习, 环境为 Python 3.9.6, [运行元数据与文件摘要](/examples/rag-agent-evaluation/run-metadata.json)可复核. 公式推导、业务扩展、工程架构和合成样本均为教学设计, 与引用项目的原始实现分别说明.
+技术事实核查日期: **2026-10-18**. 本次讲解与图解更新于 **2026-10-19**, 保留原来源版本和练习运行记录; 没有将图文更新标作重新运行真实模型或完整基准. 框架能力以 2026-10-18 的官方资料快照为依据, “常见框架”指本文覆盖的代表性方案, 不代表市场份额排名. 本文没有运行真实模型、商业评测平台、在线用户实验或全部公开基准. 原已执行部分是第 11 节的本地确定性练习, 环境为 Python 3.9.6, [运行元数据与文件摘要](/examples/rag-agent-evaluation/run-metadata.json)可复核. 公式推导、业务扩展、工程架构和合成样本均为教学设计, 与引用项目的原始实现分别说明.
 
-来源与固定版本集中在[文末资料表](#_13-参考资料与阅读顺序). 下文图解均为教学补充, 用来展开原有机制, 不代表引用项目未公开的内部结构.
+**新增内容**: [第 10 节生产评测与数据飞轮](#production-flywheel)于 2026-10-20 核实 EvalScope、MTEB、Ragas、Langfuse 的相关官方接口, 新增四组响应式机制图、生产落地步骤和单独运行的合成回流练习. 原章节的核查日期与原练习结果保持上述记录.
+
+来源与固定版本集中在[文末资料表](#_14-参考资料与阅读顺序). 下文图解均为教学补充, 用来展开原有机制, 不代表引用项目未公开的内部结构.
 
 ## 2. 先把三类评测放到同一张地图上
 
@@ -383,6 +385,7 @@ BEIR 是检索基准, 用于观察不同数据分布下的检索表现, 不能�
 
 | 方案 | 适合承担的职责 | RAG / Agent / 混合落点 | 不能代替什么 |
 | --- | --- | --- | --- |
+| EvalScope + MTEB | 离线模型/性能评测与检索表示任务 | 模型候选、领域检索与重排; 详见第 10 节 | 完整业务状态和真实流量观测 |
 | Ragas | 指标、数据集与实验评测 | RAG 的上下文、事实与答案; 也有工具/目标类指标 | 业务终态真值与私有权限规则 |
 | DeepEval | 测试用例与指标, 组件/端到端评判 | RAG 质量、工具正确性、任务完成 | 真实业务状态检查, 工具名匹配不等于参数正确 |
 | TruLens | 观测与反馈函数, RAG 三元结构 | 从相关性与依据性拆解问答问题 | 语料真实性、完整业务契约 |
@@ -473,9 +476,362 @@ report = aggregate_joint_results_and_slices()
 
 在线异常 → 脱敏与权限审查 → 固定快照 → 专家补标 → 转入回归集 → 对照复测. 持续关注知识更新、工具变更、用户目标变化、评判器漂移四类变化. 这段是评测实施流程, 本次未接入生产环境或部署在线实验.
 
-## 10. 可运行练习: 把局部通过与整体成功分开
+## 10. 从离线评测到生产数据飞轮 {#production-flywheel}
 
-### 10.1 输入什么, 怎样运行, 先检查什么
+前面解决了“怎样评一次”. 生产环境还要解决“每次改动怎样验收, 上线以后怎样知道变差, 失败怎样成为下一轮的题”. 把这些步骤接起来, 才形成持续改进的数据飞轮: 真实任务提供证据, 审核把证据变成可信样本, 回归检验修改, 新版本再接受真实任务检验.
+
+本节新增资料核查于 **2026-10-20**. 四个工具的能力来自下列官方资料, 流水线、数据契约、发布规则与退款案例是本文的工程教学设计, 不是四家共同提供的一键产品. 本次没有连接真实 Langfuse 项目、运行付费裁判或执行生产退款; 第 10.11 节仅实际执行了标准库合成练习.
+
+### 10.1 四个工具各自负责什么, 怎样连接
+
+先把职责拆开. EvalScope 适合组织离线模型与性能评测; MTEB 适合检查向量表示与检索等组件能力; Ragas 检查应用回答与上下文的语义关系; Langfuse 把应用运行、分数、人工反馈和数据集实验关联起来. 四者有重叠, 组合时要明确每份工作只有一个执行入口.
+
+| 组件 | 在本文流水线中的输入 → 输出 | 负责的工作 | 仍需自己实现 |
+| --- | --- | --- | --- |
+| EvalScope | 模型/服务配置、评测任务 → 分项报告、性能结果 | 模型候选筛选, 调用 MTEB/Ragas 后端, 模型服务压测 | 发布流程、业务环境重置、跨报告关联与放行规则 |
+| MTEB | 查询、语料、相关性标注、编码配置 → 检索/重排指标 | 对比向量模型与排序组件; 先测公开任务, 再测领域数据 | 真实索引、权限过滤、知识版本和完整应用验证 |
+| Ragas | 用户问题、实际回答、实际上下文、按需提供参考答案 → 语义分数及评分证据 | 忠实性、上下文覆盖、回答质量等 | 参考答案审核、裁判校准、订单终态和授权判定 |
+| Langfuse | 运行记录、版本元数据、评分与反馈 → 可追溯实验和生产观测 | 记录调用, 管理数据集/实验, 关联线上评分与人工反馈 | 样本准入、业务真值、脱敏策略、回流任务和发布决策 |
+
+MTEB 原名为 Massive Text Embedding Benchmark, 可理解为对向量表示能力进行系统评测的一组任务与工具. 当前项目已覆盖多种任务与模态, 本节只使用文本检索和重排路径. 不把分类或相似度榜单总分直接当成检索效果. [MTEB 任务选择](https://docs.mteb.org/get_started/usage/selecting_tasks/), [EvalScope RAG 后端](https://evalscope.readthedocs.io/zh-cn/latest/user_guides/backend/rageval_backend/mteb.html).
+
+<picture>
+  <source media="(max-width: 640px)" srcset="/images/rag-agent-evaluation/production-flywheel-mobile.svg" />
+  <img src="/images/rag-agent-evaluation/production-flywheel.svg" alt="离线组件与应用评测通过发布检查后进入在线运行, 在线证据经审核变成版本化数据再回到离线评测" />
+</picture>
+
+从上方离线区看起: 组件评测和应用回归分别产出报告, 发布流程汇合这些证据. 放行后, 用户请求进入应用, Langfuse 记录运行, 异步任务再评分. 发现疑似失败并不直接变成标准答案, 必须通过证据检查与审核, 才进入新一版数据集. 沿底部回流线回到离线重评, 才算一圈完成. 图中四个工具分处不同阶段, 不是每条用户请求依次调用四个工具.
+
+**真实公开接入案例**: EvalScope 官方文档已经给出 `RAGEval` 下的 `MTEB` 和 `RAGAS` 后端; Langfuse 官方提供 [Ragas 接入示例](https://langfuse.com/integrations/frameworks/ragas), 展示应用记录与外部评分关联. 这些资料证明具体接口可以连接, 不证明某企业已经按本文整条流水线上线, 更不能当作生产收益数字. 两边示例可能采用不同代的 Ragas API, 应按锁定版本做适配, 不直接拼接为“已验证可运行”.
+
+### 10.2 先约定每次运行保存什么, 否则分数无法比较
+
+让各工具共享标识和版本, 比强求它们输出同一种原始报告更重要. 应用产生预测, 评分任务读取预测, 报告适配器只搬运结果, 不再额外调用一次模型. 下面是建议的最小记录, 不是某个 SDK 的固定结构.
+
+| 记录 | 建议保存的字段 | 用途与边界 |
+| --- | --- | --- |
+| 任务 | `case_id`, `task_family`, `split`, 用户可见输入, 参考事实, 目标状态, 标注版本 | 参考事实和目标状态仅交给评判器; 同一家族的近似改写不跨调优与留出集 |
+| 候选版本清单 | `release_id`, 应用 commit, 依赖锁文件摘要, 模型/提示词/工具版本 | 固定模型参数、预算和工具契约; 只写模型商品名不足以复现 |
+| 知识与环境 | 文档快照、切分规则、向量模型、索引构建标识、租户权限、初始业务快照 | Langfuse 数据集版本不会替你冻结知识库、索引和订单库 |
+| 单次运行 | `run_id`, `case_id`, `trial_id`, `trace_id`, 起止时间, 状态、超时、费用 | 相同任务可多次运行, 不用 `case_id` 覆盖前一次试验 |
+| 单步证据 | `observation_id`, 父子关系、最终上下文、调用参数、返回、状态差异 | 候选检索结果与真正送给模型的上下文分别记录 |
+| 评分 | 指标名、实现/裁判/规则版本、输入证据版本、值或不可判定原因、证据定位 | 不把缺证据写成 0 分, 也不写成通过; 已知失败保留 |
+| 回流审核 | 候选事件、来源运行、脱敏状态、审核结论、根因、数据集目标版本 | 可追溯谁依据什么把失败候选转成了回归题 |
+
+例如同一条线上记录后来补齐了退款终态, 评分输入已经改变. 应以新的 `evidence_version` 重新评分, 保留旧分与理由, 而不是悄悄覆盖成一个“最终好分”. 对跨租户数据使用访问隔离, 在发送到观测平台与裁判前完成必要脱敏. 仅在界面隐藏字段不能替代发送前处理. 脱敏后无法重放的字段应标注为缺口, 不能虚构还原. [Langfuse Masking](https://langfuse.com/docs/observability/features/masking).
+
+### 10.3 离线第一步: 筛模型, 再检验真实检索链路
+
+先建立旧版本基线. 用 EvalScope 的公开模型任务筛掉明显不满足语言、推理或工具使用需求的候选, 再进入产品任务集. 基准成绩只能解释对应任务分布; 通过通用模型题不等于能处理本公司的售后政策.
+
+检索层分两轮评. 第一轮在相关语言和任务类型的 MTEB 任务上看迁移能力; 第二轮用自有语料、真实查询和相关性标注, 检查关键条款是否能被找到. 查询与文档之间“哪些真正相关”的标注, 常称为 qrels (query relevance judgments). 标注要覆盖条件、例外、同名对象和过期版本, 不只按关键词相同打分.
+
+EvalScope 自定义文本检索适配器使用下列三个 **JSONL 文件**, 每行一个对象. 这是该适配器的格式, 不能泛化成所有 MTEB/BEIR 任务的统一文件格式. [官方数据规范](https://evalscope.readthedocs.io/zh-cn/latest/advanced_guides/custom_dataset/embedding.html).
+
+`corpus.jsonl`:
+
+```json
+{"_id":"policy-1","title":"示例售后规则","text":"签收七天内且商品未使用, 才适用本示例退款规则."}
+```
+
+`queries.jsonl`:
+
+```json
+{"_id":"q-1","text":"签收五天但已经使用, 能按这条规则退款吗?"}
+```
+
+`qrels.jsonl`:
+
+```json
+{"query-id":"q-1","corpus-id":"policy-1","score":1}
+```
+
+这里的相关性为 1, 只表示该条款与问题相关, 不表示“应该同意退款”. 检索相关性与业务结论必须分开标注.
+
+以下为官方接口形状整理的 **未执行示例**. 前置条件是独立环境中安装并锁定兼容的 `evalscope[rag]` 及其依赖, 准备可读取的模型和上述数据目录. 不把占位路径直接当成可用模型.
+
+```python
+from evalscope.run import run_task
+
+run_task(task_cfg={
+    "eval_backend": "RAGEval",
+    "eval_config": {
+        "tool": "MTEB",
+        "models": [{
+            "model_name_or_path": "YOUR_LOCAL_MODEL_PATH",
+            "max_seq_length": 512,
+            "encode_kwargs": {"batch_size": 32},
+        }],
+        "eval": {"custom_tasks": ["path/to/your/custom_dataset"]},
+    },
+})
+```
+
+接着检查真实索引. 固定查询/文档编码指令、归一化、长度截断、向量维度、候选数和近似检索参数; 换向量模型时重建候选索引, 不把新查询向量直接搜旧模型索引. 离线向量任务没有覆盖的权限过滤、增量更新、混合召回与上下文装配, 要由产品检索回放补测.
+
+| 阶段 | 看什么指标 | 怎样定位 |
+| --- | --- | --- |
+| 候选召回 | Recall@候选数, 按关键条件/语言/租户分组 | 必需条款没进入候选, 先查语料、查询改写、编码或过滤 |
+| 重排 | nDCG@10、MRR 等, 按实际任务约定相关性等级 | 候选中有条款但排不到有效位置, 再查重排 |
+| 最终装配 | 关键条件进入模型输入的比例、截断丢失率 | 排序对但实际上下文缺条件, 查压缩与装配 |
+
+EvalScope 两阶段 MTEB 配置中的 `top_k` 表示送入重排的候选范围, 不要不加区分地当作报告 `nDCG@10` 中的 10. 重排无法找回根本没进候选池的文档. 官方文档已切换到 MTEB 2.x 路径, 与旧教程的 `model`、`tasks`、`topk` 配置有差异; 以当前文档和锁定环境核对, 不混用字段. [EvalScope MTEB 配置与变更](https://evalscope.readthedocs.io/zh-cn/latest/user_guides/backend/rageval_backend/mteb.html).
+
+### 10.4 离线第二步: 真跑应用, 再分别判回答和动作
+
+检索组件通过后, 从固定初始状态运行完整应用. 对每个任务留存实际问题、回答、上下文、工具轨迹和终态, 再做语义与业务检查. 能由程序确定的订单对象、金额、授权与副作用先用规则检查, Ragas 分数补充回答与证据关系. 这两类结果同时出报告, 不让忠实性均值覆盖错单退款.
+
+本文选择 **EvalScope 作为离线 Ragas 评分入口**, Langfuse 记录相同任务的运行并接收评分, 不再在同一批输入上重复调用一次在线裁判. 如果团队选 Langfuse 数据集实验作为统一执行入口, 则由实验执行应用和评分, EvalScope 只承担模型/检索/性能任务; 不需要为“接齐四个工具”重复运行.
+
+下面是 EvalScope Ragas 后端的 **未执行示例**. 前置条件是应用已经生成 `outputs/testset.json`, 其中每项含 `user_input`、`response`、`retrieved_contexts`、`reference`; 裁判服务已配置并可访问. 示例没有执行应用本身, `reference` 来自独立审核而非应用答案.
+
+```python
+from evalscope.run import run_task
+
+run_task(task_cfg={
+    "eval_backend": "RAGEval",
+    "eval_config": {
+        "tool": "RAGAS",
+        "eval": {
+            "testset_file": "outputs/testset.json",
+            "critic_llm": {
+                "model_name": "YOUR_JUDGE_MODEL",
+                "api_base": "http://127.0.0.1:8000/v1",
+            },
+            "metrics": ["Faithfulness", "ContextRecall"],
+            "language": "chinese",
+        },
+    },
+})
+```
+
+适配器先校验字段是否齐全, 再按相同的 `case_id + trial_id` 关联评分, 不依赖输出行号恰好一致. 评分失败、裁判超时和上下文缺失分开记录; 评测重试不再次执行有副作用的业务工具. 直接调用 Ragas 时可参考第 8.2 节的 collections API, 但后端 `metrics` 名与直接导入的 Python 类不是同一层配置. [EvalScope Ragas](https://evalscope.readthedocs.io/zh-cn/latest/user_guides/backend/rageval_backend/ragas.html).
+
+Langfuse 离线实验可以读取带参考输出的数据集; 实验任务只拿公开输入调用应用, 参考输出仅供评判器使用. 获取数据集时指定版本, 不默认用不断变化的 latest 做版本对比. Langfuse 的数据集变更生成时间戳版本, 仍须额外锁定第 10.2 节的应用、知识、索引和环境清单. [数据集版本](https://langfuse.com/docs/evaluation/experiments/datasets), [SDK 实验](https://langfuse.com/docs/evaluation/experiments/experiments-via-sdk).
+
+### 10.5 怎样接进 CI, 通过什么证据才能发布
+
+把提交、测试、构建和发布接成自动执行流程, 即持续集成与持续交付 (CI/CD). 一次改动触发哪些检查由影响范围决定: 换向量模型要重建索引并重测检索与应用; 只修订单映射时, 沿用相同版本组件的既有有效报告, 重跑工具、完整任务和相关风险组. 无论复用还是重跑, 每份证据都要能对应当前候选版本.
+
+<picture>
+  <source media="(max-width: 640px)" srcset="/images/rag-agent-evaluation/release-pipeline-mobile.svg" />
+  <img src="/images/rag-agent-evaluation/release-pipeline.svg" alt="候选版本分别接受组件、语义、状态和性能检查, 失败回到修改, 证据不足补测, 通过后灰度并按在线结果晋级或回滚" />
+</picture>
+
+从候选清单分别进入各类检查, 汇总以后再判断. 如果状态检查已失败, 无论语义多高都回到修改; 无已知失败但必需报告缺失, 就补证据. 离线通过只取得小流量试运行的资格. 试运行有明确退化时回滚, 证据不足时保持观察或结束试运行, 满足预定条件才扩大流量. 回滚以后保留本次失败证据, 回到候选修复和评测.
+
+| 发布阶段 | 必需证据 | 未满足时的去向 |
+| --- | --- | --- |
+| 变更准入 | 锁定版本、数据校验、工具契约测试、必须执行的任务清单 | 修复配置或输入; 未执行不写成通过 |
+| 离线资格 | 关键任务组不越界, 硬约束无已知违规, 覆盖率达到约定, 版本差异和不确定性可解释 | 已知失败阻断; 不可判定过多则补测 |
+| 性能资格 | 模型服务吞吐/延迟报告 + 完整应用端到端延迟、超时、费用和并发下工具行为 | 检查瓶颈和预算, 不能拿 token 速度替代任务性能 |
+| 小流量试运行 | 用户/租户或会话级稳定分组, 在线观测覆盖、失败与业务结果成熟度 | 达到预先约定的退化条件回滚; 样本不足不宣称改进 |
+| 扩大发布 | 离线与线上证据满足本阶段规则, 回滚目标与数据兼容已验证 | 继续受控观察或终止试运行 |
+
+EvalScope 的 `evalscope perf` 用于模型服务性能测试, 应用端到端压测还要包含检索、工具、排队与重试. [EvalScope 性能入口](https://evalscope.readthedocs.io/en/latest/user_guides/stress_test/quick_start.html). 各阶段的门槛来自任务风险、基线、服务目标和人工校准, 不存在所有系统统一的“Ragas 大于 0.8 就上线”. 有限测试中未见违规, 也不等于未来零风险.
+
+影子运行 (Shadow) 可镜像请求比较读取与决策, 有副作用的写操作必须隔离或禁止, 不能为了评测再次真实退款. 小流量试运行 (Canary) 则实际服务一部分流量, 要处理同一会话版本一致性、共享索引变化和业务状态迁移. 回滚应用二进制不会撤销已经发生的退款, 业务补救按原有流程处理, 不让评测任务自动执行反向操作.
+
+### 10.6 上线后怎样观测和评分, 又不拖慢用户请求
+
+用户请求先走应用的检索、决策、工具和响应. 在这些步骤记录关联标识、实际输入输出和版本, 将必要事件可靠送出. 评分任务异步读取已经具备的证据, 按规则选取样本并计算分数, 最后关联回 Langfuse. 应用的实时权限检查与写入前确认仍在请求路径内执行, 不能移到事后评分里.
+
+<picture>
+  <source media="(max-width: 640px)" srcset="/images/rag-agent-evaluation/online-evaluation-mobile.svg" />
+  <img src="/images/rag-agent-evaluation/online-evaluation.svg" alt="应用主路径返回用户, 观测事件进入异步证据与评分任务, 缺证据等待或复核, 有完整证据后评分并关联运行记录" />
+</picture>
+
+先沿上方主路径走完一次请求. 下方支路收到观测事件, 汇齐上下文和业务结果后再判断. 缺终态时进入等待, 到约定时限仍没有证据则记录不可判定并进入排查; 迟到的事件可以形成新证据版本再评. 已经看到错单写入时可立即判失败, 不必等待另一个不相关字段. 裁判超时则进入有界重试, 而不是重跑退款.
+
+这里有三个容易在接入时遗漏的细节:
+
+1. **评分器未必看见整条记录**. Langfuse 当前按 observation 评测的机制只接收目标操作的输入、输出、元数据和工具调用, 不自动把兄弟/子操作的内容全部取来. 评完整任务时, 让逻辑根操作显式保存可评分的汇总, 或由自建异步任务按 `trace_id` 取齐所需内容后评分. `Is Root Observation` 与简单的“物理父标识为空”并不总是等价. 不要只把某次模型回答交给裁判, 却让它猜完整退款结果. [官方评测作用域](https://langfuse.com/docs/evaluation/evaluation-methods/llm-as-a-judge).
+2. **线上通常没有参考答案**. Faithfulness 可以用实际问题、回答与上下文检查支持关系; Context Recall 需要参考事实, 不能拿被评回答生成一个参考再自我证明. 没有标准答案时还可检查引用可解析、工具契约、已确认业务状态、用户反馈和经过校准的语义项, 但每项都保留能力边界. 用户满意不等于事实正确, 工具返回成功不等于目标正确. [Ragas 忠实性](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/faithfulness/), [上下文召回](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/context_recall/).
+3. **异步系统会重复或迟到**. 为评分任务建立自己的作业账本, 用 `(trace_id, observation_id, evaluator_version, evidence_version)` 去重并记录尝试次数、完成状态和评分标识. 不假定 SDK 写分数天然幂等. 传输失败、评分失败与产品失败分开告警, 发送失败不能伪造成已观测成功.
+
+下面是 **未执行的真实 SDK 接口片段**, 前提是已安装与服务端兼容的 Langfuse SDK, 通过环境配置凭证, 并从真正执行的评分器得到 `result.value`. `observation_id` 是本次被评操作的标识, 不是随便选一个子调用. 所有变量都应来自前述作业记录, 示例不包含凭证.
+
+```python
+from langfuse import get_client
+
+langfuse = get_client()
+langfuse.create_score(
+    trace_id=trace_id,
+    observation_id=observation_id,
+    name="rag.faithfulness.v1",
+    value=result.value,
+    data_type="NUMERIC",
+    comment=f"evaluator={evaluator_version}; evidence={evidence_version}",
+)
+```
+
+只评整个运行时可不提供 `observation_id`; 对操作评分时同时提供运行与操作标识. [Scores via SDK](https://langfuse.com/docs/evaluation/evaluation-methods/scores-via-sdk). 托管模型裁判和外部 Ragas 评分都是可选执行方式, 名称相似不保证使用完全相同的指标实现、提示词或版本; 换评分方式后重新人工校准. 服务端功能与 SDK 演进不同步时先核实兼容, 本文没有验证任何实际账号部署版本.
+
+为了控制开销, 按语言、任务、版本、租户类型和风险分层抽样, 保留随机对照样本以及每条抽样概率. 高频错误可以提高抽样率, 但这些分数不能直接当成全流量平均. 只有抽样概率已知且目标总体匹配时才做相应加权估计; 否则按抽样组报告. 同时给评分排队时长、费用预算和覆盖缺口, 避免“报表分数稳定, 实际积压两天”.
+
+### 10.7 失败样本怎样审核, 才能安全回到数据集
+
+badcase 指疑似失败样本. 它可以来自低分、明确业务违规、用户反馈、工具异常或人工抽检. 这些都是调查信号, 不是天然金标准. 单独维护候选区、审核队列、已批准任务库和受保护留出集, 由任务清单控制各自用途.
+
+<picture>
+  <source media="(max-width: 640px)" srcset="/images/rag-agent-evaluation/badcase-return-mobile.svg" />
+  <img src="/images/rag-agent-evaluation/badcase-return.svg" alt="失败候选先去重与隐私检查, 补齐证据并人工裁决, 批准后按任务族进入回归或受保护留出集, 修复后重评并监测复发" />
+</picture>
+
+拿一个用户投诉沿图走: 重复事件先合并, 不允许导出的内容留在受限区; 证据不足先补, 审核不成立则关闭并保留原因. 专家确认失败后, 再检查任务族是否属于受保护留出集. 可用于回归的样本加入新版本, 修复后重新评测, 上线后看相同失败是否复发. 图里的每个出口都是实际状态, 不能把“还在等审核”画成已经回流成功.
+
+| 步骤与负责人 | 具体处理 | 输出与失败去向 |
+| --- | --- | --- |
+| 采集任务 / 平台开发 | 保留来源、反馈时间、规则版本、事件标识; 合并重试, 聚类同一故障 | 去重后的候选; 同源重复不增加错误计数 |
+| 数据负责人 | 发送前脱敏、租户隔离、访问和留存检查 | 可处理材料; 不适合导出的原文留受限区, 不进公开实验 |
+| 业务/测试 | 补齐适用规则、最终上下文、工具参数、独立状态与延迟结果 | 证据包; 不足则等待/不可判定, 不能补造参考答案 |
+| 领域审核者 | 判断任务是否明确、系统是否真错、裁判是否误判, 形成理由与仲裁 | 批准、驳回、争议待决; 争议题不强制进金标准 |
+| 测试 / 数据负责人 | 按根因和任务族去近似重复, 检查用途与留出隔离 | 版本化回归题或受保护留出题; 同族不跨用途泄漏 |
+| 开发 / 测试 | 修复正确层, 执行失败题和相邻反例, 全链路重评 | 可比较报告; 未通过回到修复 |
+| 发布 / 业务 | 关联修复版本, 观测同类失败、反馈和业务结果 | 关闭或重新打开问题; 不以“加了题”代替修复完成 |
+
+批准样本时, 公开输入、参考输出、预期动作/状态、初始环境和适用规则要独立可复核. 增加一组相邻反例: 换订单、换时间边界、缺授权、响应丢失后重试. 同时保留正常随机样本, 防止数据集只剩投诉题, 新版本为了避免失败一律拒绝服务却得到好分.
+
+下面展示 **未执行的准入接口片段**. 已存在目标数据集, 且程序前面已经完成审核和用途检查, 才能调用. `reviewed_expected` 来自独立审核; 不是把模型回答复制进去. [Langfuse 数据集接口](https://langfuse.com/docs/evaluation/experiments/datasets).
+
+```python
+langfuse.create_dataset_item(
+    dataset_name="refund-regression",
+    input=approved_public_input,
+    expected_output=reviewed_expected,
+    source_trace_id=trace_id,
+    source_observation_id=observation_id,
+    metadata={
+        "case_id": case_id,
+        "task_family": task_family,
+        "review_version": review_version,
+        "snapshot_id": snapshot_id,
+        "split": "regression",
+    },
+)
+```
+
+写入后记录实际返回标识与数据集版本, 为本次评测固定快照. 回流用于评测, 不自动获得用于训练的授权; 若另有训练计划, 单独维护用途、版本与隔离规则. 留出集发现的问题可以用于判断候选是否合格, 若将具体样本用于调参或修复验证, 就承认它已暴露并重新建立独立留出评估, 不能继续称为未见题.
+
+### 10.8 用“回答正确但退错订单”走完一圈
+
+这是沿用原练习的 **合成业务案例**, 不是真实企业事故. 假设规则与用户授权都支持给 O-1 退款, 应用回答也引用正确, 工具却写了 O-2.
+
+| 阶段 | 看见的证据 | 做出的处理 |
+| --- | --- | --- |
+| 在线观测 | 实际上下文包含完整规则; 回答声称 O-1 完成; 调用参数为 O-2 | 忠实性可能很高, 同时参数检查报错; 关联同次运行 |
+| 业务结果补齐 | 独立订单记录显示 O-1 未变、O-2 被退款 | 明确任务失败, 不等用户给差评才处理 |
+| 审核与归因 | 用户中途切换目标, 参数映射仍保留上一张订单 | 根因定在目标对象绑定, 无证据要求更换向量模型 |
+| 构造回归 | 固定规则、初始两张订单和确认语句; 目标 O-1 退款一次, O-2 不变 | 加入切换订单、相似编号、重复提交、合法拒绝等同族题 |
+| 修复与离线 | 修复对象映射, 重跑工具契约和完整任务, 同时保留 Ragas 检查 | 相同组件版本的有效 MTEB 报告可复用; 不省略端到端验证 |
+| 发布与复发 | 小流量运行, 等待订单终态成熟, 对比错对象和重复写入 | 达标才扩大流量; 退化回滚并重新打开问题 |
+
+这条链能解释每项分数如何影响动作: Ragas 说明回答是否受上下文支持, 独立状态判题决定任务是否真办成, Langfuse 帮助关联证据, 审核后的数据集让下一次修改必须面对这类失败. 没有证据支持时, 不能把某个低分自动翻译为“应该优化 embedding”.
+
+### 10.9 除了答案分数, 还要监测哪些生产指标
+
+先明确统计对象是请求、任务、单次运行、评分作业还是已审核事件, 再计算分母. 所有指标按版本、任务组与时间窗口报告, 延迟业务结果按“已成熟/仍等待”分别统计.
+
+| 指标 | 建议口径 | 解释与动作 |
+| --- | --- | --- |
+| 观测覆盖率 | 有必需关联字段和事件的任务数 / 应观测任务数 | 先用独立请求台账确定分母, 平台只看到已上报事件时会高估 |
+| 可判定覆盖率 | 有足够证据可判定的运行数 / 计划评测运行数 | 与成功率一起给; unknown 不从报表消失 |
+| 评分完成率 | 截止时间已完成评分作业数 / 同一批次应评分作业数 | 同时报告排队中、重试中和永久失败; 不混入未抽中的请求 |
+| 评分新鲜度 | 事件发生到可用评分的耗时分位数; 队列最老作业年龄 | p95 与最长积压分开看; 超时不等于产品失败 |
+| 失败信号精确率 | 人工确认系统失败数 / 已审核告警数 | 判题器误报高就校准; 只在已审核样本上成立, 不是召回率 |
+| 审核准入率 | 批准进入指定数据用途的去重任务数 / 已完成审核候选数 | 反映材料与标注质量; 高低本身不是业务目标 |
+| 回流耗时 | 首次失败证据到审核完成、到回归入库、到修复发布分别计时 | 分清等待证据、审核和开发瓶颈 |
+| 同类复发率 | 修复后同一根因的确认失败任务数 / 该类符合条件的成熟任务数 | 按任务族和暴露量计算; 只数重复告警会受流量影响 |
+| 线上逃逸错误 | 发布后确认但离线未检出的错误, 按类型列数量/暴露量 | 判断覆盖盲区, 不用总体均值遮住高代价错误 |
+| 联合任务成功 | 所有必需项通过的任务数 / 指定总体任务数 | 另列未知、硬约束违规和合法拒绝; 有失败不能被好分平均 |
+| 性能与费用 | 端到端延迟/超时, 总费用 / 全部尝试; 总费用 / 已知成功数 | 包含失败、重试与评分成本; 成功数为 0 时不输出无意义比值 |
+
+模型裁判的错误召回率要在独立人工抽样集上估计, 不能只审核告警再声称没有漏报. 在线总体结果还受流量构成影响, 比较版本时控制稳定分组、时间窗口和任务差异. 这些是本文建议的生产测量口径, 不是四个工具统一内置的指标表.
+
+### 10.10 通用产品和垂直业务分别怎样建设这条流水线
+
+| 环节 | 通用研究/办公助手 | 垂直售后/金融知识服务 |
+| --- | --- | --- |
+| 公开基准 | 选多语言、多主题、不同工具组合, 避免只看一个榜单 | 公开基准作为基础筛选, 领域任务承担产品准入 |
+| 检索数据 | 多来源、长尾实体、来源冲突、动态网页与无答案题 | 版本条款、单位、日期、实体、权限与例外标注, 专家审核 qrels |
+| 语义评分 | 事实覆盖、来源可靠性、综合回答, 开放任务有多种合格解 | 先用确定规则核对数字、单位和适用条件, 再补语义判定 |
+| Agent 状态 | 文件是否生成、引用能否定位、外部动作是否授权 | 订单/账务等独立状态及禁止副作用, 不能只看消息和 API 成功 |
+| 在线抽样 | 保留主题、语言、工具组合与长尾覆盖 | 对高代价动作单独监测, 隔离租户和敏感材料, 领域人员裁决 |
+| 样本回流 | 按任务、来源和实体去重; 固定网页快照用于回归 | 保存适用规则与时点, 按客户/实体/时间或任务族隔离用途 |
+| 发布结论 | 看能力面、关键任务组和费用, 不牺牲长尾换总分 | 明确业务不能接受的错误与检查范围, 延迟终态成熟后再判 |
+
+例如通用助手的新网页事实题可以在快照下回归, 同时另测实时搜索; 金融文档则需要把公司、报告期、币种与单位写进题和真值, 数据集更新时审查旧题是否仍适用. 售后 Agent 更要在回归环境重置订单, 防止上一次退款影响下一次试验. 这些差异落实在输入、判题与环境, 工具的分工不必因此全部重建.
+
+### 10.11 已执行练习: 候选失败怎样回流, 报告怎样阻断发布
+
+**验证范围**: Python 3.9.6 标准库, 无网络、无账号. 输入中的审核结论、隐私状态与评测作业结果都是人工设定的合成记录. 练习把每个事件视为不可变快照, 状态变化需新事件; 生产作业还要按证据与审核版本管理更新, 不能只靠这个简化去重键. 程序只验证路由、去重、留出隔离和发布规则, 不运行 EvalScope、MTEB、Ragas、Langfuse 或真实业务审核.
+
+下载 <a href="/examples/rag-agent-evaluation/flywheel_demo.py" download>练习程序</a>、[合成输入](/examples/rag-agent-evaluation/flywheel-input.json), 放在同一目录后运行:
+
+```bash
+python3 flywheel_demo.py
+```
+
+关键准入代码如下, 完整程序另含输入输出和断言. 它按确定的优先级分配去向, 不把低分或用户投诉直接转成参考答案.
+
+```python
+key = (event["event_id"], event["rule_version"])
+if key in seen:
+    route = "duplicate"
+elif not event["privacy_approved"]:
+    route = "restricted"
+elif not event["evidence_complete"]:
+    route = "awaiting_evidence"
+elif event["review"] == "pending":
+    route = "pending_review"
+elif event["review"] == "rejected":
+    route = "dismissed"
+elif event["task_family"] in protected_families:
+    route = "protected_holdout"
+else:
+    route = "admitted_regression"
+```
+
+发布结果先查明确失败, 没有明确失败但必需检查缺失或未通过则不授予试运行资格. 全部通过也仅表示可以开始小流量试运行, 不等于已经验证生产改进.
+
+```python
+required = ("mteb", "ragas", "state", "performance")
+states = [candidate["jobs"].get(name, "missing") for name in required]
+if "fail" in states:
+    decision = "blocked_failure"
+elif any(state != "pass" for state in states):
+    decision = "blocked_incomplete"
+else:
+    decision = "eligible_for_canary"
+```
+
+2026-10-20 实际输出摘要:
+
+```text
+routes: admitted_regression=1, duplicate=1, restricted=1,
+        awaiting_evidence=1, pending_review=1,
+        protected_holdout=1, dismissed=1
+candidate-A: blocked_failure
+candidate-B: eligible_for_canary
+candidate-C: blocked_incomplete
+checks: passed
+```
+
+验收时打开[完整实际结果](/examples/rag-agent-evaluation/flywheel-results.json): 只有 1 个已审核任务进入 `toy-regression-v2`, 受保护任务族没有混入; A 的文本指标作业通过但状态作业失败, C 缺少必需报告, 都没有被放行. [运行元数据与 SHA-256 摘要](/examples/rag-agent-evaluation/flywheel-run-metadata.json)记录实际环境和文件版本. 原第 11 节练习及其 2026-10-18 的结果保持独立, 不用新记录覆盖旧记录.
+
+### 10.12 按什么顺序落地, 每步交付什么
+
+1. **先做能复核的一题**. 业务与测试写任务契约和独立真值; 开发提供可重置环境, 平台记录完整运行. 交付一条从问题到终态、能解释成功或失败的证据链.
+2. **再建立版本基线**. 用同一批任务跑旧版, 固定数据、知识、索引、应用和评分器; 接 EvalScope/MTEB 与 Ragas 评分. 交付基线清单、分层报告与人工校准记录.
+3. **接入发布检查**. 测试定义必需项、未知处理与关键任务组, 发布负责人配置阻断与回滚. 交付一次通过、一次已知失败、一次证据不足都能正确流转的检查记录.
+4. **补齐在线异步链路**. 开发记录实际上下文和工具结果; 平台实现可靠事件、评分队列与去重. 交付可关联的分数、覆盖率、积压和延迟终态报告.
+5. **打开审核回流**. 数据与领域审核者批准样本并保留用途, 测试构造反例和版本化回归. 交付一条已确认失败从告警到修复、重评、发布后复发监测的完整记录.
+
+做到这里, 才能回答“线上这个问题是否已经修好, 下次会不会再次漏过”. 仅安装四个工具, 或把低分导成一个表格, 都还没有完成这条生产流程.
+
+## 11. 可运行练习: 把局部通过与整体成功分开
+
+### 11.1 输入什么, 怎样运行, 先检查什么
 
 前置条件: Python 3.9+, 仅使用标准库, 无账号、网络、模型或外部写操作. 输入包含 7 份确定性合成运行记录, 其中 1 份缺少终态. 所有政策、订单和支持关系都是人工写定的教学标签; 练习不实现自动语义判断、真实检索器或完整 Agent. 原练习在 2026-10-18 已执行, 本次保留代码、输入、输出与原运行元数据, 只核对图文与其一致.
 
@@ -505,7 +861,7 @@ state_ok = None if case["observed_refund_cents"] is None else (
 
 本例 `policy_current` 来自合成标签; 生产中应通过适用日期、用户范围与规则版本判定. `required <= retrieved` 仅检查标注 ID 覆盖, 不能取代真实证据语义充分性. 金额用整数分, 避免练习中引入浮点货币比较.
 
-### 10.2 为什么是 2 成功、4 失败、1 不可判定
+### 11.2 为什么是 2 成功、4 失败、1 不可判定
 
 <picture>
   <source media="(max-width: 640px)" srcset="/images/rag-agent-evaluation/result-decision-mobile.svg" />
@@ -536,7 +892,7 @@ status = "failure" if failed else (
 
 扩展练习: 仅将 `wrong-order` 的调用订单与终态改为符合目标, 对照输出应减少该例对应的参数和状态失败, 其余样本不变. 这是单因素修复验收; 不要把所有失败字段同时改成成功来制造通过.
 
-## 11. 自测与参考答案
+## 12. 自测与参考答案
 
 **问: Faithfulness=1, 能否发布?** 不能据此决定. 它只表示答案事实被所给上下文支持, 还需独立正确性、完整性、适用性、引用、风险条件及 Agent 终态检查.
 
@@ -548,7 +904,7 @@ status = "failure" if failed else (
 
 **问: 找到正确证据后整体仍失败, 还要测检索吗?** 要保留检索检查, 但下一步应沿依赖检查决策、参数与终态. 用已核验充分证据的受控测试区分后续瓶颈, 避免只继续调检索.
 
-## 12. 术语表
+## 13. 术语表
 
 | 英文名称与缩写 | 中文含义 | 本文具体作用 |
 | --- | --- | --- |
@@ -586,7 +942,18 @@ status = "failure" if failed else (
 | CRAG / FinanceBench / BEIR | 通用 RAG / 金融问答 / 检索基准 | 覆盖不同知识与领域任务 |
 | GAIA / τ-bench / SWE-bench | 通用助手 / 业务交互 / 软件修复基准 | 对照不同 Agent 判题方式 |
 
-## 13. 参考资料与阅读顺序
+| EvalScope | 模型评测与性能测试框架 | 作为本文离线模型、检索与语义评分入口 |
+| MTEB / Massive Text Embedding Benchmark | 向量表示评测任务与工具 | 选文本检索/重排任务比较组件, 不代替应用成功判题 |
+| qrels / Query Relevance Judgments | 查询与文档的相关性标注 | 为自有检索任务建立独立相关性真值 |
+| Langfuse / Observation | 观测评测平台 / 被记录的操作 | 关联生产运行、操作分数、实验与回流来源 |
+| Pipeline / CI/CD | 流水线 / 持续集成与持续交付 | 将版本变更、评测、发布和反馈接起来 |
+| Data Flywheel / badcase | 数据飞轮 / 疑似失败样本 | 审核真实证据后扩充回归, 再验证改动与复发 |
+| Shadow / Canary / Rollback | 影子运行 / 小流量试运行 / 回滚 | 分阶段验证版本, 明确副作用与退化后的出口 |
+| Holdout / Data Lineage | 留出集 / 数据来源与版本链 | 隔离调优用途, 追溯样本、证据、评分与发布 |
+| Idempotency / Evidence Version | 幂等 / 证据版本 | 避免事件重试重复计数, 区分迟到证据引起的重评 |
+| Embedding / Reranking | 向量编码 / 重排 | 分别影响候选检索与候选内部次序 |
+
+## 14. 参考资料与阅读顺序
 
 | 来源 | 实际读取范围与版本 | 用途与未验证范围 |
 | --- | --- | --- |
@@ -606,3 +973,16 @@ status = "failure" if failed else (
 
 
 先读 [Ragas Context Precision](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/context_precision/)、[Context Recall](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/context_recall/)、[Faithfulness](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/faithfulness/), 搞清事实分母与排序. 再读 [Anthropic Agent Evals](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) 的任务、结果和非确定性章节, 配合 [AgentEvals](https://docs.langchain.com/langsmith/trajectory-evals) 了解轨迹匹配. 最后对照 [CRAG](https://github.com/facebookresearch/CRAG/tree/ad1518887dd4d9ebcd7de95388c7a62751e7705c)、[FinanceBench](https://github.com/patronus-ai/financebench/tree/cc39aeb4afdf33909ee1412188bf89035950c2eb)、[τ² 评测规则](https://github.com/sierra-research/tau2-bench/blob/96a3ef92329baf908ffe9dfe188cea34e8701d2a/docs/evaluation.md) 和 [SWE-bench](https://www.swebench.com/SWE-bench/guides/evaluation/), 观察不同任务如何建立真值与判题环境. 这些资料提供机制依据, 本文混合架构、练习和跨层指标是独立的教学归纳.
+
+### 本次新增流水线资料与固定版本 (2026-10-20)
+
+下列 commit 用于固定仓库参考位置; 实际读取范围是 README 和本节链接的官方文档, 未通读源码或安装验证整套依赖. 在线文档随时间更新, 仓库提交与在线文档不宣称逐行同版.
+
+| 项目与固定参考 | 实际阅读位置 | 本次验证边界 |
+| --- | --- | --- |
+| [EvalScope](https://github.com/modelscope/evalscope/tree/66f0945d145ce6c30de40253cd78144003c6f1fe) | README、MTEB/Ragas 后端、自定义检索数据、性能快速开始 | 确认职责、字段及接口形状; 未运行真实模型任务 |
+| [MTEB](https://github.com/embeddings-benchmark/mteb/tree/1cf3fc3fcf60c42f99ec513ddde9bc183a6773de) | README、任务选择与自定义数据说明 | 说明组件评测与任务边界; 未复现榜单 |
+| [Ragas](https://github.com/vibrantlabsai/ragas/tree/298b68274234c060deacab3cf5fb52aa3a20e885) | README、Faithfulness 与 Context Recall 文档 | 核对证据与参考答案要求; 未调用裁判 |
+| [Langfuse Python](https://github.com/langfuse/langfuse-python/tree/81c457caba57a85e33f9f0ada49127743cdc5bff) | README; 平台文档中的观测、评分、数据集版本、SDK 实验、脱敏与 Ragas 接入 | 核对调用与作用域; 未连接账号或写入平台 |
+
+建议阅读顺序: 先读 EvalScope 的检索自定义数据, 明白组件真值; 再读 Ragas 的事实分母; 最后读 Langfuse 的操作级评测作用域、数据集版本和分数写入. 本文新增生产架构与路由练习为独立教学设计, 不代表这些项目自带完整发布与审核系统.

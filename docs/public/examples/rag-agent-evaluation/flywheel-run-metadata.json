@@ -1,0 +1,19 @@
+{
+  "executed_at": "2026-10-20T07:14:41.797429+00:00",
+  "python_version": "3.9.6",
+  "command": "python3 flywheel_demo.py",
+  "scope": "stdlib synthetic routing, deduplication, protected family isolation and release gates only",
+  "not_executed": [
+    "EvalScope",
+    "MTEB",
+    "Ragas",
+    "Langfuse",
+    "real reviewers",
+    "production business tools"
+  ],
+  "sha256": {
+    "flywheel_demo.py": "1996f9702df42209fd5a8b293edc146bd7aa6e243ad6d5d2870b26e397ef15fb",
+    "flywheel-input.json": "dd3bce157593f890fc832076690fa657c37d70b8a4b87d5e22c8d923a188a2ef",
+    "flywheel-results.json": "0e11e05602ebc124e108756df7e1cd6c1193e5b544bd5b9b8338712ea46c829d"
+  }
+}

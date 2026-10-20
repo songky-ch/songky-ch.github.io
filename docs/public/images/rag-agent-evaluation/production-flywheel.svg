@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 760" role="img" aria-labelledby="title desc">
+<title id="title">07 四个工具怎样组成数据飞轮</title><desc id="desc">评测与观测分工, 共享任务标识和版本证据. 本文教学图解, 非引用项目内部架构.</desc>
+<defs>
+<marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#24364b"/></marker>
+<marker id="b" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#285d86"/></marker>
+<marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#246a55"/></marker>
+<marker id="r" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#a33e39"/></marker>
+<marker id="o" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#94621e"/></marker>
+<style>text{font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#24364b}path,line,rect,polygon{vector-effect:non-scaling-stroke}</style></defs>
+<rect width="900" height="760" fill="#fcfbf7"/>
+<text x="36" y="45" font-size="29" text-anchor="start" font-weight="650" style="fill:#24364b">
+<tspan x="36" dy="0">07 四个工具怎样组成数据飞轮</tspan>
+</text>
+<text x="36" y="77" font-size="18" text-anchor="start" font-weight="400" style="fill:#576575">
+<tspan x="36" dy="0">评测与观测分工, 共享任务标识和版本证据</tspan>
+</text>
+<rect x="28" y="105" width="844" height="225" rx="0" fill="#f0f3f4" stroke="none" stroke-width="1.3"/>
+<text x="48" y="136" font-size="20" text-anchor="start" font-weight="650" style="fill:#24364b">
+<tspan x="48" dy="0">离线区: 固定数据与环境</tspan>
+</text>
+<rect x="48" y="164" width="220" height="106" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="158.0" y="209.21" font-size="19" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="158.0" dy="0">EvalScope + MTEB</tspan>
+<tspan x="158.0" dy="29.45">模型 / 检索组件报告</tspan>
+</text>
+<rect x="317" y="164" width="250" height="106" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="442.0" y="209.21" font-size="19" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="442.0" dy="0">应用回放 + Ragas</tspan>
+<tspan x="442.0" dy="29.45">语义分数 + 业务状态</tspan>
+</text>
+<path d="M268 216 H292 V296 H666 V270" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<path d="M567 216 H607" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="614" y="164" width="236" height="106" rx="0" fill="#e9f0f5" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="732.0" y="209.62" font-size="18" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="732.0" dy="0">发布检查</tspan>
+<tspan x="732.0" dy="27.900000000000002">失败 / 缺证据 → 修改</tspan>
+</text>
+<rect x="28" y="370" width="844" height="157" rx="0" fill="#eef3f1" stroke="none" stroke-width="1.3"/>
+<text x="48" y="403" font-size="20" text-anchor="start" font-weight="650" style="fill:#24364b">
+<tspan x="48" dy="0">在线区: 用户请求与独立结果</tspan>
+</text>
+<rect x="614" y="423" width="236" height="70" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="732.0" y="450.62" font-size="18" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="732.0" dy="0">在线应用</tspan>
+<tspan x="732.0" dy="27.900000000000002">Langfuse 记录</tspan>
+</text>
+<rect x="317" y="423" width="250" height="70" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="442.0" y="450.62" font-size="18" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="442.0" dy="0">异步评分 / 人工抽检</tspan>
+<tspan x="442.0" dy="27.900000000000002">业务结果与失败候选</tspan>
+</text>
+<path d="M614 458 H575" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="48" y="423" width="220" height="70" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="158.0" y="451.03" font-size="17" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="158.0" dy="0">证据 + 用途审核</tspan>
+<tspan x="158.0" dy="26.35">未批准: 等待或关闭</tspan>
+</text>
+<path d="M317 458 H276" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<path d="M158 493 V582" fill="none" stroke="#246a55" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#g)"/>
+<text x="174" y="558" font-size="17" text-anchor="start" font-weight="400" style="fill:#246a55">
+<tspan x="174" dy="0">批准回归</tspan>
+</text>
+<rect x="48" y="589" width="220" height="76" rx="0" fill="#e9f0f5" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="158.0" y="619.21" font-size="19" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="158.0" dy="0">新数据集版本</tspan>
+<tspan x="158.0" dy="29.45">根因与相邻反例</tspan>
+</text>
+<rect x="354" y="589" width="347" height="76" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="527.5" y="618.8" font-size="20" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="527.5" dy="0">修改候选版本</tspan>
+<tspan x="527.5" dy="31.0">按影响范围回到离线重评</tspan>
+</text>
+<path d="M268 627 H346" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#b)" stroke-dasharray="6 4"/>
+<path d="M701 627 H882 V318 H442 V278" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#b)" stroke-dasharray="6 4"/>
+<path d="M442 318 H158 V278" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#b)" stroke-dasharray="6 4"/>
+<path d="M850 216 H864 V550 H530 V581" fill="none" stroke="#a33e39" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#r)"/>
+<text x="704" y="543" font-size="16" text-anchor="start" font-weight="400" style="fill:#a33e39">
+<tspan x="704" dy="0">未通过 → 修改</tspan>
+</text>
+<path d="M732 270 V415" fill="none" stroke="#246a55" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#g)"/>
+<text x="746" y="355" font-size="17" text-anchor="start" font-weight="400" style="fill:#246a55">
+<tspan x="746" dy="0">满足条件</tspan>
+</text>
+<text x="48" y="712" font-size="18" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="48" dy="0">实线 = 报告或运行数据; 虚线 = 审核后回流与重评</tspan>
+</text>
+<text x="882" y="747" text-anchor="end" font-size="14" style="fill:#647181">教学示意 · 具体判据以任务约定为准</text>
+</svg>

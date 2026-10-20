@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 920" role="img" aria-labelledby="title desc">
+<title id="title">10 失败候选怎样回到回归集</title><desc id="desc">没有审核和用途检查, 低分不能自动变成金标准. 本文教学图解, 非引用项目内部架构.</desc>
+<defs>
+<marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#24364b"/></marker>
+<marker id="b" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#285d86"/></marker>
+<marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#246a55"/></marker>
+<marker id="r" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#a33e39"/></marker>
+<marker id="o" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#94621e"/></marker>
+<style>text{font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#24364b}path,line,rect,polygon{vector-effect:non-scaling-stroke}</style></defs>
+<rect width="900" height="920" fill="#fcfbf7"/>
+<text x="36" y="45" font-size="29" text-anchor="start" font-weight="650" style="fill:#24364b">
+<tspan x="36" dy="0">10 失败候选怎样回到回归集</tspan>
+</text>
+<text x="36" y="77" font-size="18" text-anchor="start" font-weight="400" style="fill:#576575">
+<tspan x="36" dy="0">没有审核和用途检查, 低分不能自动变成金标准</tspan>
+</text>
+<rect x="36" y="109" width="340" height="62" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="206.0" y="146.08" font-size="19" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="206.0" dy="0">低分 / 违规 / 反馈 / 随机抽检</tspan>
+</text>
+<path d="M206 171 V184" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<polygon points="206,188.0 371.0,235 206,282.0 41.0,235" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="206" y="240.44" font-size="17" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="206" dy="0">重复事件?</tspan>
+</text>
+<path d="M371 235 H500" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)"/>
+<text x="402" y="223" font-size="17" text-anchor="start" font-weight="400" style="fill:#94621e">
+<tspan x="402" dy="0">是</tspan>
+</text>
+<rect x="507" y="204" width="351" height="62" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="682.5" y="240.76" font-size="18" text-anchor="middle" font-weight="400" style="fill:#94621e">
+<tspan x="682.5" dy="0">合并, 不重复计数</tspan>
+</text>
+<path d="M206 282 V303" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<text x="224" y="302" font-size="15" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="224" dy="0">否</tspan>
+</text>
+<polygon points="206,308.0 371.0,355 206,402.0 41.0,355" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="206" y="360.44" font-size="17" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="206" dy="0">允许处理?</tspan>
+</text>
+<path d="M371 355 H500" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)"/>
+<text x="402" y="343" font-size="17" text-anchor="start" font-weight="400" style="fill:#94621e">
+<tspan x="402" dy="0">否</tspan>
+</text>
+<rect x="507" y="324" width="351" height="62" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="682.5" y="360.76" font-size="18" text-anchor="middle" font-weight="400" style="fill:#94621e">
+<tspan x="682.5" dy="0">受限区, 不直接导出</tspan>
+</text>
+<path d="M206 402 V423" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<text x="224" y="422" font-size="15" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="224" dy="0">是</tspan>
+</text>
+<polygon points="206,428.0 371.0,475 206,522.0 41.0,475" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="206" y="480.44" font-size="17" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="206" dy="0">证据齐全且审核已决?</tspan>
+</text>
+<path d="M371 475 H500" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)"/>
+<text x="402" y="463" font-size="17" text-anchor="start" font-weight="400" style="fill:#94621e">
+<tspan x="402" dy="0">否</tspan>
+</text>
+<rect x="507" y="444" width="351" height="62" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="682.5" y="480.76" font-size="18" text-anchor="middle" font-weight="400" style="fill:#94621e">
+<tspan x="682.5" dy="0">补证据 / 等待审核</tspan>
+</text>
+<path d="M206 522 V543" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<text x="224" y="542" font-size="15" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="224" dy="0">是</tspan>
+</text>
+<polygon points="206,548.0 371.0,595 206,642.0 41.0,595" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="206" y="600.44" font-size="17" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="206" dy="0">确认是系统失败?</tspan>
+</text>
+<path d="M371 595 H500" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)"/>
+<text x="402" y="583" font-size="17" text-anchor="start" font-weight="400" style="fill:#94621e">
+<tspan x="402" dy="0">否</tspan>
+</text>
+<rect x="507" y="564" width="351" height="62" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="682.5" y="600.76" font-size="18" text-anchor="middle" font-weight="400" style="fill:#94621e">
+<tspan x="682.5" dy="0">关闭, 保留裁决原因</tspan>
+</text>
+<path d="M206 642 V663" fill="none" stroke="#24364b" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#a)"/>
+<text x="224" y="662" font-size="15" text-anchor="start" font-weight="400" style="fill:#24364b">
+<tspan x="224" dy="0">是</tspan>
+</text>
+<polygon points="206,668.0 371.0,715 206,762.0 41.0,715" fill="#f3f1e9" stroke="#73818d" stroke-width="1.4"/>
+<text x="206" y="720.44" font-size="17" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="206" dy="0">属于受保护任务族?</tspan>
+</text>
+<path d="M371 715 H500" fill="none" stroke="#94621e" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#o)"/>
+<text x="402" y="703" font-size="17" text-anchor="start" font-weight="400" style="fill:#94621e">
+<tspan x="402" dy="0">是</tspan>
+</text>
+<rect x="507" y="684" width="351" height="62" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="682.5" y="720.76" font-size="18" text-anchor="middle" font-weight="400" style="fill:#94621e">
+<tspan x="682.5" dy="0">留出集, 不进入调优</tspan>
+</text>
+<path d="M206 762 V807" fill="none" stroke="#246a55" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#g)"/>
+<text x="224" y="789" font-size="15" text-anchor="start" font-weight="400" style="fill:#246a55">
+<tspan x="224" dy="0">否</tspan>
+</text>
+<rect x="36" y="814" width="340" height="62" rx="0" fill="#eef3f1" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="206.0" y="850.76" font-size="18" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="206.0" dy="0">新回归版本: 参考 + 环境 + 反例</tspan>
+</text>
+<path d="M376 845 H501" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#b)"/>
+<rect x="507" y="814" width="351" height="62" rx="0" fill="white" stroke="#c6cbd0" stroke-width="1.3"/>
+<text x="682.5" y="850.76" font-size="18" text-anchor="middle" font-weight="400" style="fill:#24364b">
+<tspan x="682.5" dy="0">修复 → 重评 → 发布 → 看复发</tspan>
+</text>
+<path d="M858 845 H885 V140 H384" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#b)" stroke-dasharray="6 4"/>
+<path d="M683 444 V415 H885 V295 H206 V301" fill="none" stroke="#285d86" stroke-width="1.7" stroke-linejoin="round" marker-end="url(#b)" stroke-dasharray="5 4"/>
+<text x="554" y="402" font-size="16" text-anchor="start" font-weight="400" style="fill:#285d86">
+<tspan x="554" dy="0">补齐或裁决后重走检查</tspan>
+</text>
+<text x="882" y="907" text-anchor="end" font-size="14" style="fill:#647181">教学示意 · 具体判据以任务约定为准</text>
+</svg>
