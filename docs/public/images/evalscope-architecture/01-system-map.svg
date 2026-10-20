@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="950" viewBox="0 0 960 950" role="img" aria-labelledby="title"><title id="title">01 | EvalScope 的三条主路线</title><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#526477"/></marker></defs><rect width="960" height="100%" fill="#f5f8fc"/><style>text{font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#17334d} .title{font-size:27px;font-weight:700} .h{font-size:20px;font-weight:700} .body{font-size:18px} .small{font-size:16px} .line{stroke:#526477;stroke-width:2.2;fill:none;marker-end:url(#arrow)}</style>
+<text class="title" x="32" y="46">01 | EvalScope 的三条主路线</text>
+<rect x="40" y="80" width="880" height="95" rx="12" fill="#e9f2ff" stroke="#80ace5" stroke-width="1.5"/>
+<text x="58" y="110" class="h">用户入口</text>
+<text x="58" y="139" class="body">Python run_task / CLI evalscope / service 与界面</text>
+<rect x="40" y="235" width="280" height="205" rx="12" fill="#e8f6ee" stroke="#73b895" stroke-width="1.5"/>
+<text x="58" y="265" class="h">原生质量评测</text>
+<text x="58" y="294" class="body">TaskConfig → Benchmark</text>
+<text x="58" y="319" class="body">Evaluator 编排样本</text>
+<text x="58" y="344" class="body">ModelAPI 获得回答</text>
+<text x="58" y="369" class="body">规则 / 裁判 → 报告</text>
+<rect x="340" y="235" width="280" height="205" rx="12" fill="#fff3e2" stroke="#e0ad62" stroke-width="1.5"/>
+<text x="358" y="265" class="h">独立性能压测</text>
+<text x="358" y="294" class="body">evalscope perf</text>
+<text x="358" y="319" class="body">数据插件 + API 插件</text>
+<text x="358" y="344" class="body">负载策略 → 请求</text>
+<text x="358" y="369" class="body">时延 / 吞吐 / 错误</text>
+<rect x="640" y="235" width="280" height="205" rx="12" fill="#f0edff" stroke="#a79bd7" stroke-width="1.5"/>
+<text x="658" y="265" class="h">第三方后端</text>
+<text x="658" y="294" class="body">run_non_native_backend</text>
+<text x="658" y="319" class="body">OpenCompass / VLMEvalKit</text>
+<text x="658" y="344" class="body">RAGEval → RAGAS / MTEB</text>
+<text x="658" y="369" class="body">由相应框架执行</text>
+<rect x="40" y="505" width="880" height="130" rx="12" fill="#fff" stroke="#c9d5e2" stroke-width="1.5"/>
+<text x="58" y="535" class="h">输出与观测</text>
+<text x="58" y="564" class="body">原生: configs / predictions / reviews / reports / logs</text>
+<text x="58" y="589" class="body">压测和第三方后端有各自结果路径与格式, 不能假定完全一致</text>
+<rect x="40" y="715" width="880" height="135" rx="12" fill="#fff" stroke="#c9d5e2" stroke-width="1.5"/>
+<text x="58" y="745" class="h">光模块业务系统是被评测对象</text>
+<text x="58" y="774" class="body">告警 / 工单 → 检索手册 → 模型分析 → 工具查询 → 维护结果</text>
+<text x="58" y="799" class="body">EvalScope 提供评测组织; 工具环境、业务真值与验收规则需要业务侧提供</text>
+<polyline points="180,175 180,235" class="line"/>
+<polyline points="480,175 480,235" class="line"/>
+<polyline points="780,175 780,235" class="line"/>
+<polyline points="180,440 180,505" class="line"/>
+<polyline points="480,440 480,505" class="line"/>
+<polyline points="780,440 780,505" class="line"/>
+<text class="small" x="44" y="905">读图: 三条路线按目标选择; 性能压测不经过 DefaultEvaluator 的质量评分链.</text>
+</svg>

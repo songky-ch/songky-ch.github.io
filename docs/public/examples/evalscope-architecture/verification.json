@@ -1,0 +1,98 @@
+{
+  "source_commit": "3ff0a0c425cc89cec91a5d48141e22a61ce53a9b",
+  "source_declared_version": "0.0.0_dev",
+  "framework_execution_date": "2026-10-19",
+  "artifact_check_date": "2026-10-20",
+  "environment": {
+    "python": "3.11.15",
+    "os": "macOS",
+    "arch": "arm64"
+  },
+  "synthetic": true,
+  "real_evalscope_executed": true,
+  "paid_model_calls": 0,
+  "real_device_operations": 0,
+  "real_rag_agent_perf_executed": false,
+  "fixture_model_calls": {
+    "baseline_first": 6,
+    "candidate_first": 6,
+    "candidate_resume": 0,
+    "candidate_rerun_review": 0
+  },
+  "reports": {
+    "baseline": {
+      "execution_summary": {
+        "requested": 6,
+        "succeeded": 6,
+        "errored": 0,
+        "incomplete": false,
+        "subsets": {
+          "diagnosis": {
+            "requested": 4,
+            "succeeded": 4,
+            "errored": 0
+          },
+          "edge": {
+            "requested": 2,
+            "succeeded": 2,
+            "errored": 0
+          }
+        }
+      },
+      "metrics": {
+        "schema_valid": 1.0,
+        "diagnosis_correct": 0.5,
+        "action_correct": 0.3333,
+        "safe_action": 0.3333,
+        "evidence_valid": 1.0,
+        "joint_pass": 0.3333
+      }
+    },
+    "candidate": {
+      "execution_summary": {
+        "requested": 6,
+        "succeeded": 6,
+        "errored": 0,
+        "incomplete": false,
+        "subsets": {
+          "diagnosis": {
+            "requested": 4,
+            "succeeded": 4,
+            "errored": 0
+          },
+          "edge": {
+            "requested": 2,
+            "succeeded": 2,
+            "errored": 0
+          }
+        }
+      },
+      "metrics": {
+        "schema_valid": 1.0,
+        "diagnosis_correct": 1.0,
+        "action_correct": 1.0,
+        "safe_action": 1.0,
+        "evidence_valid": 0.8333,
+        "joint_pass": 0.8333
+      }
+    }
+  },
+  "scoring_verification": {
+    "fixture_answers_checked": 12,
+    "malformed_or_business_error_mutations_checked": 10,
+    "status": "passed"
+  },
+  "sha256": {
+    "data/diagnosis.jsonl": "eadf1d22fc0bec3f67e5ad39092f296f99c65d44ba9a10b998e348e5f315cbdd",
+    "data/edge.jsonl": "bc3a5ed1c7e412f09c0c2ef6378b739d7e56fcb028836400d9ade6924c7bcc09",
+    "optics_eval.py": "3a8ced1c92faec5d951ea647b77c55dad04deb31a921f890dbc0474bbed5382f",
+    "predictions.json": "a205bb91ce511c24a7aec2645895429bc9b633e318793e559239a2448c5a4ea8",
+    "results/baseline-optics_maintenance_demo_diagnosis.jsonl": "5e4d7a5533973042ba7bf19a769ff5009e62f972bc3bf9dee6354bfa4b32099e",
+    "results/baseline-optics_maintenance_demo_edge.jsonl": "2717e0d034fc1fd787300a55532a7330cff570716908bd27ee0dc274738e8c0d",
+    "results/baseline-report.json": "4377fea22db1714daa4a9b1a829a743400e7407692340107a1163f6e645ed086",
+    "results/candidate-optics_maintenance_demo_diagnosis.jsonl": "0552b8e759108a091c166760f7661d607a0580645119230705bfd84c14f1fcb2",
+    "results/candidate-optics_maintenance_demo_edge.jsonl": "fec217e4185803300b585cab4bb0ceeaad4eea43d2f06a35dd84e350b6192250",
+    "results/candidate-report.json": "023ae83c73585b61533cdb0e6ba5cbb1ad095355ad34dc927d39cd40cccaa722",
+    "verify.py": "973e82e4d2f0cb2b6cc89f705dd4ceb205118314695c55e317a864ddaf20c109"
+  }
+}

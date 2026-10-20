@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="1060" viewBox="0 0 960 1060" role="img" aria-labelledby="title"><title id="title">02 | 原生评测的六层职责</title><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#526477"/></marker></defs><rect width="960" height="100%" fill="#f5f8fc"/><style>text{font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#17334d} .title{font-size:27px;font-weight:700} .h{font-size:20px;font-weight:700} .body{font-size:18px} .small{font-size:16px} .line{stroke:#526477;stroke-width:2.2;fill:none;marker-end:url(#arrow)}</style>
+<text class="title" x="32" y="46">02 | 原生评测的六层职责</text>
+<rect x="50" y="85" width="860" height="100" rx="12" fill="#e9f2ff" stroke="#80ace5" stroke-width="1.5"/>
+<text x="68" y="115" class="h">1. 入口与配置 | run.py + config.py</text>
+<text x="68" y="144" class="body">TaskConfig: 测谁、用哪些题、怎么生成、怎么评分、输出在哪里</text>
+<rect x="50" y="235" width="860" height="100" rx="12" fill="#f0edff" stroke="#a79bd7" stroke-width="1.5"/>
+<text x="68" y="265" class="h">2. 装配 | api/registry.py + benchmarks/</text>
+<text x="68" y="294" class="body">按名称找到 BenchmarkMeta, 构造 DataAdapter 与 Evaluator</text>
+<rect x="50" y="385" width="860" height="100" rx="12" fill="#e9f2ff" stroke="#80ace5" stroke-width="1.5"/>
+<text x="68" y="415" class="h">3. 调度 | evaluator/evaluator.py</text>
+<text x="68" y="444" class="body">读数据、合并子集工作池、线程并发、缓存分流、持久化、汇总</text>
+<rect x="50" y="535" width="860" height="100" rx="12" fill="#e8f6ee" stroke="#73b895" stroke-width="1.5"/>
+<text x="68" y="565" class="h">4. 任务契约 | api/benchmark/ + benchmarks/&lt;name&gt;/</text>
+<text x="68" y="594" class="body">适配题目, 组织推理, 提取答案, 定义评分与报告行为</text>
+<rect x="50" y="685" width="415" height="140" rx="12" fill="#fff3e2" stroke="#e0ad62" stroke-width="1.5"/>
+<text x="68" y="715" class="h">5a. 模型访问 | api/model/</text>
+<text x="68" y="744" class="body">LazyModel → Model</text>
+<text x="68" y="769" class="body">→ ModelAPI.generate</text>
+<text x="68" y="794" class="body">本地模型 / 远端接口 / 模拟模型</text>
+<rect x="495" y="685" width="415" height="140" rx="12" fill="#f0edff" stroke="#a79bd7" stroke-width="1.5"/>
+<text x="513" y="715" class="h">5b. 评分 | metric/ + judge/</text>
+<text x="513" y="744" class="body">规则评分 / 模型裁判</text>
+<text x="513" y="769" class="body">Score → SampleScore</text>
+<text x="513" y="794" class="body">再聚合为 AggScore</text>
+<rect x="50" y="905" width="860" height="100" rx="12" fill="#fff" stroke="#c9d5e2" stroke-width="1.5"/>
+<text x="68" y="935" class="h">6. 结果 | report/ + utils/io_utils.py</text>
+<text x="68" y="964" class="body">逐样本预测、评分、配置、日志、统计与 HTML, 保留可追溯证据</text>
+<polyline points="480,185 480,235" class="line"/>
+<polyline points="480,335 480,385" class="line"/>
+<polyline points="480,485 480,535" class="line"/>
+<polyline points="270,635 270,685" class="line"/>
+<polyline points="700,635 700,685" class="line"/>
+<polyline points="270,825 270,875 480,875 480,905" class="line"/>
+<polyline points="700,825 700,875 480,875" class="line"/>
+</svg>

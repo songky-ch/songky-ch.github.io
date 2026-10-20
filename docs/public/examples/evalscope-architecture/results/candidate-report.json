@@ -1,0 +1,356 @@
+{
+    "schema_version": 2,
+    "name": "optics_maintenance_demo",
+    "dataset_name": "optics_maintenance_demo",
+    "dataset_pretty_name": "",
+    "dataset_description": "",
+    "model_name": "optics-candidate-fixture",
+    "metrics": [
+        {
+            "identity": {
+                "name": "schema_valid",
+                "aggregation": "mean",
+                "dimensions": {}
+            },
+            "legacy_name": null,
+            "num": 6,
+            "score": 1.0,
+            "macro_score": 1.0,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 6,
+                    "score": 1.0,
+                    "macro_score": 1.0,
+                    "subsets": [
+                        {
+                            "name": "diagnosis",
+                            "score": 1.0,
+                            "num": 4,
+                            "metadata": null,
+                            "is_aggregate": false
+                        },
+                        {
+                            "name": "edge",
+                            "score": 1.0,
+                            "num": 2,
+                            "metadata": null,
+                            "is_aggregate": false
+                        }
+                    ]
+                }
+            ],
+            "semantics": {
+                "semantic_id": "optics.schema_valid.ratio",
+                "metric_name": "schema_valid",
+                "display_name": null,
+                "kind": "quality",
+                "direction": "higher_is_better",
+                "raw_unit": null,
+                "value_range": {
+                    "min": 0.0,
+                    "max": 1.0
+                },
+                "display_kind": "percent",
+                "display_multiplier": 100.0,
+                "display_unit": "%",
+                "display_precision": 1
+            }
+        },
+        {
+            "identity": {
+                "name": "diagnosis_correct",
+                "aggregation": "mean",
+                "dimensions": {}
+            },
+            "legacy_name": null,
+            "num": 6,
+            "score": 1.0,
+            "macro_score": 1.0,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 6,
+                    "score": 1.0,
+                    "macro_score": 1.0,
+                    "subsets": [
+                        {
+                            "name": "diagnosis",
+                            "score": 1.0,
+                            "num": 4,
+                            "metadata": null,
+                            "is_aggregate": false
+                        },
+                        {
+                            "name": "edge",
+                            "score": 1.0,
+                            "num": 2,
+                            "metadata": null,
+                            "is_aggregate": false
+                        }
+                    ]
+                }
+            ],
+            "semantics": {
+                "semantic_id": "optics.diagnosis_correct.ratio",
+                "metric_name": "diagnosis_correct",
+                "display_name": null,
+                "kind": "quality",
+                "direction": "higher_is_better",
+                "raw_unit": null,
+                "value_range": {
+                    "min": 0.0,
+                    "max": 1.0
+                },
+                "display_kind": "percent",
+                "display_multiplier": 100.0,
+                "display_unit": "%",
+                "display_precision": 1
+            }
+        },
+        {
+            "identity": {
+                "name": "action_correct",
+                "aggregation": "mean",
+                "dimensions": {}
+            },
+            "legacy_name": null,
+            "num": 6,
+            "score": 1.0,
+            "macro_score": 1.0,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 6,
+                    "score": 1.0,
+                    "macro_score": 1.0,
+                    "subsets": [
+                        {
+                            "name": "diagnosis",
+                            "score": 1.0,
+                            "num": 4,
+                            "metadata": null,
+                            "is_aggregate": false
+                        },
+                        {
+                            "name": "edge",
+                            "score": 1.0,
+                            "num": 2,
+                            "metadata": null,
+                            "is_aggregate": false
+                        }
+                    ]
+                }
+            ],
+            "semantics": {
+                "semantic_id": "optics.action_correct.ratio",
+                "metric_name": "action_correct",
+                "display_name": null,
+                "kind": "quality",
+                "direction": "higher_is_better",
+                "raw_unit": null,
+                "value_range": {
+                    "min": 0.0,
+                    "max": 1.0
+                },
+                "display_kind": "percent",
+                "display_multiplier": 100.0,
+                "display_unit": "%",
+                "display_precision": 1
+            }
+        },
+        {
+            "identity": {
+                "name": "safe_action",
+                "aggregation": "mean",
+                "dimensions": {}
+            },
+            "legacy_name": null,
+            "num": 6,
+            "score": 1.0,
+            "macro_score": 1.0,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 6,
+                    "score": 1.0,
+                    "macro_score": 1.0,
+                    "subsets": [
+                        {
+                            "name": "diagnosis",
+                            "score": 1.0,
+                            "num": 4,
+                            "metadata": null,
+                            "is_aggregate": false
+                        },
+                        {
+                            "name": "edge",
+                            "score": 1.0,
+                            "num": 2,
+                            "metadata": null,
+                            "is_aggregate": false
+                        }
+                    ]
+                }
+            ],
+            "semantics": {
+                "semantic_id": "optics.safe_action.ratio",
+                "metric_name": "safe_action",
+                "display_name": null,
+                "kind": "quality",
+                "direction": "higher_is_better",
+                "raw_unit": null,
+                "value_range": {
+                    "min": 0.0,
+                    "max": 1.0
+                },
+                "display_kind": "percent",
+                "display_multiplier": 100.0,
+                "display_unit": "%",
+                "display_precision": 1
+            }
+        },
+        {
+            "identity": {
+                "name": "evidence_valid",
+                "aggregation": "mean",
+                "dimensions": {}
+            },
+            "legacy_name": null,
+            "num": 6,
+            "score": 0.8333,
+            "macro_score": 0.8333,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 6,
+                    "score": 0.8333,
+                    "macro_score": 0.875,
+                    "subsets": [
+                        {
+                            "name": "diagnosis",
+                            "score": 0.75,
+                            "num": 4,
+                            "metadata": null,
+                            "is_aggregate": false
+                        },
+                        {
+                            "name": "edge",
+                            "score": 1.0,
+                            "num": 2,
+                            "metadata": null,
+                            "is_aggregate": false
+                        }
+                    ]
+                }
+            ],
+            "semantics": {
+                "semantic_id": "optics.evidence_valid.ratio",
+                "metric_name": "evidence_valid",
+                "display_name": null,
+                "kind": "quality",
+                "direction": "higher_is_better",
+                "raw_unit": null,
+                "value_range": {
+                    "min": 0.0,
+                    "max": 1.0
+                },
+                "display_kind": "percent",
+                "display_multiplier": 100.0,
+                "display_unit": "%",
+                "display_precision": 1
+            }
+        },
+        {
+            "identity": {
+                "name": "joint_pass",
+                "aggregation": "mean",
+                "dimensions": {}
+            },
+            "legacy_name": null,
+            "num": 6,
+            "score": 0.8333,
+            "macro_score": 0.8333,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 6,
+                    "score": 0.8333,
+                    "macro_score": 0.875,
+                    "subsets": [
+                        {
+                            "name": "diagnosis",
+                            "score": 0.75,
+                            "num": 4,
+                            "metadata": null,
+                            "is_aggregate": false
+                        },
+                        {
+                            "name": "edge",
+                            "score": 1.0,
+                            "num": 2,
+                            "metadata": null,
+                            "is_aggregate": false
+                        }
+                    ]
+                }
+            ],
+            "semantics": {
+                "semantic_id": "optics.joint_pass.ratio",
+                "metric_name": "joint_pass",
+                "display_name": null,
+                "kind": "quality",
+                "direction": "higher_is_better",
+                "raw_unit": null,
+                "value_range": {
+                    "min": 0.0,
+                    "max": 1.0
+                },
+                "display_kind": "percent",
+                "display_multiplier": 100.0,
+                "display_unit": "%",
+                "display_precision": 1
+            }
+        }
+    ],
+    "analysis": "N/A",
+    "perf_metrics": null,
+    "primary_metric_identity": {
+        "name": "joint_pass",
+        "aggregation": "mean",
+        "dimensions": {}
+    },
+    "primary_metric_unavailable_reason": null,
+    "judge_summary": null,
+    "execution_summary": {
+        "requested": 6,
+        "succeeded": 6,
+        "errored": 0,
+        "incomplete": false,
+        "subsets": {
+            "diagnosis": {
+                "requested": 4,
+                "succeeded": 4,
+                "errored": 0
+            },
+            "edge": {
+                "requested": 2,
+                "succeeded": 2,
+                "errored": 0
+            }
+        }
+    },
+    "num": 6
+}

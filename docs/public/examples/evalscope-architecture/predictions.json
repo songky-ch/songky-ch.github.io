@@ -1,0 +1,102 @@
+{
+  "baseline": {
+    "OM-001": {
+      "diagnosis": "local_module_failed",
+      "next_action": "replace_module",
+      "escalate": false,
+      "citations": [
+        "KB-PATH@3"
+      ]
+    },
+    "OM-002": {
+      "diagnosis": "thermal_suspect",
+      "next_action": "reset_port",
+      "escalate": false,
+      "citations": [
+        "KB-THERMAL@2"
+      ]
+    },
+    "OM-003": {
+      "diagnosis": "tx_side_suspect",
+      "next_action": "escalate_module_test",
+      "escalate": true,
+      "citations": [
+        "KB-TX@4"
+      ]
+    },
+    "OM-004": {
+      "diagnosis": "compatibility_suspect",
+      "next_action": "verify_compatibility",
+      "escalate": false,
+      "citations": [
+        "KB-COMPAT@2"
+      ]
+    },
+    "OM-005": {
+      "diagnosis": "local_module_failed",
+      "next_action": "replace_module",
+      "escalate": false,
+      "citations": [
+        "KB-DATA@1"
+      ]
+    },
+    "OM-006": {
+      "diagnosis": "no_fault",
+      "next_action": "close_ticket",
+      "escalate": false,
+      "citations": [
+        "KB-ERROR@2"
+      ]
+    }
+  },
+  "candidate": {
+    "OM-001": {
+      "diagnosis": "rx_path_suspect",
+      "next_action": "inspect_path",
+      "escalate": false,
+      "citations": [
+        "KB-PATH@3"
+      ]
+    },
+    "OM-002": {
+      "diagnosis": "thermal_suspect",
+      "next_action": "inspect_cooling",
+      "escalate": false,
+      "citations": [
+        "KB-THERMAL@2"
+      ]
+    },
+    "OM-003": {
+      "diagnosis": "tx_side_suspect",
+      "next_action": "escalate_module_test",
+      "escalate": true,
+      "citations": [
+        "KB-TX@1"
+      ]
+    },
+    "OM-004": {
+      "diagnosis": "compatibility_suspect",
+      "next_action": "verify_compatibility",
+      "escalate": false,
+      "citations": [
+        "KB-COMPAT@2"
+      ]
+    },
+    "OM-005": {
+      "diagnosis": "insufficient_data",
+      "next_action": "collect_data",
+      "escalate": false,
+      "citations": [
+        "KB-DATA@1"
+      ]
+    },
+    "OM-006": {
+      "diagnosis": "link_error_unresolved",
+      "next_action": "inspect_link_errors",
+      "escalate": false,
+      "citations": [
+        "KB-ERROR@2"
+      ]
+    }
+  }
+}

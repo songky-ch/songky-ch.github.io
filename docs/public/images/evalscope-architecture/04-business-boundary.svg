@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="1020" viewBox="0 0 960 1020" role="img" aria-labelledby="title"><title id="title">04 | 问答、RAG 与 Agent 的评测边界</title><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#526477"/></marker></defs><rect width="960" height="100%" fill="#f5f8fc"/><style>text{font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#17334d} .title{font-size:27px;font-weight:700} .h{font-size:20px;font-weight:700} .body{font-size:18px} .small{font-size:16px} .line{stroke:#526477;stroke-width:2.2;fill:none;marker-end:url(#arrow)}</style>
+<text class="title" x="32" y="46">04 | 问答、RAG 与 Agent 的评测边界</text>
+<rect x="40" y="85" width="880" height="110" rx="12" fill="#e9f2ff" stroke="#80ace5" stroke-width="1.5"/>
+<text x="58" y="115" class="h">A. 静态问答 | 模型是否理解维护知识?</text>
+<text x="58" y="144" class="body">输入: 已提供的告警与手册片段 → 输出诊断建议 → 规则判分</text>
+<text x="58" y="169" class="body">本次已执行实验属于这一层, 没有执行检索或设备操作.</text>
+<rect x="40" y="260" width="880" height="160" rx="12" fill="#e8f6ee" stroke="#73b895" stroke-width="1.5"/>
+<text x="58" y="290" class="h">B. RAG | 检索增强生成是否找对并用对资料?</text>
+<text x="58" y="319" class="body">工单 → 检索器 → 当前型号 / 版本的手册 → 生成答案</text>
+<text x="58" y="344" class="body">记录 retrieved_contexts / response / reference, 可走 RAGEval → RAGAS.</text>
+<text x="58" y="369" class="body">缺了检索证据, 最终答案错误时就无法分清检索失败还是生成失败.</text>
+<rect x="40" y="485" width="880" height="190" rx="12" fill="#f0edff" stroke="#a79bd7" stroke-width="1.5"/>
+<text x="58" y="515" class="h">C. Agent | 多步维护流程是否完成?</text>
+<text x="58" y="544" class="body">工单 → read_dom → 查手册 → compare_peer → 判断下一步</text>
+<text x="58" y="569" class="body">→ 模拟维护 / 授权检查 → 再读 DOM / 误码 → 验收</text>
+<text x="58" y="594" class="body">使用 AgentLoop 或相应适配器组织工具交互; 保存轨迹与状态.</text>
+<text x="58" y="619" class="body">工具名和参数合法, 不等于端口正确、操作合规、业务恢复.</text>
+<rect x="40" y="745" width="880" height="170" rx="12" fill="#fff" stroke="#c9d5e2" stroke-width="1.5"/>
+<text x="58" y="775" class="h">三种证据分别回答不同问题</text>
+<text x="58" y="804" class="body">问答: output 与参考诊断是否一致?</text>
+<text x="58" y="829" class="body">RAG: 找到了什么资料, 答案是否被它支持?</text>
+<text x="58" y="854" class="body">Agent: 实际调了什么工具, 状态怎样变化, 有没有完成复核?</text>
+<polyline points="480,195 480,260" class="line"/>
+<text class="small" x="510" y="235">增加检索证据</text>
+<polyline points="480,420 480,485" class="line"/>
+<text class="small" x="510" y="460">再增加工具与环境</text>
+<text class="small" x="42" y="968">本图 B/C 是业务接入设计. 本次不把静态 JSON 输出伪装成完整 RAG 或 Agent 实测.</text>
+</svg>

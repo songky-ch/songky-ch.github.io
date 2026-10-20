@@ -9,6 +9,7 @@
 | [在线 Agent 评测面试专题: 开发与测试视角](./taobao-online-agent-evaluation.md) | 面试专题 | 数据完整性、短路与安全检查、证据隔离、人工一致性、指标归因与修复验收 |
 | [Agent 评测体系面试: 双环、证据与可信判定](./meituan-agent-evaluation-overview.md) | 面试专题 | 可回归任务、评判器校准、多轮归因、证据覆盖与随机性指标 |
 | [RAG、Agent 与混合评测面试: 开发与测试视角](./rag-agent-evaluation.md) | 面试专题 | 运行器设计、指标口径、轨迹约束、领域数据、裁判校准与稳定性 |
+| [EvalScope 架构面试: 开发与测试双视角](./evalscope-architecture.md) | 面试专题 | 真实源码调用链、领域适配、评分与缓存、报告语义及可运行光模块案例 |
 
 配套内容: [AI 评测学习文章](../../learning/ai-evaluation/).
 
