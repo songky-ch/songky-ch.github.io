@@ -22,7 +22,13 @@ export default defineConfig({
         ] },
         { text: '接口测试', link: '/learning/api-testing/', collapsed: false, items: [
           { text: '接口测试的判定依据', link: '/learning/api-testing/api-test-oracle' },
-          { text: '浏览器到 Postman 复现', link: '/learning/api-testing/browser-to-postman' }
+          { text: '浏览器到 Postman 复现', link: '/learning/api-testing/browser-to-postman' },
+          { text: 'I3 参数、权限与分页覆盖', link: '/learning/api-testing/api-coverage' },
+          { text: 'I4 接口关联与测试数据', link: '/learning/api-testing/api-data-lifecycle' }
+        ] },
+        { text: 'Mock 测试', link: '/learning/mock-testing/', collapsed: false, items: [
+          { text: 'M1 测试替身入门', link: '/learning/mock-testing/test-doubles' },
+          { text: 'M2 Python 依赖替换', link: '/learning/mock-testing/patch-dependencies' }
         ] },
         { text: 'Agent', link: '/learning/agent/', collapsed: false, items: [
           { text: '通用 Agent 与垂直领域 Agent', link: '/learning/agent/general-vs-domain-agents' },
@@ -44,7 +50,13 @@ export default defineConfig({
         ] },
         { text: '接口测试', link: '/interviews/api-testing/', collapsed: false, items: [
           { text: '接口测试的判定依据面试', link: '/interviews/api-testing/api-test-oracle' },
-          { text: '浏览器到 Postman 复现面试', link: '/interviews/api-testing/browser-to-postman' }
+          { text: '浏览器到 Postman 复现面试', link: '/interviews/api-testing/browser-to-postman' },
+          { text: 'I3 参数、权限与分页覆盖', link: '/interviews/api-testing/api-coverage' },
+          { text: 'I4 接口关联与测试数据', link: '/interviews/api-testing/api-data-lifecycle' }
+        ] },
+        { text: 'Mock 测试', link: '/interviews/mock-testing/', collapsed: false, items: [
+          { text: 'M1 测试替身入门', link: '/interviews/mock-testing/test-doubles' },
+          { text: 'M2 Python 依赖替换', link: '/interviews/mock-testing/patch-dependencies' }
         ] },
         { text: 'Agent', link: '/interviews/agent/', collapsed: false, items: [
           { text: '通用与垂直领域 Agent 面试', link: '/interviews/agent/general-vs-domain-agents' },
