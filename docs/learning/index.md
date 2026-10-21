@@ -6,6 +6,8 @@
 
 ## 技术分类
 
+- [质量工程](./quality-engineering/): 传统测试、业务数据质量与 Agent/RAG 评测, 结合光模块维护和生产实操.
+
 - [Agent](./agent/): 通用与领域智能体的架构、工具执行、状态及结果验证.
 
 - [AI 评测](./ai-evaluation/): Agent、RAG 与大模型的评测流程、指标、判定标准和质量验证.

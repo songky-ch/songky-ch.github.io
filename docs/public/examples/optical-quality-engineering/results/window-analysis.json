@@ -1,0 +1,451 @@
+{
+  "reference": {
+    "module_id": "SYN-WINDOW-1",
+    "source_sha256": "d5461aa749c3e6348874a52dac65a8c8ef642e22056067dce89bf77c5b8cd00b",
+    "window": [
+      100,
+      105
+    ],
+    "sample_period_s": 1,
+    "rule_version": "synthetic-hysteresis-v1",
+    "lanes": {
+      "0": {
+        "last_state": "UNKNOWN",
+        "valid_samples": 4,
+        "expected_samples": 5,
+        "complete": false,
+        "mean_power_dbm": -11.868242768359352,
+        "events": [
+          {
+            "at": 101,
+            "from": "UNKNOWN",
+            "to": "ALERT"
+          },
+          {
+            "at": 103,
+            "from": "ALERT",
+            "to": "UNKNOWN"
+          }
+        ],
+        "timeline": [
+          {
+            "at": 100,
+            "rx_dbm": -13.0,
+            "low_run": 1,
+            "recovery_run": 0,
+            "state": "UNKNOWN"
+          },
+          {
+            "at": 101,
+            "rx_dbm": -13.0,
+            "low_run": 2,
+            "recovery_run": 0,
+            "state": "ALERT"
+          },
+          {
+            "at": 102,
+            "rx_dbm": -11.5,
+            "low_run": 0,
+            "recovery_run": 0,
+            "state": "ALERT"
+          },
+          {
+            "at": 103,
+            "rx_dbm": null,
+            "low_run": 0,
+            "recovery_run": 0,
+            "state": "UNKNOWN"
+          },
+          {
+            "at": 104,
+            "rx_dbm": -10.5,
+            "low_run": 0,
+            "recovery_run": 1,
+            "state": "UNKNOWN"
+          }
+        ]
+      },
+      "1": {
+        "last_state": "NORMAL",
+        "valid_samples": 5,
+        "expected_samples": 5,
+        "complete": true,
+        "mean_power_dbm": -10.0,
+        "events": [
+          {
+            "at": 101,
+            "from": "UNKNOWN",
+            "to": "NORMAL"
+          }
+        ],
+        "timeline": [
+          {
+            "at": 100,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 1,
+            "state": "UNKNOWN"
+          },
+          {
+            "at": 101,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 2,
+            "state": "NORMAL"
+          },
+          {
+            "at": 102,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 3,
+            "state": "NORMAL"
+          },
+          {
+            "at": 103,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 4,
+            "state": "NORMAL"
+          },
+          {
+            "at": 104,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 5,
+            "state": "NORMAL"
+          }
+        ]
+      },
+      "2": {
+        "last_state": "NORMAL",
+        "valid_samples": 5,
+        "expected_samples": 5,
+        "complete": true,
+        "mean_power_dbm": -10.0,
+        "events": [
+          {
+            "at": 101,
+            "from": "UNKNOWN",
+            "to": "NORMAL"
+          }
+        ],
+        "timeline": [
+          {
+            "at": 100,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 1,
+            "state": "UNKNOWN"
+          },
+          {
+            "at": 101,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 2,
+            "state": "NORMAL"
+          },
+          {
+            "at": 102,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 3,
+            "state": "NORMAL"
+          },
+          {
+            "at": 103,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 4,
+            "state": "NORMAL"
+          },
+          {
+            "at": 104,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 5,
+            "state": "NORMAL"
+          }
+        ]
+      },
+      "3": {
+        "last_state": "NORMAL",
+        "valid_samples": 5,
+        "expected_samples": 5,
+        "complete": true,
+        "mean_power_dbm": -10.0,
+        "events": [
+          {
+            "at": 101,
+            "from": "UNKNOWN",
+            "to": "NORMAL"
+          }
+        ],
+        "timeline": [
+          {
+            "at": 100,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 1,
+            "state": "UNKNOWN"
+          },
+          {
+            "at": 101,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 2,
+            "state": "NORMAL"
+          },
+          {
+            "at": 102,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 3,
+            "state": "NORMAL"
+          },
+          {
+            "at": 103,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 4,
+            "state": "NORMAL"
+          },
+          {
+            "at": 104,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 5,
+            "state": "NORMAL"
+          }
+        ]
+      }
+    },
+    "root_cause": "not_determined"
+  },
+  "missing_as_zero": {
+    "module_id": "SYN-WINDOW-1",
+    "source_sha256": "b8221599f05b365ac2df92dabd7636bfe3219cf3b23cc1fa60f308c457f8f4a1",
+    "window": [
+      100,
+      105
+    ],
+    "sample_period_s": 1,
+    "rule_version": "synthetic-hysteresis-v1",
+    "lanes": {
+      "0": {
+        "last_state": "NORMAL",
+        "valid_samples": 5,
+        "expected_samples": 5,
+        "complete": true,
+        "mean_power_dbm": -5.985453071146896,
+        "events": [
+          {
+            "at": 101,
+            "from": "UNKNOWN",
+            "to": "ALERT"
+          },
+          {
+            "at": 104,
+            "from": "ALERT",
+            "to": "NORMAL"
+          }
+        ],
+        "timeline": [
+          {
+            "at": 100,
+            "rx_dbm": -13.0,
+            "low_run": 1,
+            "recovery_run": 0,
+            "state": "UNKNOWN"
+          },
+          {
+            "at": 101,
+            "rx_dbm": -13.0,
+            "low_run": 2,
+            "recovery_run": 0,
+            "state": "ALERT"
+          },
+          {
+            "at": 102,
+            "rx_dbm": -11.5,
+            "low_run": 0,
+            "recovery_run": 0,
+            "state": "ALERT"
+          },
+          {
+            "at": 103,
+            "rx_dbm": 0.0,
+            "low_run": 0,
+            "recovery_run": 1,
+            "state": "ALERT"
+          },
+          {
+            "at": 104,
+            "rx_dbm": -10.5,
+            "low_run": 0,
+            "recovery_run": 2,
+            "state": "NORMAL"
+          }
+        ]
+      },
+      "1": {
+        "last_state": "NORMAL",
+        "valid_samples": 5,
+        "expected_samples": 5,
+        "complete": true,
+        "mean_power_dbm": -10.0,
+        "events": [
+          {
+            "at": 101,
+            "from": "UNKNOWN",
+            "to": "NORMAL"
+          }
+        ],
+        "timeline": [
+          {
+            "at": 100,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 1,
+            "state": "UNKNOWN"
+          },
+          {
+            "at": 101,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 2,
+            "state": "NORMAL"
+          },
+          {
+            "at": 102,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 3,
+            "state": "NORMAL"
+          },
+          {
+            "at": 103,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 4,
+            "state": "NORMAL"
+          },
+          {
+            "at": 104,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 5,
+            "state": "NORMAL"
+          }
+        ]
+      },
+      "2": {
+        "last_state": "NORMAL",
+        "valid_samples": 5,
+        "expected_samples": 5,
+        "complete": true,
+        "mean_power_dbm": -10.0,
+        "events": [
+          {
+            "at": 101,
+            "from": "UNKNOWN",
+            "to": "NORMAL"
+          }
+        ],
+        "timeline": [
+          {
+            "at": 100,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 1,
+            "state": "UNKNOWN"
+          },
+          {
+            "at": 101,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 2,
+            "state": "NORMAL"
+          },
+          {
+            "at": 102,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 3,
+            "state": "NORMAL"
+          },
+          {
+            "at": 103,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 4,
+            "state": "NORMAL"
+          },
+          {
+            "at": 104,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 5,
+            "state": "NORMAL"
+          }
+        ]
+      },
+      "3": {
+        "last_state": "NORMAL",
+        "valid_samples": 5,
+        "expected_samples": 5,
+        "complete": true,
+        "mean_power_dbm": -10.0,
+        "events": [
+          {
+            "at": 101,
+            "from": "UNKNOWN",
+            "to": "NORMAL"
+          }
+        ],
+        "timeline": [
+          {
+            "at": 100,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 1,
+            "state": "UNKNOWN"
+          },
+          {
+            "at": 101,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 2,
+            "state": "NORMAL"
+          },
+          {
+            "at": 102,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 3,
+            "state": "NORMAL"
+          },
+          {
+            "at": 103,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 4,
+            "state": "NORMAL"
+          },
+          {
+            "at": 104,
+            "rx_dbm": -10.0,
+            "low_run": 0,
+            "recovery_run": 5,
+            "state": "NORMAL"
+          }
+        ]
+      }
+    },
+    "root_cause": "not_determined"
+  },
+  "comparison": {
+    "reference_lane0_state": "UNKNOWN",
+    "corrupted_lane0_state": "NORMAL",
+    "meaning": "Invalid measurement relabeled as valid zero creates false recovery."
+  }
+}

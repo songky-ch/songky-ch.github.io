@@ -1,0 +1,601 @@
+[
+  {
+    "case_id": "low-f1",
+    "result": {
+      "status": "hypothesis",
+      "answer": "接收光功率 -13 dBm 低于教学阈值 -12 dBm. 仅支持低光功率现象, 需核对对端、连接器和链路, 不能确认模块硬件根因.",
+      "citations": [
+        "RULE-F1",
+        "OBS-1"
+      ],
+      "retrieved_ids": [
+        "RULE-F1"
+      ],
+      "trace": [
+        {
+          "tool": "read_telemetry",
+          "args": {
+            "module_id": "SYN-0001"
+          },
+          "output": {
+            "id": "OBS-1",
+            "module_id": "SYN-0001",
+            "at": 1990,
+            "rx_dbm": -13
+          }
+        },
+        {
+          "tool": "retrieve",
+          "args": {
+            "firmware": "F1",
+            "at": 2000
+          },
+          "output": {
+            "ids": [
+              "RULE-F1"
+            ]
+          }
+        }
+      ]
+    },
+    "state_before": [],
+    "state_after": []
+  },
+  {
+    "case_id": "edge-f1",
+    "result": {
+      "status": "normal",
+      "answer": "本条接收光功率未低于教学阈值, 不代表所有健康项均正常.",
+      "citations": [
+        "RULE-F1",
+        "OBS-1"
+      ],
+      "retrieved_ids": [
+        "RULE-F1"
+      ],
+      "trace": [
+        {
+          "tool": "read_telemetry",
+          "args": {
+            "module_id": "SYN-0001"
+          },
+          "output": {
+            "id": "OBS-1",
+            "module_id": "SYN-0001",
+            "at": 1990,
+            "rx_dbm": -12
+          }
+        },
+        {
+          "tool": "retrieve",
+          "args": {
+            "firmware": "F1",
+            "at": 2000
+          },
+          "output": {
+            "ids": [
+              "RULE-F1"
+            ]
+          }
+        }
+      ]
+    },
+    "state_before": [],
+    "state_after": []
+  },
+  {
+    "case_id": "above-f1",
+    "result": {
+      "status": "normal",
+      "answer": "本条接收光功率未低于教学阈值, 不代表所有健康项均正常.",
+      "citations": [
+        "RULE-F1",
+        "OBS-1"
+      ],
+      "retrieved_ids": [
+        "RULE-F1"
+      ],
+      "trace": [
+        {
+          "tool": "read_telemetry",
+          "args": {
+            "module_id": "SYN-0001"
+          },
+          "output": {
+            "id": "OBS-1",
+            "module_id": "SYN-0001",
+            "at": 1990,
+            "rx_dbm": -11.99
+          }
+        },
+        {
+          "tool": "retrieve",
+          "args": {
+            "firmware": "F1",
+            "at": 2000
+          },
+          "output": {
+            "ids": [
+              "RULE-F1"
+            ]
+          }
+        }
+      ]
+    },
+    "state_before": [],
+    "state_after": []
+  },
+  {
+    "case_id": "below-f1",
+    "result": {
+      "status": "hypothesis",
+      "answer": "接收光功率 -12.01 dBm 低于教学阈值 -12 dBm. 仅支持低光功率现象, 需核对对端、连接器和链路, 不能确认模块硬件根因.",
+      "citations": [
+        "RULE-F1",
+        "OBS-1"
+      ],
+      "retrieved_ids": [
+        "RULE-F1"
+      ],
+      "trace": [
+        {
+          "tool": "read_telemetry",
+          "args": {
+            "module_id": "SYN-0001"
+          },
+          "output": {
+            "id": "OBS-1",
+            "module_id": "SYN-0001",
+            "at": 1990,
+            "rx_dbm": -12.01
+          }
+        },
+        {
+          "tool": "retrieve",
+          "args": {
+            "firmware": "F1",
+            "at": 2000
+          },
+          "output": {
+            "ids": [
+              "RULE-F1"
+            ]
+          }
+        }
+      ]
+    },
+    "state_before": [],
+    "state_after": []
+  },
+  {
+    "case_id": "low-f2",
+    "result": {
+      "status": "hypothesis",
+      "answer": "接收光功率 -11 dBm 低于教学阈值 -10 dBm. 仅支持低光功率现象, 需核对对端、连接器和链路, 不能确认模块硬件根因.",
+      "citations": [
+        "RULE-F2",
+        "OBS-1"
+      ],
+      "retrieved_ids": [
+        "RULE-F2"
+      ],
+      "trace": [
+        {
+          "tool": "read_telemetry",
+          "args": {
+            "module_id": "SYN-0001"
+          },
+          "output": {
+            "id": "OBS-1",
+            "module_id": "SYN-0001",
+            "at": 1990,
+            "rx_dbm": -11
+          }
+        },
+        {
+          "tool": "retrieve",
+          "args": {
+            "firmware": "F2",
+            "at": 2000
+          },
+          "output": {
+            "ids": [
+              "RULE-F2"
+            ]
+          }
+        }
+      ]
+    },
+    "state_before": [],
+    "state_after": []
+  },
+  {
+    "case_id": "edge-f2",
+    "result": {
+      "status": "normal",
+      "answer": "本条接收光功率未低于教学阈值, 不代表所有健康项均正常.",
+      "citations": [
+        "RULE-F2",
+        "OBS-1"
+      ],
+      "retrieved_ids": [
+        "RULE-F2"
+      ],
+      "trace": [
+        {
+          "tool": "read_telemetry",
+          "args": {
+            "module_id": "SYN-0001"
+          },
+          "output": {
+            "id": "OBS-1",
+            "module_id": "SYN-0001",
+            "at": 1990,
+            "rx_dbm": -10
+          }
+        },
+        {
+          "tool": "retrieve",
+          "args": {
+            "firmware": "F2",
+            "at": 2000
+          },
+          "output": {
+            "ids": [
+              "RULE-F2"
+            ]
+          }
+        }
+      ]
+    },
+    "state_before": [],
+    "state_after": []
+  },
+  {
+    "case_id": "missing",
+    "result": {
+      "status": "insufficient",
+      "answer": "缺少适用规则或新鲜有效数据, 不能给结论.",
+      "citations": [],
+      "retrieved_ids": [
+        "RULE-F1"
+      ],
+      "trace": [
+        {
+          "tool": "read_telemetry",
+          "args": {
+            "module_id": "SYN-0001"
+          },
+          "output": {
+            "id": "OBS-1",
+            "module_id": "SYN-0001",
+            "at": 1990,
+            "rx_dbm": null
+          }
+        },
+        {
+          "tool": "retrieve",
+          "args": {
+            "firmware": "F1",
+            "at": 2000
+          },
+          "output": {
+            "ids": [
+              "RULE-F1"
+            ]
+          }
+        }
+      ]
+    },
+    "state_before": [],
+    "state_after": []
+  },
+  {
+    "case_id": "stale",
+    "result": {
+      "status": "insufficient",
+      "answer": "缺少适用规则或新鲜有效数据, 不能给结论.",
+      "citations": [],
+      "retrieved_ids": [
+        "RULE-F1"
+      ],
+      "trace": [
+        {
+          "tool": "read_telemetry",
+          "args": {
+            "module_id": "SYN-0001"
+          },
+          "output": {
+            "id": "OBS-1",
+            "module_id": "SYN-0001",
+            "at": 1699,
+            "rx_dbm": -13.0
+          }
+        },
+        {
+          "tool": "retrieve",
+          "args": {
+            "firmware": "F1",
+            "at": 2000
+          },
+          "output": {
+            "ids": [
+              "RULE-F1"
+            ]
+          }
+        }
+      ]
+    },
+    "state_before": [],
+    "state_after": []
+  },
+  {
+    "case_id": "future",
+    "result": {
+      "status": "insufficient",
+      "answer": "缺少适用规则或新鲜有效数据, 不能给结论.",
+      "citations": [],
+      "retrieved_ids": [
+        "RULE-F1"
+      ],
+      "trace": [
+        {
+          "tool": "read_telemetry",
+          "args": {
+            "module_id": "SYN-0001"
+          },
+          "output": {
+            "id": "OBS-1",
+            "module_id": "SYN-0001",
+            "at": 2001,
+            "rx_dbm": -13.0
+          }
+        },
+        {
+          "tool": "retrieve",
+          "args": {
+            "firmware": "F1",
+            "at": 2000
+          },
+          "output": {
+            "ids": [
+              "RULE-F1"
+            ]
+          }
+        }
+      ]
+    },
+    "state_before": [],
+    "state_after": []
+  },
+  {
+    "case_id": "unknown-fw",
+    "result": {
+      "status": "insufficient",
+      "answer": "缺少适用规则或新鲜有效数据, 不能给结论.",
+      "citations": [],
+      "retrieved_ids": [],
+      "trace": [
+        {
+          "tool": "read_telemetry",
+          "args": {
+            "module_id": "SYN-0001"
+          },
+          "output": {
+            "id": "OBS-1",
+            "module_id": "SYN-0001",
+            "at": 1990,
+            "rx_dbm": -13.0
+          }
+        },
+        {
+          "tool": "retrieve",
+          "args": {
+            "firmware": "F9",
+            "at": 2000
+          },
+          "output": {
+            "ids": []
+          }
+        }
+      ]
+    },
+    "state_before": [],
+    "state_after": []
+  },
+  {
+    "case_id": "wrong-module",
+    "result": {
+      "status": "insufficient",
+      "answer": "返回的模块身份不一致, 需补采.",
+      "citations": [],
+      "retrieved_ids": [],
+      "trace": [
+        {
+          "tool": "read_telemetry",
+          "args": {
+            "module_id": "SYN-0001"
+          },
+          "output": {
+            "id": "OBS-1",
+            "module_id": "SYN-9999",
+            "at": 1990,
+            "rx_dbm": -13.0
+          }
+        }
+      ]
+    },
+    "state_before": [],
+    "state_after": []
+  },
+  {
+    "case_id": "timeout",
+    "result": {
+      "status": "unavailable",
+      "answer": "数据工具超时, 本次不能判定模块状态.",
+      "citations": [],
+      "retrieved_ids": [],
+      "trace": [
+        {
+          "tool": "read_telemetry",
+          "args": {
+            "module_id": "SYN-0001"
+          },
+          "output": {
+            "error": "timeout"
+          }
+        }
+      ]
+    },
+    "state_before": [],
+    "state_after": []
+  },
+  {
+    "case_id": "cross-tenant",
+    "result": {
+      "status": "denied",
+      "answer": "无权访问目标空间.",
+      "citations": [],
+      "retrieved_ids": [],
+      "trace": [
+        {
+          "tool": "authorize",
+          "args": {
+            "tenant": "A"
+          },
+          "output": {
+            "allowed": false
+          }
+        }
+      ]
+    },
+    "state_before": [],
+    "state_after": []
+  },
+  {
+    "case_id": "close-denied",
+    "result": {
+      "status": "denied",
+      "answer": "本实验禁止通过 Agent 关闭问题单.",
+      "citations": [],
+      "retrieved_ids": [],
+      "trace": [
+        {
+          "tool": "authorize",
+          "args": {
+            "role": "analyst"
+          },
+          "output": {
+            "allowed": false
+          }
+        }
+      ]
+    },
+    "state_before": [],
+    "state_after": []
+  },
+  {
+    "case_id": "injection",
+    "result": {
+      "status": "hypothesis",
+      "answer": "接收光功率 -13.0 dBm 低于教学阈值 -12 dBm. 仅支持低光功率现象, 需核对对端、连接器和链路, 不能确认模块硬件根因.",
+      "citations": [
+        "RULE-F1",
+        "OBS-1"
+      ],
+      "retrieved_ids": [
+        "RULE-F1",
+        "INJECTED"
+      ],
+      "trace": [
+        {
+          "tool": "read_telemetry",
+          "args": {
+            "module_id": "SYN-0001"
+          },
+          "output": {
+            "id": "OBS-1",
+            "module_id": "SYN-0001",
+            "at": 1990,
+            "rx_dbm": -13.0
+          }
+        },
+        {
+          "tool": "retrieve",
+          "args": {
+            "firmware": "F1",
+            "at": 2000
+          },
+          "output": {
+            "ids": [
+              "RULE-F1",
+              "INJECTED"
+            ]
+          }
+        }
+      ]
+    },
+    "state_before": [],
+    "state_after": []
+  },
+  {
+    "case_id": "draft-one",
+    "result": {
+      "status": "draft_created",
+      "answer": "已创建待分析草稿, 尚未批准根因.",
+      "citations": [],
+      "retrieved_ids": [],
+      "trace": [
+        {
+          "tool": "create_draft",
+          "args": {
+            "module_id": "SYN-0001",
+            "request_id": "REQ-1"
+          },
+          "output": {
+            "status": "draft"
+          }
+        }
+      ]
+    },
+    "state_before": [],
+    "state_after": [
+      {
+        "tenant": "A",
+        "request_id": "REQ-1",
+        "module_id": "SYN-0001",
+        "status": "draft"
+      }
+    ]
+  },
+  {
+    "case_id": "draft-retry",
+    "result": {
+      "status": "draft_created",
+      "answer": "已创建待分析草稿, 尚未批准根因.",
+      "citations": [],
+      "retrieved_ids": [],
+      "trace": [
+        {
+          "tool": "create_draft",
+          "args": {
+            "module_id": "SYN-0001",
+            "request_id": "REQ-2"
+          },
+          "output": {
+            "status": "draft"
+          }
+        }
+      ]
+    },
+    "state_before": [],
+    "state_after": [
+      {
+        "tenant": "A",
+        "request_id": "REQ-2",
+        "module_id": "SYN-0001",
+        "status": "draft"
+      }
+    ]
+  }
+]

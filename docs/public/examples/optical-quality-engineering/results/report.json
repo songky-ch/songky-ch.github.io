@@ -1,0 +1,117 @@
+{
+  "environment": {
+    "python": "3.12.14",
+    "os": "Darwin"
+  },
+  "scope": "synthetic offline tools + scripted agent, no LLM or enterprise platform",
+  "deep_case": {
+    "reference_lane0_state": "UNKNOWN",
+    "corrupted_lane0_state": "NORMAL",
+    "meaning": "Invalid measurement relabeled as valid zero creates false recovery."
+  },
+  "versions": {
+    "dataset": "optical-teaching-v1",
+    "rubric": "optical-r1",
+    "parser": "OPT1-v1",
+    "model": "not_used",
+    "benchmark_sha256": "f3cc1622478f82731f13d29400a7bd0056669943ca22f925e1c2016408d98006",
+    "code_sha256": {
+      "dashboard.py": "e8a9e126a157d3286a4b12fb0900d1c81a895ae083153121de7fdbb27df0283d",
+      "deep_case.py": "022bcb3731b97f137bdc33c146d5c69df94e09442e6f9e92bf8f5e7ca46a9375",
+      "domain.py": "9cee7398a68c7f9eb81af51ff0d3e76bbbc13cd9558199581c5ded5f683858ff",
+      "evaluation.py": "b3fb36717df48831a90d9f235d3b6b65a8667ed22c49fcfeef2ddf96001c2daf",
+      "judge.py": "08da66db05bfc1f38cd5d2027c97eb4c8b5110873d82ebc5334c91bede57a677",
+      "prepare_data.py": "4e59b5ee7a5c08f70b58c45dcab08501542a1440cfa046783451e095d98788f8",
+      "run_lab.py": "130aa31f3e4f404428ece96be11f60891cf19e43aa685e61e40a0f0880bb917b",
+      "test_dashboard.py": "87913eeadba912dc3e33ba40fca5e110c0c222702a90db98eb47660346d4c4da",
+      "test_deep_case.py": "448161e74f45f54d16b21821fb514f1ffdfe121d269bfaf4cc7837e357383c5d",
+      "test_lab.py": "c0b054de6cd30cf536ee37e7fe58a33ee2c4d915b0fe5a0d50fba1871bf5dfa3",
+      "tool_agent.py": "c9bf13d80e4469b5e8acd5daa8b9c63e0e08bd09b5632bc30f1df9216cb93658",
+      "window_analysis.py": "5534feb3f21110d5b306163634a4289b205d09036a01444a8099f63348176cce"
+    }
+  },
+  "reference": {
+    "passed": 17,
+    "total": 17,
+    "slices": {
+      "evidence": {
+        "passed": 6,
+        "total": 6,
+        "hard_pass_rate": 1.0,
+        "wilson_95": [
+          0.6096657120978346,
+          1
+        ]
+      },
+      "security": {
+        "passed": 3,
+        "total": 3,
+        "hard_pass_rate": 1.0,
+        "wilson_95": [
+          0.4385029682449546,
+          1
+        ]
+      },
+      "signal": {
+        "passed": 6,
+        "total": 6,
+        "hard_pass_rate": 1.0,
+        "wilson_95": [
+          0.6096657120978346,
+          1
+        ]
+      },
+      "workflow": {
+        "passed": 2,
+        "total": 2,
+        "hard_pass_rate": 1.0,
+        "wilson_95": [
+          0.34238022750665303,
+          1
+        ]
+      }
+    },
+    "release_gate": {
+      "decision": "REVIEW",
+      "reason": "semantic_evidence_missing"
+    }
+  },
+  "boundary_bug": {
+    "failed_ids": [
+      "edge-f1",
+      "edge-f2"
+    ],
+    "release_gate": {
+      "decision": "BLOCK",
+      "reason": "hard_check_failed"
+    }
+  },
+  "semantic_blind_spot": {
+    "hard_passed": 17,
+    "meaning": "Hard checks cannot judge an unsupported natural-language root cause.",
+    "release_gate": {
+      "decision": "REVIEW",
+      "reason": "semantic_evidence_missing"
+    }
+  },
+  "paired_teaching_statistics": {
+    "mean_delta": 0.11764705882352941,
+    "percentile_95": [
+      0.0,
+      0.29411764705882354
+    ]
+  },
+  "synthetic_judge_calibration": {
+    "agreement": 0.75,
+    "cohen_kappa": 0.5,
+    "false_accept_rate": 0.25,
+    "human_reject_count": 4
+  },
+  "statistics_warning": "Teaching cases are purposive and correlated, not production population estimates.",
+  "unit_tests": {
+    "run": 65,
+    "failures": 0,
+    "errors": 0,
+    "passed": true
+  }
+}
