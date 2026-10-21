@@ -17,9 +17,6 @@ export default defineConfig({
     ],
     sidebar: {
       '/learning/': [{ text: '技术学习', link: '/learning/', collapsed: false, items: [
-        { text: '质量工程', link: '/learning/quality-engineering/', collapsed: false, items: [
-          { text: '光模块业务测试专家专题', link: '/learning/quality-engineering/optical-quality-engineering' }
-        ] },
         { text: 'Agent', link: '/learning/agent/', collapsed: false, items: [
           { text: '通用 Agent 与垂直领域 Agent', link: '/learning/agent/general-vs-domain-agents' },
           { text: 'Agent 意图识别与路由', link: '/learning/agent/agent-intent-routing' }
@@ -35,9 +32,6 @@ export default defineConfig({
         ] }
       ] }],
       '/interviews/': [{ text: '技术面试', link: '/interviews/', collapsed: false, items: [
-        { text: '质量工程', link: '/interviews/quality-engineering/', collapsed: false, items: [
-          { text: '光模块质量工程面试', link: '/interviews/quality-engineering/optical-quality-engineering' }
-        ] },
         { text: 'Agent', link: '/interviews/agent/', collapsed: false, items: [
           { text: '通用与垂直领域 Agent 面试', link: '/interviews/agent/general-vs-domain-agents' },
           { text: '意图识别与路由面试', link: '/interviews/agent/agent-intent-routing' }

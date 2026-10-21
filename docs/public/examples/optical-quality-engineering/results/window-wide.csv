@@ -1,6 +1,0 @@
-timestamp_s,valid_lanes,lane0_temperature_c,lane0_voltage_v,lane0_rx_dbm,lane1_temperature_c,lane1_voltage_v,lane1_rx_dbm,lane2_temperature_c,lane2_voltage_v,lane2_rx_dbm,lane3_temperature_c,lane3_voltage_v,lane3_rx_dbm
-100,4,25.0,3.3,-13.0,25.0,3.3,-10.0,25.0,3.3,-10.0,25.0,3.3,-10.0
-101,4,25.0,3.3,-13.0,25.0,3.3,-10.0,25.0,3.3,-10.0,25.0,3.3,-10.0
-102,4,25.0,3.3,-11.5,25.0,3.3,-10.0,25.0,3.3,-10.0,25.0,3.3,-10.0
-103,3,,,,25.0,3.3,-10.0,25.0,3.3,-10.0,25.0,3.3,-10.0
-104,4,25.0,3.3,-10.5,25.0,3.3,-10.0,25.0,3.3,-10.0,25.0,3.3,-10.0
