@@ -17,3 +17,123 @@
 .VPHero .name {
   letter-spacing: -0.03em;
 }
+
+.testing-notes {
+  --vp-c-bg: #faf9f5;
+  --vp-c-bg-alt: #f3f3ec;
+  --vp-c-bg-soft: #f0f2eb;
+  --vp-c-text-1: #243633;
+  --vp-c-text-2: #566761;
+  --vp-c-brand-1: #146d60;
+}
+
+.dark .testing-notes {
+  --vp-c-bg: #161e1d;
+  --vp-c-bg-alt: #1b2623;
+  --vp-c-bg-soft: #222e29;
+  --vp-c-text-1: #e1e8e0;
+  --vp-c-text-2: #aabbb0;
+  --vp-c-brand-1: #88cdb6;
+}
+
+body:has(.testing-notes) {
+  background: #faf9f5;
+}
+
+.dark body:has(.testing-notes) {
+  background: #161e1d;
+}
+
+.testing-notes .vp-doc {
+  font-size: 17px;
+  line-height: 1.95;
+}
+
+.testing-notes .vp-doc p,
+.testing-notes .vp-doc li {
+  line-height: 1.95;
+}
+
+.testing-notes .vp-doc h1 {
+  font-family: "Songti SC", "Noto Serif SC", "SimSun", serif;
+  font-size: 38px;
+  line-height: 1.45;
+  letter-spacing: -0.025em;
+}
+
+.testing-notes .vp-doc h2 {
+  margin-top: 48px;
+  padding-top: 24px;
+  line-height: 1.55;
+}
+
+.testing-notes .vp-doc h3 {
+  margin-top: 28px;
+  line-height: 1.65;
+}
+
+.testing-notes .vp-doc .article-kicker {
+  margin: 18px 0 30px;
+  color: var(--vp-c-brand-1);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+
+.testing-notes .vp-doc blockquote {
+  margin: 28px 0;
+  padding: 14px 20px;
+  border-left: 3px solid var(--vp-c-brand-1);
+  background: var(--vp-c-bg-soft);
+}
+
+.testing-notes .vp-doc figure {
+  margin: 32px 0;
+}
+
+.testing-notes .vp-doc figure img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #d6e1da;
+  border-radius: 12px;
+}
+
+.testing-notes .vp-doc figcaption {
+  margin-top: 10px;
+  color: var(--vp-c-text-2);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.testing-notes .vp-doc table {
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.testing-notes .vp-doc th,
+.testing-notes .vp-doc td {
+  padding: 12px 14px;
+}
+
+@media (min-width: 960px) {
+  .testing-notes .VPDoc .content-container {
+    max-width: 780px;
+  }
+}
+
+@media (max-width: 600px) {
+  .testing-notes .vp-doc {
+    font-size: 16px;
+  }
+
+  .testing-notes .vp-doc h1 {
+    font-size: 30px;
+  }
+
+  .testing-notes .vp-doc h2 {
+    font-size: 23px;
+  }
+
+  .testing-notes .vp-doc blockquote {
+    padding: 12px 14px;
+  }
+}

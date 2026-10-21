@@ -17,6 +17,13 @@ export default defineConfig({
     ],
     sidebar: {
       '/learning/': [{ text: '技术学习', link: '/learning/', collapsed: false, items: [
+        { text: 'Web 测试', link: '/learning/web-testing/', collapsed: false, items: [
+          { text: '从页面到业务链', link: '/learning/web-testing/business-flow' }
+        ] },
+        { text: '接口测试', link: '/learning/api-testing/', collapsed: false, items: [
+          { text: '接口测试的判定依据', link: '/learning/api-testing/api-test-oracle' },
+          { text: '浏览器到 Postman 复现', link: '/learning/api-testing/browser-to-postman' }
+        ] },
         { text: 'Agent', link: '/learning/agent/', collapsed: false, items: [
           { text: '通用 Agent 与垂直领域 Agent', link: '/learning/agent/general-vs-domain-agents' },
           { text: 'Agent 意图识别与路由', link: '/learning/agent/agent-intent-routing' }
@@ -32,6 +39,13 @@ export default defineConfig({
         ] }
       ] }],
       '/interviews/': [{ text: '技术面试', link: '/interviews/', collapsed: false, items: [
+        { text: 'Web 测试', link: '/interviews/web-testing/', collapsed: false, items: [
+          { text: '从页面到业务链面试', link: '/interviews/web-testing/business-flow' }
+        ] },
+        { text: '接口测试', link: '/interviews/api-testing/', collapsed: false, items: [
+          { text: '接口测试的判定依据面试', link: '/interviews/api-testing/api-test-oracle' },
+          { text: '浏览器到 Postman 复现面试', link: '/interviews/api-testing/browser-to-postman' }
+        ] },
         { text: 'Agent', link: '/interviews/agent/', collapsed: false, items: [
           { text: '通用与垂直领域 Agent 面试', link: '/interviews/agent/general-vs-domain-agents' },
           { text: '意图识别与路由面试', link: '/interviews/agent/agent-intent-routing' }
