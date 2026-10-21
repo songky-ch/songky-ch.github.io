@@ -136,7 +136,7 @@ def build_summary(site_id, customer_id):
 
 将本篇方法迁移到工具调用时也是同样的边界问题: 固定某个工具执行函数的返回, 可以帮助检查上层怎样使用它, 但不会因此验证真实工具的鉴权或副作用. 先找上层实际查找工具函数的位置, 再明确哪些部分仍然真实执行.
 
-[M2 面试专题](../../interviews/mock-testing/patch-dependencies.md)提供命名空间、作用域和调用约束的完整问答. 本批阅读链至此为“接口覆盖 → 数据关联 → 替身边界 → 依赖替换”, 后续再进入 Agent 路由与工具选择.
+[M2 面试专题](../../interviews/mock-testing/patch-dependencies.md)提供命名空间、作用域和调用约束的完整问答. 本批阅读链至此为“接口覆盖 → 数据关联 → 替身边界 → 依赖替换”, 继续 [A1 的 Agent 请求地图](../agent/agent-request-map.md), 再进入路由与工具选择测试.
 
 ## 术语与依据
 

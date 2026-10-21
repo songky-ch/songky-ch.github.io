@@ -32,7 +32,9 @@ export default defineConfig({
         ] },
         { text: 'Agent', link: '/learning/agent/', collapsed: false, items: [
           { text: '通用 Agent 与垂直领域 Agent', link: '/learning/agent/general-vs-domain-agents' },
-          { text: 'Agent 意图识别与路由', link: '/learning/agent/agent-intent-routing' }
+          { text: 'Agent 意图识别与路由', link: '/learning/agent/agent-intent-routing' },
+          { text: 'A1 Agent 请求地图', link: '/learning/agent/agent-request-map' },
+          { text: 'A2 单次工具调用测试', link: '/learning/agent/single-call-tool-testing' }
         ] },
         { text: 'AI 评测', link: '/learning/ai-evaluation/', collapsed: false, items: [
           { text: '淘宝购物助手在线评测', link: '/learning/ai-evaluation/taobao-online-agent-evaluation' },
@@ -60,7 +62,9 @@ export default defineConfig({
         ] },
         { text: 'Agent', link: '/interviews/agent/', collapsed: false, items: [
           { text: '通用与垂直领域 Agent 面试', link: '/interviews/agent/general-vs-domain-agents' },
-          { text: '意图识别与路由面试', link: '/interviews/agent/agent-intent-routing' }
+          { text: '意图识别与路由面试', link: '/interviews/agent/agent-intent-routing' },
+          { text: 'A1 Agent 请求地图', link: '/interviews/agent/agent-request-map' },
+          { text: 'A2 单次工具调用测试', link: '/interviews/agent/single-call-tool-testing' }
         ] },
         { text: 'AI 评测', link: '/interviews/ai-evaluation/', collapsed: false, items: [
           { text: '在线 Agent 评测面试', link: '/interviews/ai-evaluation/taobao-online-agent-evaluation' },
