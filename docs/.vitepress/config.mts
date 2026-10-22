@@ -28,7 +28,8 @@ export default defineConfig({
         ] },
         { text: 'Mock 测试', link: '/learning/mock-testing/', collapsed: false, items: [
           { text: 'M1 测试替身入门', link: '/learning/mock-testing/test-doubles' },
-          { text: 'M2 Python 依赖替换', link: '/learning/mock-testing/patch-dependencies' }
+          { text: 'M2 Python 依赖替换', link: '/learning/mock-testing/patch-dependencies' },
+          { text: 'M3 异常与连续返回', link: '/learning/mock-testing/fault-sequences' }
         ] },
         { text: 'Agent', link: '/learning/agent/', collapsed: false, items: [
           { text: '通用 Agent 与垂直领域 Agent', link: '/learning/agent/general-vs-domain-agents' },
@@ -40,7 +41,9 @@ export default defineConfig({
           { text: '淘宝购物助手在线评测', link: '/learning/ai-evaluation/taobao-online-agent-evaluation' },
           { text: '美团 Agent 评测全览', link: '/learning/ai-evaluation/meituan-agent-evaluation-overview' },
           { text: 'RAG、Agent 与混合评测', link: '/learning/ai-evaluation/rag-agent-evaluation' },
-          { text: 'EvalScope 架构与光模块案例', link: '/learning/ai-evaluation/evalscope-architecture' }
+          { text: 'EvalScope 架构与光模块案例', link: '/learning/ai-evaluation/evalscope-architecture' },
+          { text: 'A3 Agent benchmark 设计', link: '/learning/ai-evaluation/agent-benchmark-design' },
+          { text: 'A4 规则与模型评分器', link: '/learning/ai-evaluation/rule-and-llm-graders' }
         ] },
         { text: 'RAG', link: '/learning/rag/', collapsed: false, items: [
           { text: '五种 RAG 的同异与实现流程', link: '/learning/rag/rag-architectures' }
@@ -58,7 +61,8 @@ export default defineConfig({
         ] },
         { text: 'Mock 测试', link: '/interviews/mock-testing/', collapsed: false, items: [
           { text: 'M1 测试替身入门', link: '/interviews/mock-testing/test-doubles' },
-          { text: 'M2 Python 依赖替换', link: '/interviews/mock-testing/patch-dependencies' }
+          { text: 'M2 Python 依赖替换', link: '/interviews/mock-testing/patch-dependencies' },
+          { text: 'M3 异常与连续返回', link: '/interviews/mock-testing/fault-sequences' }
         ] },
         { text: 'Agent', link: '/interviews/agent/', collapsed: false, items: [
           { text: '通用与垂直领域 Agent 面试', link: '/interviews/agent/general-vs-domain-agents' },
@@ -70,7 +74,9 @@ export default defineConfig({
           { text: '在线 Agent 评测面试', link: '/interviews/ai-evaluation/taobao-online-agent-evaluation' },
           { text: 'Agent 评测体系面试', link: '/interviews/ai-evaluation/meituan-agent-evaluation-overview' },
           { text: 'RAG、Agent 与混合评测面试', link: '/interviews/ai-evaluation/rag-agent-evaluation' },
-          { text: 'EvalScope 架构面试', link: '/interviews/ai-evaluation/evalscope-architecture' }
+          { text: 'EvalScope 架构面试', link: '/interviews/ai-evaluation/evalscope-architecture' },
+          { text: 'A3 Agent benchmark 设计', link: '/interviews/ai-evaluation/agent-benchmark-design' },
+          { text: 'A4 规则与模型评分器', link: '/interviews/ai-evaluation/rule-and-llm-graders' }
         ] },
         { text: 'RAG', link: '/interviews/rag/', collapsed: false, items: [
           { text: '五种 RAG 面试专题', link: '/interviews/rag/rag-architectures' }

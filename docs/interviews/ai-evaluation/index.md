@@ -10,6 +10,8 @@
 | [Agent 评测体系面试: 双环、证据与可信判定](./meituan-agent-evaluation-overview.md) | 面试专题 | 可回归任务、评判器校准、多轮归因、证据覆盖与随机性指标 |
 | [RAG、Agent 与混合评测面试: 开发与测试视角](./rag-agent-evaluation.md) | 面试专题 | 运行器设计、指标口径、轨迹约束、四工具分工、异步评分、回流审核与发布检查 |
 | [EvalScope 架构面试: 开发与测试双视角](./evalscope-architecture.md) | 面试专题 | 真实源码调用链、领域适配、评分与缓存、报告语义及可运行光模块案例 |
+| [A3 Agent benchmark 设计](./agent-benchmark-design.md) | 面试专题 | 任务契约、状态隔离、分组与重复尝试 |
+| [A4 规则与模型评分器](./rule-and-llm-graders.md) | 面试专题 | 证据、分项判定、模型校准与误放风险 |
 
 配套内容: [AI 评测学习文章](../../learning/ai-evaluation/).
 

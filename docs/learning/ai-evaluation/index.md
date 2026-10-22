@@ -10,6 +10,8 @@
 | [美团 Agent 评测全览: 从四个模块到可运行双环](./meituan-agent-evaluation-overview.md) | 文档带读 | 评测双环、任务契约、多轮证据关联、标准校准与合成回放 |
 | [RAG、Agent 与混合评测: 流程、指标、框架和真实案例](./rag-agent-evaluation.md) | 技术对比 | RAG / Agent 流程、通用与垂直案例, EvalScope / MTEB / Ragas / Langfuse 生产流水线与数据飞轮 |
 | [EvalScope 架构详解: 用光模块维护工单走通评测全流程](./evalscope-architecture.md) | 项目带读 | 真实源码调用链、领域适配、评分与缓存、报告语义及可运行光模块案例 |
+| [A3 Agent benchmark 设计](./agent-benchmark-design.md) | 实践教程 | 任务契约、状态隔离、分组与重复尝试 |
+| [A4 规则与模型评分器](./rule-and-llm-graders.md) | 实践教程 | 证据、分项判定、模型校准与误放风险 |
 
 配套内容: [AI 评测面试专题](../../interviews/ai-evaluation/).
 

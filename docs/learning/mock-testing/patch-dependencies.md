@@ -150,3 +150,5 @@ def build_summary(site_id, customer_id):
 | Context manager | 上下文管理器 | 通过 with 明确替换与恢复范围 |
 
 核查日期: 2026-10-22. 按 Python 3.9 官方 `unittest.mock` 的 Where to patch、patch、autospeccing 及调用断言章节核对; 默认参数的绑定时机参考 [函数定义说明](https://docs.python.org/3.9/reference/compound_stmts.html#function-definitions). 业务模块和断言场景为本文教学设计. 代码只做静态语法与机制核对, 没有实际访问服务或运行测试.
+
+继续阅读 [M3: 超时、错误和连续返回](./fault-sequences.md).

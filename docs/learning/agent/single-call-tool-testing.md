@@ -178,3 +178,5 @@ else:
 | Benchmark / Grader | 评测任务集 / 评分器 | 后续组织任务和自动判断的基础 |
 
 核查日期: 2026-10-22. JSON Schema 对象关键词参考官方对象文档; 评测术语参考 Anthropic 2026-01-09 原文. 参数传递与工具执行的机制延续 A1 引用的官方工具文档. 业务规则、12 个案例和 100 条结果快照均为教学设计, 未执行模型评测或真实写入; Python 3.9 风格代码仅作静态核对.
+
+接着用 [A3: Agent benchmark](../ai-evaluation/agent-benchmark-design.md)组织任务, 再用 [A4: 规则与模型评分器](../ai-evaluation/rule-and-llm-graders.md)解释证据.
