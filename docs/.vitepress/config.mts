@@ -18,23 +18,23 @@ export default defineConfig({
     sidebar: {
       '/learning/': [{ text: '技术学习', link: '/learning/', collapsed: false, items: [
         { text: 'Web 测试', link: '/learning/web-testing/', collapsed: false, items: [
-          { text: '从页面到业务链', link: '/learning/web-testing/business-flow' }
+          { text: 'W1 业务链与数据核对', link: '/learning/web-testing/business-flow' }
         ] },
         { text: '接口测试', link: '/learning/api-testing/', collapsed: false, items: [
-          { text: '接口测试的判定依据', link: '/learning/api-testing/api-test-oracle' },
-          { text: '浏览器到 Postman 复现', link: '/learning/api-testing/browser-to-postman' },
+          { text: 'I1 接口结果判定', link: '/learning/api-testing/api-test-oracle' },
+          { text: 'I2 Postman 请求复现', link: '/learning/api-testing/browser-to-postman' },
           { text: 'I3 参数、权限与分页覆盖', link: '/learning/api-testing/api-coverage' },
-          { text: 'I4 接口关联与测试数据', link: '/learning/api-testing/api-data-lifecycle' }
+          { text: 'I4 接口关联与数据管理', link: '/learning/api-testing/api-data-lifecycle' }
         ] },
         { text: 'Mock 测试', link: '/learning/mock-testing/', collapsed: false, items: [
-          { text: 'M1 测试替身入门', link: '/learning/mock-testing/test-doubles' },
+          { text: 'M1 测试替身设计', link: '/learning/mock-testing/test-doubles' },
           { text: 'M2 Python 依赖替换', link: '/learning/mock-testing/patch-dependencies' },
           { text: 'M3 异常与连续返回', link: '/learning/mock-testing/fault-sequences' }
         ] },
         { text: 'Agent', link: '/learning/agent/', collapsed: false, items: [
           { text: '通用 Agent 与垂直领域 Agent', link: '/learning/agent/general-vs-domain-agents' },
           { text: 'Agent 意图识别与路由', link: '/learning/agent/agent-intent-routing' },
-          { text: 'A1 Agent 请求地图', link: '/learning/agent/agent-request-map' },
+          { text: 'A1 Agent 请求链路', link: '/learning/agent/agent-request-map' },
           { text: 'A2 单次工具调用测试', link: '/learning/agent/single-call-tool-testing' }
         ] },
         { text: 'AI 评测', link: '/learning/ai-evaluation/', collapsed: false, items: [
@@ -43,31 +43,34 @@ export default defineConfig({
           { text: 'RAG、Agent 与混合评测', link: '/learning/ai-evaluation/rag-agent-evaluation' },
           { text: 'EvalScope 架构与光模块案例', link: '/learning/ai-evaluation/evalscope-architecture' },
           { text: 'A3 Agent benchmark 设计', link: '/learning/ai-evaluation/agent-benchmark-design' },
-          { text: 'A4 规则与模型评分器', link: '/learning/ai-evaluation/rule-and-llm-graders' }
+          { text: 'A4 规则与模型评分器', link: '/learning/ai-evaluation/rule-and-llm-graders' },
+          { text: 'R3 检索指标与证据覆盖', link: '/learning/ai-evaluation/retrieval-metrics' }
         ] },
         { text: 'RAG', link: '/learning/rag/', collapsed: false, items: [
-          { text: '五种 RAG 的同异与实现流程', link: '/learning/rag/rag-architectures' }
+          { text: '五种 RAG 的同异与实现流程', link: '/learning/rag/rag-architectures' },
+          { text: 'R1 知识库问答证据链', link: '/learning/rag/rag-evidence-pipeline' },
+          { text: 'R2 切分过滤与重排', link: '/learning/rag/retrieval-candidates' }
         ] }
       ] }],
       '/interviews/': [{ text: '技术面试', link: '/interviews/', collapsed: false, items: [
         { text: 'Web 测试', link: '/interviews/web-testing/', collapsed: false, items: [
-          { text: '从页面到业务链面试', link: '/interviews/web-testing/business-flow' }
+          { text: 'W1 业务链与数据核对', link: '/interviews/web-testing/business-flow' }
         ] },
         { text: '接口测试', link: '/interviews/api-testing/', collapsed: false, items: [
-          { text: '接口测试的判定依据面试', link: '/interviews/api-testing/api-test-oracle' },
-          { text: '浏览器到 Postman 复现面试', link: '/interviews/api-testing/browser-to-postman' },
+          { text: 'I1 接口结果判定', link: '/interviews/api-testing/api-test-oracle' },
+          { text: 'I2 Postman 请求复现', link: '/interviews/api-testing/browser-to-postman' },
           { text: 'I3 参数、权限与分页覆盖', link: '/interviews/api-testing/api-coverage' },
-          { text: 'I4 接口关联与测试数据', link: '/interviews/api-testing/api-data-lifecycle' }
+          { text: 'I4 接口关联与数据管理', link: '/interviews/api-testing/api-data-lifecycle' }
         ] },
         { text: 'Mock 测试', link: '/interviews/mock-testing/', collapsed: false, items: [
-          { text: 'M1 测试替身入门', link: '/interviews/mock-testing/test-doubles' },
+          { text: 'M1 测试替身设计', link: '/interviews/mock-testing/test-doubles' },
           { text: 'M2 Python 依赖替换', link: '/interviews/mock-testing/patch-dependencies' },
           { text: 'M3 异常与连续返回', link: '/interviews/mock-testing/fault-sequences' }
         ] },
         { text: 'Agent', link: '/interviews/agent/', collapsed: false, items: [
           { text: '通用与垂直领域 Agent 面试', link: '/interviews/agent/general-vs-domain-agents' },
           { text: '意图识别与路由面试', link: '/interviews/agent/agent-intent-routing' },
-          { text: 'A1 Agent 请求地图', link: '/interviews/agent/agent-request-map' },
+          { text: 'A1 Agent 请求链路', link: '/interviews/agent/agent-request-map' },
           { text: 'A2 单次工具调用测试', link: '/interviews/agent/single-call-tool-testing' }
         ] },
         { text: 'AI 评测', link: '/interviews/ai-evaluation/', collapsed: false, items: [
@@ -76,10 +79,13 @@ export default defineConfig({
           { text: 'RAG、Agent 与混合评测面试', link: '/interviews/ai-evaluation/rag-agent-evaluation' },
           { text: 'EvalScope 架构面试', link: '/interviews/ai-evaluation/evalscope-architecture' },
           { text: 'A3 Agent benchmark 设计', link: '/interviews/ai-evaluation/agent-benchmark-design' },
-          { text: 'A4 规则与模型评分器', link: '/interviews/ai-evaluation/rule-and-llm-graders' }
+          { text: 'A4 规则与模型评分器', link: '/interviews/ai-evaluation/rule-and-llm-graders' },
+          { text: 'R3 检索指标与证据覆盖', link: '/interviews/ai-evaluation/retrieval-metrics' }
         ] },
         { text: 'RAG', link: '/interviews/rag/', collapsed: false, items: [
-          { text: '五种 RAG 面试专题', link: '/interviews/rag/rag-architectures' }
+          { text: '五种 RAG 面试专题', link: '/interviews/rag/rag-architectures' },
+          { text: 'R1 知识库问答证据链', link: '/interviews/rag/rag-evidence-pipeline' },
+          { text: 'R2 切分过滤与重排', link: '/interviews/rag/retrieval-candidates' }
         ] }
       ] }]
     },

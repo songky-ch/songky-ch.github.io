@@ -1,21 +1,21 @@
 ---
-title: Python 中应该替换哪一处依赖?
+title: "Mock 没有生效时, 我会检查依赖引用位置"
 category: Mock 测试
 contentType: 实践教程
 pageClass: testing-notes
 ---
 
-# Python 中应该替换哪一处依赖?
+# Mock 没有生效时, 我会检查依赖引用位置
 
-<p class="article-kicker">第二批 · M2 · 沿名字查找路径理解 patch</p>
+<p class="article-kicker">工作记录 · M2 · 设计思路与待验证方案</p>
 
-你把查询函数替换成 Mock, 执行测试时却仍然访问真实服务. 函数名没有拼错, 为什么替换没有生效?
+在整理 Mock 方案时, 我发现替换位置是一个需要单独说明的问题: 函数定义在哪里, 与调用代码实际从哪里找到它, 可能不是同一个位置. 这会直接影响替身是否生效.
 
-因为“这个函数在哪里定义”和“被测代码执行时从哪里找到它”可以是两个位置. `patch` 临时改变的是某个位置上的名字指向, 不会自动追踪所有已经保存好的引用. 这一篇用两个模块把这句话拆开, 接续 [M1 的替身边界](test-doubles.md).
+我用两个示例模块追踪名字与函数引用, 说明自己会怎样选择 `patch` 目标, 检查签名、返回和调用记录. 这里延续 [M1 的替身边界](test-doubles.md), 是排查方案, 不是我已解决过的项目故障.
 
-> 下面的 `issue_gateway`、`issue_summary` 和接口函数均为教学模块, 不存在于你的真实项目. `patch`、`Mock` 等名称是 Python 3.9 标准库真实 API, 代码整体仍是不可直接运行的教学伪代码. 本文不要求创建文件或连接服务.
+> `issue_gateway`、`issue_summary` 为示例模块. `patch` 与 `Mock` 按 Python 3.9 标准库核对, 整体代码为不可直接运行的伪代码.
 
-## 两个名字, 可以指向同一个函数
+## 名字与函数引用的关系
 
 先看查询函数的定义位置. 签名要求局点与客户作为关键字参数传入, 函数内部的网络实现本篇不展开.
 
@@ -48,7 +48,7 @@ def build_summary(site_id, customer_id):
 
 因此, 在摘要模块**已经导入**的前提下, 只 patch `issue_gateway.fetch_issues` 不会改变摘要实际使用的名字. 官方将这个原则表述为在查找依赖的命名空间替换它, 见 [Python 3.9: Where to patch](https://docs.python.org/3.9/library/unittest.mock.html#where-to-patch). 导入与名字绑定的基础可查 [import 语句说明](https://docs.python.org/3.9/reference/simple_stmts.html#the-import-statement).
 
-## 对本例, 替换摘要模块实际查找的位置
+## 摘要模块实际查找的引用
 
 这里先导入摘要模块, 再在 `with` 范围内替换它的 `fetch_issues`. 在这段范围内, `build_summary` 仍是真实函数; 唯独查询依赖指向我们配置的对象.
 
@@ -81,7 +81,7 @@ with patch("issue_summary.fetch_issues", autospec=True) as query_double:
 
 如果输出断言通过了, 但 `query_double.assert_called_once_with` 报“调用次数为 0”, 整条用例仍然失败. 这是一条定位线索: 可能 patch 错了位置, 也可能实际走了无需查询的分支, 或被测函数根本没有执行. 先沿控制流查, 不要直接删掉调用断言来获得通过.
 
-## 换一种导入方式, 查找路径也会改变
+## 导入方式对替换位置的影响
 
 如果摘要模块改成下面这样, 它保存的是模块引用, 调用时再从模块取函数:
 
@@ -104,7 +104,7 @@ def build_summary(site_id, customer_id):
 
 还有一种引用会让人困惑: `def build(fetch=fetch_issues)` 这样的默认参数会在函数定义时保存对象. 之后只 patch 模块同名变量, 不会自动改掉已保存的默认参数. 这类代码可在调用时显式传替身, 就像 M1 那样. 不要为一个测试随意改写函数的内部属性来强行替换.
 
-## return_value、签名约束和调用断言各管什么?
+## 返回值、签名约束与调用断言
 
 `query_double` 是替代的可调用对象, `query_double.return_value` 是它被调用后交出的结果. 给前者随便添加一个 `total=2` 属性, 不等于调用后会返回 `{"total": 2}`. 要按真实依赖的返回层次设置数据, 才能把它正确送进摘要程序.
 
@@ -121,22 +121,22 @@ def build_summary(site_id, customer_id):
 
 `assert_called_with` 只针对最近一次调用, 不能单独证明只调用一次. 此处选择 `assert_called_once_with` 正是因为“只查一次”属于本例约定. 如果未来允许多次查询, 应重新定义调用序列及次数约束, 不机械沿用这个断言. 这些 API 语义见 [Python 3.9 调用断言](https://docs.python.org/3.9/library/unittest.mock.html#unittest.mock.Mock.assert_called_once_with).
 
-## 替换需要结束, 否则会污染下一条测试
+## 替换作用域与用例隔离
 
-`with patch(...)` 正常退出或因异常退出时, 都会撤销该范围的替换. 你仍需保证目标调用发生在这个范围内. 在 `with` 里配置好替身, 退出后才调用摘要函数, 会重新使用原依赖.
+`with patch(...)` 正常退出或因异常退出时, 都会撤销该范围的替换. 我还需要保证目标调用发生在这个范围内. 在 `with` 里配置好替身, 退出后才调用摘要函数, 会重新使用原依赖.
 
 <figure>
 <picture><source media="(max-width: 600px)" srcset="/images/patch-dependencies/scope-mobile.svg"><img src="/images/patch-dependencies/scope.svg" alt="时间线分为替换前、with内部和退出后; 只在with内部调用目标才使用替身, 正常或异常退出都会恢复原绑定, 不影响范围外原有引用的独立行为."></picture>
 <figcaption>图 4. 替换有明确的时间范围. 它不是线程隔离机制, 也不自动等待异步任务完成.</figcaption>
 </figure>
 
-模块级 patch 会影响同一进程内查找该名字的其他调用. `with` 能控制恢复时机, 并不意味着同一进程并发执行的其他测试看不到这个替身. 如果场景要并发, 可以通过独立进程或显式注入独立依赖来控制隔离; 本篇只讨论同步、串行的教学调用.
+模块级 patch 会影响同一进程内查找该名字的其他调用. `with` 能控制恢复时机, 并不意味着同一进程并发执行的其他测试看不到这个替身. 如果场景要并发, 可以通过独立进程或显式注入独立依赖来控制隔离; 本篇只讨论同步、串行的示例调用.
 
-如果用了手动 `start()` 却忘记 `stop()`, 后续用例可能接着得到上一条的固定返回. 本篇选择 `with` 是为了让范围直接可见, 不是要求读者先学习所有装饰器和 patcher 写法. 下一阶段的 M3 会在此基础上展开异常和连续返回, 这里不提前加入自动重试策略.
+如果用了手动 `start()` 却忘记 `stop()`, 后续用例可能接着得到上一条的固定返回. 我选择 `with` 来明确替换范围和恢复时机. 下一阶段的 M3 会在此基础上展开异常和连续返回, 这里不提前加入自动重试策略.
 
 将本篇方法迁移到工具调用时也是同样的边界问题: 固定某个工具执行函数的返回, 可以帮助检查上层怎样使用它, 但不会因此验证真实工具的鉴权或副作用. 先找上层实际查找工具函数的位置, 再明确哪些部分仍然真实执行.
 
-[M2 面试专题](../../interviews/mock-testing/patch-dependencies.md)提供命名空间、作用域和调用约束的完整问答. 本批阅读链至此为“接口覆盖 → 数据关联 → 替身边界 → 依赖替换”, 继续 [A1 的 Agent 请求地图](../agent/agent-request-map.md), 再进入路由与工具选择测试.
+[M2 面试专题](../../interviews/mock-testing/patch-dependencies.md)提供命名空间、作用域和调用约束的完整问答. 接口覆盖、数据关联、替身边界和依赖替换, 构成我在 [A1 的 Agent 请求链路](../agent/agent-request-map.md)中拆分问题的基础.
 
 ## 术语与依据
 
@@ -149,6 +149,6 @@ def build_summary(site_id, customer_id):
 | Autospec | 自动接口约束 | 发现不符合真实函数签名的调用 |
 | Context manager | 上下文管理器 | 通过 with 明确替换与恢复范围 |
 
-核查日期: 2026-10-22. 按 Python 3.9 官方 `unittest.mock` 的 Where to patch、patch、autospeccing 及调用断言章节核对; 默认参数的绑定时机参考 [函数定义说明](https://docs.python.org/3.9/reference/compound_stmts.html#function-definitions). 业务模块和断言场景为本文教学设计. 代码只做静态语法与机制核对, 没有实际访问服务或运行测试.
+核查日期: 2026-10-22. 按 Python 3.9 官方 `unittest.mock` 的 Where to patch、patch、autospeccing 及调用断言章节核对; 默认参数的绑定时机参考 [函数定义说明](https://docs.python.org/3.9/reference/compound_stmts.html#function-definitions). 业务模块和断言场景为本文方案设定. 代码只做静态语法与机制核对, 没有实际访问服务或运行测试.
 
-继续阅读 [M3: 超时、错误和连续返回](./fault-sequences.md).
+相关工作记录: [M3: 超时、错误和连续返回](./fault-sequences.md).

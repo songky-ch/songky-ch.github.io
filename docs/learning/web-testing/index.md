@@ -9,7 +9,7 @@ pageClass: testing-notes
 
 | 文章 | 类型 | 阅读重点 |
 | --- | --- | --- |
-| [从页面操作还原一条完整业务链](./business-flow.md) | 实践教程 | 串联页面、请求、持久化与列表展示, 解释缺记录和耗时. |
+| [页面提示成功后, 我怎样核对整条业务链](./business-flow.md) | 实践教程 | 串联页面、请求、持久化与列表展示, 解释缺记录和耗时. |
 
 阅读顺序: [W1 业务链](../web-testing/business-flow.md) → [I1 接口判定](../api-testing/api-test-oracle.md) → [I2 请求复现](../api-testing/browser-to-postman.md).
 

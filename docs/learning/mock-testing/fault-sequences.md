@@ -1,21 +1,21 @@
 ---
-title: 怎样稳定复现超时、错误和连续变化的返回?
+title: "查询超时和连续失败: 我的异常场景设计"
 category: Mock 测试
 contentType: 实践教程
 pageClass: testing-notes
 ---
 
-# 怎样稳定复现超时、错误和连续变化的返回?
+# 查询超时和连续失败: 我的异常场景设计
 
-<p class="article-kicker">第四批 · M3 · 让失败按约定发生, 再检查程序怎样应对</p>
+<p class="article-kicker">工作记录 · M3 · 设计思路与待验证方案</p>
 
-你想检查查询超时后的提示, 真实环境却一直正常; 好不容易超时一次, 又不知道下一次能否复现. 这时需要的不是等网络“碰巧坏掉”, 而是控制查询依赖在指定调用上返回什么或抛出什么异常.
+如果要验证查询超时后的处理, 我不希望用例依赖网络偶然出错. 在 Mock 方案中, 我会把第一次超时、第二次成功、持续失败和空数据分别设成可控序列, 再核对程序的行为与证据.
 
-[M2](patch-dependencies.md)解决替换位置, 本篇继续解决替换后的行为. 目标是看懂第一次失败、第二次成功、持续失败、空数据和错误结构怎样分别验证. 仍采用 Python 3.9 风格教学伪代码, 不要求运行.
+[M2](patch-dependencies.md)明确替换位置, 这里记录替换后的异常设计. 我目前还没有项目中的 Mock 实战, 下文是 Python 3.9 风格伪代码和预期推演, 不表示已经验证过真实服务.
 
-> 这是独立的 D1 只读接口教学策略: 首次查询遇到指定超时异常时, 等待 200 ms 后重试一次, 总尝试上限为 2. 它不适用于写入, 也不修改 [A1](../agent/agent-request-map.md) 中 Agent 最多派发一次且不重试的约定. 所有工具名、返回和数值均为教学设计.
+> D1 只读查询示例约定: 指定超时后等待 200 ms 再试一次, 总尝试上限为 2. 该策略不适用于写入, 也不改变 [Agent 单次派发且不重试](../agent/agent-request-map.md)的边界.
 
-## 先确定你要制造哪一层故障
+## 故障注入的位置与验证范围
 
 真实链路可以是“查询包装函数 → HTTP 适配器 → 网络 → 服务”. 在包装函数的依赖位置直接抛异常, 可以检查它怎样处理异常, 但没有验证真实 HTTP 客户端是否在规定时间取消请求.
 
@@ -25,9 +25,9 @@ pageClass: testing-notes
 
 如果真实客户端抛的是自己的异常类型, 需要在真实适配器测试中检查转换关系. 本篇不会声称 Python 内置 `TimeoutError` 能自动覆盖所有网络库的超时.
 
-## 先写清被测策略, 再配置替身
+## 只读查询的重试约定
 
-用 `query` 保存本次查询条件, 两次尝试必须使用相同条件. `fetch` 是查询依赖, `pause` 是等待依赖. `valid_payload` 是教学校验函数, 检查约定字段和类型; 本篇假定合法结果包含整数 `total` 和列表 `items`, 不在这里实现真实业务数据校验.
+用 `query` 保存本次查询条件, 两次尝试必须使用相同条件. `fetch` 是查询依赖, `pause` 是等待依赖. `valid_payload` 是示例校验函数, 检查约定字段和类型; 本篇假定合法结果包含整数 `total` 和列表 `items`, 不在这里实现真实业务数据校验.
 
 ```python
 # Python 3.9 风格教学伪代码, 不可直接运行.
@@ -50,9 +50,9 @@ def read_with_retry(fetch, pause, query):
 
 这里的“重试一次”是总共最多两次尝试. 成功后立刻返回; 第二次超时后结束; 错误结构不重试; 未被列出的异常不会被这段代码吞掉. 这些路径都可以从代码走到明确出口.
 
-<figure><picture><source media="(max-width: 600px)" srcset="/images/fault-sequences/retry-mobile.svg"><img src="/images/fault-sequences/retry.svg" alt="第一次查询成功则返回; 指定超时后等待200毫秒并进行第二次尝试; 第二次成功返回, 第二次超时进入不可用出口, 不再有第三次调用."></picture><figcaption>图 2. 重试由被测函数发起. side_effect 只决定每次被调用时发生什么, 不会主动触发下一次调用.</figcaption></figure>
+<figure><picture><source media="(max-width: 600px)" srcset="/images/fault-sequences/retry-mobile.svg"><img src="/images/fault-sequences/retry.svg" alt="图中展开先超时后成功的路径: 第一次查询抛超时, 包装器申请等待200毫秒, 等待替身立即返回, 第二次查询返回两条数据. 连续失败等其他出口见图3."></picture><figcaption>图 2. 重试由被测函数发起. side_effect 只决定每次被调用时发生什么, 不会主动触发下一次调用.</figcaption></figure>
 
-## 第一次超时, 第二次成功, 要怎样配?
+## 首次超时、第二次成功的序列
 
 `Mock.side_effect` 可以接收一个序列. 每发生一次调用, 消耗下一个元素: 普通值作为返回值, 异常作为抛出的异常. 这是 [Python 3.9 的 side_effect 语义](https://docs.python.org/3.9/library/unittest.mock.html#unittest.mock.Mock.side_effect), 不是我们给业务函数新增的接口.
 
@@ -75,7 +75,7 @@ pause.assert_called_once_with(0.2)
 
 只写 `assert_has_calls` 不一定能排除多余调用, 因为该断言允许指定序列前后存在额外调用. 本例直接比较完整 `call_args_list`, 同时约束数量、顺序和参数. 即使一次调用抛异常, Mock 仍会记录那次调用. 这些细节可查官方 [调用断言](https://docs.python.org/3.9/library/unittest.mock.html#unittest.mock.Mock.assert_has_calls)与 [Calling](https://docs.python.org/3.9/library/unittest.mock.html#calling) 章节.
 
-## 持续失败与一次就成功, 都要能讲清楚
+## 持续失败与一次成功的对照
 
 下面是四个独立 demo. 每行都重新创建 `fetch` 和 `pause`, 再调用同一个被测函数. 不在行与行之间共享已消耗的序列.
 
@@ -94,7 +94,7 @@ pause.assert_called_once_with(0.2)
 
 默认 `reset_mock()` 清理调用记录, 不会把已消耗的 `side_effect` 迭代序列重新倒带. 即使清除了 side_effect, 也不等于重新安装了原来的失败脚本. 本篇每个场景新建替身, 让初始状态直接可见. 官方默认行为见 [reset_mock](https://docs.python.org/3.9/library/unittest.mock.html#unittest.mock.Mock.reset_mock).
 
-## 立即抛异常, 能不能证明 3 秒超时有效?
+## 立即抛异常与真实超时机制的证据差异
 
 不能. 假设真实客户端配置 3,000 ms 超时, 当前测试立即抛出 `QueryTimeout`, 只证明异常发生后代码选择了哪条处理路径. `pause` 收到 0.2, 只证明代码请求等待 200 ms. 两者都没有验证墙钟等待时间、网络取消、连接释放或超时后服务端是否继续执行.
 
@@ -117,4 +117,4 @@ pause.assert_called_once_with(0.2)
 | StopIteration | 迭代结束异常 | 识别测试序列被额外消耗 |
 | Wall-clock time | 实际流逝时间 | 区分参数断言与真实计时 |
 
-核查日期: 2026-10-22. Python API 按 3.9 官方 `unittest.mock` 核对. 重试策略、数据与等待值为教学约定. 代码仅做静态语法和机制核查, 未运行故障注入或真实超时测试.
+核查日期: 2026-10-22. Python API 按 3.9 官方 `unittest.mock` 核对. 重试策略、数据与等待值为示例约定. 代码仅做静态语法和机制核查, 未运行故障注入或真实超时测试.

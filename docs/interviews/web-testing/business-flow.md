@@ -1,21 +1,21 @@
 ---
-title: 怎样讲清一次 Web 功能测试的业务链与定位过程
+title: "W1 面试记录: 页面提示成功后, 我怎样核对整条业务链"
 category: Web 测试
 contentType: 面试专题
 pageClass: testing-notes
 ---
 
-# 怎样讲清一次 Web 功能测试的业务链与定位过程
+# W1 面试记录: 页面提示成功后, 我怎样核对整条业务链
 
-<p class="article-kicker">第一批 · W1 面试专题 · 从证据讲方法</p>
+<p class="article-kicker">面试记录 · W1 · 判断依据与经验边界</p>
 
-配套学习文章: [从页面操作还原一条完整业务链](../../learning/web-testing/business-flow.md). 本篇用同一生产问题案例组织回答. 字段、记录数和耗时都是教学模拟, 不代表个人生产成果. 可以用“我会如何验证”说明设计思路, 实际执行过才改成“我做过”.
+对应[工作笔记](../../learning/web-testing/business-flow.md). 我的实际工作以 Web 功能测试、Postman 请求排查和 SQL 数据核对为主. 下面整理我对这类问题的判断方法, 具体故障与数值使用推演场景, 不作为已发生的项目成果.
 
 ## 测试视角: 页面提示成功, 列表却没有记录, 你怎么查?
 
-这道题主要看能否还原业务预期, 并用每一层的证据缩小范围. 回答按“明确条件 → 核对保存 → 核对查询 → 检查展示”展开即可.
+我关注的是能否还原业务预期, 并用每一层的证据缩小范围. 我的表达按“明确条件 → 核对保存 → 核对查询 → 检查展示”展开.
 
-### 可以这样回答
+### 我的表达
 
 “我先确认提交的是哪条记录, 用业务编号或唯一标记把后续证据串起来, 不只搜标题. 接着看创建请求的身份、关键字段和响应, 并按编号查询详情; 有获准的数据核对方式时, 再确认新增数量和保存字段.
 
@@ -31,9 +31,9 @@ pageClass: testing-notes
 
 ## 开发视角: 你希望系统提供哪些信息, 才便于定位?
 
-这里考察对组件边界与可观察性的理解. 不需要背完整技术栈, 要说清每个标识和状态为什么有用.
+这里我关注对组件边界与可观察性的理解. 不需要背完整技术栈, 要说清每个标识和状态为什么有用.
 
-### 可以这样回答
+### 我的表达
 
 “至少需要请求标识、业务编号、处理结果和必要的时间边界. 请求标识帮助关联一次调用的服务日志, 业务编号帮助关联录入、查询和数据记录. 两次请求可以有不同的请求标识, 但要能关联到同一条业务记录.
 
@@ -41,7 +41,7 @@ pageClass: testing-notes
 
 ### 追问: 点击到显示 342 ms, 服务处理 214 ms, 数据库 68 ms, 总耗时是多少?
 
-在本教学例子中, 点击到显示已经是完整范围, 为 342 ms. 数据库 68 ms 包含在服务 214 ms 内, 服务又发生在请求期间, 不应再次叠加. 还需确认每项计时的起止点, 不能仅凭指标名称做加法.
+在本推演场景中, 点击到显示已经是完整范围, 为 342 ms. 数据库 68 ms 包含在服务 214 ms 内, 服务又发生在请求期间, 不应再次叠加. 还需确认每项计时的起止点, 不能仅凭指标名称做加法.
 
 <figure>
 <picture><source media="(max-width: 600px)" srcset="/images/business-flow/timing-mobile.svg"><img src="/images/business-flow/timing.svg" alt="342毫秒由24、286、32三个连续阶段组成, 214毫秒服务和68毫秒数据库是内部嵌套计时."></picture>
@@ -63,4 +63,4 @@ pageClass: testing-notes
 | Request ID | 请求标识 | 关联一次请求的处理证据 |
 | Correlation ID | 关联标识 | 说明跨证据的连接方式与范围 |
 
-核查日期: 2026-10-21. 状态语义参考 [RFC 9110 §15](https://www.rfc-editor.org/rfc/rfc9110.html#section-15), 请求计时观察参考 [Chrome Network](https://developer.chrome.com/docs/devtools/network/reference/#timing-explanation). 问答和数值为教学设计; 未执行真实系统测试, 不宣称为实际面试原题.
+核查日期: 2026-10-21. 状态语义参考 [RFC 9110 §15](https://www.rfc-editor.org/rfc/rfc9110.html#section-15), 请求计时观察参考 [Chrome Network](https://developer.chrome.com/docs/devtools/network/reference/#timing-explanation). 问答和数值为方案设定; 未执行真实系统测试, 不宣称为实际面试原题.

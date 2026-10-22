@@ -1,21 +1,21 @@
 ---
-title: 怎样解释 Mock、Stub、Fake 与测试边界?
+title: "M1 面试记录: 查询依赖不可用时, 我的 Mock 测试设计"
 category: Mock 测试
 contentType: 面试专题
 pageClass: testing-notes
 ---
 
-# 怎样解释 Mock、Stub、Fake 与测试边界?
+# M1 面试记录: 查询依赖不可用时, 我的 Mock 测试设计
 
-<p class="article-kicker">第二批 · M1 面试专题</p>
+<p class="article-kicker">面试记录 · M1 · 判断依据与经验边界</p>
 
-配套学习: [依赖还没准备好, 我怎样继续测试](../../learning/mock-testing/test-doubles.md). 参考回答表达技术理解, 不把学习示例改写为个人已经完成的项目实践.
+对应[工作笔记](../../learning/mock-testing/test-doubles.md). 这份记录整理我对尚未落地方案的面试表达. 我会说明设计依据、预期证据和验证边界, 将技术理解与实际完成的工作区分开; 示例数据与结果均为推演.
 
 ## 测试视角: Mock 测试究竟在测什么?
 
-考察能否指出真实执行的对象与被替换的依赖. 回答按“测试目标 → 替换位置 → 两类断言 → 未覆盖范围”展开.
+我关注能否指出真实执行的对象与被替换的依赖. 我的表达按“测试目标 → 替换位置 → 两类断言 → 未覆盖范围”展开.
 
-### 可以这样回答
+### 我的表达
 
 “它不是测试假数据本身, 而是让依赖按指定方式响应, 再看真实的被测代码能否正确处理. 例如摘要程序依赖生产问题查询, 我固定返回两条记录, 让摘要逻辑真实运行, 检查它是否输出正确数量和编号.
 
@@ -27,9 +27,9 @@ pageClass: testing-notes
 
 ## 开发视角: Stub、Fake 和 Mock 怎样选择?
 
-考察各自解决的问题与维护代价, 不要求死背术语. 先讲需要控制什么, 再讲例子和局限.
+我关注各自解决的问题与维护代价, 我的表达从需要控制的依赖行为开始, 再说明实现和局限.
 
-### 可以这样回答
+### 我的表达
 
 “只需要稳定输入时, 我用一个固定返回的桩. 需要同一组小数据根据不同条件返回不同结果时, 可以用简化实现. 需要确认调用方式时, 则记录并核对调用参数和次数. 三种能力可以结合.
 
@@ -37,7 +37,7 @@ pageClass: testing-notes
 
 <figure>
 <picture><source media="(max-width: 600px)" srcset="/images/test-doubles/fixed-mobile.svg"><img src="/images/test-doubles/fixed.svg" alt="固定桩对不同客户返回相同结果, 因而输出正确不一定能证明参数正确."></picture>
-<figcaption>选择替身时, 先问当前证据能否区分你关心的正确与错误行为.</figcaption>
+<figcaption>选择替身时, 先问当前证据能否区分当前关心的正确与错误行为.</figcaption>
 </figure>
 
 ### 追问: Python Mock 类只设置返回值, 算哪一种?
@@ -59,4 +59,4 @@ pageClass: testing-notes
 | Mock | 记录交互并进行调用验证 |
 | SUT | 真正需要执行和验证的被测对象 |
 
-核查日期: 2026-10-22. 参考 [Fowler 原文](https://martinfowler.com/articles/mocksArentStubs.html)及 [Python 3.9 unittest.mock](https://docs.python.org/3.9/library/unittest.mock.html). 业务案例为教学模拟, 未进行真实集成验证.
+核查日期: 2026-10-22. 参考 [Fowler 原文](https://martinfowler.com/articles/mocksArentStubs.html)及 [Python 3.9 unittest.mock](https://docs.python.org/3.9/library/unittest.mock.html). 业务案例为场景推演, 未进行真实集成验证.

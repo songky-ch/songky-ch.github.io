@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | [通用与垂直领域 Agent 面试](./general-vs-domain-agents.md) | 面试专题 | 完整执行链、真实项目与可验证的业务结果 |
 | [Agent 意图识别与路由面试: 开发与测试双视角](./agent-intent-routing.md) | 面试专题 | 意图、路由、状态、生产案例与分层测试 |
-| [A1. Agent 请求地图](./agent-request-map.md) | 面试专题 | 组件职责、三路分流、单次执行与动态循环 |
-| [A2. 单次工具调用的测试方法](./single-call-tool-testing.md) | 面试专题 | 相似工具、参数来源、禁止调用与分母口径 |
+| [A1 面试记录: 我负责的单次调用 Agent: 请求链路与测试观察点](./agent-request-map.md) | 面试专题 | 组件职责、三路分流、单次执行与动态循环 |
+| [A2 面试记录: 围绕五十多个工具, 我怎样设计调用测试](./single-call-tool-testing.md) | 面试专题 | 相似工具、参数来源、禁止调用与分母口径 |
 
 [查看对应技术学习](../../learning/agent/).

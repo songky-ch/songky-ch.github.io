@@ -1,21 +1,21 @@
 ---
-title: 怎样解释浏览器与 Postman 的复现差异
+title: "I2 面试记录: 从页面异常到 Postman: 我的请求复现思路"
 category: 接口测试
 contentType: 面试专题
 pageClass: testing-notes
 ---
 
-# 怎样解释浏览器与 Postman 的复现差异
+# I2 面试记录: 从页面异常到 Postman: 我的请求复现思路
 
-<p class="article-kicker">第一批 · I2 面试专题 · 用受控对比解释问题</p>
+<p class="article-kicker">面试记录 · I2 · 判断依据与经验边界</p>
 
-配套文章: [从浏览器请求定位到 Postman 复现](../../learning/api-testing/browser-to-postman.md). 请求、日期、数量和时间都是教学模拟. 回答描述方法, 不暗示你已经处理过本文故障.
+对应[工作笔记](../../learning/api-testing/browser-to-postman.md). 我的实际工作以 Web 功能测试、Postman 请求排查和 SQL 数据核对为主. 下面整理我对这类问题的判断方法, 具体故障与数值使用推演场景, 不作为已发生的项目成果.
 
 ## 测试视角: 浏览器异常, Postman 正常, 你怎么定位?
 
-考察重点是请求等价性和证据顺序. 先确认两次请求是否可比, 再讨论浏览器行为, 比直接说“前端问题”更有依据.
+我关注的重点是请求等价性和证据顺序. 先确认两次请求是否可比, 再讨论浏览器行为, 比直接说“前端问题”更有依据.
 
-### 可以这样回答
+### 我的表达
 
 “我先从页面操作定位对应请求, 对照方法、地址、参数、身份、服务环境和数据窗口. 尽量导入原请求复现, 不一开始就手工重写. 如果账号或日期不同, 两个结果本来就不一定相同.
 
@@ -25,13 +25,13 @@ pageClass: testing-notes
 
 不保证. 会话可能已过期, 当前环境变量、代理、重定向或 Cookie 管理可能不同, 请求期间数据也可能更新. 复制能减少人工漏字段, 但发送前仍需检查解析后的实际目标和参数. 不应把复制动作当作完成等价性证明.
 
-易错回答是“Postman 通了就交给前端”. 正确的下一步取决于两端差异发生在哪个观察位置.
+我需要避免的判断是“Postman 通了就交给前端”. 正确的下一步取决于两端差异发生在哪个观察位置.
 
 ## 开发视角: 跨域报错时, 服务端一定没有处理请求吗?
 
 这个问题检查对浏览器与服务边界的理解. 先区分实际业务请求是否发出, 再讨论响应可用性.
 
-### 可以这样回答
+### 我的表达
 
 “不一定. 某些跨域请求会先预检, 预检失败可能让后续业务请求不发出. 但也可能请求已经到达服务端并被处理, 只是响应不能被页面脚本读取. 所以看到浏览器报跨域错误, 不能直接推断没有写入.
 
@@ -50,7 +50,7 @@ pageClass: testing-notes
 “这能支持日期参数与页面语义不一致的判断. 但它没有直接指出哪行代码错误, 也不能证明所有日期都存在同样问题. 后续需要查组参逻辑, 并回归边界附近的数据.”
 
 <figure>
-<picture><source media="(max-width: 600px)" srcset="/images/browser-to-postman/date-window-mobile.svg"><img src="/images/browser-to-postman/date-window.svg" alt="固定其他条件, 将日期上界从10月20日00点改到10月21日00点, 教学记录数由142变143."></picture>
+<picture><source media="(max-width: 600px)" srcset="/images/browser-to-postman/date-window-mobile.svg"><img src="/images/browser-to-postman/date-window.svg" alt="固定其他条件, 将日期上界从10月20日00点改到10月21日00点, 示例记录数由142变143."></picture>
 <figcaption>差值为 1 是这份固定样例的结果, 不代表真实项目每次都只影响一条记录.</figcaption>
 </figure>
 
