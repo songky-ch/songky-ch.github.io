@@ -134,7 +134,7 @@ def grade_retrieval(raw_hits, relevant_ids, required_groups, k):
 
 报告还需带上实际返回数量、未知/无答案/权限失败分组、候选层与上下文层的观测位置, 以及检索耗时与输入规模. 本例没有真实时延数据, 不填造 P95. 两个版本比较时同时看逐题差异, 避免平均相同却一批关键任务退化. 召回改善只是证据条件改善, 不等于生成答案已经正确.
 
-配套 [R3 面试专题](../../interviews/ai-evaluation/retrieval-metrics.md). 后续 R4 将继续检查“证据齐了, 回答是否忠实和完整”, R5 再系统组织 RAG benchmark, 不把本章的局部算例冒充完整评测集.
+配套 [R3 面试专题](../../interviews/ai-evaluation/retrieval-metrics.md). [R4 回答质量记录](rag-answer-quality.md)继续检查“证据齐了, 回答是否忠实和完整”, R5 再系统组织 RAG benchmark, 不把本章的局部算例冒充完整评测集.
 
 ## 术语与依据
 

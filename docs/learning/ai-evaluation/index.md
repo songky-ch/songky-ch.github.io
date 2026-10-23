@@ -13,6 +13,7 @@
 | [我的 Agent benchmark 设计: 任务、状态与证据](./agent-benchmark-design.md) | 实践教程 | 任务契约、状态隔离、分组与重复尝试 |
 | [我怎样设计规则评分器和模型评判](./rule-and-llm-graders.md) | 实践教程 | 证据、分项判定、模型校准与误放风险 |
 | [我的检索评测口径: 召回、排序与证据覆盖](./retrieval-metrics.md) | 实践教程 | 手算召回、排序、完整证据和宏微平均 |
+| [R4 回答事实、证据与引用](rag-answer-quality.md) | 实践教程 | 事实、上下文支持、必答项与引用的分项判定 |
 
 配套内容: [AI 评测面试专题](../../interviews/ai-evaluation/).
 
