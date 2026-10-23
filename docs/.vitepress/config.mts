@@ -45,7 +45,8 @@ export default defineConfig({
           { text: 'A3 Agent benchmark 设计', link: '/learning/ai-evaluation/agent-benchmark-design' },
           { text: 'A4 规则与模型评分器', link: '/learning/ai-evaluation/rule-and-llm-graders' },
           { text: 'R3 检索指标与证据覆盖', link: '/learning/ai-evaluation/retrieval-metrics' },
-          { text: 'R4 回答事实、证据与引用', link: '/learning/ai-evaluation/rag-answer-quality' }
+          { text: 'R4 回答事实、证据与引用', link: '/learning/ai-evaluation/rag-answer-quality' },
+          { text: 'R5 RAG benchmark 设计', link: '/learning/ai-evaluation/rag-benchmark-design' }
         ] },
         { text: 'RAG', link: '/learning/rag/', collapsed: false, items: [
           { text: '五种 RAG 的同异与实现流程', link: '/learning/rag/rag-architectures' },
@@ -82,7 +83,8 @@ export default defineConfig({
           { text: 'A3 Agent benchmark 设计', link: '/interviews/ai-evaluation/agent-benchmark-design' },
           { text: 'A4 规则与模型评分器', link: '/interviews/ai-evaluation/rule-and-llm-graders' },
           { text: 'R3 检索指标与证据覆盖', link: '/interviews/ai-evaluation/retrieval-metrics' },
-          { text: 'R4 回答事实、证据与引用', link: '/interviews/ai-evaluation/rag-answer-quality' }
+          { text: 'R4 回答事实、证据与引用', link: '/interviews/ai-evaluation/rag-answer-quality' },
+          { text: 'R5 RAG benchmark 设计', link: '/interviews/ai-evaluation/rag-benchmark-design' }
         ] },
         { text: 'RAG', link: '/interviews/rag/', collapsed: false, items: [
           { text: '五种 RAG 面试专题', link: '/interviews/rag/rag-architectures' },

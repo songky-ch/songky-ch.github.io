@@ -14,6 +14,7 @@
 | [A4 面试记录: 我怎样设计规则评分器和模型评判](./rule-and-llm-graders.md) | 面试专题 | 证据、分项判定、模型校准与误放风险 |
 | [R3 面试记录: 我的检索评测口径: 召回、排序与证据覆盖](./retrieval-metrics.md) | 面试专题 | 手算召回、排序、完整证据和宏微平均 |
 | [R4 回答事实、证据与引用](rag-answer-quality.md) | 面试专题 | 事实、上下文支持、必答项与引用的分项判定 |
+| [R5 RAG benchmark 设计](rag-benchmark-design.md) | 面试专题 | 任务覆盖、独立参考、资料版本与成对回归 |
 
 配套内容: [AI 评测学习文章](../../learning/ai-evaluation/).
 
