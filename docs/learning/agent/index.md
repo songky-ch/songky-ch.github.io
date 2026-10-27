@@ -9,4 +9,6 @@
 | [我负责的单次调用 Agent: 请求链路与测试观察点](./agent-request-map.md) | 原理讲解 | 组件职责、三路分流、单次执行与动态循环 |
 | [围绕五十多个工具, 我怎样设计调用测试](./single-call-tool-testing.md) | 实践教程 | 相似工具、参数来源、禁止调用与分母口径 |
 
+| [业务级 Agent 生产落地](./production-agent.md) | 实践教程 | 10 个考点、29 条情境分支、开发与测试证据 |
+
 [查看对应技术面试](../../interviews/agent/).

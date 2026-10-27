@@ -58,6 +58,7 @@ export default defineConfig({
           { text: 'M3 异常与连续返回', link: '/learning/mock-testing/fault-sequences' }
         ] },
         { text: 'Agent', link: '/learning/agent/', collapsed: false, items: [
+          { text: '业务级 Agent 生产落地', link: '/learning/agent/production-agent' },
           { text: '通用 Agent 与垂直领域 Agent', link: '/learning/agent/general-vs-domain-agents' },
           { text: 'Agent 意图识别与路由', link: '/learning/agent/agent-intent-routing' },
           { text: 'A1 Agent 请求链路', link: '/learning/agent/agent-request-map' },
@@ -96,6 +97,7 @@ export default defineConfig({
           { text: 'M3 异常与连续返回', link: '/interviews/mock-testing/fault-sequences' }
         ] },
         { text: 'Agent', link: '/interviews/agent/', collapsed: false, items: [
+          { text: '业务级 Agent 生产落地', link: '/interviews/agent/production-agent' },
           { text: '通用与垂直领域 Agent 面试', link: '/interviews/agent/general-vs-domain-agents' },
           { text: '意图识别与路由面试', link: '/interviews/agent/agent-intent-routing' },
           { text: 'A1 Agent 请求链路', link: '/interviews/agent/agent-request-map' },

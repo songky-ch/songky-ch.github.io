@@ -1,6 +1,6 @@
 {
-  "version": "0.3",
-  "date": "2026-10-27",
+  "version": "0.4",
+  "date": "2026-10-28",
   "data": "synthetic-v1",
   "meaning": "合成教学数据; 状态转换与算术实际执行, 无真实模型或业务调用",
   "checks": {
@@ -330,5 +330,105 @@
   "fixed_issues": [
     "窄屏控制按钮竖排拥挤, 修正换行并重新验证",
     "检查断言曾误匹配步骤导航, 改为检查评分正文后复测"
-  ]
+  ],
+  "baseline_verified_date": "2026-10-27",
+  "production_extension": {
+    "topics": 10,
+    "scripted_paths": 29,
+    "meaning": "scripted educational walkthrough; not production execution tests",
+    "desktop": {
+      "topics": 10,
+      "paths": 29,
+      "forward_transitions": 87,
+      "errors": 0,
+      "viewport": 1920,
+      "horizontal_overflow": false
+    },
+    "narrow_chrome_iframe": [
+      {
+        "topics": 10,
+        "paths": 29,
+        "forward_transitions": 87,
+        "errors": 0,
+        "viewport": 320,
+        "horizontal_overflow": false
+      },
+      {
+        "topics": 10,
+        "paths": 29,
+        "forward_transitions": 87,
+        "errors": 0,
+        "viewport": 390,
+        "horizontal_overflow": false
+      },
+      {
+        "topics": 10,
+        "paths": 29,
+        "forward_transitions": 87,
+        "errors": 0,
+        "viewport": 430,
+        "horizontal_overflow": false
+      }
+    ],
+    "original_demo_regression": {
+      "results": [
+        {
+          "name": "normal and approval version",
+          "passed": true
+        },
+        {
+          "name": "business failure distinct from execution",
+          "passed": true
+        },
+        {
+          "name": "unknown write effect cannot retry",
+          "passed": true
+        },
+        {
+          "name": "denial and cancellation",
+          "passed": true
+        },
+        {
+          "name": "rag visible arithmetic and reset",
+          "passed": true
+        },
+        {
+          "name": "rag hidden context and failures",
+          "passed": true
+        },
+        {
+          "name": "agent comparison and task denominator",
+          "passed": true
+        },
+        {
+          "name": "all 96 browser UI configurations",
+          "passed": true
+        }
+      ],
+      "passed": 8,
+      "total": 8,
+      "viewport": {
+        "width": 1920,
+        "height": 993
+      },
+      "horizontalOverflow": false
+    },
+    "visual_checks": [
+      "390px dark layout",
+      "desktop and narrow SVG actual rendering",
+      "390px forced light CSS branch, not OS emulation",
+      "built article chooses mobile SVG at 390px, no page overflow"
+    ],
+    "not_verified": [
+      "physical phone",
+      "real multi-agent execution",
+      "real framework persistence",
+      "production fault injection"
+    ],
+    "site_checks": {
+      "pages": 6,
+      "local_links": 258,
+      "errors": 0
+    }
+  }
 }
