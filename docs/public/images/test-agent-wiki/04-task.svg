@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1140" height="1250" viewBox="0 0 1140 1250" role="img" aria-labelledby="title desc">
+<title id="title">04 / 任务生命周期</title>
+<desc id="desc">执行状态与业务结论分开; UNKNOWN 禁止盲目重试.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#546c85" stroke-width="1.5"/></marker></defs>
+<rect width="1140" height="1250" fill="#f8fafc"/>
+<g font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+<text x="40" y="50" font-size="29" font-weight="700" fill="#16324d">04 / 任务生命周期</text>
+<text x="40" y="83" font-size="18" fill="#52677b">执行状态与业务结论分开; UNKNOWN 禁止盲目重试.</text>
+<path d="M570.0,208 L570.0,270" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M420,169 L205,169 L205,270" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M55,309 L30,309 L30,112 L570,112 L570,130" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M205.0,348 L205.0,410" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M570.0,348 L570.0,410" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M570.0,488 L570.0,550" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M720,449.0 L785,449.0" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M720,589.0 L785,589.0" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M935.0,628 L935.0,690" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M570.0,628 L570.0,690" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M570.0,768 L570.0,830" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M420,589 L205,589 L205,690" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M205.0,768 L205.0,830" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M205.0,908 L205.0,970" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M205.0,1048 L205.0,1110" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M55,1009 L15,1009 L15,230 L620,230 L620,208" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M355,1009.0 L420,1009.0" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M1085,589 L1120,589 L1120,869 L1085,869" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M935,908 L935,930 L205,930 L205,908" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M650,550 L650,520 L935,520 L935,488" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<rect x="420" y="130" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="570.0" y="176.0" text-anchor="middle" font-size="21" fill="#18364f">CREATED / 预检</text>
+<path d="M70,270 H340 L355,309.0 L340,348 H70 L55,309.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="205.0" y="302.5" text-anchor="middle" font-size="21" fill="#18364f">WAITING_*</text>
+<text x="205.0" y="329.5" text-anchor="middle" font-size="21" fill="#18364f">补问 / 认证 / 审批</text>
+<rect x="420" y="270" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="570.0" y="316.0" text-anchor="middle" font-size="21" fill="#18364f">QUEUED / 等待资源</text>
+<rect x="55" y="410" width="300" height="78" rx="20" fill="#fff0ee" stroke="#cd7468" stroke-width="1.6"/>
+<text x="205.0" y="456.0" text-anchor="middle" font-size="21" fill="#18364f">拒绝 / 过期 / 取消</text>
+<rect x="420" y="410" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="570.0" y="442.5" text-anchor="middle" font-size="21" fill="#18364f">STARTING</text>
+<text x="570.0" y="469.5" text-anchor="middle" font-size="21" fill="#18364f">认领与隔离环境</text>
+<rect x="420" y="550" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="570.0" y="582.5" text-anchor="middle" font-size="21" fill="#18364f">RUNNING</text>
+<text x="570.0" y="609.5" text-anchor="middle" font-size="21" fill="#18364f">心跳 / 证据 / 步骤</text>
+<rect x="785" y="410" width="300" height="78" rx="20" fill="#fff0ee" stroke="#cd7468" stroke-width="1.6"/>
+<text x="935.0" y="442.5" text-anchor="middle" font-size="21" fill="#18364f">FAILED</text>
+<text x="935.0" y="469.5" text-anchor="middle" font-size="21" fill="#18364f">启动或工具故障</text>
+<path d="M800,550 H1070 L1085,589.0 L1070,628 H800 L785,589.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="935.0" y="582.5" text-anchor="middle" font-size="21" fill="#18364f">STOPPING</text>
+<text x="935.0" y="609.5" text-anchor="middle" font-size="21" fill="#18364f">取消 / 超时 / 停机</text>
+<path d="M70,690 H340 L355,729.0 L340,768 H70 L55,729.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="205.0" y="722.5" text-anchor="middle" font-size="21" fill="#18364f">UNKNOWN</text>
+<text x="205.0" y="749.5" text-anchor="middle" font-size="21" fill="#18364f">失联或副作用不明</text>
+<rect x="420" y="690" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="570.0" y="736.0" text-anchor="middle" font-size="21" fill="#18364f">完成结果核对</text>
+<rect x="785" y="690" width="300" height="78" rx="20" fill="#fff0ee" stroke="#cd7468" stroke-width="1.6"/>
+<text x="935.0" y="722.5" text-anchor="middle" font-size="21" fill="#18364f">确认进程树停止</text>
+<text x="935.0" y="749.5" text-anchor="middle" font-size="21" fill="#18364f">CANCELLED / TIMED_OUT</text>
+<rect x="55" y="830" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="205.0" y="862.5" text-anchor="middle" font-size="21" fill="#18364f">停止旧进程 + 对账</text>
+<text x="205.0" y="889.5" text-anchor="middle" font-size="21" fill="#18364f">核对真实业务状态</text>
+<rect x="420" y="830" width="300" height="78" rx="20" fill="#e7f5f0" stroke="#4b9b83" stroke-width="1.6"/>
+<text x="570.0" y="862.5" text-anchor="middle" font-size="21" fill="#18364f">SUCCEEDED</text>
+<text x="570.0" y="889.5" text-anchor="middle" font-size="21" fill="#18364f">结论: 通过 / 失败 / 未判</text>
+<path d="M70,970 H340 L355,1009.0 L340,1048 H70 L55,1009.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="205.0" y="1016.0" text-anchor="middle" font-size="21" fill="#18364f">结果已知或可安全重试?</text>
+<rect x="420" y="970" width="300" height="78" rx="20" fill="#e7f5f0" stroke="#4b9b83" stroke-width="1.6"/>
+<text x="570.0" y="1002.5" text-anchor="middle" font-size="21" fill="#18364f">按事实记录终态</text>
+<text x="570.0" y="1029.5" text-anchor="middle" font-size="21" fill="#18364f">成功 / 失败 / 取消 / 超时</text>
+<path d="M70,1110 H340 L355,1140.0 L340,1170 H70 L55,1140.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="205.0" y="1147.0" text-anchor="middle" font-size="21" fill="#18364f">未明确: 保持 UNKNOWN</text>
+<path d="M800,830 H1070 L1085,869.0 L1070,908 H800 L785,869.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="935.0" y="862.5" text-anchor="middle" font-size="21" fill="#18364f">无法确认停止</text>
+<text x="935.0" y="889.5" text-anchor="middle" font-size="21" fill="#18364f">转 UNKNOWN</text>
+<text x="585" y="240" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">预检通过</text>
+<text x="220" y="158" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">需要输入</text>
+<text x="40" y="105" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">输入后重检</text>
+<text x="218" y="380" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">拒绝 / 到期</text>
+<text x="583" y="520" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">READY</text>
+<text x="735" y="442" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">失败</text>
+<text x="730" y="582" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">停止请求</text>
+<text x="948" y="661" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">已停止</text>
+<text x="583" y="660" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">完成</text>
+<text x="270" y="580" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">失联</text>
+<text x="218" y="1080" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">未明确</text>
+<text x="40" y="223" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">安全恢复: 重新预检</text>
+<text x="368" y="998" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">已知</text>
+<text x="1055" y="810" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">未确认</text>
+<text x="800" y="922" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">对账</text>
+<text x="742" y="514" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">运行故障</text>
+<line x1="40" y1="1195" x2="1100" y2="1195" stroke="#d0dce7"/>
+<text x="40" y="1225" font-size="16" fill="#5a7085">设计评审稿 v0.1  ·  2026-10-27  ·  橙色: 判断/等待  红色: 阻塞/失败  绿色: 可用结果</text>
+</g></svg>

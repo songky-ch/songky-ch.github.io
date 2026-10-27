@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1140" height="1140" viewBox="0 0 1140 1140" role="img" aria-labelledby="title desc">
+<title id="title">08 / 评测依据与被测目标分离</title>
+<desc id="desc">评分按可见证据分别执行; 缺失项不伪装成通过或零分.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#546c85" stroke-width="1.5"/></marker></defs>
+<rect width="1140" height="1140" fill="#f8fafc"/>
+<g font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+<text x="40" y="50" font-size="29" font-weight="700" fill="#16324d">08 / 评测依据与被测目标分离</text>
+<text x="40" y="83" font-size="18" fill="#52677b">评分按可见证据分别执行; 缺失项不伪装成通过或零分.</text>
+<path d="M570.0,208 L570.0,270" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M570.0,348 L570.0,410" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M720,309.0 L785,309.0" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M420,449 L205,449 L205,570" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M570.0,488 L570.0,570" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M720,449 L935,449 L935,570" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M205.0,648 L205.0,730" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M355,609 L385,609 L385,890 L420,890" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M570.0,648 L570.0,870" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M935.0,648 L935.0,730" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M935,808 L935,910 L720,910" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M205,808 L205,910 L420,910" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M1085,309 L1120,309 L1120,930 L720,930" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M570.0,948 L570.0,1010" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<rect x="420" y="130" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="570.0" y="176.0" text-anchor="middle" font-size="21" fill="#18364f">冻结数据集 / 标注 / rubric</text>
+<rect x="420" y="270" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="570.0" y="302.5" text-anchor="middle" font-size="21" fill="#18364f">目标适配器调用</text>
+<text x="570.0" y="329.5" text-anchor="middle" font-size="21" fill="#18364f">版本 / 记忆 / 预算固定</text>
+<rect x="420" y="410" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="570.0" y="442.5" text-anchor="middle" font-size="21" fill="#18364f">保存 observation</text>
+<text x="570.0" y="469.5" text-anchor="middle" font-size="21" fill="#18364f">回答 / 上下文 / 可见轨迹</text>
+<rect x="785" y="270" width="300" height="78" rx="20" fill="#fff0ee" stroke="#cd7468" stroke-width="1.6"/>
+<text x="935.0" y="302.5" text-anchor="middle" font-size="21" fill="#18364f">目标失败单独计数</text>
+<text x="935.0" y="329.5" text-anchor="middle" font-size="21" fill="#18364f">保留样本与错误</text>
+<path d="M70,570 H340 L355,609.0 L340,648 H70 L55,609.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="205.0" y="602.5" text-anchor="middle" font-size="21" fill="#18364f">检索标注和结果可用?</text>
+<text x="205.0" y="629.5" text-anchor="middle" font-size="21" fill="#18364f">Recall / MRR / nDCG</text>
+<rect x="420" y="570" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="570.0" y="602.5" text-anchor="middle" font-size="21" fill="#18364f">规则与任务结果</text>
+<text x="570.0" y="629.5" text-anchor="middle" font-size="21" fill="#18364f">断言 / 工具 / 参数</text>
+<rect x="785" y="570" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="935.0" y="602.5" text-anchor="middle" font-size="21" fill="#18364f">独立模型裁判</text>
+<text x="935.0" y="629.5" text-anchor="middle" font-size="21" fill="#18364f">正确性 / 忠实度</text>
+<rect x="55" y="730" width="300" height="78" rx="20" fill="#fff0ee" stroke="#cd7468" stroke-width="1.6"/>
+<text x="205.0" y="762.5" text-anchor="middle" font-size="21" fill="#18364f">缺证据: N/A</text>
+<text x="205.0" y="789.5" text-anchor="middle" font-size="21" fill="#18364f">不计入该指标分母</text>
+<path d="M800,730 H1070 L1085,769.0 L1070,808 H800 L785,769.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="935.0" y="762.5" text-anchor="middle" font-size="21" fill="#18364f">人工抽查与校准</text>
+<text x="935.0" y="789.5" text-anchor="middle" font-size="21" fill="#18364f">记录分歧</text>
+<rect x="420" y="870" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="570.0" y="902.5" text-anchor="middle" font-size="21" fill="#18364f">聚合 + 分母 + 区间</text>
+<text x="570.0" y="929.5" text-anchor="middle" font-size="21" fill="#18364f">质量与执行可靠性分开</text>
+<rect x="420" y="1010" width="300" height="60" rx="20" fill="#e7f5f0" stroke="#4b9b83" stroke-width="1.6"/>
+<text x="570.0" y="1033.5" text-anchor="middle" font-size="21" fill="#18364f">报告 / 逐样本证据</text>
+<text x="570.0" y="1060.5" text-anchor="middle" font-size="21" fill="#18364f">版本比较与限制</text>
+<text x="582" y="380" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">成功</text>
+<text x="735" y="301" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">失败</text>
+<text x="218" y="700" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">不可计算</text>
+<text x="210" y="850" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">可计算: 保存得分</text>
+<text x="945" y="960" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">错误也进报告</text>
+<line x1="40" y1="1085" x2="1100" y2="1085" stroke="#d0dce7"/>
+<text x="40" y="1115" font-size="16" fill="#5a7085">设计评审稿 v0.1  ·  2026-10-27  ·  橙色: 判断/等待  红色: 阻塞/失败  绿色: 可用结果</text>
+</g></svg>

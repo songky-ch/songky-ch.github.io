@@ -13,9 +13,31 @@ export default defineConfig({
     siteTitle: '技术学习手记',
     nav: [
       { text: '技术学习', link: '/learning/' },
-      { text: '技术面试', link: '/interviews/' }
+      { text: '技术面试', link: '/interviews/' },
+      { text: '测试 Agent Wiki', link: '/test-agent-wiki/' }
     ],
     sidebar: {
+      '/test-agent-wiki/': [{ text: '测试 Agent 项目 Wiki', link: '/test-agent-wiki/', collapsed: false, items: [
+        { text: '架构设计', link: '/test-agent-wiki/architecture/', collapsed: false, items: [
+          { text: '总览与阅读地图', link: '/test-agent-wiki/architecture/' },
+          { text: '01. 目标、约束与决策', link: '/test-agent-wiki/architecture/01-scope-decisions' },
+          { text: '02. 技术底座与模块架构', link: '/test-agent-wiki/architecture/02-stack-architecture' },
+          { text: '03. Windows 客户端与身份', link: '/test-agent-wiki/architecture/03-client-identity' },
+          { text: '04. Agent、工具与 Skill', link: '/test-agent-wiki/architecture/04-agent-tools-skills' },
+          { text: '05. 任务、执行器与恢复', link: '/test-agent-wiki/architecture/05-tasks-executor' },
+          { text: '06. 人工介入与审批', link: '/test-agent-wiki/architecture/06-hitl-policy' },
+          { text: '07. RAG 与长短期记忆', link: '/test-agent-wiki/architecture/07-rag-memory' },
+          { text: '08. 文档、图片与用例生成', link: '/test-agent-wiki/architecture/08-documents-cases' },
+          { text: '09. 接口、UI 与压力性能测试', link: '/test-agent-wiki/architecture/09-testing' },
+          { text: '10. 知识库与 Agent 评测', link: '/test-agent-wiki/architecture/10-evaluation' },
+          { text: '11. 数据模型与 API 契约', link: '/test-agent-wiki/architecture/11-data-api' },
+          { text: '12. 无 Docker 部署与运维', link: '/test-agent-wiki/architecture/12-deployment-operations' },
+          { text: '13. 分支目录与验收', link: '/test-agent-wiki/architecture/13-branches-acceptance' },
+          { text: '14. 开发顺序与文档规范', link: '/test-agent-wiki/architecture/14-delivery-learning' },
+          { text: '15. 术语与官方依据', link: '/test-agent-wiki/architecture/15-glossary-sources' },
+          { text: '检查记录与发布说明', link: '/test-agent-wiki/architecture/validation' }
+        ] }
+      ] }],
       '/learning/': [{ text: '技术学习', link: '/learning/', collapsed: false, items: [
         { text: 'Web 测试', link: '/learning/web-testing/', collapsed: false, items: [
           { text: 'W1 业务链与数据核对', link: '/learning/web-testing/business-flow' }

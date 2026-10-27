@@ -12,6 +12,10 @@ hero:
       text: 进入技术面试
       link: /interviews/
 features:
+  - title: 测试 Agent 项目 Wiki
+    details: 从零设计内部测试 Agent, 包含技术底座、执行流程、记忆检索、专项测试与评测.
+    link: /test-agent-wiki/
+    linkText: 阅读完整架构
   - title: 技术学习
     details: 从知识点、框架、项目和文档出发, 串起工作机制、关键术语与实操流程.
     link: /learning/

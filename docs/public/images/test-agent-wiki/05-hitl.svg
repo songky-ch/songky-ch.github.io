@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1140" height="1140" viewBox="0 0 1140 1140" role="img" aria-labelledby="title desc">
+<title id="title">05 / 执行中人工介入</title>
+<desc id="desc">批准绑定动作与参数版本; 用户选择不能突破系统边界.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#546c85" stroke-width="1.5"/></marker></defs>
+<rect width="1140" height="1140" fill="#f8fafc"/>
+<g font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+<text x="40" y="50" font-size="29" font-weight="700" fill="#16324d">05 / 执行中人工介入</text>
+<text x="40" y="83" font-size="18" fill="#52677b">批准绑定动作与参数版本; 用户选择不能突破系统边界.</text>
+<path d="M570.0,208 L570.0,270" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M720,309.0 L785,309.0" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M570.0,348 L570.0,410" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M420,449.0 L355,449.0" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M570.0,488 L570.0,690" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M205.0,488 L205.0,550" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M205.0,628 L205.0,690" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M355,589 L385,589 L385,729 L420,729" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M55,589 L25,589 L25,169 L420,169" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M570.0,768 L570.0,830" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M720,729.0 L785,729.0" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M935,690 L1120,690 L1120,169 L720,169" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<rect x="420" y="130" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="570.0" y="176.0" text-anchor="middle" font-size="21" fill="#18364f">工具提案 / 目标 / 参数</text>
+<path d="M435,270 H705 L720,309.0 L705,348 H435 L420,309.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="570.0" y="316.0" text-anchor="middle" font-size="21" fill="#18364f">满足系统硬边界?</text>
+<rect x="785" y="270" width="300" height="78" rx="20" fill="#fff0ee" stroke="#cd7468" stroke-width="1.6"/>
+<text x="935.0" y="316.0" text-anchor="middle" font-size="21" fill="#18364f">拒绝动作</text>
+<path d="M435,410 H705 L720,449.0 L705,488 H435 L420,449.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="570.0" y="456.0" text-anchor="middle" font-size="21" fill="#18364f">已在有效授权范围?</text>
+<path d="M70,410 H340 L355,449.0 L340,488 H70 L55,449.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="205.0" y="442.5" text-anchor="middle" font-size="21" fill="#18364f">保存 interaction</text>
+<text x="205.0" y="469.5" text-anchor="middle" font-size="21" fill="#18364f">释放执行资源</text>
+<path d="M70,550 H340 L355,589.0 L340,628 H70 L55,589.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="205.0" y="596.0" text-anchor="middle" font-size="21" fill="#18364f">用户决定</text>
+<rect x="55" y="690" width="300" height="78" rx="20" fill="#fff0ee" stroke="#cd7468" stroke-width="1.6"/>
+<text x="205.0" y="736.0" text-anchor="middle" font-size="21" fill="#18364f">拒绝 / 到期 / 取消</text>
+<path d="M435,690 H705 L720,729.0 L705,768 H435 L420,729.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="570.0" y="722.5" text-anchor="middle" font-size="21" fill="#18364f">执行前复核</text>
+<text x="570.0" y="749.5" text-anchor="middle" font-size="21" fill="#18364f">身份 / 哈希 / 时效</text>
+<rect x="420" y="830" width="300" height="78" rx="20" fill="#e7f5f0" stroke="#4b9b83" stroke-width="1.6"/>
+<text x="570.0" y="876.0" text-anchor="middle" font-size="21" fill="#18364f">原子记录并进入调度</text>
+<path d="M800,690 H1070 L1085,729.0 L1070,768 H800 L785,729.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="935.0" y="722.5" text-anchor="middle" font-size="21" fill="#18364f">范围或参数变化</text>
+<text x="935.0" y="749.5" text-anchor="middle" font-size="21" fill="#18364f">旧批准失效</text>
+<text x="745" y="301" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">否</text>
+<text x="584" y="381" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">是</text>
+<text x="378" y="441" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">否</text>
+<text x="583" y="590" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">是</text>
+<text x="218" y="661" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">不批准</text>
+<text x="365" y="645" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">批准</text>
+<text x="45" y="235" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">修改参数: 重新校验</text>
+<text x="583" y="800" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">有效</text>
+<text x="735" y="722" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">失效</text>
+<text x="946" y="570" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">重新预检</text>
+<line x1="40" y1="1085" x2="1100" y2="1085" stroke="#d0dce7"/>
+<text x="40" y="1115" font-size="16" fill="#5a7085">设计评审稿 v0.1  ·  2026-10-27  ·  橙色: 判断/等待  红色: 阻塞/失败  绿色: 可用结果</text>
+</g></svg>

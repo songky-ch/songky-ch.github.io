@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1140" height="1150" viewBox="0 0 1140 1150" role="img" aria-labelledby="title desc">
+<title id="title">06 / 知识与记忆的数据路径</title>
+<desc id="desc">数据库保存事实, 向量只是索引; 两条写入路径独立.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#546c85" stroke-width="1.5"/></marker></defs>
+<rect width="1140" height="1150" fill="#f8fafc"/>
+<g font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+<text x="40" y="50" font-size="29" font-weight="700" fill="#16324d">06 / 知识与记忆的数据路径</text>
+<text x="40" y="83" font-size="18" fill="#52677b">数据库保存事实, 向量只是索引; 两条写入路径独立.</text>
+<rect x="25" y="120" width="510" height="785" rx="10" fill="#eef3f8" stroke="#bfccd9" stroke-dasharray="7 5"/>
+<text x="41" y="149" font-size="19" font-weight="600" fill="#49647f">知识库 / 文档事实</text>
+<rect x="595" y="120" width="520" height="785" rx="10" fill="#eef3f8" stroke="#bfccd9" stroke-dasharray="7 5"/>
+<text x="611" y="149" font-size="19" font-weight="600" fill="#49647f">长期记忆 / 对话事实与经验</text>
+<path d="M260.0,253 L260.0,315" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M260.0,393 L260.0,455" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M260.0,533 L260.0,595" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M260.0,673 L260.0,735" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M110,494 L50,494 L50,925 L175,925 L175,985" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M855.0,253 L855.0,315" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M855.0,393 L855.0,455" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M855.0,533 L855.0,595" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M855.0,673 L855.0,735" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M1005,494 L1090,494 L1090,925 L965,925 L965,985" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M260,813 L260,925 L570,925 L570,955" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M855,813 L855,925 L570,925 L570,955" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<rect x="110" y="175" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="260.0" y="221.0" text-anchor="middle" font-size="21" fill="#18364f">原文 / 版本 / 可见范围</text>
+<rect x="110" y="315" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="260.0" y="347.5" text-anchor="middle" font-size="21" fill="#18364f">解析与切片</text>
+<text x="260.0" y="374.5" text-anchor="middle" font-size="21" fill="#18364f">保留页码和原图位置</text>
+<path d="M125,455 H395 L410,494.0 L395,533 H125 L110,494.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="260.0" y="501.0" text-anchor="middle" font-size="21" fill="#18364f">索引完整且校验通过?</text>
+<rect x="110" y="595" width="300" height="78" rx="5" fill="#eaf0fc" stroke="#748dc1" stroke-width="1.6"/>
+<text x="260.0" y="627.5" text-anchor="middle" font-size="21" fill="#18364f">发布知识版本</text>
+<text x="260.0" y="654.5" text-anchor="middle" font-size="21" fill="#18364f">原文 + 片段 + 向量</text>
+<rect x="110" y="735" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="260.0" y="767.5" text-anchor="middle" font-size="21" fill="#18364f">范围过滤后检索</text>
+<text x="260.0" y="794.5" text-anchor="middle" font-size="21" fill="#18364f">证据不足则补问</text>
+<rect x="705" y="175" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="855.0" y="221.0" text-anchor="middle" font-size="21" fill="#18364f">对话 / 任务结果 / 反馈</text>
+<rect x="705" y="315" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="855.0" y="347.5" text-anchor="middle" font-size="21" fill="#18364f">提炼候选与来源</text>
+<text x="855.0" y="374.5" text-anchor="middle" font-size="21" fill="#18364f">剔除秘密和临时信息</text>
+<path d="M720,455 H990 L1005,494.0 L990,533 H720 L705,494.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="855.0" y="501.0" text-anchor="middle" font-size="21" fill="#18364f">有依据且无未解冲突?</text>
+<rect x="705" y="595" width="300" height="78" rx="5" fill="#eaf0fc" stroke="#748dc1" stroke-width="1.6"/>
+<text x="855.0" y="627.5" text-anchor="middle" font-size="21" fill="#18364f">版本化记忆 + 索引</text>
+<text x="855.0" y="654.5" text-anchor="middle" font-size="21" fill="#18364f">推断单独标记</text>
+<rect x="705" y="735" width="300" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="855.0" y="767.5" text-anchor="middle" font-size="21" fill="#18364f">范围 / 有效期 / 删除检查</text>
+<text x="855.0" y="794.5" text-anchor="middle" font-size="21" fill="#18364f">读取必要记忆</text>
+<rect x="420" y="955" width="300" height="78" rx="20" fill="#e7f5f0" stroke="#4b9b83" stroke-width="1.6"/>
+<text x="570.0" y="987.5" text-anchor="middle" font-size="21" fill="#18364f">有预算地组装上下文</text>
+<text x="570.0" y="1014.5" text-anchor="middle" font-size="21" fill="#18364f">知识引用与记忆来源分开</text>
+<rect x="40" y="985" width="270" height="60" rx="20" fill="#fff0ee" stroke="#cd7468" stroke-width="1.6"/>
+<text x="175.0" y="1022.0" text-anchor="middle" font-size="21" fill="#18364f">失败版本不发布</text>
+<path d="M845,985 H1085 L1100,1015.0 L1085,1045 H845 L830,1015.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="965.0" y="1022.0" text-anchor="middle" font-size="21" fill="#18364f">冲突候选待确认</text>
+<text x="273" y="564" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">是</text>
+<text x="62" y="565" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">否</text>
+<text x="866" y="565" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">是</text>
+<text x="1060" y="565" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">否</text>
+<line x1="40" y1="1095" x2="1100" y2="1095" stroke="#d0dce7"/>
+<text x="40" y="1125" font-size="16" fill="#5a7085">设计评审稿 v0.1  ·  2026-10-27  ·  橙色: 判断/等待  红色: 阻塞/失败  绿色: 可用结果</text>
+</g></svg>
