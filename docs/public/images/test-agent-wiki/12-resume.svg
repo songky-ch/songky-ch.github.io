@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1140" height="1160" viewBox="0 0 1140 1160" role="img" aria-labelledby="title desc">
+<title id="title">12 / 等待之后如何恢复</title>
+<desc id="desc">判定图: 到达一个事件, 不代表仍然具备继续执行的条件.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#546c85" stroke-width="1.5"/></marker></defs>
+<rect width="1140" height="1160" fill="#f8fafc"/>
+<g font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+<text x="40" y="50" font-size="29" font-weight="700" fill="#16324d">12 / 等待之后如何恢复</text>
+<text x="40" y="83" font-size="18" fill="#52677b">判定图: 到达一个事件, 不代表仍然具备继续执行的条件.</text>
+<path d="M430,208 L275,300" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M710,208 L865,300" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M275,378 L275,435 L430,435 L430,500" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M865,378 L865,435 L710,435 L710,500" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M50,339 L30,339 L30,739 L50,739" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M1090,339 L1110,339 L1110,670 L275,670 L275,700" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M710,590 L865,700" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M640,739 L570,739 L570,860 L275,860 L275,925" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M865.0,778 L865.0,925" stroke="#546c85" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+<path d="M265,130 H875 L890,169.0 L875,208 H265 L250,169.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="570.0" y="176.0" text-anchor="middle" font-size="21" fill="#18364f">持久等待: 人工交互或异步任务</text>
+<rect x="50" y="300" width="450" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="275.0" y="332.5" text-anchor="middle" font-size="21" fill="#18364f">人工回复</text>
+<text x="275.0" y="359.5" text-anchor="middle" font-size="21" fill="#18364f">身份 / 交互版本 / 有效期</text>
+<rect x="640" y="300" width="450" height="78" rx="5" fill="#ffffff" stroke="#a9bbcd" stroke-width="1.6"/>
+<text x="865.0" y="332.5" text-anchor="middle" font-size="21" fill="#18364f">任务事件</text>
+<text x="865.0" y="359.5" text-anchor="middle" font-size="21" fill="#18364f">调用 ID / 事件 ID / 状态版本</text>
+<rect x="250" y="500" width="640" height="90" rx="5" fill="#eaf0fc" stroke="#748dc1" stroke-width="1.6"/>
+<text x="570.0" y="538.5" text-anchor="middle" font-size="21" fill="#18364f">重新读取当前事实</text>
+<text x="570.0" y="565.5" text-anchor="middle" font-size="21" fill="#18364f">任务 / 授权 / 参数 / 取消 / 预算</text>
+<rect x="50" y="700" width="450" height="78" rx="20" fill="#fff0ee" stroke="#cd7468" stroke-width="1.6"/>
+<text x="275.0" y="732.5" text-anchor="middle" font-size="21" fill="#18364f">无效 / 重复 / 迟到</text>
+<text x="275.0" y="759.5" text-anchor="middle" font-size="21" fill="#18364f">拒绝或忽略, 不推进</text>
+<path d="M655,700 H1075 L1090,739.0 L1075,778 H655 L640,739.0 Z" fill="#fff4d9" stroke="#c49331" stroke-width="1.6"/>
+<text x="865.0" y="746.0" text-anchor="middle" font-size="21" fill="#18364f">状态 / 授权 / 预算仍允许?</text>
+<rect x="50" y="925" width="450" height="95" rx="20" fill="#fff0ee" stroke="#cd7468" stroke-width="1.6"/>
+<text x="275.0" y="966.0" text-anchor="middle" font-size="21" fill="#18364f">否: 等待新授权 / 结束 / 对账</text>
+<text x="275.0" y="993.0" text-anchor="middle" font-size="21" fill="#18364f">外部效果不明保持 UNKNOWN</text>
+<rect x="640" y="925" width="450" height="95" rx="20" fill="#e7f5f0" stroke="#4b9b83" stroke-width="1.6"/>
+<text x="865.0" y="966.0" text-anchor="middle" font-size="21" fill="#18364f">是: 组装最新有效上下文</text>
+<text x="865.0" y="993.0" text-anchor="middle" font-size="21" fill="#18364f">固定 Prompt 版本, 继续循环</text>
+<text x="280" y="260" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">人工</text>
+<text x="820" y="260" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">任务</text>
+<text x="300" y="426" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">有效回复</text>
+<text x="720" y="426" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">有效新事件</text>
+<text x="55" y="650" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">无效</text>
+<text x="820" y="660" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">重复或无效</text>
+<text x="310" y="850" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">否</text>
+<text x="885" y="850" font-size="17" fill="#435d77" stroke="#f8fafc" stroke-width="5" paint-order="stroke">是</text>
+<line x1="40" y1="1105" x2="1100" y2="1105" stroke="#d0dce7"/>
+<text x="40" y="1135" font-size="16" fill="#5a7085">设计评审稿 v0.2  ·  2026-10-27  ·  橙色: 判断/等待  红色: 阻塞/失败  绿色: 可用结果</text>
+</g></svg>

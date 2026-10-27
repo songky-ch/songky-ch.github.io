@@ -147,3 +147,19 @@ API 应返回 WAITING_INPUT 或 WAITING_APPROVAL 等真实状态, 不能因 202 
 文件先写临时位置 → 校验哈希 → 原子移动到受控路径 → 提交元数据. 崩溃产生的未引用文件由带保留窗口的清理任务识别. 元数据已提交但文件不可读时返回 artifact_unavailable, 不伪造下载.
 
 备份必须包含数据库与对应文件版本. 仅恢复数据库而丢失报告/原文不是完整恢复.
+
+## 8. 上下文与 Prompt 追踪补充契约
+
+| 实体/扩展 | 建议字段 | 约束 |
+| --- | --- | --- |
+| context_summaries | id, run_id, scope, source_range/version/hash, schema_version, parent_id, content, status | 按来源版本 CAS 激活; 纠正/删除使派生项失效 |
+| context_snapshots | id, run_id, model_call_id, selected_refs, omitted_reasons, token_usage, policy_version, redacted_artifact_ref | 保存输入清单与必要脱敏产物, 默认不全量复制敏感原文 |
+| version_manifests | id, global/node_prompt_versions, tool_schema_versions, skill_versions, model_config_ref, context_policy_version, workflow_version | run 固定版本组合; 当前权限撤销仍实时生效 |
+| model_calls | id, run_id, manifest_ref, context_snapshot_ref, status, usage, latency, error_code | 区分失败和未知计费, 不记录完整内部思维链 |
+| agent_runs 扩展 | version_manifest_ref, context_snapshot_ref | 与原检查点引用并存, 不新建另一套状态 |
+
+模板源文件在代码仓库, 数据库只保存运行所需版本清单和追踪引用. 小规模实施允许版本清单作为已有 run 的结构化字段, 无需为设计表格强制拆分数据库表. 具体物理结构在 P2 迁移评审确定.
+
+这些数据先供内部诊断和评测, 不新增对所有用户开放的 Prompt 编辑或任意历史读取 API. 原有 run/task 接口继续提供状态; 补参、审批、取消仍使用既有接口. 新增错误原因 `CONTEXT_REQUIRED_TOO_LARGE`、`PROMPT_INPUT_INVALID` 映射为 run 失败原因和脱敏 error 事件, 不把已受理异步任务的失败伪装为初始 HTTP 成功完成.
+
+日志/事件可记录 `context.compacted` 与 `model.call_completed`, 仅含引用、版本和计量. 事件仍按原 stream/seq 排序; 不向未获范围授权的客户端发送原始 Prompt、其他用户资料或凭证.

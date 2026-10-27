@@ -35,6 +35,9 @@ export default defineConfig({
           { text: '13. 分支目录与验收', link: '/test-agent-wiki/architecture/13-branches-acceptance' },
           { text: '14. 开发顺序与文档规范', link: '/test-agent-wiki/architecture/14-delivery-learning' },
           { text: '15. 术语与官方依据', link: '/test-agent-wiki/architecture/15-glossary-sources' },
+          { text: '16. 上下文工程与压缩', link: '/test-agent-wiki/architecture/16-context-engineering' },
+          { text: '17. Prompt 工程与版本管理', link: '/test-agent-wiki/architecture/17-prompt-engineering' },
+          { text: '18. Harness 运行机制', link: '/test-agent-wiki/architecture/18-harness-runtime' },
           { text: '检查记录与发布说明', link: '/test-agent-wiki/architecture/validation' }
         ] }
       ] }],

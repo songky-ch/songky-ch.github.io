@@ -729,5 +729,241 @@
         ""
       ]
     ]
+  },
+  {
+    "file": "09-context.svg",
+    "title": "09 / 模型输入的选择与预算",
+    "nodes": [
+      "facts",
+      "rules",
+      "recent",
+      "optional",
+      "budget",
+      "model",
+      "artifact",
+      "limit"
+    ],
+    "edges": [
+      [
+        "facts",
+        "rules",
+        ""
+      ],
+      [
+        "facts",
+        "recent",
+        ""
+      ],
+      [
+        "facts",
+        "optional",
+        ""
+      ],
+      [
+        "rules",
+        "budget",
+        ""
+      ],
+      [
+        "recent",
+        "budget",
+        ""
+      ],
+      [
+        "optional",
+        "budget",
+        ""
+      ],
+      [
+        "budget",
+        "model",
+        "可容纳的有效输入"
+      ],
+      [
+        "budget",
+        "artifact",
+        "大结果保留引用"
+      ],
+      [
+        "budget",
+        "limit",
+        ""
+      ]
+    ]
+  },
+  {
+    "file": "10-prompt.svg",
+    "title": "10 / Prompt 组装与执行边界",
+    "nodes": [
+      "trusted",
+      "data",
+      "assemble",
+      "bad",
+      "call",
+      "check",
+      "reject",
+      "dispatch",
+      "trace"
+    ],
+    "edges": [
+      [
+        "trusted",
+        "assemble",
+        ""
+      ],
+      [
+        "data",
+        "assemble",
+        ""
+      ],
+      [
+        "assemble",
+        "bad",
+        "不合法"
+      ],
+      [
+        "assemble",
+        "call",
+        "合法"
+      ],
+      [
+        "call",
+        "check",
+        ""
+      ],
+      [
+        "check",
+        "reject",
+        "不满足"
+      ],
+      [
+        "check",
+        "dispatch",
+        "满足"
+      ]
+    ]
+  },
+  {
+    "file": "11-harness.svg",
+    "title": "11 / Harness 的模块协作",
+    "nodes": [
+      "client",
+      "runtime",
+      "context",
+      "policy",
+      "scheduler",
+      "db",
+      "event",
+      "runner",
+      "wait"
+    ],
+    "edges": [
+      [
+        "client",
+        "runtime",
+        ""
+      ],
+      [
+        "runtime",
+        "context",
+        "模型调用"
+      ],
+      [
+        "context",
+        "policy",
+        "完整提案"
+      ],
+      [
+        "policy",
+        "scheduler",
+        "允许"
+      ],
+      [
+        "policy",
+        "db",
+        "等待 / 拒绝落库"
+      ],
+      [
+        "scheduler",
+        "runner",
+        "启动与回收"
+      ],
+      [
+        "runner",
+        "event",
+        "结果事件"
+      ],
+      [
+        "event",
+        "db",
+        "记录 / 核对"
+      ],
+      [
+        "db",
+        "runtime",
+        "检查点恢复"
+      ]
+    ]
+  },
+  {
+    "file": "12-resume.svg",
+    "title": "12 / 等待之后如何恢复",
+    "nodes": [
+      "wait",
+      "human",
+      "task",
+      "facts",
+      "bad",
+      "ready",
+      "stop",
+      "go"
+    ],
+    "edges": [
+      [
+        "wait",
+        "human",
+        "人工"
+      ],
+      [
+        "wait",
+        "task",
+        "任务"
+      ],
+      [
+        "human",
+        "facts",
+        "有效回复"
+      ],
+      [
+        "task",
+        "facts",
+        "有效新事件"
+      ],
+      [
+        "human",
+        "bad",
+        "无效"
+      ],
+      [
+        "task",
+        "bad",
+        "重复或无效"
+      ],
+      [
+        "facts",
+        "ready",
+        ""
+      ],
+      [
+        "ready",
+        "stop",
+        "否"
+      ],
+      [
+        "ready",
+        "go",
+        "是"
+      ]
+    ]
   }
 ]

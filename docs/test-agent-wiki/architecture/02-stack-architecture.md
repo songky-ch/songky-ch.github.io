@@ -105,3 +105,9 @@ FastAPI 的 BackgroundTasks 适合响应后的后台工作, 本方案的长任�
 ## 6. 技术验证清单
 
 开发前建立精确版本清单: OS、Python、.NET、WebView2 SDK/Runtime、数据库与扩展、模型网关、Playwright 与浏览器二进制、OCR 模型文件及哈希、k6. 记录安装来源、许可、内网分发方式和兼容性测试结果. 不在本轮安装这些运行依赖.
+
+## 7. 上下文、Prompt 与 Harness 的位置
+
+上下文选择/压缩与 Prompt 组装属于主服务内 `agent_runtime` 的逻辑职责, 使用现有 Python/Pydantic、PostgreSQL、Redis 与文件产物, 不新增部署进程. 上下文先筛选材料并分配预算, Prompt 组装器按固定版本形成模型请求, 工具提案继续经过策略与既有调度器.
+
+Harness 是这些运行控制模块的整体, 不是与调度器平行的第二套控制中心. LangGraph 管理流程与检查点, 调度器管理任务和资源, 执行器管理 attempt. 详细职责见 [18](18-harness-runtime.md); 输入预算见 [16](16-context-engineering.md); 模板契约见 [17](17-prompt-engineering.md).

@@ -93,3 +93,9 @@ LangGraph 中断恢复可能重新执行节点前段, 所以副作用不能放�
 每次 run 必须绑定最大模型调用数、工具调用数、总时长、费用/Token 预算和检索轮数. 数值由容量评审确定, 缺少生产配置不得默认为无限.
 
 达到上限时保留已有证据, 返回 BUDGET_EXCEEDED 与未完成项. 后续继续作为明确的新授权或新 run, 不自行无限循环.
+
+## 8. 节点实现补充入口
+
+`load_context` 的预算、结构化摘要、原文回查和并发激活详见 [16](16-context-engineering.md). 各模型节点的模板、类型变量、输出 Schema 和版本回归详见 [17](17-prompt-engineering.md). `policy/dispatch/observe` 的完整调用顺序、事件去重和停止条件详见 [18](18-harness-runtime.md).
+
+RunState 进一步引用 `version_manifest_ref`、`context_snapshot_ref` 与累计预算. 这些引用不保存原始凭证. 已有 Run 状态枚举保持不变; 上下文摘要不能覆盖任务事实或作为授权依据.
