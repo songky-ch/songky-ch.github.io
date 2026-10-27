@@ -1,32 +1,32 @@
 ---
 category: Agent
-contentType: 项目 Wiki
+contentType: 技术学习
 ---
 
-# 测试 Agent 项目 Wiki
+# Agent 技术学习 Wiki
 
-从零设计面向测试团队的内部 Agent. 本栏目完整保留架构评审稿, 先确认方案, 再进入开发.
+以文档理解技术, 以交互模拟理解机制, 以后有可核验记录再加入真实回放. 不再以交付完整企业项目为目标.
 
-**当前版本: v0.2, 设计评审稿.** 已整理 18 个设计章节、12 张图解和 110 条分支检查项. 公司认证、Linux 隔离和实际容量仍需验证, 尚未开始业务开发.
+## 从这里开始
 
-## 架构设计
+- [学习路线与隔离概念纠正](./architecture/19-learning-guide.md)
+- [打开动态 HTML 实验室](/demos/agent-lab/index.html)
+- [完整章节目录](./architecture/)
 
-[进入完整 Wiki 与章节目录](./architecture/)
+**v0.3** 包含 19 个章节. 原 18 章保留为架构案例, 无 Docker、Windows 等条件不再是必须落地的约束. 用户身份与数据隔离、执行环境和资源限制要分开看, 并非每人必须长期占用一个 Docker 容器.
 
-涵盖 Windows + WebView2、Linux 单主服务与任务子进程、Agent 工具调用、HITL、长短期记忆、Agentic RAG、图片需求理解、专项测试、评测、API 和部署.
+## 三个可操作演示
 
-建议先读 [目标与决策](./architecture/01-scope-decisions.md), 再读 [技术底座](./architecture/02-stack-architecture.md), 之后逐章确认.
+| 演示 | 可以操作和观察什么 |
+| --- | --- |
+| Agent 执行与审批 | 逐步运行、批准、拒绝、变参、取消、业务失败与 UNKNOWN |
+| RAG 评测 | 改变 Top K、排序、故障和可见证据, 查看逐样本计算与汇总 |
+| Agent 评测 | 对照合成轨迹、环境结果与安全规则, 比较两个样例版本 |
 
-[![系统架构全景](/images/test-agent-wiki/01-architecture.svg)](/images/test-agent-wiki/01-architecture.svg)
+这些页面使用合成数据, 没有真实模型、检索器或业务服务调用. 状态转换和指标由页面程序实际计算. [查看检查记录](/demos/agent-lab/verification.json).
 
-## 本次新增
+## 文档与下载
 
-- [上下文工程与压缩](./architecture/16-context-engineering.md)
-- [Prompt 工程与版本管理](./architecture/17-prompt-engineering.md)
-- [Harness 运行机制](./architecture/18-harness-runtime.md)
+[进入全部章节](./architecture/) · [下载 v0.3 完整包](/downloads/test-agent-wiki-v0.3.zip).
 
-## 完整下载
-
-[下载 Wiki v0.2 压缩包](/downloads/test-agent-wiki-v0.2.zip), 包含 Markdown、离线 HTML 阅读版、SVG/PNG 图解与检查记录.
-
-本文档经用户明确授权公开发布. 文档中的例子不包含真实凭证或公司内网地址.
+旧版架构案例仍在原链接, 不删除既有内容. 后续按学习需要逐项补充演示, 不承诺本版已覆盖全部技术的动态实现.

@@ -1,12 +1,14 @@
 ---
 category: Agent
-contentType: 架构设计
+contentType: 技术学习与架构案例
 outline: [2, 3]
 ---
 
 # 18. Harness 运行机制与模块协作
 
 [返回目录](./index.md)
+
+> v0.3 学习定位: 本章保留原项目的设计案例, 不再作为必须实施的交付要求. Windows、无 Docker 等是原案例条件, 不是通用 Agent 架构要求. 当前学习路线与隔离纠正见 [19](19-learning-guide.md).
 
 本章将 [04 的 Agent 循环](04-agent-tools-skills.md)、[05 的任务执行](05-tasks-executor.md)、[06 的 HITL](06-hitl-policy.md) 串成可实现的控制逻辑. 保持 Windows 客户端、Linux 单业务主服务、按任务启动并回收子进程、不使用 Docker 的既定边界. 不改用 Codex 服务, 不新增多 Agent 架构. 核查日期: 2026-10-27; 全章为待实施设计.
 

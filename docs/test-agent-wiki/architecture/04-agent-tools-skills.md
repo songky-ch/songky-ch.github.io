@@ -1,12 +1,14 @@
 ---
 category: Agent
-contentType: 架构设计
+contentType: 技术学习与架构案例
 outline: [2, 3]
 ---
 
 # 04. Agent、工具与 Skill
 
 [返回目录](./index.md)
+
+> v0.3 学习定位: 本章保留原项目的设计案例, 不再作为必须实施的交付要求. Windows、无 Docker 等是原案例条件, 不是通用 Agent 架构要求. 当前学习路线与隔离纠正见 [19](19-learning-guide.md).
 
 ## 1. Agent 运行层做什么
 

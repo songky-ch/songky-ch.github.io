@@ -1,12 +1,14 @@
 ---
 category: Agent
-contentType: 架构设计
+contentType: 技术学习与架构案例
 outline: [2, 3]
 ---
 
 # 17. Prompt 工程与版本管理
 
 [返回目录](./index.md)
+
+> v0.3 学习定位: 本章保留原项目的设计案例, 不再作为必须实施的交付要求. Windows、无 Docker 等是原案例条件, 不是通用 Agent 架构要求. 当前学习路线与隔离纠正见 [19](19-learning-guide.md).
 
 本章补全 [04 的节点与工具](04-agent-tools-skills.md), 在既有 Python 主服务内实现. 不引入 Prompt 管理 SaaS、自动改写生产提示词或新的业务平台. 以下为设计与教学示例, 尚未实现. 核查日期: 2026-10-27.
 

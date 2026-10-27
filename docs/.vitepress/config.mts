@@ -17,8 +17,8 @@ export default defineConfig({
       { text: '测试 Agent Wiki', link: '/test-agent-wiki/' }
     ],
     sidebar: {
-      '/test-agent-wiki/': [{ text: '测试 Agent 项目 Wiki', link: '/test-agent-wiki/', collapsed: false, items: [
-        { text: '架构设计', link: '/test-agent-wiki/architecture/', collapsed: false, items: [
+      '/test-agent-wiki/': [{ text: 'Agent 技术学习 Wiki', link: '/test-agent-wiki/', collapsed: false, items: [
+        { text: '学习文档与架构案例', link: '/test-agent-wiki/architecture/', collapsed: false, items: [
           { text: '总览与阅读地图', link: '/test-agent-wiki/architecture/' },
           { text: '01. 目标、约束与决策', link: '/test-agent-wiki/architecture/01-scope-decisions' },
           { text: '02. 技术底座与模块架构', link: '/test-agent-wiki/architecture/02-stack-architecture' },
@@ -38,6 +38,7 @@ export default defineConfig({
           { text: '16. 上下文工程与压缩', link: '/test-agent-wiki/architecture/16-context-engineering' },
           { text: '17. Prompt 工程与版本管理', link: '/test-agent-wiki/architecture/17-prompt-engineering' },
           { text: '18. Harness 运行机制', link: '/test-agent-wiki/architecture/18-harness-runtime' },
+          { text: '19. 学习定位与动态演示', link: '/test-agent-wiki/architecture/19-learning-guide' },
           { text: '检查记录与发布说明', link: '/test-agent-wiki/architecture/validation' }
         ] }
       ] }],

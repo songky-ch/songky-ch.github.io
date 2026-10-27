@@ -1,14 +1,14 @@
 {
   "date": "2026-10-27",
-  "markdown_files": 20,
-  "chapters": 18,
-  "local_markdown_links_checked": 88,
+  "markdown_files": 21,
+  "chapters": 19,
+  "local_markdown_links_checked": 120,
   "json_examples_parsed": 2,
   "mermaid_source_blocks_not_compiled": 7,
   "svg_xml_checked": 12,
   "png_rendered": 12,
   "branch_scenarios": 110,
-  "html_sections": 20,
-  "html_local_resources_and_anchors_checked": 160,
+  "html_sections": 21,
+  "html_local_resources_and_anchors_checked": 195,
   "errors": []
 }

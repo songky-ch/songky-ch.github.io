@@ -1,0 +1,334 @@
+{
+  "version": "0.3",
+  "date": "2026-10-27",
+  "data": "synthetic-v1",
+  "meaning": "合成教学数据; 状态转换与算术实际执行, 无真实模型或业务调用",
+  "checks": {
+    "known_cases": 15,
+    "rag_configurations": 96,
+    "state_transitions": 1395,
+    "dom_substitute_cases": 5,
+    "label_leakage": "passed",
+    "faithfulness_not_citation_correctness": "passed"
+  },
+  "browser_interaction": {
+    "engine": "independent Chrome via browser-act",
+    "desktop": {
+      "results": [
+        {
+          "name": "normal and approval version",
+          "passed": true
+        },
+        {
+          "name": "business failure distinct from execution",
+          "passed": true
+        },
+        {
+          "name": "unknown write effect cannot retry",
+          "passed": true
+        },
+        {
+          "name": "denial and cancellation",
+          "passed": true
+        },
+        {
+          "name": "rag visible arithmetic and reset",
+          "passed": true
+        },
+        {
+          "name": "rag hidden context and failures",
+          "passed": true
+        },
+        {
+          "name": "agent comparison and task denominator",
+          "passed": true
+        },
+        {
+          "name": "all 96 browser UI configurations",
+          "passed": true
+        }
+      ],
+      "passed": 8,
+      "total": 8,
+      "viewport": {
+        "width": 1920,
+        "height": 993
+      },
+      "horizontalOverflow": false
+    },
+    "narrow_iframe": {
+      "results": [
+        {
+          "name": "normal and approval version",
+          "passed": true
+        },
+        {
+          "name": "business failure distinct from execution",
+          "passed": true
+        },
+        {
+          "name": "unknown write effect cannot retry",
+          "passed": true
+        },
+        {
+          "name": "denial and cancellation",
+          "passed": true
+        },
+        {
+          "name": "rag visible arithmetic and reset",
+          "passed": true
+        },
+        {
+          "name": "rag hidden context and failures",
+          "passed": true
+        },
+        {
+          "name": "agent comparison and task denominator",
+          "passed": true
+        },
+        {
+          "name": "all 96 browser UI configurations",
+          "passed": true
+        }
+      ],
+      "passed": 8,
+      "total": 8,
+      "viewport": {
+        "width": 390,
+        "height": 898
+      },
+      "horizontalOverflow": false
+    }
+  },
+  "desktop_visual": "实际 Chrome 截图检查通过, 原生深色模式",
+  "mobile_visual": "同源 iframe 320/390/430 CSS px 布局检查; 390px 截图查看, 深色及临时强制浅色 CSS 分支; 未在真实手机验收",
+  "real_model_or_backend": "not executed",
+  "limitations": [
+    "未在真实手机/Safari/触摸设备验收",
+    "无真实模型或后端调用, 不能推断真实 Agent 质量",
+    "未提供真实生产记录回放",
+    "DOM 替身检查与实际浏览器检查分别记录"
+  ],
+  "responsive_layout": {
+    "results": [
+      {
+        "width": 320,
+        "tab": "run",
+        "overflow": false,
+        "buttons": [
+          {
+            "text": "下一步",
+            "w": 141,
+            "h": 47.1875
+          },
+          {
+            "text": "批准当前版本",
+            "w": 141,
+            "h": 47.1875
+          },
+          {
+            "text": "拒绝",
+            "w": 141,
+            "h": 47.1875
+          },
+          {
+            "text": "修改参数版本",
+            "w": 141,
+            "h": 47.1875
+          },
+          {
+            "text": "取消运行",
+            "w": 141,
+            "h": 47.1875
+          },
+          {
+            "text": "重新开始",
+            "w": 141,
+            "h": 47.1875
+          }
+        ]
+      },
+      {
+        "width": 320,
+        "tab": "rag",
+        "overflow": false,
+        "buttons": [
+          {
+            "text": "下一步",
+            "w": 141,
+            "h": 47.1875
+          },
+          {
+            "text": "重置实验",
+            "w": 141,
+            "h": 47.1875
+          }
+        ]
+      },
+      {
+        "width": 320,
+        "tab": "eval",
+        "overflow": false,
+        "buttons": [
+          {
+            "text": "下一步",
+            "w": 141,
+            "h": 47.1875
+          },
+          {
+            "text": "重置实验",
+            "w": 141,
+            "h": 47.1875
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "run",
+        "overflow": false,
+        "buttons": [
+          {
+            "text": "下一步",
+            "w": 176,
+            "h": 47.1875
+          },
+          {
+            "text": "批准当前版本",
+            "w": 176,
+            "h": 47.1875
+          },
+          {
+            "text": "拒绝",
+            "w": 176,
+            "h": 47.1875
+          },
+          {
+            "text": "修改参数版本",
+            "w": 176,
+            "h": 47.1875
+          },
+          {
+            "text": "取消运行",
+            "w": 176,
+            "h": 47.1875
+          },
+          {
+            "text": "重新开始",
+            "w": 176,
+            "h": 47.1875
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "rag",
+        "overflow": false,
+        "buttons": [
+          {
+            "text": "下一步",
+            "w": 176,
+            "h": 47.1875
+          },
+          {
+            "text": "重置实验",
+            "w": 176,
+            "h": 47.1875
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "eval",
+        "overflow": false,
+        "buttons": [
+          {
+            "text": "下一步",
+            "w": 176,
+            "h": 47.1875
+          },
+          {
+            "text": "重置实验",
+            "w": 176,
+            "h": 47.1875
+          }
+        ]
+      },
+      {
+        "width": 430,
+        "tab": "run",
+        "overflow": false,
+        "buttons": [
+          {
+            "text": "下一步",
+            "w": 196,
+            "h": 47.1875
+          },
+          {
+            "text": "批准当前版本",
+            "w": 196,
+            "h": 47.1875
+          },
+          {
+            "text": "拒绝",
+            "w": 196,
+            "h": 47.1875
+          },
+          {
+            "text": "修改参数版本",
+            "w": 196,
+            "h": 47.1875
+          },
+          {
+            "text": "取消运行",
+            "w": 196,
+            "h": 47.1875
+          },
+          {
+            "text": "重新开始",
+            "w": 196,
+            "h": 47.1875
+          }
+        ]
+      },
+      {
+        "width": 430,
+        "tab": "rag",
+        "overflow": false,
+        "buttons": [
+          {
+            "text": "下一步",
+            "w": 196,
+            "h": 47.1875
+          },
+          {
+            "text": "重置实验",
+            "w": 196,
+            "h": 47.1875
+          }
+        ]
+      },
+      {
+        "width": 430,
+        "tab": "eval",
+        "overflow": false,
+        "buttons": [
+          {
+            "text": "下一步",
+            "w": 196,
+            "h": 47.1875
+          },
+          {
+            "text": "重置实验",
+            "w": 196,
+            "h": 47.1875
+          }
+        ]
+      }
+    ],
+    "passed": true
+  },
+  "fixed_issues": [
+    "窄屏控制按钮竖排拥挤, 修正换行并重新验证",
+    "检查断言曾误匹配步骤导航, 改为检查评分正文后复测"
+  ]
+}

@@ -1,12 +1,14 @@
 ---
 category: Agent
-contentType: 架构设计
+contentType: 技术学习与架构案例
 outline: [2, 3]
 ---
 
 # 16. 上下文工程与压缩
 
 [返回目录](./index.md)
+
+> v0.3 学习定位: 本章保留原项目的设计案例, 不再作为必须实施的交付要求. Windows、无 Docker 等是原案例条件, 不是通用 Agent 架构要求. 当前学习路线与隔离纠正见 [19](19-learning-guide.md).
 
 本章补全 [04 的 load_context 节点](04-agent-tools-skills.md), 与 [07 的知识和记忆](07-rag-memory.md) 配合. 不新增业务能力或独立服务. 以下为建议实现与待实施验收, 不是已运行代码. 核查日期: 2026-10-27.
 
