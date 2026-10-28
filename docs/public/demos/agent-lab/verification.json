@@ -1,5 +1,5 @@
 {
-  "version": "0.4",
+  "version": "0.5",
   "date": "2026-10-28",
   "data": "synthetic-v1",
   "meaning": "合成教学数据; 状态转换与算术实际执行, 无真实模型或业务调用",
@@ -430,5 +430,49 @@
       "local_links": 258,
       "errors": 0
     }
+  },
+  "evidence_extension": {
+    "date": "2026-10-28",
+    "modules": 10,
+    "synthetic_scenarios": 42,
+    "unit_invariants": "passed",
+    "browser": {
+      "scenarios": 42,
+      "transitions": 168,
+      "isolated_tabs": 5,
+      "passed": true
+    },
+    "narrow_iframe": {
+      "widths": [
+        320,
+        390,
+        430
+      ],
+      "scenarios_per_width": 42,
+      "overflow_cases": 0
+    },
+    "visual_checks": [
+      "three diagrams rendered at 390px and visually inspected",
+      "native dark layout",
+      "forced light CSS branch, not OS emulation"
+    ],
+    "regression": {
+      "known_cases": 15,
+      "rag_configs": 96,
+      "state_transitions": 1395,
+      "dom_substitute_checks": 5,
+      "browser_groups": 8,
+      "production_paths": 29
+    },
+    "source_review": {
+      "source": "REDtech original public post images",
+      "pages_viewed": 22,
+      "unverified": "tiny platform values on pages 11,13,18; not cited"
+    },
+    "limitations": [
+      "fixture records, no actual model/OCR/database/deployment",
+      "snapshot rejection demonstration checks ID only",
+      "no real fault injection or physical phone testing"
+    ]
   }
 }

@@ -65,6 +65,7 @@ export default defineConfig({
           { text: 'A2 单次工具调用测试', link: '/learning/agent/single-call-tool-testing' }
         ] },
         { text: 'AI 评测', link: '/learning/ai-evaluation/', collapsed: false, items: [
+          { text: '小红书上下文驱动评测', link: '/learning/ai-evaluation/redtech-evaluation' },
           { text: '淘宝购物助手在线评测', link: '/learning/ai-evaluation/taobao-online-agent-evaluation' },
           { text: '美团 Agent 评测全览', link: '/learning/ai-evaluation/meituan-agent-evaluation-overview' },
           { text: 'RAG、Agent 与混合评测', link: '/learning/ai-evaluation/rag-agent-evaluation' },
@@ -104,6 +105,7 @@ export default defineConfig({
           { text: 'A2 单次工具调用测试', link: '/interviews/agent/single-call-tool-testing' }
         ] },
         { text: 'AI 评测', link: '/interviews/ai-evaluation/', collapsed: false, items: [
+          { text: '小红书上下文驱动评测', link: '/interviews/ai-evaluation/redtech-evaluation' },
           { text: '在线 Agent 评测面试', link: '/interviews/ai-evaluation/taobao-online-agent-evaluation' },
           { text: 'Agent 评测体系面试', link: '/interviews/ai-evaluation/meituan-agent-evaluation-overview' },
           { text: 'RAG、Agent 与混合评测面试', link: '/interviews/ai-evaluation/rag-agent-evaluation' },

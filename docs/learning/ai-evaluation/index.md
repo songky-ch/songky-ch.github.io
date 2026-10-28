@@ -15,6 +15,7 @@
 | [我的检索评测口径: 召回、排序与证据覆盖](./retrieval-metrics.md) | 实践教程 | 手算召回、排序、完整证据和宏微平均 |
 | [R4 回答事实、证据与引用](rag-answer-quality.md) | 实践教程 | 事实、上下文支持、必答项与引用的分项判定 |
 | [R5 RAG benchmark 设计](rag-benchmark-design.md) | 实践教程 | 任务覆盖、独立参考、资料版本与成对回归 |
+| [小红书上下文驱动评测](./redtech-evaluation.md) | 文档带读 | 请求现场、分维度状态、裁判校准与快照回放 |
 
 配套内容: [AI 评测面试专题](../../interviews/ai-evaluation/).
 

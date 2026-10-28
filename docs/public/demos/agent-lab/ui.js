@@ -33,7 +33,7 @@ function renderEval(){
  html+='<div class="card"><h3>4. 全量报告与版本比较</h3>'+table(['指标','当前版本','另一合成版本'],[['完成观测 / 全部',r.completed+'/'+r.total,alt.completed+'/'+alt.total],['目标服务失败',r.errors,alt.errors],['目标达成 / 全部',r.goal+'/'+r.total,alt.goal+'/'+alt.total],['合格 / 全部',r.qualified+'/'+r.total+' = '+fmt(r.qualified/r.total),alt.qualified+'/'+alt.total+' = '+fmt(alt.qualified/alt.total)],['违规执行次数',r.violations,alt.violations]])+'<p>即使“目标达成”, 违规动作也会使该任务不合格. 有安全违规的版本不能用平均质量分抵消. 单独修复评分器后可以重评原记录, 不重新执行真实副作用动作.</p><p>下一步人工复核: 对照 T2 的 change、approve、execute 版本, 再检查 T1 是否真的出现 created. 该复核步骤是学习练习, 页面没有伪造人工复核已通过的记录.</p></div>';}
  $('evalView').innerHTML=html;$('evalNext').disabled=evalStage===3;
 }
-document.querySelectorAll('[data-tab]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));['run','rag','eval','production'].forEach(id=>$(id).hidden=id!==button.dataset.tab);}));
+document.querySelectorAll('[data-tab]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));['run','rag','eval','production','evidence'].forEach(id=>$(id).hidden=id!==button.dataset.tab);}));
 for(const [id,action] of Object.entries({next:'next',approve:'approve',deny:'deny',change:'change',cancel:'cancel'}))$(id).addEventListener('click',()=>{run=Lab.advance(run,action);renderRun();});
 function resetRun(){run=Lab.createRun($('scenario').value);renderRun();}
 $('resetRun').addEventListener('click',resetRun);$('scenario').addEventListener('change',resetRun);
