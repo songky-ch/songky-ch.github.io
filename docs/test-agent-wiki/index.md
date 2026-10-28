@@ -10,7 +10,7 @@ contentType: 技术学习
 ## 从这里开始
 
 - [学习路线与隔离概念纠正](./architecture/19-learning-guide.md)
-- [打开动态 HTML 实验室](/demos/agent-lab/index.html)
+- <a href="/demos/agent-lab/index.html" target="_self">打开动态 HTML 实验室</a>
 - [完整章节目录](./architecture/)
 
 **v0.3** 包含 19 个章节. 原 18 章保留为架构案例, 无 Docker、Windows 等条件不再是必须落地的约束. 用户身份与数据隔离、执行环境和资源限制要分开看, 并非每人必须长期占用一个 Docker 容器.

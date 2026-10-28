@@ -50,7 +50,7 @@ Docker 使用 namespaces 等内核能力隔离运行视图, 使用 cgroups 计�
 
 ## 3. 打开动态 HTML
 
-[进入 Agent 技术交互实验室](/demos/agent-lab/index.html)
+<a href="/demos/agent-lab/index.html" target="_self">进入 Agent 技术交互实验室</a>
 
 本实验室包含三个标签页, 可以逐步推进、切换场景、检查原始样例和分数计算. 所有数据都是明确写出的合成样例, 浏览器执行状态转换和算术, 不发模型/业务请求. 刷新会重置, 不收集用户输入.
 

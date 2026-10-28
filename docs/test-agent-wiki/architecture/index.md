@@ -12,7 +12,7 @@ outline: [2, 3]
 
 原 01-18 章保留为架构案例, 可用于理解组件调用和故障边界. 原 Windows/WebView2、单服务进程、无 Docker 等约束只适用于历史案例. 多用户不等于每人必须长期占用一个 Docker 容器; 身份与数据隔离、执行隔离、资源限制和生命周期需要分开设计.
 
-**学习从这里开始: [学习路线与隔离纠正](19-learning-guide.md) · [动态 HTML 实验室](/demos/agent-lab/index.html).** 实验室包含 Agent 执行/审批、RAG 评测和 Agent 评测. 合成样例与程序实际计算明确区分, 不伪装真实模型执行.
+**学习从这里开始: [学习路线与隔离纠正](19-learning-guide.md) · <a href="/demos/agent-lab/index.html" target="_self">动态 HTML 实验室</a>.** 实验室包含 Agent 执行/审批、RAG 评测和 Agent 评测. 合成样例与程序实际计算明确区分, 不伪装真实模型执行.
 
 阅读形式: 按章节在线阅读; [下载完整学习 Wiki v0.3](/downloads/test-agent-wiki-v0.3.zip) 包含 Markdown、离线阅读版、交互演示与检查程序.
 

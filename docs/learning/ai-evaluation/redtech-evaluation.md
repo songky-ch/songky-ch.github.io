@@ -6,7 +6,7 @@ contentType: 文档带读
 
 本文带读小红书技术 REDtech 的《小红书推荐系统评测 Agent: 上下文驱动的 LLM-as-Judge 实践》, 并把可迁移的机制接入专项测试助手的学习案例. 目标是理解评测单元、证据边界、规则与模型分工、校准、回放及实验诊断, 不是复刻小红书内部平台.
 
-[原始图文](https://www.xiaohongshu.com/discovery/item/6adb1b9d000000002a01e603) · [动态实验室](/demos/agent-lab/index.html) → “项目证据实验” · [配套面试](../../interviews/ai-evaluation/redtech-evaluation.md) · [Wiki 评测章](/test-agent-wiki/architecture/10-evaluation.html).
+[原始图文](https://www.xiaohongshu.com/discovery/item/6adb1b9d000000002a01e603) · <a href="/demos/agent-lab/index.html" target="_self">动态实验室</a> → “项目证据实验” · [配套面试](../../interviews/ai-evaluation/redtech-evaluation.md) · [Wiki 评测章](/test-agent-wiki/architecture/10-evaluation.html).
 
 核查于 2026-10-28. 已逐页查看原帖 22 张配图: 第 1 页封面, 第 2-20 页正文与示意图, 第 21-22 页团队和招聘. 正文文字可辨; 第 11、13、18 页平台截图中的细小字段未逐项核验, 本文不引用截图里的具体效果数字. 不使用评论区自动摘要充当原文. 未取得内部代码、原始数据或完整评分配置, 未验证生产性能. 以下“原文机制”与“项目迁移”明确分开, 不转载整篇原文或原图.
 

@@ -127,12 +127,12 @@ nDCG 使用 DCG@K = Σ(2^rel_i - 1)/log2(i+1), 再除以 IDCG@K. 无相关标签
 
 ## 10. 动态评测学习入口
 
-[打开 RAG 与 Agent 评测演示](/demos/agent-lab/index.html). 页面逐步展示样本、预设观测、规则评分、聚合与版本比较. 评分基于合成数据, 不是真实模型 benchmark; 本章的裁判校准和生产评测流程仍是完整工程参考. 具体算例与边界见 [19](19-learning-guide.md).
+<a href="/demos/agent-lab/index.html" target="_self">打开 RAG 与 Agent 评测演示</a>. 页面逐步展示样本、预设观测、规则评分、聚合与版本比较. 评分基于合成数据, 不是真实模型 benchmark; 本章的裁判校准和生产评测流程仍是完整工程参考. 具体算例与边界见 [19](19-learning-guide.md).
 
 
 ## REDtech 上下文驱动评测机制补充
 
-[原文带读与页码](https://songky-ch.github.io/learning/ai-evaluation/redtech-evaluation.html) · [开发与测试面试](https://songky-ch.github.io/interviews/ai-evaluation/redtech-evaluation.html) · [动态实验](https://songky-ch.github.io/demos/agent-lab/index.html) → 项目证据实验.
+[原文带读与页码](https://songky-ch.github.io/learning/ai-evaluation/redtech-evaluation.html) · [开发与测试面试](https://songky-ch.github.io/interviews/ai-evaluation/redtech-evaluation.html) · <a href="https://songky-ch.github.io/demos/agent-lab/index.html" target="_self">动态实验</a> → 项目证据实验.
 
 采用其可迁移机制, 不将推荐指标直接当作测试标准: 以完整任务证据快照为评测单元, 固定需求版本、环境、原问题、计划与有序观测; 分维度独立保存分数、理由、状态及生效配置. 结构化事实用规则, 语义质量用受约束裁判. 缺材料、获取失败、裁判失败和未请求维度分别记录; 不能把 null 当成有效 0 分.
 

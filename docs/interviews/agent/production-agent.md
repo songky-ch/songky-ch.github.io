@@ -4,7 +4,7 @@ contentType: 面试专题
 ---
 # 业务级 Agent 生产落地面试: 开发与测试双视角
 
-[先读机制与分支](../../learning/agent/production-agent.md) · [打开动态演示](/demos/agent-lab/index.html), 选择“生产决策与面试”. 本文为技术参考答案, 不代表你已做过生产项目. 不编造上线指标, 不保证这些问题一定出现在面试中.
+[先读机制与分支](../../learning/agent/production-agent.md) · <a href="/demos/agent-lab/index.html" target="_self">打开动态演示</a>, 选择“生产决策与面试”. 本文为技术参考答案, 不代表你已做过生产项目. 不编造上线指标, 不保证这些问题一定出现在面试中.
 
 ## 开发专家视角
 
@@ -351,7 +351,7 @@ contentType: 面试专题
 
 ## 新增工程题: 参考答案与验证追问
 
-以下是教学参考, 不是“所有企业的标准答案”. [对应机制与来源](../../learning/agent/production-agent.md) · [项目证据实验](/demos/agent-lab/index.html).
+以下是教学参考, 不是“所有企业的标准答案”. [对应机制与来源](../../learning/agent/production-agent.md) · <a href="/demos/agent-lab/index.html" target="_self">项目证据实验</a>.
 
 ### 如何保证 Query 改写不改变意图?
 

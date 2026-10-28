@@ -6,7 +6,7 @@ contentType: 实践教程
 
 本文继续使用测试团队的专项测试助手作为教学案例, 目标是能解释“谁做决定、谁执行、凭什么判定成功”. 不建设全量产品, 也不把学习案例写成个人项目履历. 前置知识是基本接口测试、状态和 JSON 参数.
 
-[打开动态演示](/demos/agent-lab/index.html) → 选择“生产决策与面试”. [开发与测试面试专题](../../interviews/agent/production-agent.md). [原 Wiki 学习路线](/test-agent-wiki/architecture/19-learning-guide.html).
+<a href="/demos/agent-lab/index.html" target="_self">打开动态演示</a> → 选择“生产决策与面试”. [开发与测试面试专题](../../interviews/agent/production-agent.md). [原 Wiki 学习路线](/test-agent-wiki/architecture/19-learning-guide.html).
 
 ## 先看职责与证据流
 
@@ -382,7 +382,7 @@ contentType: 实践教程
 
 ## 新增工程追问: 用项目证据回答
 
-[项目证据实验](/demos/agent-lab/index.html) 新增 10 个模块、42 个合成情境. 与原有 10 个主题、29 条叙事分支互补. 本节未声称实现后端或部署模型. 所有百分比门槛与相似度数值均为样例, 不构成行业基准.
+<a href="/demos/agent-lab/index.html" target="_self">项目证据实验</a> 新增 10 个模块、42 个合成情境. 与原有 10 个主题、29 条叙事分支互补. 本节未声称实现后端或部署模型. 所有百分比门槛与相似度数值均为样例, 不构成行业基准.
 
 ### 问题改写: 高相似也可能改错
 

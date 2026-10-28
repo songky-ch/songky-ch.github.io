@@ -4,7 +4,7 @@ contentType: 面试专题
 ---
 # 上下文驱动的评测 Agent: 开发与测试面试
 
-[对应原文带读](../../learning/ai-evaluation/redtech-evaluation.md) · [动态练习](/demos/agent-lab/index.html) → 项目证据实验 → 小红书机制迁移.
+[对应原文带读](../../learning/ai-evaluation/redtech-evaluation.md) · <a href="/demos/agent-lab/index.html" target="_self">动态练习</a> → 项目证据实验 → 小红书机制迁移.
 
 依据 REDtech 原文机制与明确标识的测试项目迁移, 不是个人生产履历. 原文阅读范围和页码见带读文章; 以下回答组织及测试方法为教学补充.
 
